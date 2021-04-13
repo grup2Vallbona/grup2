@@ -1,0 +1,301 @@
+<!--
+  Generated template for the Foro page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar no-border-bottom>
+    <ion-title>Foro</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only color="light" (click)="gotoCrearGrupo()">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-buttons>
+
+  </ion-navbar>
+
+<ion-toolbar no-border-top>
+
+
+
+
+
+
+    <ion-segment [(ngModel)]="generic">
+      <ion-segment-button value="general">
+        <ion-icon name="flame"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="escuelas">
+        <ion-icon name="school"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="marcas">
+        <ion-icon name="pricetag"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="stars">
+        <ion-icon name="star"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>
+</ion-header>
+
+<ion-content class="bodyTabs">
+  <div [ngSwitch]="generic">
+    <ion-list *ngSwitchCase="'general'">
+        <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">España</ion-option>
+            <ion-option value="esp">Reino Unido</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Zona</ion-label>
+            <ion-select [(ngModel)]="language">
+              <ion-option value="eng">Madrid</ion-option>
+              <ion-option value="esp">Londres</ion-option>
+              <ion-option value="cat">Cataluña</ion-option>
+            </ion-select>
+        </ion-item>
+      <div class="tituloLabel" text-center>
+        <ion-label>GENERAL</ion-label>
+      </div>
+      <div class="grupLabel">
+        <ion-label>Grupos</ion-label>
+      </div>
+      <ion-list>
+        <ion-card *ngFor="let grupo of grupos">
+              <ion-item>
+                <ion-avatar item-left>
+                  <img src="./assets/icon/logoband.png">
+                </ion-avatar>
+                <h3>{{grupo.title}}</h3>
+                <p>Bailarines</p>
+              </ion-item>
+
+        </ion-card>
+      </ion-list>
+      <!--
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      -->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'escuelas'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+
+        </ion-item>
+        <ion-item>
+          <ion-label>Zona</ion-label>
+            <ion-select [(ngModel)]="language">
+              <ion-option value="eng">Test</ion-option>
+              <ion-option value="esp">Test</ion-option>
+              <ion-option value="cat">Test</ion-option>
+            </ion-select>
+        </ion-item>
+      <div class="tituloLabel" text-center>
+        <ion-label>ESCUELAS</ion-label>
+      </div>
+      <div class="grupLabel">
+        <ion-label>Grupos</ion-label>
+      </div>
+      <!--
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      -->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'marcas'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Zona</ion-label>
+            <ion-select [(ngModel)]="language">
+              <ion-option value="eng">Test</ion-option>
+              <ion-option value="esp">Test</ion-option>
+              <ion-option value="cat">Test</ion-option>
+            </ion-select>
+        </ion-item>
+      <div class="tituloLabel" text-center>
+        <ion-label>MARCAS</ion-label>
+      </div>
+      <div class="grupLabel">
+        <ion-label>Grupos</ion-label>
+      </div>
+      <!--
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      -->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'stars'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Zona</ion-label>
+            <ion-select [(ngModel)]="language">
+              <ion-option value="eng">Test</ion-option>
+              <ion-option value="esp">Test</ion-option>
+              <ion-option value="cat">Test</ion-option>
+            </ion-select>
+        </ion-item>
+      <div class="tituloLabel" text-center>
+        <ion-label>SWING STARS</ion-label>
+      </div>
+      <div class="grupLabel">
+        <ion-label>Grupos</ion-label>
+      </div>
+      <!--
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="../assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      -->
+    </ion-list>
+  </div>
+</ion-content>
+

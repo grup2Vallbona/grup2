@@ -1,0 +1,31 @@
+.form-control {
+  display: block;
+  width: $width;
+  padding: $padding-top $padding-right;
+  font-size: $font-size;
+  line-height: 1.5;
+  color: $color-principal;
+  background-color: $color-background;
+  background-clip: padding-box;
+  border: 1px solid $color-principal;
+  border-radius: $border-radius;
+
+
+  &:focus{
+    color: $color-principal;
+    background-color: $color-background;
+    outline: 0;
+    box-shadow: $box-shadow;
+  }
+  tr{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: $margin-right;
+    margin-left: $margin-left;
+  }
+}
+
+

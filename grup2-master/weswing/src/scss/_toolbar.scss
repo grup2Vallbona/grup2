@@ -1,0 +1,11 @@
+.toolbar-background {
+    background-color: $color-principal;
+    color: $color-font;
+}
+
+.toolbar-title-md {
+    font-size: $font-size;
+    font-weight: 500;
+    color: $color-font;
+    padding: $padding-top $padding-right;
+}

@@ -1,0 +1,14 @@
+  .btn{
+    background-color: $color-principal;
+    text-align: center ;
+    &:hover {
+      color: $color-principal;
+      text-decoration: none;
+    }
+  
+    &.disabled, &:disabled {
+      opacity: $opacitat;
+    }
+  
+  }
+   
