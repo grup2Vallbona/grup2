@@ -16,6 +16,7 @@ class CreateTipusBallsTable extends Migration
         Schema::create('tipus_balls', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nom', 100);
         });
     }
 

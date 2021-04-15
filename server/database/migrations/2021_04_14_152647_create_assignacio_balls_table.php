@@ -14,7 +14,10 @@ class CreateAssignacioBallsTable extends Migration
     public function up()
     {
         Schema::create('assignacio_balls', function (Blueprint $table) {
-            $table->id();
+            $table->integer('persona_id');
+            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->integer('ball_id');
+            $table->foreign('ball_id')->references('id')->on('tipus_balls');
             $table->timestamps();
         });
     }

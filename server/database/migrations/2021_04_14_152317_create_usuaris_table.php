@@ -16,6 +16,19 @@ class CreateUsuarisTable extends Migration
         Schema::create('usuaris', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('entitat_id');
+            $table->foreign('entitat_id')->references('id')->on('entitats');
+            $table->integer('persona_id');
+            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->string('nickname', 100);
+            $table->string('contrasenya', 100);
+            $table->string('email', 100);
+            $table->string('descripcio', 100);
+            $table->string('imagen', 100);
+            $table->integer('idioma');
+            $table->integer('genere');
+            $table->integer('pais');
+            $table->integer('vacunaCovid');
         });
     }
 

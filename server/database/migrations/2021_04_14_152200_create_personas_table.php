@@ -16,6 +16,14 @@ class CreatePersonasTable extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('ballari');
+            $table->integer('music');
+            $table->integer('professor');
+            $table->integer('especialitatsProfessor');
+            $table->string('rol', 100);
+            $table->string('instrument', 100);
+            $table->date('dataNaixementBallari');
+            $table->date('iniciProfessorat');
         });
     }
 

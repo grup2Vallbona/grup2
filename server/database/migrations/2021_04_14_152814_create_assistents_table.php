@@ -14,8 +14,11 @@ class CreateAssistentsTable extends Migration
     public function up()
     {
         Schema::create('assistents', function (Blueprint $table) {
-            $table->id();
             $table->timestamps();
+            $table->integer('event_id');
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->integer('usuari_id');
+            $table->foreign('usuari_id')->references('id')->on('usuaris');
         });
     }
 

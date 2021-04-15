@@ -14,7 +14,10 @@ class CreatePertanyenProfessorsTable extends Migration
     public function up()
     {
         Schema::create('pertanyen_professors', function (Blueprint $table) {
-            $table->id();
+            $table->integer('entitat_id');
+            $table->foreign('entitat_id')->references('id')->on('entitats');
+            $table->integer('professor_id');
+            $table->foreign('professor_id')->references('id')->on('personas');
             $table->timestamps();
         });
     }

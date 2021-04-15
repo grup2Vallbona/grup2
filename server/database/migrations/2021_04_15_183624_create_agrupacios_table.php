@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnsenyançaEventsTable extends Migration
+class CreateAgrupaciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateEnsenyançaEventsTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('music_events', function (Blueprint $table) {
+        Schema::create('agrupacios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('professor_id');
-            $table->foreign('professor_id')->references('id')->on('personas');
+            $table->string('nom', 100);
+            $table->string('descripcio', 100);
         });
     }
 
@@ -29,6 +28,6 @@ class CreateEnsenyançaEventsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('agrupacios');
     }
 }

@@ -14,8 +14,12 @@ class CreateBloquejatsTable extends Migration
     public function up()
     {
         Schema::create('bloquejats', function (Blueprint $table) {
-            $table->id();
+            
             $table->timestamps();
+            $table->integer('bloquejat_id');
+            $table->foreign('bloquejat_id')->references('id')->on('usuaris');
+            $table->integer('bloquejador_id');
+            $table->foreign('bloquejador_id')->references('id')->on('usuaris');
         });
     }
 

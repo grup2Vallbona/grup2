@@ -14,7 +14,10 @@ class CreateSeguitsTable extends Migration
     public function up()
     {
         Schema::create('seguits', function (Blueprint $table) {
-            $table->id();
+            $table->integer('seguit_id');
+            $table->foreign('seguit_id')->references('id')->on('usuaris');
+            $table->integer('seguidor_id');
+            $table->foreign('seguidor_id')->references('id')->on('usuaris');
             $table->timestamps();
         });
     }
