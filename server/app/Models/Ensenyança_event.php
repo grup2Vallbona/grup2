@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Ensenyança_event extends Model
 {
     use HasFactory;
+    
 }

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Diploma extends Model
 {
     use HasFactory;
+    protected $fillable=[
+      'titol'  
+    ];
 }

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Premi extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'nom'
+    ];
 }
