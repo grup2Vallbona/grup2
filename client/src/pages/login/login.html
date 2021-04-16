@@ -6,40 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="body">
 
-  <ion-list>
+    <ion-list>
 
-  <div class="imgLogo">
-      <img src="./assets/icon/logoband.png">
-  </div>
-
-
-
-  <ion-item>
-    <ion-input placeholder="Username" type="text" name="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-
-  <div class="btnContainer">
-
-    <div class="btnConnect">
-      <button class="btnLogin" ion-button (click)="login()">Login</button>
-    </div>
-
-  </div>
+        <div class="imgLogo">
+            <img src="./assets/icon/logoband.png">
+        </div>
 
 
-</ion-list>
+
+        <ion-item>
+            <ion-input placeholder="Username" type="text" name="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <div class="btnContainer">
+
+            <div class="btn">
+                <button class="btn" ion-button (click)="login()">Login</button>
+            </div>
+
+        </div>
+
+
+    </ion-list>
 
 </ion-content>
