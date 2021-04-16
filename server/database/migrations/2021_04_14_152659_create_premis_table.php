@@ -16,7 +16,7 @@ class CreatePremisTable extends Migration
         Schema::create('premis', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('usuari_id');
+            $table->integer('usuari_id')->nullable();
             $table->foreign('usuari_id')->references('id')->on('usuaris');
             $table->string('titol', 100);
         });

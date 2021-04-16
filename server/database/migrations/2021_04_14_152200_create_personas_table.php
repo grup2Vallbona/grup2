@@ -16,14 +16,14 @@ class CreatePersonasTable extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('ballari');
-            $table->integer('music');
-            $table->integer('professor');
-            $table->integer('especialitatsProfessor');
-            $table->string('rol', 100);
-            $table->string('instrument', 100);
-            $table->date('dataNaixementBallari');
-            $table->date('iniciProfessorat');
+            $table->integer('ballari')->nullable();
+            $table->integer('music')->nullable();
+            $table->integer('professor')->nullable();
+            $table->integer('especialitatsProfessor')->nullable();
+            $table->string('rol', 100)->nullable();
+            $table->string('instrument', 100)->nullable();
+            $table->date('dataNaixementBallari')->nullable();
+            $table->date('iniciProfessorat')->nullable();
         });
     }
 

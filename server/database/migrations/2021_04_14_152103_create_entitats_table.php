@@ -16,8 +16,8 @@ class CreateEntitatsTable extends Migration
         Schema::create('entitats', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('escola');
-            $table->integer('marca');
+            $table->integer('escola')->nullable();
+            $table->integer('marca')->nullable();
             $table->string('nom', 100);
         });
     }

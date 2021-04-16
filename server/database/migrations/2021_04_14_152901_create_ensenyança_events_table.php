@@ -14,7 +14,7 @@ class CreateEnsenyançaEventsTable extends Migration
     public function up()
     {
         //
-        Schema::create('music_events', function (Blueprint $table) {
+        Schema::create('ensenyança_events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->integer('professor_id');
