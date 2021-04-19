@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Movidas } from '../movidas/movidas';
+import { Crearevento } from '../crearevento/crearevento';
 
 
 
@@ -31,5 +32,8 @@ export class Eventos {
      this.navCtrl.push(Movidas);
 
   }
-
+  crearEvento(){
+    console.log("hola");
+    this.navCtrl.push(Crearevento);
+  }
 }

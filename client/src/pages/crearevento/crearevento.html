@@ -7,12 +7,52 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>crearevento</ion-title>
+    <ion-title>Crear Evento</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-item>
+    <ion-label floating>Título</ion-label>
+    <ion-input type="text" [(ngModel)]="titulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Subtítulo</ion-label>
+    <ion-input type="text" [(ngModel)]="subtitulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Descripción</ion-label>
+    <ion-input type="text" [(ngModel)]="descripcion"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de participación</ion-label>
+    <ion-select [(ngModel)]="tipoParticipacion">
+      <ion-option value="solo">Solos</ion-option>
+      <ion-option value="escuela">Escuelas</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de baile</ion-label>
+    <ion-select [(ngModel)]="TipoDeBaile">
+      
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de musica</ion-label>
+    <ion-select [(ngModel)]="TipoDeMusica">
+      
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Crear un nuevo evento</ion-label>
+    <ion-checkbox slot="md" color="primary"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Seleccióna un evento</ion-label>
+    <ion-select [(ngModel)]="Evento">
+      
+    </ion-select>
+  </ion-item>
 </ion-content>
