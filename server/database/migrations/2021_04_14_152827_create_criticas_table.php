@@ -16,9 +16,9 @@ class CreateCriticasTable extends Migration
         Schema::create('criticas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('event_id');
+            $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
-            $table->integer('usuari_id');
+            $table->unsignedBigInteger('usuari_id');
             $table->foreign('usuari_id')->references('id')->on('usuaris');
             $table->string('terra', 100);
             $table->string('espai', 100);

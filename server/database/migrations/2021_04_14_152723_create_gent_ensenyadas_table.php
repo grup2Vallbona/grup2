@@ -14,9 +14,9 @@ class CreateGentEnsenyadasTable extends Migration
     public function up()
     {
         Schema::create('gent_ensenyadas', function (Blueprint $table) {
-            $table->integer('ballari_id');
+            $table->unsignedBigInteger('ballari_id');
             $table->foreign('ballari_id')->references('id')->on('personas');
-            $table->integer('professor_id');
+            $table->unsignedBigInteger('professor_id');
             $table->foreign('professor_id')->references('id')->on('personas');
             $table->timestamps();
         });

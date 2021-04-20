@@ -105,6 +105,7 @@ Route::get('persona/{id}', [PersonaController::class, "getPersona"]);
 Route::put('persona/{id}', [PersonaController::class, "updatePersona"]);
 Route::post('persona', [PersonaController::class, "crearPersona"]);
 Route::delete('persona/{id}', [PersonaController::class, "eliminarPersona"]);
+Route::post('ball', [PersonaController::class, "assignacioBall"]);
 
 // ----------------- ENTITATS -----------------
 Route::get('entitats', [EntitatController::class, "getEntitats"]);

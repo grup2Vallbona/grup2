@@ -16,7 +16,7 @@ class CreateDiplomasTable extends Migration
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('usuari_id');
+            $table->unsignedBigInteger('usuari_id');
             $table->foreign('usuari_id')->references('id')->on('usuaris');
             $table->string('titol', 100);
         });

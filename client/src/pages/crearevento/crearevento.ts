@@ -13,12 +13,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'crearevento.html',
 })
 export class Crearevento {
-
+  nuevoEvento:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Crearevento');
   }
+  
 
 }

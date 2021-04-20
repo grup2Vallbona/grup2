@@ -1,6 +1,8 @@
 {
   "name": "weswing",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "ionic-angular",
   "v2": true,
   "typescript": true

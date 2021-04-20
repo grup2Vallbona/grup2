@@ -36,23 +36,50 @@
   <ion-item>
     <ion-label>Tipo de baile</ion-label>
     <ion-select [(ngModel)]="TipoDeBaile">
-      
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Tipo de musica</ion-label>
     <ion-select [(ngModel)]="TipoDeMusica">
-      
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Crear un nuevo evento</ion-label>
-    <ion-checkbox slot="md" color="primary"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="nuevoEvento"></ion-checkbox>
   </ion-item>
-  <ion-item>
-    <ion-label>Seleccióna un evento</ion-label>
-    <ion-select [(ngModel)]="Evento">
-      
+  <ion-item *ngIf="nuevoEvento">
+    <ion-label floating>Título del premio</ion-label>
+    <ion-input type="text" [(ngModel)]="premio" value={}></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!nuevoEvento"> 
+    <ion-label>Selecciona un premio</ion-label>
+    <ion-select [(ngModel)]="premio">
     </ion-select>
   </ion-item>
+  <ion-item>
+    <ion-label>Fecha del evento</ion-label>
+    <ion-datetime displayFormat="DD MM YY" ></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>País</ion-label>
+    <ion-select [(ngModel)]="pais">
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Provincia</ion-label>
+    <ion-select [(ngModel)]="provincia">
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Municipio</ion-label>
+    <ion-select [(ngModel)]="municipio">
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Carrer</ion-label>
+    <ion-input type="text" [(ngModel)]="carrer"></ion-input>
+  </ion-item>
+  <div class="btn">
+    <button class="btn" ion-button >Crear Evento</button>
+  </div>
 </ion-content>

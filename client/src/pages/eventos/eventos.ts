@@ -33,7 +33,6 @@ export class Eventos {
 
   }
   crearEvento(){
-    console.log("hola");
     this.navCtrl.push(Crearevento);
   }
 }

@@ -50,4 +50,10 @@ class PersonaController extends BaseController
         $persona->delete();
         return $persona;
     }
+    function assignacioBall(Request $request)
+    {
+        $persona = Persona::find($request->id);
+        $persona->relacio()->attach($request->idBall);
+        return $persona;
+    }
 }

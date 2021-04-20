@@ -16,7 +16,7 @@ class CreateFotografiasTable extends Migration
         Schema::create('fotografias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('event_id');
+            $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
             $table->string('nom', 100);
         });

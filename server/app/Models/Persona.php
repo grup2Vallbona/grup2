@@ -18,4 +18,8 @@ class Persona extends Model
       'iniciProfessorat',
       'especialitatsProfessor' 
     ];
+    public function relacio()
+    {
+        return $this->hasMany(TipusBall::class);
+    }
 }

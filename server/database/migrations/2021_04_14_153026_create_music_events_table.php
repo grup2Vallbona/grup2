@@ -16,7 +16,7 @@ class CreateMusicEventsTable extends Migration
         Schema::create('music_events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('music_id');
+            $table->unsignedBigInteger('music_id');
             $table->foreign('music_id')->references('id')->on('personas');
         });
     }
