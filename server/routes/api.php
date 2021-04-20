@@ -23,6 +23,7 @@ use App\Http\Controllers\PremiController;
 use App\Http\Controllers\SeguitController;
 use App\Http\Controllers\TipusBallController;
 use App\Http\Controllers\UsuariController;
+use App\Models\Administrador;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +37,13 @@ use App\Http\Controllers\UsuariController;
 */
 // ----------------- ADMINISTRADOR  -----------------
 Route::get('administradors', [AdministradorController::class, "getAdministradors"]);
-
+Route::post('administrador', [AdministradorController::class, "administrador"]);
 // ----------------- AGRUPACIONS -----------------
 Route::get('agrupacions', [AgrupacioController::class, "getAgrupacions"]);
 
 // ----------------- ASSIGNACIO BALL -----------------
 Route::get('assignacioballs', [AssignacioBallController::class, "getAssignacioBalls"]);
+Route::post('persona/ball', [PersonaController::class, "assignacioBall"]);
 
 // ----------------- ASSISTENT -----------------
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
@@ -105,7 +107,7 @@ Route::get('persona/{id}', [PersonaController::class, "getPersona"]);
 Route::put('persona/{id}', [PersonaController::class, "updatePersona"]);
 Route::post('persona', [PersonaController::class, "crearPersona"]);
 Route::delete('persona/{id}', [PersonaController::class, "eliminarPersona"]);
-Route::post('ball', [PersonaController::class, "assignacioBall"]);
+
 
 // ----------------- ENTITATS -----------------
 Route::get('entitats', [EntitatController::class, "getEntitats"]);

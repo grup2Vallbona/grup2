@@ -11,4 +11,10 @@ class TipusBall extends Model
     protected $fillable=[
         'nom'
     ];
+
+/*    public function assignacioballs()
+    {
+        //return $this->hasMany(AssignacioBall::class);
+        return $this->belongsTo(AssignacioBall::class);
+    }*/
 }

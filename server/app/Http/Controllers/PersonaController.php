@@ -9,6 +9,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Persona;
+use App\Models\AssignacioBall;
+use App\Models\TipusBall;
+
 class PersonaController extends BaseController
 {
     //
@@ -52,8 +55,16 @@ class PersonaController extends BaseController
     }
     function assignacioBall(Request $request)
     {
-        $persona = Persona::find($request->id);
-        $persona->relacio()->attach($request->idBall);
-        return $persona;
+        $persona = Persona::find(1);
+        $tipusball = TipusBall::find(1);
+        $assignacioBall = new AssignacioBall();
+        
+        
+        $assignacioBall->persona()->associate($persona);
+        $assignacioBall->ball()->associate($tipusball);
+
+        $assignacioBall->save();
+        
+        return $assignacioBall;
     }
 }
