@@ -22,8 +22,8 @@ class AdministradorController extends BaseController
     }
     function administrador(Request $request)
     {
-        $persona = Persona::find(1);
-        $entitat = Entitat::find(1);
+        $persona = Persona::find($request->persona_id);
+        $entitat = Entitat::find($request->entitat_id);
         $administrador = new Administrador();
         
         $administrador->tipus=$request->tipus;        

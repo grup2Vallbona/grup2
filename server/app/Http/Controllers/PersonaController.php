@@ -53,18 +53,5 @@ class PersonaController extends BaseController
         $persona->delete();
         return $persona;
     }
-    function assignacioBall(Request $request)
-    {
-        $persona = Persona::find(1);
-        $tipusball = TipusBall::find(1);
-        $assignacioBall = new AssignacioBall();
-        
-        
-        $assignacioBall->persona()->associate($persona);
-        $assignacioBall->ball()->associate($tipusball);
-
-        $assignacioBall->save();
-        
-        return $assignacioBall;
-    }
+    
 }

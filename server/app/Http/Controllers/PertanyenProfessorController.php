@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entitat;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -15,5 +17,18 @@ class PertanyenProfessorController extends BaseController
     function getPertanyen_professors()
     {
         return Pertanyen_professor::all();
+    }
+    function pertanyen_professor(Request $request)
+    {
+        $persona = Persona::find($request->persona_id);
+        $entitat = Entitat::find($request->entitat_id);
+        $pertanyP = new Pertanyen_professor();
+        
+        $pertanyP->tipus=$request->tipus;        
+        $pertanyP->persona()->associate($persona);
+        $pertanyP->entitat()->associate($entitat);
+        $pertanyP->save();
+        
+        return $pertanyP;
     }
 }

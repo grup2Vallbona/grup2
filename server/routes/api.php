@@ -24,6 +24,7 @@ use App\Http\Controllers\SeguitController;
 use App\Http\Controllers\TipusBallController;
 use App\Http\Controllers\UsuariController;
 use App\Models\Administrador;
+use App\Models\AssignacioBall;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +44,14 @@ Route::get('agrupacions', [AgrupacioController::class, "getAgrupacions"]);
 
 // ----------------- ASSIGNACIO BALL -----------------
 Route::get('assignacioballs', [AssignacioBallController::class, "getAssignacioBalls"]);
-Route::post('persona/ball', [PersonaController::class, "assignacioBall"]);
+Route::post('persona/ball', [AssignacioBall::class, "assignacioBall"]);
 
 // ----------------- ASSISTENT -----------------
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
 
 // ----------------- BLOQUEJAT -----------------
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
+Route::post('bloquejar', [BloquejatController::class, "bloquejar"]);
 
 // ----------------- CRITICA -----------------
 Route::get('criticas', [CriticaController::class, "getCriticas"]);
@@ -71,16 +73,19 @@ Route::delete('event/{id}', [EventController::class, "eliminarUsuari"]);
 Route::get('fotografias', [FotografiaController::class, "getFotografias"]);
 
 // ----------------- GENT ENSENYADA -----------------
-Route::get('gentensenyadas', [GentEnsenyadaController::class, "getGent_ensenyadas"]);
+Route::get('getGentensenyadas', [GentEnsenyadaController::class, "getGent_ensenyadas"]);
+Route::post('gentensenyada', [GentEnsenyadaController::class, "gent_ensenyada"]);
 
 // ----------------- MUSIC EVENT -----------------
 Route::get('musicevents', [MusicEventController::class, "getMusic_events"]);
 
 // ----------------- PERTANYEN BALLARI -----------------
 Route::get('pertanyenballarins', [PertanyenBallariController::class, "getPertanyen_ballarins"]);
+Route::post('pertanyenballari', [PertanyenBallariController::class, "pertanyen_ballari"]);
 
 // ----------------- PERTANYEN PROFESSOR -----------------
 Route::get('pertanyenprofessors', [PertanyenProfessorController::class, "getPertanyen_professors"]);
+Route::post('pertanyenprofessor', [PertanyenProfessorController::class, "pertanyen_professor"]);
 
 // ----------------- PERTANY GRUP -----------------
 Route::get('pertanygrups', [PertanyGrupController::class, "getPertany_grups"]);
@@ -90,6 +95,7 @@ Route::get('premis', [PremiController::class, "getPremis"]);
 
 // ----------------- SEGUIT -----------------
 Route::get('seguits', [SeguitController::class, "getSeguits"]);
+Route::post('seguir', [SeguitController::class, "seguir"]);
 
 // ----------------- TIPUS BALL -----------------
 Route::get('tipusballs', [TipusBallController::class, "getTipusBalls"]);
