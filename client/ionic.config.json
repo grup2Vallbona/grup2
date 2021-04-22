@@ -1,6 +1,8 @@
 {
   "name": "weswing",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "v2": true,
   "typescript": true

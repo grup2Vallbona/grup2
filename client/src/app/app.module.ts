@@ -37,6 +37,7 @@ import { Crearevento } from '../pages/crearevento/crearevento';
 
 
 import { GruposService } from '../services/grupos.services';
+import { AuthProvider } from '../providers/auth/auth';
 
 
 
@@ -50,7 +51,15 @@ import { GruposService } from '../services/grupos.services';
     messagingSenderId: "98135874116",
   };
  
-
+  // var firebaseConfig = {
+  //   apiKey: "AIzaSyD2zHm9yWRvsWVqm6YS93HUWtQOlGvcwJg",
+  //   authDomain: "weswing-ffe0d.firebaseapp.com",
+  //   projectId: "weswing-ffe0d",
+  //   storageBucket: "weswing-ffe0d.appspot.com",
+  //   messagingSenderId: "98135874116",
+  //   appId: "1:98135874116:web:acf776d9f3dea79943fa11",
+  //   measurementId: "G-W27Z7TDGD0"
+  // };
 
 
 
@@ -102,7 +111,8 @@ import { GruposService } from '../services/grupos.services';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService
+    {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
+    AuthProvider
   ]
 })
 export class AppModule {}

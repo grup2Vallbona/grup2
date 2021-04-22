@@ -38,11 +38,23 @@ export class Login {
 
  login() {
    try{
-       if (this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)) {
-         this.navCtrl.push(Principal);
-       }
+     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
+    .then(r =>   this.navCtrl.push(Principal))
+    .catch(e => {
+      if(e['code']== 'auth/wrong-password'){
+        // console.log('tonto te has equivocao de contra xD')
+        alert('hll')
+      }
+    })
+     
+      //  if (this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)) {
+         
+      //    this.navCtrl.push(Principal);
+      
+      //  }
    }catch(e){
-       this.loginToast();
+      //  this.loginToast();
+      console.log(e)
    }
 
   }
@@ -53,12 +65,12 @@ export class Login {
 
 
 
-   loginToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Your email or password is wrong',
-      duration: 3000
-    });
-    toast.present();
-  }
+  //  loginToast() {
+  //   let toast = this.toastCtrl.create({
+  //     message: 'Your email or password is wrong',
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
 
 }
