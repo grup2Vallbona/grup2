@@ -48,6 +48,7 @@ Route::post('persona/ball', [AssignacioBall::class, "assignacioBall"]);
 
 // ----------------- ASSISTENT -----------------
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
+Route::post('assistent', [AssistentController::class, "assistent"]);
 
 // ----------------- BLOQUEJAT -----------------
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
@@ -61,6 +62,7 @@ Route::get('diplomas', [DiplomaController::class, "getDiplomas"]);
 
 // ----------------- ENSENYANÇA EVENT -----------------
 Route::get('ensenyançaevents', [EnsenyançaEventController::class, "getEnsenyança_events"]);
+Route::post('ensenyançaevent', [EnsenyançaEventController::class, "ensenyança_event"]);
 
 // ----------------- EVENT ----------------- 
 Route::get('events', [EventController::class, "getUsuaris"]);
@@ -78,6 +80,7 @@ Route::post('gentensenyada', [GentEnsenyadaController::class, "gent_ensenyada"])
 
 // ----------------- MUSIC EVENT -----------------
 Route::get('musicevents', [MusicEventController::class, "getMusic_events"]);
+Route::post('musicevent', [MusicEventController::class, "music_event"]);
 
 // ----------------- PERTANYEN BALLARI -----------------
 Route::get('pertanyenballarins', [PertanyenBallariController::class, "getPertanyen_ballarins"]);
@@ -89,6 +92,7 @@ Route::post('pertanyenprofessor', [PertanyenProfessorController::class, "pertany
 
 // ----------------- PERTANY GRUP -----------------
 Route::get('pertanygrups', [PertanyGrupController::class, "getPertany_grups"]);
+Route::post('pertanygrup', [PertanyGrupController::class, "pertany_grup"]);
 
 // ----------------- PREMI -----------------
 Route::get('premis', [PremiController::class, "getPremis"]);
