@@ -16,11 +16,11 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('usuari_id');
+            $table->unsignedBigInteger('usuari_id');
             $table->foreign('usuari_id')->references('id')->on('usuaris');
-            $table->integer('ball_id');
+            $table->unsignedBigInteger('ball_id');
             $table->foreign('ball_id')->references('id')->on('tipus_balls');
-            $table->integer('premi_id');
+            $table->unsignedBigInteger('premi_id');
             $table->foreign('premi_id')->references('id')->on('premis');
             $table->integer('pais');
             $table->integer('provincia');

@@ -9,6 +9,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Persona;
+use App\Models\AssignacioBall;
+use App\Models\TipusBall;
+
 class PersonaController extends BaseController
 {
     //
@@ -50,4 +53,5 @@ class PersonaController extends BaseController
         $persona->delete();
         return $persona;
     }
+    
 }

@@ -14,9 +14,9 @@ class CreatePertanyenBallarisTable extends Migration
     public function up()
     {
         Schema::create('pertanyen_ballaris', function (Blueprint $table) {
-            $table->integer('entitat_id');
+            $table->unsignedBigInteger('entitat_id');
             $table->foreign('entitat_id')->references('id')->on('entitats');
-            $table->integer('ballari_id');
+            $table->unsignedBigInteger('ballari_id');
             $table->foreign('ballari_id')->references('id')->on('personas');
             $table->timestamps();
         });

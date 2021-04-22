@@ -16,9 +16,9 @@ class CreateBloquejatsTable extends Migration
         Schema::create('bloquejats', function (Blueprint $table) {
             
             $table->timestamps();
-            $table->integer('bloquejat_id');
+            $table->unsignedBigInteger('bloquejat_id');
             $table->foreign('bloquejat_id')->references('id')->on('usuaris');
-            $table->integer('bloquejador_id');
+            $table->unsignedBigInteger('bloquejador_id');
             $table->foreign('bloquejador_id')->references('id')->on('usuaris');
         });
     }

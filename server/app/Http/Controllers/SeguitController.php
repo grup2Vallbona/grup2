@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -15,5 +16,18 @@ class SeguitController extends BaseController
     function getSeguits()
     {
         return Seguit::all();
+    }
+    function seguir(Request $request)
+    {
+        $pSeguida = Persona::find($request->seguit_id);
+        $pSeguidor = Persona::find($request->seguidor_id);
+        $seguir = new Seguit();
+        
+        $seguir->tipus=$request->tipus;        
+        $seguir->persona()->associate($pSeguida);
+        $seguir->persona()->associate($pSeguidor);
+        $seguir->save();
+        
+        return $seguir;
     }
 }

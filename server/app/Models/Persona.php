@@ -18,4 +18,9 @@ class Persona extends Model
       'iniciProfessorat',
       'especialitatsProfessor' 
     ];
+/*    public function assignacioballs()
+    {
+        //return $this->hasMany(AssignacioBall::class);
+        return $this->belongsTo(AssignacioBall::class);
+    }*/
 }

@@ -16,9 +16,9 @@ class CreateUsuarisTable extends Migration
         Schema::create('usuaris', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('entitat_id');
+            $table->unsignedBigInteger('entitat_id');
             $table->foreign('entitat_id')->references('id')->on('entitats');
-            $table->integer('persona_id');
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->string('nickname', 100);
             $table->string('contrasenya', 100);

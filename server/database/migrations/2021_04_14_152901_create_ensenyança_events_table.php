@@ -17,7 +17,7 @@ class CreateEnsenyançaEventsTable extends Migration
         Schema::create('ensenyança_events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('professor_id');
+            $table->unsignedBigInteger('professor_id');
             $table->foreign('professor_id')->references('id')->on('personas');
         });
     }
