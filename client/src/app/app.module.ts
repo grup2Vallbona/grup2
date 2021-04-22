@@ -28,18 +28,19 @@ import { Movidas } from '../pages/movidas/movidas';
 import { Usuario } from '../pages/usuario/usuario';
 import { Asistentes } from '../pages/asistentes/asistentes';
 import { Escuela } from '../pages/escuela/escuela';
-
+import { EditUsuario } from '../pages/editarusuario/editusuario';
 import { Grupo } from '../pages/grupo/grupo';
 import { Creargrupo } from '../pages/creargrupo/creargrupo';
 import { Crearevento } from '../pages/crearevento/crearevento';
 
-
+import {DadesProductesService} from '../services/dades-productes.service';
 
 
 import { GruposService } from '../services/grupos.services';
 import { AuthProvider } from '../providers/auth/auth';
 
-
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
   // Initialize Firebase
   var config = {
@@ -80,14 +81,17 @@ import { AuthProvider } from '../providers/auth/auth';
     Escuela,
     Grupo,
     Creargrupo,
-    Crearevento
+    Crearevento,
+    EditUsuario
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -106,11 +110,13 @@ import { AuthProvider } from '../providers/auth/auth';
     Escuela,
     Grupo,
     Creargrupo,
-    Crearevento
+    Crearevento,
+    EditUsuario
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DadesProductesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider
   ]
