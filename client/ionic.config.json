@@ -1,11 +1,7 @@
 {
   "name": "weswing",
   "integrations": {
-<<<<<<< HEAD
     "cordova": {}
-=======
-    "capacitor": {}
->>>>>>> 92fcb14e1c223c34a1d8c22e23cc0c2fb8762a57
   },
   "type": "ionic-angular",
   "v2": true,

@@ -23,12 +23,7 @@
     "@angular/platform-browser-dynamic": "4.1.0",
     "@capacitor/core": "2.4.7",
     "@ionic-native/core": "3.7.0",
-<<<<<<< HEAD
     "@ionic-native/google-plus": "^5.32.1",
-=======
-    "@ionic-native/date-picker": "^5.32.1",
-    "@ionic-native/http": "^5.32.1",
->>>>>>> 92fcb14e1c223c34a1d8c22e23cc0c2fb8762a57
     "@ionic-native/splash-screen": "3.7.0",
     "@ionic-native/status-bar": "3.7.0",
     "@ionic/storage": "2.0.1",
