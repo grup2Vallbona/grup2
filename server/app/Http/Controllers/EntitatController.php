@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Entitat;
 use Illuminate\Http\Request;
 
-class EntitatController extends Controller
+class EntitatController extends BaseController
 {
     //
     
@@ -34,9 +34,9 @@ class EntitatController extends Controller
     function crearEntitat(Request $request)
     {
         $entitat = new Entitat;
-        $entitat->titol = $request->titol;
-        $entitat->data_public = $request->data_public;
-        $entitat->autor_id = $request->autor_id;
+        $entitat->escola = $request->escola;
+        $entitat->marca = $request->marca;
+        $entitat->nom = $request->nom;
         $entitat->save();
 
         return $entitat;
