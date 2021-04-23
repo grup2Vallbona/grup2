@@ -24,8 +24,7 @@ class MusicEventController extends BaseController
         $persona = Persona::find($request->persona_id);
         $event = Event::find($request->event_id);
         $musicEv = new Music_event();
-        
-        $musicEv->tipus=$request->tipus;        
+             
         $musicEv->persona()->associate($persona);
         $musicEv->event()->associate($event);
         $musicEv->save();

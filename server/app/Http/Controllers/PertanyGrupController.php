@@ -23,8 +23,7 @@ class PertanyGrupController extends BaseController
         $persona = Persona::find($request->persona_id);
         $agrupacio = Agrupacio::find($request->agrupacio_id);
         $pertanyG = new Pertany_grup();
-        
-        $pertanyG->tipus=$request->tipus;        
+           
         $pertanyG->persona()->associate($persona);
         $pertanyG->agrupacio()->associate($pertanyG);
         $pertanyG->save();

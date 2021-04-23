@@ -16,4 +16,31 @@ class TipusBallController extends BaseController
     {
         return TipusBall::all();
     }
+    function getTipusBall(Request $request, $id)
+    {
+        $tipusB = TipusBall::all();
+        $tipusB = $tipusB->firstWhere('id', $id);
+        return $tipusB;
+    }
+    function updateTipusBall(Request $request, $id)
+    {
+        $tipusB = TipusBall::find($id);
+        $tipusB->update($request->all());
+
+        return $tipusB;
+    }
+    function crearTipusBall(Request $request)
+    {
+        $tipusB = new TipusBall;
+        $tipusB->nom = $request->nom;
+        $tipusB->save();
+
+        return $tipusB;
+    }
+    function eliminarTipusBall($id)
+    {
+        $tipusB = TipusBall::find($id);
+        $tipusB->delete();
+        return $tipusB;
+    }
 }

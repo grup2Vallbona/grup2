@@ -24,7 +24,6 @@ class GentEnsenyadaController extends BaseController
         $pProfessor = Persona::find($request->professor_id);
         $gentEns = new Gent_ensenyada();
         
-        $gentEns->tipus=$request->tipus;        
         $gentEns->persona()->associate($pBallari);
         $gentEns->persona()->associate($pProfessor);
         $gentEns->save();

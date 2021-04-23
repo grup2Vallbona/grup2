@@ -21,8 +21,12 @@ class CreatePremisTable extends Migration
             $table->unsignedBigInteger('creador_id')->nullable();
             $table->foreign('creador_id')->references('id')->on('usuaris');
             $table->string('titol', 100);
+            $table->integer('maxGuanyadors');
+            $table->integer('categoria');
         });
     }
+
+    
 
     /**
      * Reverse the migrations.

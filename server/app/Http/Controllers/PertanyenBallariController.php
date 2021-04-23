@@ -25,8 +25,7 @@ class PertanyenBallariController extends BaseController
         $persona = Persona::find($request->persona_id);
         $entitat = Entitat::find($request->entitat_id);
         $pertanyB = new Pertanyen_ballari();
-        
-        $pertanyB->tipus=$request->tipus;        
+            
         $pertanyB->persona()->associate($persona);
         $pertanyB->entitat()->associate($entitat);
         $pertanyB->save();

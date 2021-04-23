@@ -24,8 +24,7 @@ class EnsenyançaEventController extends BaseController
         $persona = Persona::find($request->persona_id);
         $event = Event::find($request->event_id);
         $ensenyançaEv = new Ensenyança_event();
-        
-        $ensenyançaEv->tipus=$request->tipus;        
+     
         $ensenyançaEv->persona()->associate($persona);
         $ensenyançaEv->event()->associate($event);
         $ensenyançaEv->save();
