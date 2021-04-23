@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
-import { IProducte } from "../../app/interfaces/iproducte";
+import { Usuari } from "../../app/interfaces/iusuari";
 
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { EditUsuario } from "../editarusuario/editusuario";
@@ -12,12 +12,12 @@ import { EditUsuario } from "../editarusuario/editusuario";
  */
 @IonicPage()
 @Component({
-  selector: "page-usuario",
-  templateUrl: "usuario.html",
+  selector: "page-perfil",
+  templateUrl: "perfil.html",
 })
-export class Usuario {
+export class Perfil {
   constructor(private dades: DadesProductesService, public navCtrl: NavController, public navParams: NavParams) {}
-  usuari: IProducte[] = [];
+  usuari: Usuari;
   rolUsuari: string = "";
   tipoUsuari: string = "";
   instrument: string = "";
@@ -32,7 +32,14 @@ export class Usuario {
   imagenUsuari: string = "";
   er: any;
   ionViewDidLoad() {
-    this.dades.getDades().subscribe((usuario: Array<IProducte>) => {});
+    this.dades.getDades(2).subscribe((jUsuario: any) => {
+      this.usuari = jUsuario.json();
+      this.nomUsuari = this.usuari.nickname;
+      this.descripcioUsuari = this.usuari.idEscola.nom;
+      
+      
+       
+    });
   }
 
   gotoEditUsuario() {

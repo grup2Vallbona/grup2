@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Movidas } from '../movidas/movidas';
-import { Usuario } from '../usuario/usuario';
+import { Perfil } from '../perfil/perfil';
 
 
 /**
@@ -28,7 +28,7 @@ export class Novedades {
 
 
   gotoPerfil() {
-     this.navCtrl.push(Usuario);
+     this.navCtrl.push(Perfil);
 
   }
 

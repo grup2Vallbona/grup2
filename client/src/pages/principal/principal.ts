@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Login } from '../login/login';
 import { Register } from '../register/register';
-
+import { DadesProductesService } from "../../services/dades-productes.service";
 import { Eventos } from '../eventos/eventos';
 import { Foro } from '../foro/foro';
 import { Valoraciones } from '../valoraciones/valoraciones';
@@ -27,7 +27,9 @@ export class Principal {
   tab3Root = Valoraciones;
   tab4Root = Eventos;
 
-  constructor() {
+  constructor(private dades: DadesProductesService) {
 
   }
+  
+  
 }

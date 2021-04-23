@@ -1,4 +1,4 @@
-export interface IPersona {
+export interface Persona {
     idPersona: number;
     ballari: number;
     professor: number;
