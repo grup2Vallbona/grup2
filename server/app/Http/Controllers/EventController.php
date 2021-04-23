@@ -36,9 +36,19 @@ class EventController extends BaseController
     function crearEvent(Request $request)
     {
         $event = new Event;
+        $event->usuari_id = $request->usuari_id;
+        $event->ball_id = $request->ball_id;
+        $event->premi_id = $request->premi_id;
         $event->titol = $request->titol;
-        $event->data_public = $request->data_public;
-        $event->autor_id = $request->autor_id;
+        $event->subtitol = $request->subtitol;
+        $event->data = $request->data;
+        $event->pais = $request->pais;
+        $event->provincia = $request->provincia;
+        $event->municipi = $request->municipi;
+        $event->carrer = $request->carrer;
+        $event->descripcio = $request->descripcio;
+        $event->tipusMusica = $request->tipusMusica;
+        $event->participacioTipus = $request->participacioTipus;
         $event->save();
 
         return $event;

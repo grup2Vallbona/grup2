@@ -16,4 +16,35 @@ class PremiController extends BaseController
     {
         return Premi::all();
     }
+    function getPremi(Request $request, $id)
+    {
+        $premi = Premi::all();
+        $premi = $premi->firstWhere('id', $id);
+        return $premi;
+    }
+    function updatePremi(Request $request, $id)
+    {
+        $premi = Premi::find($id);
+        $premi->update($request->all());
+
+        return $premi;
+    }
+    function crearPremi(Request $request)
+    {
+        $premi = new Premi;
+        $premi->nom = $request->nom;
+        $premi->guanyador_id = $request->guanyador_id;
+        $premi->creador_id = $request->creador_id;
+        $premi->maxGuanyador = $request->maxGuanyador;
+        $premi->categoria = $request->categoria;
+        $premi->save();
+
+        return $premi;
+    }
+    function eliminarPremi($id)
+    {
+        $premi = Premi::find($id);
+        $premi->delete();
+        return $premi;
+    }
 }
