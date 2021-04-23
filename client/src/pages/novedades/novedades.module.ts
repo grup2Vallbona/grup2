@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Novedades } from './novedades';
 import { Movidas } from '../movidas/movidas';
-import { Usuario } from '../usuario/usuario';
+import { Perfil } from '../perfil/perfil';
 
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Usuario } from '../usuario/usuario';
+import { Perfil } from '../perfil/perfil';
 
 /**
  * Generated class for the Asistentes page.
@@ -19,7 +19,7 @@ export class Asistentes {
   }
 
   gotoUsuario() {
-     this.navCtrl.push(Usuario);
+     this.navCtrl.push(Perfil);
 
   }
 

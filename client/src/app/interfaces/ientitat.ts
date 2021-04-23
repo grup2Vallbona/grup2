@@ -1,4 +1,4 @@
-export interface IEntitat {
+export interface Entitat {
     idEntitat: number;
     escola: number;
     marca: number;

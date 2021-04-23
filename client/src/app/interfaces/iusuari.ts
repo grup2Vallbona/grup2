@@ -1,11 +1,11 @@
-import { IPersona } from "./ipersona";
-import { IEntitat } from "./ientitat";
+import { Persona } from "./ipersona";
+import { Entitat } from "./ientitat";
 
-export interface IUsuari {
+export interface Usuari {
     idUsuari: number;
-    idPersona: IPersona;
-    idEscola: IEntitat;
-    nom: string;
+    idPersona: Persona;
+    idEscola: Entitat;
+    nickname: string;
     idioma: number;
     genere: number;
     pais: number;
