@@ -19,7 +19,7 @@ class CreateAssistentsTable extends Migration
             $table->foreign('event_id')->references('id')->on('events');
             $table->unsignedBigInteger('usuari_id');
             $table->foreign('usuari_id')->references('id')->on('usuaris');
-            $table->integer('posicio');
+            $table->integer('posicio')->nullable();
         });
     }
 
