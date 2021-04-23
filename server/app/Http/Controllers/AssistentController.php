@@ -25,7 +25,7 @@ class AssistentController extends BaseController
         $event = Event::find($request->event_id);
         $assist = new Assistent();
         
-        $assist->tipus=$request->tipus;        
+        $assist->posicio=$request->posicio;        
         $assist->persona()->associate($persona);
         $assist->event()->associate($event);
         $assist->save();

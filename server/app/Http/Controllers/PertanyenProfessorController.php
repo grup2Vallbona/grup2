@@ -23,8 +23,7 @@ class PertanyenProfessorController extends BaseController
         $persona = Persona::find($request->persona_id);
         $entitat = Entitat::find($request->entitat_id);
         $pertanyP = new Pertanyen_professor();
-        
-        $pertanyP->tipus=$request->tipus;        
+          
         $pertanyP->persona()->associate($persona);
         $pertanyP->entitat()->associate($entitat);
         $pertanyP->save();

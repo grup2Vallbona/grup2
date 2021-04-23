@@ -23,8 +23,7 @@ class BloquejatController extends BaseController
         $pBloquejada = Persona::find($request->bloquejat_id);
         $pBloquejadora = Persona::find($request->bloquejador_id);
         $block = new Bloquejat();
-        
-        $block->tipus=$request->tipus;        
+             
         $block->persona()->associate($pBloquejada);
         $block->persona()->associate($pBloquejadora);
         $block->save();

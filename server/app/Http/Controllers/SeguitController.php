@@ -22,8 +22,7 @@ class SeguitController extends BaseController
         $pSeguida = Persona::find($request->seguit_id);
         $pSeguidor = Persona::find($request->seguidor_id);
         $seguir = new Seguit();
-        
-        $seguir->tipus=$request->tipus;        
+            
         $seguir->persona()->associate($pSeguida);
         $seguir->persona()->associate($pSeguidor);
         $seguir->save();

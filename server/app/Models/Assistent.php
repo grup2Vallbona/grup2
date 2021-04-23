@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Assistent extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'posicio'
+    ];
     public function persona()
     {
         //return $this->hasMany(AssignacioBall::class);
