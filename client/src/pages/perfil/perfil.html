@@ -6,45 +6,99 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>Usuario</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding class="bodyTabs">
+  <ion-navbar>
+    <ion-title>Usuario</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="light" (click)="gotoEditUsuario(usuari.id)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bodyTabs">
   <ion-card text-center>
-  
-          <ion-avatar>
-            <img src="./assets/images/fotoadri.jpg">
-          </ion-avatar>
-          <ion-card-content>
-            <h1>{{nomUsuari}}</h1>
-          </ion-card-content>
-  
-  </ion-card>
-  
-  <ion-card>
-        <ion-item>
-          <ion-card-content item-left>
-            <h2>Rol</h2>
-          </ion-card-content>
-          <ion-card-content item-right>
-            <p>Follower</p>
-          </ion-card-content>
-        </ion-item>
+
+    <ion-avatar>
+      <img src="../../assets/images/nil.jpg" alt="">
+    </ion-avatar>
+    <ion-card-content>
+      <h1>{{nickname}}</h1>
+    </ion-card-content>
+
   </ion-card>
   <ion-card>
-        <ion-item>
-          <ion-card-content item-left>
-            <h2>Tipo</h2>
-          </ion-card-content>
-          <ion-card-content item-right>
-            <p>{{descripcioUsuari}}</p>
-          </ion-card-content>
-        </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Idioma</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{idiomaUsuari}}</p>
+      </ion-card-content>
+    </ion-item>
   </ion-card>
-  
-  
-  </ion-content>
+
+  <ion-card>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Vacuna </h2>
+      </ion-card-content>
+      <ion-card-content item-right *ngIf="vacunaUsuari == 0">
+        <img src="../../assets/images/novacuna.jpg">
+      </ion-card-content>
+      <ion-card-content item-right *ngIf="vacunaUsuari == 1">
+        <img src="../../assets/images/vacuna.png">
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="personaid != null">
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Genere</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{genereUsuari}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Rol</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{rolUsuari}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Tipo</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{tipoUsuari}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngIf="tipoUsuari == 'Music'">
+      <ion-card-content item-left>
+        <h2>Instrument</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{instrument}}</p>
+      </ion-card-content>
+    </ion-item>
+
+  </ion-card>
+
+
+  <ion-card *ngIf="entitatid != null">
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Nom</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{nomEntitat}}</p>
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Usuari } from '../../app/interfaces/iusuari';
+import { DadesProductesService } from '../../services/dades-productes.service';
+
+
 
 import { GruposService } from '../../services/grupos.services';
 
@@ -15,12 +19,20 @@ import { GruposService } from '../../services/grupos.services';
   templateUrl: 'editusuari.html',
 })
 export class EditUsuario {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private grupoServices: GruposService) {
+  usuari: Usuari;
+id: number;
+  constructor(private dades: DadesProductesService, public navCtrl: NavController, public navParams: NavParams, private grupoServices: GruposService) {
+    this.id = navParams.get("idUsuari");
+    
   }
 
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Creargrupo');
+      this.dades.getDades(this.id).subscribe(user => {
+        this.usuari = user.json();
+       
+      })
+    
   }
 
   

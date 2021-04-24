@@ -19,5 +19,18 @@ export class DadesProductesService {
   }
 
 
+public getPersona(id: number): Observable<any>{
+  return this.http.get(this.baseUrl + "/api/persona/" + id);
+}
+
+public getEntitat(id: number): Observable<any>{
+  return this.http.get(this.baseUrl + '/api/entitat/' + id);
+}
+
+  public getUsuariEmail (email: string): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/email/' + email)
+  }
+
+
 
 }

@@ -1,10 +1,9 @@
-import { Persona } from "./ipersona";
-import { Entitat } from "./ientitat";
+
 
 export interface Usuari {
-    idUsuari: number;
-    idPersona: Persona;
-    idEscola: Entitat;
+    id: number;
+    persona_id: number;
+    entitat_id: number;
     nickname: string;
     idioma: number;
     genere: number;
@@ -12,6 +11,6 @@ export interface Usuari {
     contrasenya: string;
     email: string;
     descripcio: string; 
-    vacunaCOVID: string;
+    vacunaCOVID: number;
     imagen: any;
 }
