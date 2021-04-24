@@ -16,4 +16,32 @@ class DiplomaController extends BaseController
     {
         return Diploma::all();
     }
+    function getDiploma(Request $request, $id)
+    {
+        $diploma = Diploma::all();
+        $diploma = $diploma->firstWhere('id', $id);
+        return $diploma;
+    }
+    function updateDiploma(Request $request, $id)
+    {
+        $diploma = Diploma::find($id);
+        $diploma->update($request->all());
+
+        return $diploma;
+    }
+    function crearDiploma(Request $request)
+    {
+        $diploma = new Diploma;
+        $diploma->titol = $request->titol;
+        $diploma->usuari_id = $request->usuari_id;
+        $diploma->save();
+
+        return $diploma;
+    }
+    function eliminarDiploma($id)
+    {
+        $diploma = Diploma::find($id);
+        $diploma->delete();
+        return $diploma;
+    }
 }

@@ -16,4 +16,32 @@ class AgrupacioController extends BaseController
     {
         return Agrupacio::all();
     }
+    function getAgrupacio(Request $request, $id)
+    {
+        $agrup = Agrupacio::all();
+        $agrup = $agrup->firstWhere('id', $id);
+        return $agrup;
+    }
+    function updateAgrupacio(Request $request, $id)
+    {
+        $agrup = Agrupacio::find($id);
+        $agrup->update($request->all());
+
+        return $agrup;
+    }
+    function crearAgrupacio(Request $request)
+    {
+        $agrup = new Agrupacio;
+        $agrup->nom = $request->nom;
+        $agrup->descripcio = $request->descripcio;
+        $agrup->save();
+
+        return $agrup;
+    }
+    function eliminarAgrupacio($id)
+    {
+        $agrup = Agrupacio::find($id);
+        $agrup->delete();
+        return $agrup;
+    }
 }
