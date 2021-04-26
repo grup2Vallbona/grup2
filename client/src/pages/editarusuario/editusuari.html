@@ -15,13 +15,41 @@
   
   <ion-content class="bodyTabs">
     <ion-list>
-
-      <form  #f="ngForm">
-      <ion-item>
-        <ion-label floating></ion-label>
-        <ion-input type="text" name="title" required></ion-input>
+      <ion-item >
+        <ion-label>Idioma</ion-label>
+        <ion-select *ngFor="let user of aUsuari">
+          <ion-option value="bail">{{user.contrasenya}}</ion-option>
+    
+          
+        </ion-select>
+       
       </ion-item>
-      
+      <form  #f="ngForm" *ngIf="personaid != null">
+     <ion-item >
+        <ion-label floating>Nickname</ion-label>
+        <ion-input type="text" name="title" value="{{usuari.nickname}}" required></ion-input>
+       
+      </ion-item>
+      <ion-item >
+        <ion-label>Idioma</ion-label>
+        <ion-select >
+          <ion-option value="bail">Catala</ion-option>
+          <ion-option value="escu">Español</ion-option>
+          <ion-option value="marc">Ingles</ion-option>
+          
+        </ion-select>
+       
+      </ion-item>
+      <ion-item >
+        <ion-label floating>Rol</ion-label>
+        <ion-input type="text" name="title" required></ion-input>
+        
+      </ion-item>
+      <ion-item >
+        <ion-label floating>Tipo</ion-label>
+        <ion-input type="text" name="title" required></ion-input>
+        
+      </ion-item>
       
       
         <div class="btnContainer">
@@ -31,6 +59,34 @@
         </div>
       </form>
       
+      <form  #f="ngForm" *ngIf="entitatid != null">
+        <ion-item >
+          <ion-label floating>Nickname</ion-label>
+          <ion-input type="text" name="title" value="{{usuari.nickname}}" required></ion-input>
+         
+        </ion-item>
+       
+       
+        <ion-item >
+          <ion-label floating>Nom</ion-label>
+          <ion-input type="text" name="title" value="{{nom}}" required></ion-input>
+         
+        </ion-item>
+       
+        <ion-item *ngIf="entitatid != null">
+          <ion-label floating>Prova</ion-label>
+          <ion-input type="text" name="title" required></ion-input>
+          
+        </ion-item>
+        
+        
+        
+          <div class="btn">
+            <div class="btn">
+              <button class="btn" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
+            </div>
+          </div>
+        </form>
       </ion-list>
   </ion-content>
   

@@ -44,11 +44,12 @@ export class Perfil {
   personaid: number;
   entitatid: number;
   ionViewDidLoad() {
-    this.dades.getDades(12).subscribe((jUsuario: any) => {
+    this.dades.getDades(11).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
       this.personaid = this.usuari.persona_id;
       this.entitatid = this.usuari.entitat_id;
       this.nickname = this.usuari.nickname;
+      
       if (this.usuari.idioma == 76) {
         this.idiomaUsuari = "Catala";
       } else {
@@ -79,7 +80,8 @@ export class Perfil {
             }
           });
       }
-      this.vacunaUsuari = this.usuari.vacunaCOVID;
+      this.vacunaUsuari = this.usuari.vacunaCovid;
+    
       if (this.usuari.entitat_id != null) {
         this.dades
           .getEntitat(this.usuari.entitat_id)
@@ -93,10 +95,8 @@ export class Perfil {
     });
   }
 
-  gotoEditUsuario(id: number) {
+  gotoEditUsuario(usuari: Usuari) {
    
-    this.navCtrl.push(EditUsuario ,  {
-      idUsuari: id
-  });
+    this.navCtrl.push(EditUsuario , {user: usuari});
   }
 }
