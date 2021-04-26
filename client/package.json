@@ -45,6 +45,7 @@
     "@ionic/app-scripts": "3.2.4",
     "@ionic/lab": "3.2.10",
     "cordova-plugin-googleplus": "^8.5.2",
+    "cordova-sqlite-storage": "^6.0.0",
     "typescript": "2.2.1"
   },
   "cordovaPlugins": [
@@ -59,7 +60,8 @@
   "description": "weswing: An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-googleplus": {}
+      "cordova-plugin-googleplus": {},
+      "cordova-sqlite-storage": {}
     }
   }
 }

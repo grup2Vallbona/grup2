@@ -39,7 +39,7 @@ export class Login {
  login() {
    try{
      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
-    .then(r =>   this.navCtrl.push(Principal))
+    .then(r =>   this.navCtrl.push(Principal,{email:this.email}))
     .catch(e => {
       if(e['code']== 'auth/wrong-password'){
         // console.log('tonto te has equivocao de contra xD')

@@ -7,6 +7,7 @@ import { Eventos } from '../eventos/eventos';
 import { Foro } from '../foro/foro';
 import { Valoraciones } from '../valoraciones/valoraciones';
 import { Novedades } from '../novedades/novedades';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the Principal page.
@@ -21,15 +22,17 @@ import { Novedades } from '../novedades/novedades';
 })
 export class Principal {
 
-
+  email:string;
   tab1Root = Novedades;
   tab2Root = Foro;
   tab3Root = Valoraciones;
   tab4Root = Eventos;
 
-  constructor(private dades: DadesProductesService) {
-
+  constructor(private dades: DadesProductesService,public storage: Storage,private navParams:NavParams) {
+    this.setSession(navParams.get("email"));
   }
-  
+   setSession(value){
+    return this.storage.set(`setting:email`,value);
+  }
   
 }
