@@ -1,11 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Usuari } from '../../app/interfaces/iusuari';
-import { DadesProductesService } from '../../services/dades-productes.service';
-
-
-
-import { GruposService } from '../../services/grupos.services';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Entitat } from "../../app/interfaces/ientitat";
+import { Usuari } from "../../app/interfaces/iusuari";
+import { DadesProductesService } from "../../services/dades-productes.service";
 
 /**
  * Generated class for the Creargrupo page.
@@ -15,25 +12,34 @@ import { GruposService } from '../../services/grupos.services';
  */
 @IonicPage()
 @Component({
-  selector: 'page-editusuari',
-  templateUrl: 'editusuari.html',
+  selector: "page-editusuari",
+  templateUrl: "editusuari.html",
 })
 export class EditUsuario {
   usuari: Usuari;
-id: number;
-  constructor(private dades: DadesProductesService, public navCtrl: NavController, public navParams: NavParams, private grupoServices: GruposService) {
-    this.id = navParams.get("idUsuari");
-    
+  aUsuari: Usuari[] = [];
+  id: number;
+  personaid: number;
+  entitatid: number;
+  entitatU: Entitat;
+  nom: string;
+  constructor(
+    private dades: DadesProductesService,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.usuari = navParams.get("user");
+    this.personaid = this.usuari.persona_id;
+    this.entitatid = this.usuari.entitat_id;
   }
 
-  
   ionViewDidLoad() {
-      this.dades.getDades(this.id).subscribe(user => {
-        this.usuari = user.json();
-       
-      })
+    this.dades.getEntitat(this.entitatid).subscribe((jEntitat: any) => {
+      this.entitatU = jEntitat.json();
+      this.nom = this.entitatU.nom;
+    });
+
+    
     
   }
-
-  
 }

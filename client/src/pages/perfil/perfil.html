@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Usuario</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only color="light" (click)="gotoEditUsuario(usuari.id)">
+      <button ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
         <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
@@ -22,7 +22,7 @@
   <ion-card text-center>
 
     <ion-avatar>
-      <img src="../../assets/images/nil.jpg" alt="">
+      
     </ion-avatar>
     <ion-card-content>
       <h1>{{nickname}}</h1>
@@ -46,10 +46,10 @@
         <h2>Vacuna </h2>
       </ion-card-content>
       <ion-card-content item-right *ngIf="vacunaUsuari == 0">
-        <img src="../../assets/images/novacuna.jpg">
+        <img src="../../assets/images/noVacuna.png">
       </ion-card-content>
       <ion-card-content item-right *ngIf="vacunaUsuari == 1">
-        <img src="../../assets/images/vacuna.png">
+        <img src="../../assets/images/siVacunas.png">
       </ion-card-content>
     </ion-item>
   </ion-card>

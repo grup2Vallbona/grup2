@@ -11,6 +11,6 @@ export interface Usuari {
     contrasenya: string;
     email: string;
     descripcio: string; 
-    vacunaCOVID: number;
+    vacunaCovid: number;
     imagen: any;
 }
