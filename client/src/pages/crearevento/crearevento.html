@@ -35,12 +35,14 @@
   </ion-item>
   <ion-item>
     <ion-label>Tipo de baile</ion-label>
-    <ion-select [(ngModel)]="TipoDeBaile">
+    <ion-select id="tipusBalls"  [(ngModel)]="TipoDeBaile">
+      <ion-option *ngFor="let item of tipusBalls" value="{{item}}">{{item}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Tipo de musica</ion-label>
     <ion-select [(ngModel)]="TipoDeMusica">
+      
     </ion-select>
   </ion-item>
   <ion-item>

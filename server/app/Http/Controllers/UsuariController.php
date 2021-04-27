@@ -31,6 +31,12 @@ class UsuariController extends BaseController
         $usuari = $usuari->firstWhere('id', $id);
         return $usuari;
     }
+    function getUsuariCorreo(Request $request, $email)
+    {
+        $usuari = Usuari::all();
+        $usuari = $usuari->firstWhere('email', $email);
+        return $usuari;
+    }
     function updateUsuari(Request $request, $id)
     {
         $usuari = Usuari::find($id);

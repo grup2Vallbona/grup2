@@ -131,6 +131,7 @@ Route::delete('tipusball/{id}', [TipusBallController::class, "eliminarTipusBall"
 // ----------------- USUARIS -----------------
 Route::get('usuaris', [UsuariController::class, "getUsuaris"]);
 Route::get('usuari/{id}', [UsuariController::class, "getUsuari"]);
+Route::get('usuari/{correo}', [UsuariController::class, "getUsuariCorreo"]);
 Route::put('usuari/{id}', [UsuariController::class, "updateUsuari"]);
 Route::post('usuari', [UsuariController::class, "crearUsuari"]);
 Route::delete('usuari/{id}', [UsuariController::class, "eliminarUsuari"]);
