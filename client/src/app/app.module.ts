@@ -3,11 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-<<<<<<< HEAD
 // import { HttpClientModule } from '@angular/common/http';
-=======
-import { IonicStorageModule } from '@ionic/storage';
->>>>>>> 638e4bd38a002d1709ecd24cf8e85785de2370dc
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -95,13 +91,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-<<<<<<< HEAD
     // HttpClientModule
-=======
-    HttpModule,
-    FormsModule,
-    IonicStorageModule.forRoot()
->>>>>>> 638e4bd38a002d1709ecd24cf8e85785de2370dc
   ],
   bootstrap: [IonicApp],
   entryComponents: [

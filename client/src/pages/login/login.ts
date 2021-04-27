@@ -77,25 +77,7 @@ export class Login {
           }
         })
 
-<<<<<<< HEAD
-=======
 
- login() {
-   try{
-     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
-<<<<<<< HEAD
-    .then(r =>   this.navCtrl.push(Principal, {email: this.email}))
-=======
-    .then(r =>   this.navCtrl.push(Principal,{email:this.email}))
->>>>>>> 27a3fbc836a32453899ffc3e06429251ce1e96da
-    .catch(e => {
-      if(e['code']== 'auth/wrong-password'){
-        // console.log('tonto te has equivocao de contra xD')
-        alert('hll')
-      }
-    })
-     
->>>>>>> 638e4bd38a002d1709ecd24cf8e85785de2370dc
       //  if (this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)) {
 
       //    this.navCtrl.push(Principal);

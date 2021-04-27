@@ -25,7 +25,7 @@ import { Http } from '@angular/http';
   templateUrl: 'register.html',
 })
 export class Register {
-  paises: Pais[];
+  // paises: Pais[];
   private imageSrc: string;
   users: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
@@ -125,14 +125,14 @@ export class Register {
 
   }
 
-  ionViewDidLoad(){
-    this.http.get('../../assets/json/paises.json') .subscribe(
-      (response: any[]) => {
-        this.paises = response;
-      }, error => {
-        console.log('Error: ', error.message);
-      }
-    )
-  }
+  // ionViewDidLoad(){
+  //   this.http.get('../../assets/json/paises.json') .subscribe(
+  //     (response: any[]) => {
+  //       this.paises = response;
+  //     }, error => {
+  //       console.log('Error: ', error.message);
+  //     }
+  //   )
+  // }
 
 }
