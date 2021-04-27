@@ -9,6 +9,8 @@ class Premi extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'nom'
+        'nom',
+        'maxGuanyadors',
+        'categoria'
     ];
 }

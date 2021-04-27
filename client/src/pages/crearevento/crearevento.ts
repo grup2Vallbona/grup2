@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DadesProductesService } from "../../services/dades-productes.service";
 
 /**
  * Generated class for the Crearevento page.
@@ -14,11 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Crearevento {
   nuevoEvento:boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  tipusBalls=[];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService) {
+   
   }
-
+  carregarBalls(){
+    this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
+      var event = tipusBalls.json();
+      console.log(event);
+      for (let index = 0; index < event.length; index++) {
+        this.tipusBalls[index]=event[index].nom;
+        console.log(event[index].nom);
+      }
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Crearevento');
+    this.carregarBalls();
   }
   
 

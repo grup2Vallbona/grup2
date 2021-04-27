@@ -3,7 +3,11 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+<<<<<<< HEAD
 // import { HttpClientModule } from '@angular/common/http';
+=======
+import { IonicStorageModule } from '@ionic/storage';
+>>>>>>> 638e4bd38a002d1709ecd24cf8e85785de2370dc
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -25,21 +29,22 @@ import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
 
 import { Movidas } from '../pages/movidas/movidas';
-import { Usuario } from '../pages/usuario/usuario';
+import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
 import { Escuela } from '../pages/escuela/escuela';
-
+import { EditUsuario } from '../pages/editarusuario/editusuario';
 import { Grupo } from '../pages/grupo/grupo';
 import { Creargrupo } from '../pages/creargrupo/creargrupo';
 import { Crearevento } from '../pages/crearevento/crearevento';
 
-
-
+import { DadesProductesService } from '../services/dades-productes.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { GruposService } from '../services/grupos.services';
 import { AuthProvider } from '../providers/auth/auth';
 
-
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
   // Initialize Firebase
   var config = {
@@ -75,20 +80,28 @@ import { AuthProvider } from '../providers/auth/auth';
     Valoraciones,
     Novedades,
     Movidas,
-    Usuario,
+    Perfil,
     Asistentes,
     Escuela,
     Grupo,
     Creargrupo,
-    Crearevento
+    Crearevento,
+    EditUsuario
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+<<<<<<< HEAD
     // HttpClientModule
+=======
+    HttpModule,
+    FormsModule,
+    IonicStorageModule.forRoot()
+>>>>>>> 638e4bd38a002d1709ecd24cf8e85785de2370dc
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,16 +115,18 @@ import { AuthProvider } from '../providers/auth/auth';
     Valoraciones,
     Novedades,
     Movidas,
-    Usuario,
+    Perfil,
     Asistentes,
     Escuela,
     Grupo,
     Creargrupo,
-    Crearevento
+    Crearevento,
+    EditUsuario
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DadesProductesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController

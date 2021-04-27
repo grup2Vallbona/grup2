@@ -40,9 +40,14 @@ class PersonaController extends BaseController
     function crearPersona(Request $request)
     {
         $persona = new Persona;
-        $persona->titol = $request->titol;
-        $persona->data_public = $request->data_public;
-        $persona->autor_id = $request->autor_id;
+        $persona->ballari = $request->ballari;
+        $persona->music = $request->music;
+        $persona->professor = $request->professor;
+        $persona->especialitatsProfessor = $request->especialitatsProfessor;
+        $persona->rol = $request->rol;
+        $persona->instrument = $request->instrument;
+        $persona->dataNaixementBallari = $request->dataNaixementBallari;
+        $persona->iniciProfessorat = $request->iniciProfessorat;
         $persona->save();
 
         return $persona;

@@ -31,6 +31,12 @@ class UsuariController extends BaseController
         $usuari = $usuari->firstWhere('id', $id);
         return $usuari;
     }
+    function getUsuariCorreo(Request $request, $email)
+    {
+        $usuari = Usuari::all();
+        $usuari = $usuari->firstWhere('email', $email);
+        return $usuari;
+    }
     function updateUsuari(Request $request, $id)
     {
         $usuari = Usuari::find($id);
@@ -42,9 +48,17 @@ class UsuariController extends BaseController
     function crearUsuari(Request $request)
     {
         $usuari = new Usuari;
-        $usuari->titol = $request->titol;
-        $usuari->data_public = $request->data_public;
-        $usuari->autor_id = $request->autor_id;
+        $usuari->entitat_id = $request->entitat_id;
+        $usuari->persona_id = $request->persona_id;
+        $usuari->nickname = $request->nickname;
+        $usuari->contrasenya = $request->contrasenya;
+        $usuari->email = $request->email;
+        $usuari->descripcio = $request->descripcio;
+        $usuari->imagen = $request->imagen;
+        $usuari->idioma = $request->idioma;
+        $usuari->genere = $request->genere;
+        $usuari->pais = $request->pais;
+        $usuari->vacunaCovid = $request->vacunaCovid;
         $usuari->save();
 
         return $usuari;
