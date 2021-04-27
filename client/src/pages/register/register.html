@@ -16,23 +16,40 @@
 <ion-content>
 
     <ion-list>
-
         <ion-item>
-            <ion-label floating>Nombre</ion-label>
-            <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+            <ion-label>Persona</ion-label>
+            <ion-checkbox [(ngModel)]="persona" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>Entidad</ion-label>
+            <ion-checkbox [(ngModel)]="entitat" (ionChange)='verificacionCheckbox("entitat")'></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="entitat">
+            <ion-label>Escuela</ion-label>
+            <ion-checkbox [(ngModel)]="escola"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="entitat">
+            <ion-label>Marca</ion-label>
+            <ion-checkbox [(ngModel)]="marca"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Nickname</ion-label>
+            <ion-input type="text" [(ngModel)]="nickname"></ion-input>
         </ion-item>
 
 
         <ion-item>
-            <ion-label>Sexo</ion-label>
-            <ion-select [(ngModel)]="sexo">
+            <ion-label>Genero</ion-label>
+            <ion-select [(ngModel)]="genero">
                 <ion-option value="mal">Hombre</ion-option>
                 <ion-option value="fem">Mujer</ion-option>
+                <ion-option value="otro">Otros</ion-option>
             </ion-select>
         </ion-item>
-
-
-
+        <ion-item *ngIf="persona">
+            <ion-label>Fecha de nacimiento</ion-label>
+            <ion-datetime></ion-datetime>
+        </ion-item>
 
 
         <ion-item>
@@ -57,7 +74,7 @@
         <ion-item>
             <ion-label>Pais</ion-label>
             <ion-select [(ngModel)]="pais">
-                <ion-option value="eng">Reino Unido</ion-option>
+                <ion-option *ngFor="let pais of paises">{{pais.name}}</ion-option>
                 <ion-option value="esp">España</ion-option>
             </ion-select>
         </ion-item>
@@ -68,7 +85,7 @@
         </ion-item>
 
 
-        <ion-item>
+        <ion-item *ngIf="persona">
             <ion-label>Rol</ion-label>
             <ion-select [(ngModel)]="rol">
                 <ion-option value="fol">Follower</ion-option>
@@ -78,21 +95,41 @@
             </ion-select>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="persona">
             <ion-label>Bailarin</ion-label>
             <ion-toggle checked></ion-toggle>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="persona">
             <ion-label>Profesor</ion-label>
-            <ion-toggle></ion-toggle>
+            <ion-toggle [(ngModel)]="profesor"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="persona">
+            <ion-label>Musico</ion-label>
+            <ion-toggle [(ngModel)]="music"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Descripción</ion-label>
+            <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="music">
+            <ion-label floating>Instrumento</ion-label>
+            <ion-input type="instrumento" [(ngModel)]="especialidadesProfessor"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="profesor">
+            <ion-label floating>Especialidades del professor</ion-label>
+            <ion-input type="instrumento" [(ngModel)]="instrumento"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="profesor">
+            <ion-label>Inicio impartición</ion-label>
+            <ion-datetime></ion-datetime>
         </ion-item>
 
         <ion-item>
-            <ion-label>Musico</ion-label>
-            <ion-toggle></ion-toggle>
+            <ion-label>Vacunado de covid-19</ion-label>
+            <ion-checkbox type="vacuna" [(ngModel)]="vacuna"></ion-checkbox>
         </ion-item>
-
         <div class="btnContainer">
 
             <div class="btn">
@@ -104,7 +141,7 @@
         <div class="btnContainer">
 
             <div class="btn">
-                <button class="btn" ion-button (click)="signup(email,password, nombre, sexo, idioma, pais, ciudad, rol)">Register</button>
+                <button class="btn" ion-button (click)="signup(email,password, nickname, genero, idioma, pais, ciudad, rol)">Register</button>
             </div>
 
         </div>

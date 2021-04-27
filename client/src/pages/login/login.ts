@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { Principal } from '../principal/principal';
 
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 /**
  * Generated class for the Login page.
  *
@@ -25,42 +25,72 @@ export class Login {
   user: Observable<firebase.User>;
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
+  alertController: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
-  this.user = this.afAuth.authState;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController, public alertCtrl:AlertController) {
+    this.user = this.afAuth.authState;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
   }
+  contraseñaIncorrecta() {
+    let alert = this.alertCtrl.create({
+      title: 'Contraseña incorrecta',
+      // subTitle: '10% of battery remaining',
+      buttons: ['Aceptar']
+    });
+    alert.present();
+  }
+  emailIncorrecto() {
+    let alert = this.alertCtrl.create({
+      title: 'email incorrecto',
+      // subTitle: '10% of battery remaining',
+      buttons: ['Aceptar']
+    });
+    alert.present();
+  }
+  emailNoExistente() {
+    let alert = this.alertCtrl.create({
+      title: 'email no existe',
+      // subTitle: '10% of battery remaining',
+      buttons: ['Aceptar']
+    });
+    alert.present();
+  }
+  login() {
+    try {
+      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
+        .then(r => this.navCtrl.push(Principal))
+        .catch(e => {
+          if (e['code'] == 'auth/wrong-password') {
+            // console.log(this.contraseñaIncorrecta())
+         this.contraseñaIncorrecta();
+          } 
+          if (e['code'] == 'auth/invalid-email') {
+            this.emailIncorrecto();
+          }
+          if (e['code'] ==  'auth/invalid-email-verified') {
+            // this.emailNoExistente();
+            console.log('olaa');
+          }
+        })
 
-
- login() {
-   try{
-     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
-    .then(r =>   this.navCtrl.push(Principal))
-    .catch(e => {
-      if(e['code']== 'auth/wrong-password'){
-        // console.log('tonto te has equivocao de contra xD')
-        alert('hll')
-      }
-    })
-     
       //  if (this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)) {
-         
+
       //    this.navCtrl.push(Principal);
-      
+
       //  }
-   }catch(e){
+    } catch (e) {
       //  this.loginToast();
       console.log(e)
-   }
+    }
 
   }
 
   logout() {
-      this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut();
   }
 
 

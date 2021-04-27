@@ -30,13 +30,21 @@ export class HomePage {
   //   console.log('Login con google') ;
   // }
   async loginGoogle() {
-    const res = await this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    const user = res.user;
+    try{
+      if (this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())) {
+          this.navCtrl.push(Principal);
+      }
+    }catch(e){
+      console.log("Error");
+    }
+
+
+  }
     // console.log(user);
     // this.picture = user.photoURL;
     // this.name = user.displayName;
     // this.email = user.email;
- }
+ 
    gotoLogin() {
      this.navCtrl.push(Login);
 
