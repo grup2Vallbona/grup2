@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content padding class="bodyTabs">
+<ion-content>
   <ion-card text-center>
 
     <ion-avatar>
@@ -29,7 +29,18 @@
     </ion-card-content>
 
   </ion-card>
-  <ion-card>
+  
+ 
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Email</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{email}}</p>
+      </ion-card-content>
+    </ion-item>
+ 
+  
     <ion-item>
       <ion-card-content item-left>
         <h2>Idioma</h2>
@@ -38,9 +49,9 @@
         <p>{{idiomaUsuari}}</p>
       </ion-card-content>
     </ion-item>
-  </ion-card>
+ 
 
-  <ion-card>
+
     <ion-item>
       <ion-card-content item-left>
         <h2>Vacuna </h2>
@@ -52,9 +63,9 @@
         <img src="../../assets/images/siVacunas.png">
       </ion-card-content>
     </ion-item>
-  </ion-card>
-  <ion-card *ngIf="personaid != null">
-    <ion-item>
+ 
+ 
+    <ion-item *ngIf="personaid != null">
       <ion-card-content item-left>
         <h2>Genere</h2>
       </ion-card-content>
@@ -62,7 +73,8 @@
         <p>{{genereUsuari}}</p>
       </ion-card-content>
     </ion-item>
-    <ion-item>
+    
+    <ion-item *ngIf="personaid != null">
       <ion-card-content item-left>
         <h2>Rol</h2>
       </ion-card-content>
@@ -70,7 +82,7 @@
         <p>{{rolUsuari}}</p>
       </ion-card-content>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="personaid != null">
       <ion-card-content item-left>
         <h2>Tipo</h2>
       </ion-card-content>
@@ -78,7 +90,7 @@
         <p>{{tipoUsuari}}</p>
       </ion-card-content>
     </ion-item>
-    <ion-item *ngIf="tipoUsuari == 'Music'">
+    <ion-item *ngIf="personaid != null && tipoUsuari == 'Music'">
       <ion-card-content item-left>
         <h2>Instrument</h2>
       </ion-card-content>
@@ -87,7 +99,7 @@
       </ion-card-content>
     </ion-item>
 
-  </ion-card>
+
 
 
   <ion-card *ngIf="entitatid != null">

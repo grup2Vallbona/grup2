@@ -5,6 +5,7 @@ import { Persona } from "../../app/interfaces/ipersona";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { EditUsuario } from "../editarusuario/editusuario";
 import { Entitat } from "../../app/interfaces/ientitat";
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the Usuario page.
  *
@@ -17,16 +18,21 @@ import { Entitat } from "../../app/interfaces/ientitat";
   templateUrl: "perfil.html",
 })
 export class Perfil {
+  emaail: string;
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
-    public navParams: NavParams
-  ) {}
+    public navParams: NavParams,
+    private storage: Storage
+  ) {
+    
+  }
   usuari: Usuari;
   rolUsuari: string = "";
   tipoUsuari: string = "";
   instrument: string = "";
   nomUsuari: string = "";
+  email: string = "";
   dataNaixement: Date;
   iniciImparticions: Date;
   nickname: string = "";
@@ -44,12 +50,16 @@ export class Perfil {
   personaid: number;
   entitatid: number;
   ionViewDidLoad() {
-    this.dades.getDades(11).subscribe((jUsuario: any) => {
+    this.storage.get('email').then((email) => {
+      this.emaail = email;
+    });
+    
+    this.dades.getDades(2).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
       this.personaid = this.usuari.persona_id;
       this.entitatid = this.usuari.entitat_id;
       this.nickname = this.usuari.nickname;
-      
+      this.email = this.usuari.email;
       if (this.usuari.idioma == 76) {
         this.idiomaUsuari = "Catala";
       } else {

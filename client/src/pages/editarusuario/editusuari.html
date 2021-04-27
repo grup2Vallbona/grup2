@@ -13,36 +13,40 @@
   </ion-header>
   
   
-  <ion-content class="bodyTabs">
-    <ion-list>
-      <ion-item >
-        <ion-label>Idioma</ion-label>
-        <ion-select *ngFor="let user of aUsuari">
-          <ion-option value="bail">{{user.contrasenya}}</ion-option>
+  <ion-content>
     
-          
-        </ion-select>
-       
-      </ion-item>
-      <form  #f="ngForm" *ngIf="personaid != null">
+    <form  #f="ngForm" *ngIf="personaid != null">
      <ion-item >
-        <ion-label floating>Nickname</ion-label>
-        <ion-input type="text" name="title" value="{{usuari.nickname}}" required></ion-input>
+        <ion-label floating >Nombre usuario</ion-label>
+        <ion-input type="text" name="title" value="{{usuari.nickname}}" ></ion-input>
        
+      </ion-item>     
+    
+      <ion-item>
+        <ion-label floating>Contraseña</ion-label>
+        <ion-input type="password" value="{{usuari.contrasenya}}" disabled left ></ion-input>
+        <ion-buttons >
+          <button ion-button icon-only color="light" >
+            <ion-icon name="create"></ion-icon>
+          </button>
+        </ion-buttons>
+     
       </ion-item>
       <ion-item >
-        <ion-label>Idioma</ion-label>
-        <ion-select >
-          <ion-option value="bail">Catala</ion-option>
-          <ion-option value="escu">Español</ion-option>
-          <ion-option value="marc">Ingles</ion-option>
-          
-        </ion-select>
+        <ion-label floating>Descripción</ion-label>
+        <ion-textarea  value="{{descripcio}}" ></ion-textarea>
        
       </ion-item>
+      <ion-item *ngIf="vacuna == 0">
+        <ion-label floating>Vacunado de covid-19</ion-label>
+        <ion-checkbox  >ss</ion-checkbox>
+       
+      </ion-item>
+      
+    
       <ion-item >
         <ion-label floating>Rol</ion-label>
-        <ion-input type="text" name="title" required></ion-input>
+        <ion-input type="text" name="title" value="{{rol}}" required></ion-input>
         
       </ion-item>
       <ion-item >
@@ -52,9 +56,9 @@
       </ion-item>
       
       
-        <div class="btnContainer">
-          <div class="btnConnect">
-            <button class="btnPublicar" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
+        <div class="btn">
+          <div class="btn">
+            <button class="btn" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
           </div>
         </div>
       </form>
@@ -65,7 +69,18 @@
           <ion-input type="text" name="title" value="{{usuari.nickname}}" required></ion-input>
          
         </ion-item>
+        <ion-item >
+          <ion-label floating>Contraseña</ion-label>
+          <ion-input type="password" value="{{usuari.contrasenya}}" disabled ></ion-input>
+          
        
+        </ion-item>
+        <ion-item >
+          <button ion-button icon-only color="light">
+            <ion-icon name="create"></ion-icon>
+          </button>
+         
+        </ion-item>
        
         <ion-item >
           <ion-label floating>Nom</ion-label>
@@ -87,6 +102,6 @@
             </div>
           </div>
         </form>
-      </ion-list>
+     
   </ion-content>
   

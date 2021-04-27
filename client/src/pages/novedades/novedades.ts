@@ -19,6 +19,7 @@ import { Perfil } from '../perfil/perfil';
 export class Novedades {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   gotoMovidas() {

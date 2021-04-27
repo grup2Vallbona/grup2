@@ -34,7 +34,7 @@ import { Creargrupo } from '../pages/creargrupo/creargrupo';
 import { Crearevento } from '../pages/crearevento/crearevento';
 
 import { DadesProductesService } from '../services/dades-productes.service';
-
+import { IonicStorageModule } from '@ionic/storage';
 
 import { GruposService } from '../services/grupos.services';
 import { AuthProvider } from '../providers/auth/auth';
@@ -87,6 +87,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
