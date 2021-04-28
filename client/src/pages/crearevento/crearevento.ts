@@ -20,6 +20,7 @@ export class Crearevento {
   eventsUsuari=[];
   usuari: Usuari;
   personaid: number;
+  premioNuevo:string="";
   constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService,private storage: Storage) {
    
   }

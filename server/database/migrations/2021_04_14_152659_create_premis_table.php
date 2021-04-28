@@ -18,7 +18,7 @@ class CreatePremisTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('guanyador_id')->nullable();
             $table->foreign('guanyador_id')->references('id')->on('usuaris');
-            $table->unsignedBigInteger('creador_id')->nullable();
+            $table->unsignedBigInteger('creador_id');
             $table->foreign('creador_id')->references('id')->on('usuaris');
             $table->string('titol', 100);
             $table->integer('maxGuanyadors');

@@ -50,11 +50,11 @@
   </ion-item>
   <ion-item *ngIf="nuevoEvento">
     <ion-label floating>Título del premio</ion-label>
-    <ion-input type="text" [(ngModel)]="premio" value={}></ion-input>
+    <ion-input type="text" [(ngModel)]="premioNuevo" value={}></ion-input>
   </ion-item>
   <ion-item *ngIf="!nuevoEvento"> 
     <ion-label>Selecciona un premio</ion-label>
-    <ion-select [(ngModel)]="premio">
+    <ion-select [(ngModel)]="premioExistente">
     </ion-select>
   </ion-item>
   <ion-item>
