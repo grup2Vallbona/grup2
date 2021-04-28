@@ -26,11 +26,11 @@
         </ion-item>
         <ion-item *ngIf="entitat">
             <ion-label>Escuela</ion-label>
-            <ion-checkbox [(ngModel)]="escola"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="escola" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
         </ion-item>
         <ion-item *ngIf="entitat">
             <ion-label>Marca</ion-label>
-            <ion-checkbox [(ngModel)]="marca"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="marca" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
         </ion-item>
         <ion-item>
             <ion-label floating>Nickname</ion-label>
@@ -48,7 +48,7 @@
         </ion-item>
         <ion-item *ngIf="persona">
             <ion-label>Fecha de nacimiento</ion-label>
-            <ion-datetime></ion-datetime>
+            <ion-datetime [(ngModel)]="dataNaixement"></ion-datetime>
         </ion-item>
 
 
@@ -65,9 +65,7 @@
         <ion-item>
             <ion-label>Idioma</ion-label>
             <ion-select [(ngModel)]="idioma">
-                <ion-option value="eng">English</ion-option>
                 <ion-option value="esp">Español</ion-option>
-                <ion-option value="cat">Català</ion-option>
             </ion-select>
         </ion-item>
 
@@ -75,13 +73,7 @@
             <ion-label>Pais</ion-label>
             <ion-select [(ngModel)]="pais">
                 <ion-option *ngFor="let pais of paises">{{pais.name}}</ion-option>
-                <ion-option value="esp">España</ion-option>
             </ion-select>
-        </ion-item>
-
-        <ion-item>
-            <ion-label floating>Ciudad</ion-label>
-            <ion-input type="text" [(ngModel)]="ciudad"></ion-input>
         </ion-item>
 
 
@@ -97,33 +89,37 @@
 
         <ion-item *ngIf="persona">
             <ion-label>Bailarin</ion-label>
-            <ion-toggle checked></ion-toggle>
+            <ion-toggle [(ngModel)]="ballariToggle"></ion-toggle>
         </ion-item>
 
         <ion-item *ngIf="persona">
             <ion-label>Profesor</ion-label>
-            <ion-toggle [(ngModel)]="profesor"></ion-toggle>
+            <ion-toggle [(ngModel)]="professorToggle"></ion-toggle>
         </ion-item>
 
         <ion-item *ngIf="persona">
             <ion-label>Musico</ion-label>
-            <ion-toggle [(ngModel)]="music"></ion-toggle>
+            <ion-toggle [(ngModel)]="musicToggle"></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label floating>Descripción</ion-label>
             <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
         </ion-item>
-        <ion-item *ngIf="music">
+        <ion-item *ngIf="musicToggle">
             <ion-label floating>Instrumento</ion-label>
             <ion-input type="instrumento" [(ngModel)]="especialidadesProfessor"></ion-input>
         </ion-item>
-        <ion-item *ngIf="profesor">
+        <ion-item *ngIf="professorToggle">
             <ion-label floating>Especialidades del professor</ion-label>
             <ion-input type="instrumento" [(ngModel)]="instrumento"></ion-input>
         </ion-item>
-        <ion-item *ngIf="profesor">
+        <ion-item *ngIf="ballariToggle">
+            <ion-label>Año inicio baile</ion-label>
+            <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="professorToggle">
             <ion-label>Inicio impartición</ion-label>
-            <ion-datetime></ion-datetime>
+            <ion-datetime [(ngModel)]="iniciImparticions"></ion-datetime>
         </ion-item>
 
         <ion-item>
@@ -141,10 +137,19 @@
         <div class="btnContainer">
 
             <div class="btn">
-                <button class="btn" ion-button (click)="signup(email,password, nickname, genero, idioma, pais, ciudad, rol)">Register</button>
+                <button *ngIf="persona" class="btn" ion-button (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacuna, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
+                <!-- <button *ngIf="entitat" class="btn" ion-button (click)="signupEntitat(email,password, nickname, genero, idioma, pais, ciudad, rol)">Registrarse</button> -->
             </div>
 
         </div>
+        <!-- <div class="btnContainer">
+
+            <div class="btn">
+                <button *ngIf="entitat" class="btn" ion-button (click)="signupEntitat(email,password, nickname, genero, idioma, pais, ciudad, rol)">Register</button>
+            </div>
+
+        </div> -->
+
 
     </ion-list>
 

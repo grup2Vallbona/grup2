@@ -91,6 +91,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    HttpModule
     // HttpClientModule
   ],
   bootstrap: [IonicApp],

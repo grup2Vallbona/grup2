@@ -12,6 +12,7 @@ import { ToastController } from 'ionic-angular';
 
 import { Camera } from 'ionic-native';
 import { Http } from '@angular/http';
+import { DadesProductesService } from '../../services/dades-productes.service';
 
 /**
  * Generated class for the Register page.
@@ -25,7 +26,7 @@ import { Http } from '@angular/http';
   templateUrl: 'register.html',
 })
 export class Register {
-  // paises: Pais[];
+  paises = [];
   private imageSrc: string;
   users: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
@@ -36,7 +37,6 @@ export class Register {
   genero: string;
   idioma: string;
   pais: string;
-  ciudad: string;
   rol: string;
   alertCtrl: any;
   descripcion: string;
@@ -47,22 +47,80 @@ export class Register {
   marca: boolean = false;
   especialidadesProfessor: string;
   instrumento: string;
-  profesor: boolean = false;
-  music: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private firebaseAuth: AngularFireAuth, public toastCtrl: ToastController, public db: AngularFireDatabase, private http : Http) {
+  profesor: number;
+  professorToggle: boolean = false;
+  music: number;
+  musicToggle: boolean = false;
+  ballari: number;
+  ballariToggle: boolean = true;
+  dataNaixement: Date;
+  iniciImparticions: Date;
+  imatge: string;
+  anyEmpezarBailar: Date;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private firebaseAuth: AngularFireAuth, public toastCtrl: ToastController, public db: AngularFireDatabase, private http: Http, private dades: DadesProductesService) {
     this.user = firebaseAuth.authState;
   }
 
-  signup(email: string, password: string, nickname: string, genero: string, idioma: string, pais: string, ciudad: string, rol: string) {
+  signupPersona(email: string, password: string, nickname: string, genero: number, idioma: number, pais: number, rol: string,
+    descripcion: string, vacuna: number, especialidadesProfessor: string, instrumento: string, dataNaixement: Date, professorToggle: boolean, musicToggle: boolean, ballariToggle: boolean
+    , iniciImparticions: Date, imatge: string, anyEmpezarBailar:Date) {
+
+    let user = {
+      email: email,
+      contrasenya: password,
+      nickname: nickname,
+      genere: genero,
+      idioma: idioma,
+      pais: pais,
+      rol: rol,
+      descripcio: descripcion,
+      vacunaCovid: vacuna,
+      imagen: imatge,
+      ballari: ballariToggle,
+      music: musicToggle,
+      professor:  professorToggle,
+      especialitatsProfessor: especialidadesProfessor,
+      instrument: instrumento,
+      dataNaixementBallari: anyEmpezarBailar,
+      iniciProfessorat: iniciImparticions,
+      dataNaixement: dataNaixement,
+      id: 0,
+      persona_id: 0,
+      entitat_id: 0
+    }
+  if (professorToggle) {
+      this.profesor = 1;
+    } else {
+      this.profesor = 0;
+    };
+    if (musicToggle) {
+      this.music = 1;
+    } else {
+      this.music = 0;
+    };
+    if (ballariToggle) {
+      this.ballari = 1;
+    } else {
+      this.ballari = 0;
+    };
+   console.log(user);
     try {
       this.firebaseAuth
         .auth
         .createUserWithEmailAndPassword(email, password)
-      this.itemObservable.push({ email: email, nickname: nickname, genero: genero, idioma: idioma, pais: pais, ciudad: ciudad, rol: rol, descripcion: this.descripcion, checkbox: this.vacuna });
+      this.itemObservable.push({ user });
+      this.dades.crearUsuari(user).subscribe(usuario => {
+        console.log(usuario);
+      });
       this.navCtrl.push(Principal);
     } catch (e) {
       this.loginToast();
     }
+    // console.log(user);
+  }
+
+  signupEntitat() {
+
   }
   presentAlert() {
     let alert = this.alertCtrl.create({
@@ -91,7 +149,7 @@ export class Register {
     toast.present();
   }
 
-   openGallery(): void {
+  openGallery(): void {
     let cameraOptions = {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.FILE_URI,
@@ -121,18 +179,32 @@ export class Register {
         this.persona = true;
       }
     }
-
-
   }
 
-  // ionViewDidLoad(){
-  //   this.http.get('../../assets/json/paises.json') .subscribe(
-  //     (response: any[]) => {
-  //       this.paises = response;
-  //     }, error => {
-  //       console.log('Error: ', error.message);
-  //     }
-  //   )
-  // }
+  verficacioEntitat(e) {
+    if (e == "escola") {
+      if (this.escola) {
+        this.marca = false;
+      } else {
+        this.marca = true;
+      }
+    } else {
+      if (this.marca) {
+        this.escola = false;
+      } else {
+        this.escola = true;
+      }
+    }
+  }
+  ionViewDidLoad() {
+    this.http.get('../../assets/json/paises.json').subscribe(
+      (response: any) => {
+        // alert(response);
+        this.paises = response.json();
+      }, error => {
+        console.log('Error: ', error.message);
+      }
+    )
+  }
 
 }

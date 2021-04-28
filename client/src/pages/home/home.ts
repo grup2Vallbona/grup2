@@ -33,6 +33,8 @@ export class HomePage {
     try{
       if (this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())) {
           this.navCtrl.push(Principal);
+      } else {
+        this.navCtrl.push(HomePage);
       }
     }catch(e){
       console.log("Error");
