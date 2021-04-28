@@ -22,95 +22,149 @@
   <ion-card text-center>
 
     <ion-avatar>
-      
+
     </ion-avatar>
     <ion-card-content>
       <h1>{{nickname}}</h1>
     </ion-card-content>
 
   </ion-card>
+
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Idioma</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{idiomaUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+
+  <ion-item *ngIf="personaid != null">
+    <ion-card-content item-left>
+      <h2>Genere</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{genereUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Any</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{dataNaixement}}</p>
+    </ion-card-content>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Pais</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{paisUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Email</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{email}}</p>
+    </ion-card-content>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Descripcio</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{descripcioUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Vacuna</h2>
+    </ion-card-content>
+    <ion-card-content item-right *ngIf="vacunaUsuari == 0">
+      <img class="imgVacuna" src="../../assets/images/noVacuna.png">
+    </ion-card-content>
+    <ion-card-content item-right *ngIf="vacunaUsuari == 1">
+      <img class="imgVacuna" src="../../assets/images/siVacunas.png">
+    </ion-card-content>
+  </ion-item>
+
   
+
+
+
+
+
+  <ion-item *ngIf="personaid != null">
+    <ion-card-content item-left>
+      <h2>Rol</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{rolUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item *ngIf="personaid != null">
+    <ion-card-content item-left>
+      <h2>Tipo</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{tipoUsuari}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item *ngIf="personaid != null && tipoUsuari == 'Music'">
+    <ion-card-content item-left>
+      <h2>Instrument</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{instrument}}</p>
+    </ion-card-content>
+  </ion-item>
  
-    <ion-item>
-      <ion-card-content item-left>
-        <h2>Email</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{email}}</p>
-      </ion-card-content>
-    </ion-item>
- 
-  
-    <ion-item>
-      <ion-card-content item-left>
-        <h2>Idioma</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{idiomaUsuari}}</p>
-      </ion-card-content>
-    </ion-item>
- 
+  <ion-item *ngIf="personaid != null && tipoUsuari == 'Profesor'">
+    <ion-card-content item-left>
+      <h2>Inici Imparticions</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{iniciImparticions}}</p>
+    </ion-card-content>
+  </ion-item>
 
+  <ion-item *ngIf="personaid != null && tipoUsuari == 'Profesor'">
+    <ion-card-content item-left>
+      <h2>Especialidades</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{especialidadesProfesor}}</p>
+    </ion-card-content>
+  </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="entitatid != null && escola == 1">
       <ion-card-content item-left>
-        <h2>Vacuna </h2>
-      </ion-card-content>
-      <ion-card-content item-right *ngIf="vacunaUsuari == 0">
-        <img src="../../assets/images/noVacuna.png">
-      </ion-card-content>
-      <ion-card-content item-right *ngIf="vacunaUsuari == 1">
-        <img src="../../assets/images/siVacunas.png">
-      </ion-card-content>
-    </ion-item>
- 
- 
-    <ion-item *ngIf="personaid != null">
-      <ion-card-content item-left>
-        <h2>Genere</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{genereUsuari}}</p>
-      </ion-card-content>
-    </ion-item>
-    
-    <ion-item *ngIf="personaid != null">
-      <ion-card-content item-left>
-        <h2>Rol</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{rolUsuari}}</p>
-      </ion-card-content>
-    </ion-item>
-    <ion-item *ngIf="personaid != null">
-      <ion-card-content item-left>
-        <h2>Tipo</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{tipoUsuari}}</p>
-      </ion-card-content>
-    </ion-item>
-    <ion-item *ngIf="personaid != null && tipoUsuari == 'Music'">
-      <ion-card-content item-left>
-        <h2>Instrument</h2>
-      </ion-card-content>
-      <ion-card-content item-right>
-        <p>{{instrument}}</p>
-      </ion-card-content>
-    </ion-item>
-
-
-
-
-  <ion-card *ngIf="entitatid != null">
-    <ion-item>
-      <ion-card-content item-left>
-        <h2>Nom</h2>
+        <h2>Nom Escola</h2>
       </ion-card-content>
       <ion-card-content item-right>
         <p>{{nomEntitat}}</p>
       </ion-card-content>
     </ion-item>
-  </ion-card>
+    
+    <ion-item *ngIf="entitatid != null && marca == 1">
+      <ion-card-content item-left>
+        <h2>Nom Marca</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{nomEntitat}}</p>
+      </ion-card-content>
+    </ion-item>
 
 </ion-content>

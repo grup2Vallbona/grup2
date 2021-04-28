@@ -30,6 +30,12 @@ class PersonaController extends BaseController
         $persona = $persona->firstWhere('id', $id);
         return $persona;
     }
+    function getPersonaUltima()
+    {
+        $persona = Persona::all();
+        $persona = $persona->last();
+        return $persona;
+    }
     function updatePersona(Request $request, $id)
     {
         $persona = Persona::find($id);

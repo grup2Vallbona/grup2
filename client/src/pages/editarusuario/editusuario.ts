@@ -26,9 +26,14 @@ export class EditUsuario {
   personaU: Persona;
   nom: string;
   rol: string;
+  escola: number;
+  marca: number;
   descripcio: string;
+  //selectedGenere: boolean = true;
+  selectedGenere: string;
   vacuna: number;
-  prova: boolean = true;
+  genero: string;
+  estaVacunado: boolean = true;
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
@@ -37,20 +42,37 @@ export class EditUsuario {
     this.usuari = navParams.get("user");
     this.personaid = this.usuari.persona_id;
     this.entitatid = this.usuari.entitat_id;
+    this.descripcio = this.usuari.descripcio;
   }
 
   ionViewDidLoad() {
-    this.descripcio  = this.usuari.descripcio;
+    this.descripcio = this.usuari.descripcio;
+    if (this.usuari.vacunaCovid == 0) {
+      this.estaVacunado = false;
+    } else {
+      this.estaVacunado = true;
+    }
     this.vacuna = this.usuari.vacunaCovid;
     if (this.entitatid != null) {
       this.dades.getEntitat(this.entitatid).subscribe((jEntitat: any) => {
         this.entitatU = jEntitat.json();
 
         this.nom = this.entitatU.nom;
+        this.escola = this.entitatU.escola;
+        this.marca = this.entitatU.marca;
       });
     } else if (this.personaid != null) {
       this.dades.getPersona(this.personaid).subscribe((jPersona: any) => {
         this.personaU = jPersona.json();
+        if (this.usuari.genere == 0) {
+          this.selectedGenere = "hom";
+        } else if (this.usuari.genere == 1) {
+          //this.genero = "Catalan";
+          this.selectedGenere = "fem";          
+        } else {
+//          this.genero = "Otros";
+          this.selectedGenere = "otro";
+        }
 
         this.rol = this.personaU.rol;
       });
