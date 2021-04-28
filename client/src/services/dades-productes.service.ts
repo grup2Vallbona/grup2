@@ -10,8 +10,8 @@ import { Usuari } from "../app/interfaces/iusuari";
 export class DadesProductesService {
   // http: any;
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php/api';
-  baseUrl: string = 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
+  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
+  baseUrl: string = 'http://localhost/WeSwing/grup2/server/public/index.php';
   constructor(private http: Http) {}
 
   public getDades(id: number): Observable<any> {
@@ -32,6 +32,9 @@ public getEntitat(id: number): Observable<any>{
   }
   public getTipusBalls (): Observable<any>{
     return this.http.get(this.baseUrl + '/api/tipusballs')
+  }
+  public getPremisUsuari (id:number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/premis/usuari/'+id);
   }
 
 

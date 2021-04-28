@@ -29,8 +29,9 @@
   <ion-item>
     <ion-label>Tipo de participación</ion-label>
     <ion-select [(ngModel)]="tipoParticipacion">
-      <ion-option value="solo">Solos</ion-option>
-      <ion-option value="escuela">Escuelas</ion-option>
+      <ion-option value="1">Solos</ion-option>
+      <ion-option value="2">Duos</ion-option>
+      <ion-option value="3">Escuelas</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
@@ -41,9 +42,7 @@
   </ion-item>
   <ion-item>
     <ion-label>Tipo de musica</ion-label>
-    <ion-select [(ngModel)]="TipoDeMusica">
-      
-    </ion-select>
+    <ion-input type="text" [(ngModel)]="TipusDeMusica"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Crear un nuevo evento</ion-label>

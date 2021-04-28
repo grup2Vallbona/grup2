@@ -22,6 +22,12 @@ class PremiController extends BaseController
         $premi = $premi->firstWhere('id', $id);
         return $premi;
     }
+    function getPremisUsuari(Request $request, $id)
+    {
+        $premi = Premi::all();
+        $premi = $premi->where('creador_id','=', $id);
+        return $premi;
+    }
     function updatePremi(Request $request, $id)
     {
         $premi = Premi::find($id);
