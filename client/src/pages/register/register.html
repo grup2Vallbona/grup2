@@ -72,7 +72,7 @@
         <ion-item>
             <ion-label>Pais</ion-label>
             <ion-select [(ngModel)]="pais">
-                <ion-option *ngFor="let pais of paises">{{pais.name}}</ion-option>
+                <ion-option value="{{pais.code}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
             </ion-select>
         </ion-item>
 

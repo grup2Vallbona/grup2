@@ -34,8 +34,10 @@ class PersonaController extends BaseController
     function getPersonaUltima()
     {
         $persona = Persona::all();
-        $persona = $persona->orderBy('id', 'desc')->limit(1)->get();
+        $persona = $persona->last();
         return $persona;
+        //return Persona::all();
+        // return ['hola'];
     }
     
                
