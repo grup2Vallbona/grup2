@@ -33,7 +33,7 @@
 
     </ion-item>
     <ion-item>
-      
+
       <ion-buttons>
         <button ion-button icon-only color="light">
           <ion-icon name="create"></ion-icon>
@@ -47,16 +47,15 @@
         <ion-option value="hom">Hombre</ion-option>
         <ion-option value="fem">Mujer</ion-option>
         <ion-option value="otro">Otros</ion-option>
-    </ion-select>
+      </ion-select>
 
     </ion-item>
     <ion-item>
       <ion-label floating>Pais</ion-label>
-      <ion-select [(ngModel)]="selectedGenere" name="genere">
-        <ion-option value="hom">Hombre</ion-option>
-        <ion-option value="fem">Mujer</ion-option>
-        <ion-option value="otro">Otros</ion-option>
-    </ion-select>
+      <ion-select [(ngModel)]="selectedPais" name="pais">
+        <ion-option *ngFor="let pais of paises" value="{{pais.codeInteger}}">{{pais.name}}</ion-option>
+
+      </ion-select>
 
     </ion-item>
     <ion-item>
@@ -66,7 +65,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Vacunado de covid-19</ion-label>
-      <ion-checkbox type="estaVacunado" ></ion-checkbox>
+      <ion-checkbox type="estaVacunado"></ion-checkbox>
 
     </ion-item>
 
@@ -76,11 +75,37 @@
       <ion-input type="text" name="title" value="{{rol}}" required></ion-input>
 
     </ion-item>
-    <ion-item>
-      <ion-label floating>Tipo</ion-label>
-      <ion-input type="text" name="title" required></ion-input>
 
-    </ion-item>
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
+      <ion-item>
+        <ion-label floating>Instrumento</ion-label>
+        <ion-input type="text" name="title" value="{{instrument}}"></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>Any Inici</ion-label>
+        <ion-input type="date" name="title" value="{{dataNaixement}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
+      <ion-item>
+        <ion-label floating>Instrumento</ion-label>
+        <ion-input type="text" name="title" value="{{instrument}}"></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Inicio</ion-label>
+        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Especialidades</ion-label>
+        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
 
 
     <div class="btn">
@@ -102,12 +127,12 @@
 
 
     </ion-item>
-    <ion-item >
-          <button ion-button icon-only color="light">
-            <ion-icon name="create"></ion-icon>
-          </button>
-         
-        </ion-item>
+    <ion-item>
+      <button ion-button icon-only color="light">
+        <ion-icon name="create"></ion-icon>
+      </button>
+
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Descripción</ion-label>
@@ -115,23 +140,22 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Pais</ion-label>
-      <ion-select [(ngModel)]="selectedGenere" name="genere">
-        <ion-option value="hom">Hombre</ion-option>
-        <ion-option value="fem">Mujer</ion-option>
-        <ion-option value="otro">Otros</ion-option>
-    </ion-select>
+      <ion-select>
+        <ion-option *ngFor="let pais of paises">{{pais.name}}</ion-option>
+
+      </ion-select>
 
     </ion-item>
     <ion-item>
       <ion-label>Vacunado de covid-19</ion-label>
-      <ion-checkbox type="estaVacunado" ></ion-checkbox>
+      <ion-checkbox type="estaVacunado"></ion-checkbox>
     </ion-item>
-    
+
     <ion-item *ngIf="escola==1">
       <ion-label floating>Nombre escuela</ion-label>
       <ion-input type="text" name="title" value="{{nom}}" required></ion-input>
     </ion-item>
-    
+
     <ion-item *ngIf="marca==1">
       <ion-label floating>Nombre marca</ion-label>
       <ion-input type="text" name="title" value="{{nom}}" required></ion-input>

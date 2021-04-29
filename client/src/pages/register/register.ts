@@ -25,7 +25,7 @@ import { Http } from '@angular/http';
   templateUrl: 'register.html',
 })
 export class Register {
-  // paises: Pais[];
+  //  paises: Pais[];
   private imageSrc: string;
   users: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
@@ -57,6 +57,7 @@ export class Register {
     try {
       this.firebaseAuth
         .auth
+        
         .createUserWithEmailAndPassword(email, password)
       this.itemObservable.push({ email: email, nickname: nickname, genero: genero, idioma: idioma, pais: pais, ciudad: ciudad, rol: rol, descripcion: this.descripcion, checkbox: this.vacuna });
       this.navCtrl.push(Principal);
