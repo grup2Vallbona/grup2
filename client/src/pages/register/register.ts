@@ -11,8 +11,9 @@ import { Observable } from 'rxjs/Observable';
 import { ToastController } from 'ionic-angular';
 
 import { Camera } from 'ionic-native';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { DadesProductesService } from '../../services/dades-productes.service';
+import { Persona } from '../../app/interfaces/ipersona';
 
 /**
  * Generated class for the Register page.
@@ -26,7 +27,9 @@ import { DadesProductesService } from '../../services/dades-productes.service';
   templateUrl: 'register.html',
 })
 export class Register {
+  personaJ: string;
   paises = [];
+  persona: Persona;
   private imageSrc: string;
   users: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
@@ -37,82 +40,112 @@ export class Register {
   genero: string;
   idioma: string;
   pais: string;
-  rol: string;
+  rol: any;
   alertCtrl: any;
   descripcion: string;
   vacuna: boolean = false;
-  persona: boolean = true;
-  entitat: boolean = false;
+  personaToggle: boolean = true;
+  entitatToggle: boolean = false;
   escola: boolean = false;
   marca: boolean = false;
-  especialidadesProfessor: string;
-  instrumento: string;
-  profesor: number;
+  especialidadesProfessor: any;
+  instrumento: any;
+  profesor: any;
   professorToggle: boolean = false;
-  music: number;
+  music: any;
   musicToggle: boolean = false;
-  ballari: number;
+  ballari: any;
   ballariToggle: boolean = true;
   dataNaixement: Date;
-  iniciImparticions: Date;
+  iniciImparticions: any;
   imatge: string;
-  anyEmpezarBailar: Date;
+  anyEmpezarBailar: any;
+  myForm: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private firebaseAuth: AngularFireAuth, public toastCtrl: ToastController, public db: AngularFireDatabase, private http: Http, private dades: DadesProductesService) {
     this.user = firebaseAuth.authState;
   }
 
-  signupPersona(email: string, password: string, nickname: string, genero: number, idioma: number, pais: number, rol: string,
-    descripcion: string, vacuna: number, especialidadesProfessor: string, instrumento: string, dataNaixement: Date, professorToggle: boolean, musicToggle: boolean, ballariToggle: boolean
-    , iniciImparticions: Date, imatge: string, anyEmpezarBailar:Date) {
-
-    let user = {
-      email: email,
-      contrasenya: password,
-      nickname: nickname,
-      genere: genero,
-      idioma: idioma,
-      pais: pais,
-      rol: rol,
-      descripcio: descripcion,
-      vacunaCovid: vacuna,
-      imagen: imatge,
-      ballari: ballariToggle,
-      music: musicToggle,
-      professor:  professorToggle,
-      especialitatsProfessor: especialidadesProfessor,
-      instrument: instrumento,
-      dataNaixementBallari: anyEmpezarBailar,
-      iniciProfessorat: iniciImparticions,
-      dataNaixement: dataNaixement,
-      id: 0,
-      persona_id: 0,
-      entitat_id: 0
-    }
-  if (professorToggle) {
+  signupPersona(email, password, nickname, genero, idioma, pais, rol, descripcion, vacuna, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar) {
+    if (professorToggle) {
       this.profesor = 1;
     } else {
       this.profesor = 0;
-    };
+    }
     if (musicToggle) {
       this.music = 1;
     } else {
       this.music = 0;
-    };
+    }
     if (ballariToggle) {
       this.ballari = 1;
     } else {
       this.ballari = 0;
-    };
-   console.log(user);
+    }
+
+    this.persona = {
+      rol: rol,
+      ballari: this.ballari,
+      music: this.music,
+      professor: this.profesor,
+      especialitatsProfessor: especialidadesProfessor,
+      instrument: instrumento,
+      dataNaixementBallari: anyEmpezarBailar,
+      iniciProfessorat: iniciImparticions,
+      id: 0,
+    }
+    this.personaJ = JSON.stringify(this.persona)
+    console.log(this.personaJ);
+    // let user = {
+    //   email: email,
+    //   contrasenya: password,
+    //   nickname: nickname,
+    //   genere: genero,
+    //   idioma: idioma,
+    //   pais: pais,
+    //   rol: rol,
+    //   descripcio: descripcion,
+    //   vacunaCovid: vacuna,
+    //   imagen: imatge,
+    //   ballari: ballariToggle,
+    //   music: musicToggle,
+    //   professor:  professorToggle,
+    //   especialitatsProfessor: especialidadesProfessor,
+    //   instrument: instrumento,
+    //   dataNaixementBallari: anyEmpezarBailar,
+    //   iniciProfessorat: iniciImparticions,
+    //   dataNaixement: dataNaixement,
+    //   id: 0,
+    //   persona_id: 0,
+    //   entitat_id: null
+    // }
+
+    const formData = new FormData();
+    formData.append("rol", rol);
+    formData.append("ballari", this.ballari);
+    formData.append("music", this.music);
+    formData.append("professor", this.profesor);
+    formData.append("especialitatsProfessor", especialidadesProfessor);
+    formData.append("instrument", instrumento);
+    formData.append("dataNaixementBallari", dataNaixement);
+    formData.append("iniciProfessorat", iniciImparticions);
+
+
+
+    //  console.log(user);
     try {
-      this.firebaseAuth
-        .auth
-        .createUserWithEmailAndPassword(email, password)
-      this.itemObservable.push({ user });
-      this.dades.crearUsuari(user).subscribe(usuario => {
-        console.log(usuario);
+      this.dades.crearPersona(formData).subscribe(data => {
+        // console.log(data);
       });
-      this.navCtrl.push(Principal);
+
+      // this.firebaseAuth
+      //   .auth
+      //   .createUserWithEmailAndPassword(email, password)
+      // this.itemObservable.push({ persona });
+      // this.dades.crearPersona(persona).subscribe(usuario => {
+      //   console.log(usuario);
+      // });
+      // this.navCtrl.push(Principal);
     } catch (e) {
       this.loginToast();
     }
@@ -168,15 +201,15 @@ export class Register {
   verificacionCheckbox(e) {
     if (e == "persona") {
       if (this.persona) {
-        this.entitat = false;
+        this.entitatToggle = false;
       } else {
-        this.entitat = true;
+        this.entitatToggle = true;
       }
     } else {
-      if (this.entitat) {
-        this.persona = false;
+      if (this.entitatToggle) {
+        this.personaToggle = false;
       } else {
-        this.persona = true;
+        this.personaToggle = true;
       }
     }
   }

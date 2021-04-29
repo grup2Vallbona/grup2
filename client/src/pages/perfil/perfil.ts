@@ -73,7 +73,7 @@ export class Perfil {
               } else {
                 this.genereUsuari = "Dona";
               }
-              this.rolUsuari = this.persona.rol;
+              // this.rolUsuari = this.persona.rol;
               if (this.persona.music == 1) {
                 this.tipoUsuari = "Music";
                 this.instrument = this.persona.instrument;
@@ -82,7 +82,7 @@ export class Perfil {
                 this.dataNaixement = this.persona.dataNaixementBallari;
               } else if (this.persona.professor == 1) {
                 this.tipoUsuari = "Profesor";
-                this.iniciImparticions = this.persona.iniciImparticions;
+                this.iniciImparticions = this.persona.iniciProfessorat;
               }
             });
         }

@@ -1,12 +1,12 @@
 export interface Persona {
-    idPersona: number;
-    ballari: number;
-    professor: number;
-    music: number;
-    rol: string;
-    instrument: string;
-    dataNaixementBallari: Date;
-    iniciImparticions: Date;
-    especialitatProfessor: number;
+    id: number;
+    ballari: any;
+    professor: any;
+    music: any;
+    rol: any;
+    instrument: any;
+    dataNaixementBallari: any;
+    iniciProfessorat: any;
+    especialitatsProfessor: any;
     
 }
