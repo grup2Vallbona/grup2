@@ -51,6 +51,9 @@ export class DadesProductesService {
   public crearUsuari(usuari: Usuari): Observable<any> {
     return this.http.post(this.baseUrl + '/api/usuari/', {user:usuari})
   }
+  public getPremisUsuari (id:number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/premis/usuari/'+id);
+  }
 
  
 }

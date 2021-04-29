@@ -13,6 +13,7 @@ class Usuari extends Model
         'idioma',
         'genere',
         'pais',
+        'dataNaixement',
         'contrasenya',
         'email',
         'descripcio',

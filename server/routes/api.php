@@ -113,6 +113,7 @@ Route::post('pertanygrup', [PertanyGrupController::class, "pertany_grup"]);
 // ----------------- PREMI -----------------
 Route::get('premis', [PremiController::class, "getPremis"]);
 Route::get('premi/{id}', [PremiController::class, "getPremi"]);
+Route::get('premis/usuari/{id}', [PremiController::class, "getPremisUsuari"]);
 Route::put('premi/{id}', [PremiController::class, "updatePremi"]);
 Route::post('premi', [PremiController::class, "crearPremi"]);
 Route::delete('premi/{id}', [PremiController::class, "eliminarPremi"]);
