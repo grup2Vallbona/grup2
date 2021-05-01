@@ -47,4 +47,10 @@ class EntitatController extends BaseController
         $entitat->delete();
         return $entitat;
     }
+
+    function getEntitatUltima(){
+        $entitat = Entitat::all();
+        $entitat = $entitat->last();
+        return $entitat;
+    }
 }
