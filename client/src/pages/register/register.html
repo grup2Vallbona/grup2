@@ -26,24 +26,27 @@
         </ion-item>
         <ion-item *ngIf="entitatToggle">
             <ion-label>Escuela</ion-label>
-            <ion-checkbox [(ngModel)]="escola" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
+            <ion-checkbox [(ngModel)]="escolaToggle" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
         </ion-item>
         <ion-item *ngIf="entitatToggle">
             <ion-label>Marca</ion-label>
-            <ion-checkbox [(ngModel)]="marca" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
+            <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
         </ion-item>
         <ion-item>
             <ion-label floating>Nickname</ion-label>
             <ion-input type="text" [(ngModel)]="nickname"></ion-input>
         </ion-item>
 
-
+        <ion-item *ngIf="entitatToggle">
+            <ion-label floating>Nombre entidad</ion-label>
+            <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+        </ion-item>
         <ion-item>
             <ion-label>Genero</ion-label>
             <ion-select [(ngModel)]="genero">
-                <ion-option value="mal">Hombre</ion-option>
-                <ion-option value="fem">Mujer</ion-option>
-                <ion-option value="otro">Otros</ion-option>
+                <ion-option value=1>Hombre</ion-option>
+                <ion-option value=2>Mujer</ion-option>
+                <ion-option value=3>Otros</ion-option>
             </ion-select>
         </ion-item>
         <ion-item *ngIf="personaToggle">
@@ -65,14 +68,14 @@
         <ion-item>
             <ion-label>Idioma</ion-label>
             <ion-select [(ngModel)]="idioma">
-                <ion-option value="esp">Español</ion-option>
+                <ion-option value=0>Español</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label>Pais</ion-label>
             <ion-select [(ngModel)]="pais">
-                <ion-option value="{{pais.code}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
+                <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
             </ion-select>
         </ion-item>
 
@@ -107,7 +110,8 @@
         </ion-item>
         <ion-item *ngIf="professorToggle">
             <ion-label floating>Especialidades del professor</ion-label>
-            <ion-input [(ngModel)]="especialidadesProfessor"></ion-input>
+            <ion-input type="number" [(ngModel)]="especialidadesProfessor"></ion-input>
+            
         </ion-item>
         <ion-item *ngIf="musicToggle">
             <ion-label floating> Instrumento</ion-label>
@@ -124,7 +128,7 @@
 
         <ion-item>
             <ion-label>Vacunado de covid-19</ion-label>
-            <ion-checkbox type="vacuna" [(ngModel)]="vacuna"></ion-checkbox>
+            <ion-checkbox type="vacunaToggle" [(ngModel)]="vacunaToggle"></ion-checkbox>
         </ion-item>
         <div class="btnContainer">
 
@@ -137,8 +141,8 @@
         <div class="btnContainer">
 
             <div class="btn">
-                <button *ngIf="personaToggle" class="btn" ion-button (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacuna, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
-                <!-- <button *ngIf="entitatToggle" class="btn" ion-button (click)="signupEntitat(email,password, nickname, genero, idioma, pais, ciudad, rol)">Registrarse</button> -->
+                <button *ngIf="personaToggle" class="btn" ion-button (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
+                <button *ngIf="entitatToggle" class="btn" ion-button (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacuna, escolaToggle, marcaToggle, nombre)">Re</button>
             </div>
 
         </div>

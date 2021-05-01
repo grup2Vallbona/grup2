@@ -153,7 +153,7 @@ Route::get('entitat/{id}', [EntitatController::class, "getEntitat"]);
 Route::put('entitat/{id}', [EntitatController::class, "updateEntitat"]);
 Route::post('entitat', [EntitatController::class, "crearEntitat"]);
 Route::delete('entitat/{id}', [EntitatController::class, "eliminarEntitat"]);
-Route::get('entitat/ultima', [EntitatController::class, "getEntitatUltima"]);
+Route::get('entitats/ultima', [EntitatController::class, "getEntitatUltima"]);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -1,5 +1,5 @@
 export interface Persona {
-    id: number;
+    id: any;
     ballari: any;
     professor: any;
     music: any;

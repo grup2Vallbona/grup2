@@ -17,10 +17,6 @@ export class DadesProductesService {
   baseUrl: string = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   constructor(private http: Http) { }
 
-  public getDades(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/usuari/" + id);
-  }
-
 
   public getPersona(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/persona/" + id);
@@ -37,23 +33,33 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + '/api/tipusballs')
   }
   public crearPersona(persona: FormData): Observable<any> {
-    console.log(persona)
-    var personaJ = JSON.stringify(persona);
-    var headers = new Headers();
-    headers.append("Accept", 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    const requestOptions = new RequestOptions({ headers: headers });
+    // console.log(persona)
+    // var personaJ = JSON.stringify(persona);
+    // var headers = new Headers();
+    // headers.append("Accept", 'application/json');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    // const requestOptions = new RequestOptions({ headers: headers });
     return this.http.post(this.baseUrl + '/api/persona/', persona)
   }
   public getPersonaEmail(email: string): Observable<any> {
     return this.http.get(this.baseUrl + '/api/email/' + email)
   }
-  public crearUsuari(usuari: Usuari): Observable<any> {
-    return this.http.post(this.baseUrl + '/api/usuari/', {user:usuari})
+  public crearUsuari(usuari: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + '/api/usuari/', usuari)
   }
   public getPremisUsuari (id:number): Observable<any>{
     return this.http.get(this.baseUrl + '/api/premis/usuari/'+id);
   }
 
- 
+  public crearEntitat (entitat: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/entitat', entitat);
+  }
+
+  public getPersonaUltima (): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/persona/ultima/');
+  }
+
+  public getEntitatUltima(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/entitats/ultima/')
+  }
 }

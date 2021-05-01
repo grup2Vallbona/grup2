@@ -2,15 +2,16 @@
 
 export interface Usuari {
     id: number;
-    persona_id: number;
-    entitat_id: number;
-    nickname: string;
+    persona_id: any;
+    entitat_id: any;
+    nickname: any;
     idioma: number;
     genere: number;
+    dataNaixement: any;
     pais: number;
     contrasenya: string;
     email: string;
     descripcio: string; 
-    vacunaCovid: number;
+    vacunaCovid: any;
     imagen: any;
 }

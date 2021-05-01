@@ -24,6 +24,12 @@ class EntitatController extends BaseController
         $entitat = $entitat->firstWhere('id', $id);
         return $entitat;
     }
+    function getEntitatUltima(){
+        $entitat = Entitat::all();
+        $entitat = $entitat->last();
+        return $entitat;
+       
+    }
     function updateEntitat(Request $request, $id)
     {
         $entitat = Entitat::find($id);

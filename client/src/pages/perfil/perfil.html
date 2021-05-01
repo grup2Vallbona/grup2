@@ -38,7 +38,14 @@
       <p>{{idiomaUsuari}}</p>
     </ion-card-content>
   </ion-item>
-
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Any</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{dataNaixement}}</p>
+    </ion-card-content>
+  </ion-item>
 
   <ion-item *ngIf="personaid != null">
     <ion-card-content item-left>
@@ -49,9 +56,9 @@
     </ion-card-content>
   </ion-item>
 
-  <ion-item>
+  <ion-item *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
     <ion-card-content item-left>
-      <h2>Any</h2>
+      <h2>Any Bailar</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{dataNaixement}}</p>
@@ -76,7 +83,7 @@
       <p>{{email}}</p>
     </ion-card-content>
   </ion-item>
- 
+
   <ion-item>
     <ion-card-content item-left>
       <h2>Descripcio</h2>
@@ -98,7 +105,7 @@
     </ion-card-content>
   </ion-item>
 
-  
+
 
 
 
@@ -121,50 +128,177 @@
       <p>{{tipoUsuari}}</p>
     </ion-card-content>
   </ion-item>
-
-  <ion-item *ngIf="personaid != null && tipoUsuari == 'Music'">
-    <ion-card-content item-left>
-      <h2>Instrument</h2>
-    </ion-card-content>
-    <ion-card-content item-right>
-      <p>{{instrument}}</p>
-    </ion-card-content>
-  </ion-item>
- 
-  <ion-item *ngIf="personaid != null && tipoUsuari == 'Profesor'">
-    <ion-card-content item-left>
-      <h2>Inici Imparticions</h2>
-    </ion-card-content>
-    <ion-card-content item-right>
-      <p>{{iniciImparticions}}</p>
-    </ion-card-content>
-  </ion-item>
-
-  <ion-item *ngIf="personaid != null && tipoUsuari == 'Profesor'">
-    <ion-card-content item-left>
-      <h2>Especialidades</h2>
-    </ion-card-content>
-    <ion-card-content item-right>
-      <p>{{especialidadesProfesor}}</p>
-    </ion-card-content>
-  </ion-item>
-
-    <ion-item *ngIf="entitatid != null && escola == 1">
+  
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico'">
+    <ion-item >
       <ion-card-content item-left>
-        <h2>Nom Escola</h2>
+        <h2>Instrumento</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{nomEntitat}}</p>
+        <p>{{instrument}}</p>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Any Inici</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{dataNaixement}}</p>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Profesor'">
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Inicio profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{iniciProfessorat}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Especialidades profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{especialidadesProfesor}}</p>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín, Profesor'">
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Instrumento</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{instrument}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Any Inici</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{dataNaixement}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Inicio profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{iniciProfessorat}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Especialidades profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{especialidadesProfesor}}</p>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+
+ 
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Instrumento</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{instrument}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Any Inici</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{dataNaixement}}</p>
+      </ion-card-content>
+    </ion-item>  
+    
+  </ion-list>
+
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Instrumento</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{instrument}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Inicio profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{iniciProfessorat}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Especialidades profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{especialidadesProfesor}}</p>
       </ion-card-content>
     </ion-item>
     
-    <ion-item *ngIf="entitatid != null && marca == 1">
+  </ion-list>
+  
+  <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín, Profesor'">
+    <ion-item >
       <ion-card-content item-left>
-        <h2>Nom Marca</h2>
+        <h2>Any inicio</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{nomEntitat}}</p>
+        <p>{{dataNaixement}}</p>
       </ion-card-content>
     </ion-item>
+    <ion-item>
+      <ion-card-content item-left>
+        <h2>Inicio profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{iniciProfessorat}}</p>
+      </ion-card-content>
+    </ion-item>
+    <ion-item >
+      <ion-card-content item-left>
+        <h2>Especialidades profesor</h2>
+      </ion-card-content>
+      <ion-card-content item-right>
+        <p>{{especialidadesProfesor}}</p>
+      </ion-card-content>
+    </ion-item>
+    
+  </ion-list>
+
+  
+
+
+  <ion-item *ngIf="entitatid != null && escola == 1">
+    <ion-card-content item-left>
+      <h2>Nom Escola</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{nomEntitat}}</p>
+    </ion-card-content>
+  </ion-item>
+
+  <ion-item *ngIf="entitatid != null && marca == 1">
+    <ion-card-content item-left>
+      <h2>Nom Marca</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{nomEntitat}}</p>
+    </ion-card-content>
+  </ion-item>
 
 </ion-content>
