@@ -25,11 +25,10 @@ class EntitatController extends BaseController
         return $entitat;
     }
     function getEntitatUltima(){
-        // $entitat = Entitat::all();
-        // $entitat = $entitat->last();
-        // return $entitat;
         $entitat = Entitat::all();
+        $entitat = $entitat->last();
         return $entitat;
+       
     }
     function updateEntitat(Request $request, $id)
     {

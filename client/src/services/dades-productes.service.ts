@@ -60,6 +60,6 @@ export class DadesProductesService {
   }
 
   public getEntitatUltima(): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/entitat/ultima/')
+    return this.http.get(this.baseUrl + '/api/entitats/ultima/')
   }
 }

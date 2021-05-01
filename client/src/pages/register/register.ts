@@ -76,6 +76,7 @@ export class Register {
   anyEmpezarBailar: any;
   nombre: any;
   alertController: any;
+  vaId: number;
 
   constructor(
     public navCtrl: NavController,
@@ -197,14 +198,17 @@ export class Register {
             //console.log(data);
           })
         )
-        .then((r) => this.navCtrl.push(Principal))
-        .catch((e) => {
-          if(e["code"] == 'auth/email-already-exists') {
-            this.registreIncorrecte();
-          }
-         
+        .then((r) => {
+          this.navCtrl.push(Principal);
         });
-
+    } catch (e) {
+      console.log(e);
+      this.registreIncorrecte();
+      // if (e["code"] == "auth/email-already-exists") {
+      //   this.registreIncorrecte();
+      // }
+    }
+    try {
       this.dades.getPersonaUltima().subscribe((personaUltima) => {
         this.personUltima = personaUltima.json();
         const formDataUsuari = new FormData();
@@ -269,9 +273,9 @@ export class Register {
       // console.log(dataEntitat);
     });
 
-    // this.dades.getEntitatUltima().subscribe(va => {
-    //   this.vaId = va.id;
-    // })
+    this.dades.getEntitatUltima().subscribe((va) => {
+      this.vaId = va.id;
+    });
   }
 
   presentAlert() {
