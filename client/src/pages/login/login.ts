@@ -37,44 +37,20 @@ export class Login {
   }
   contraseñaIncorrecta() {
     let alert = this.alertCtrl.create({
-      title: 'Contraseña incorrecta',
-      // subTitle: '10% of battery remaining',
+      title: 'Usuario o contraseña incorrecta',
+
       buttons: ['Aceptar']
     });
     alert.present();
   }
-  emailIncorrecto() {
-    let alert = this.alertCtrl.create({
-      title: 'email incorrecto',
-      // subTitle: '10% of battery remaining',
-      buttons: ['Aceptar']
-    });
-    alert.present();
-  }
-  emailNoExistente() {
-    let alert = this.alertCtrl.create({
-      title: 'email no existe',
-      // subTitle: '10% of battery remaining',
-      buttons: ['Aceptar']
-    });
-    alert.present();
-  }
+ 
   login() {
     try {
       this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
         .then(r => this.navCtrl.push(Principal,{email:this.email}))
         .catch(e => {
-          if (e['code'] == 'auth/wrong-password') {
-            // console.log(this.contraseñaIncorrecta())
-         this.contraseñaIncorrecta();
-          } 
-          if (e['code'] == 'auth/invalid-email') {
-            this.emailIncorrecto();
-          }
-          if (e['code'] ==  'auth/invalid-email-verified') {
-            // this.emailNoExistente();
-            console.log('olaa');
-          }
+          this.contraseñaIncorrecta();
+    
         })
 
 

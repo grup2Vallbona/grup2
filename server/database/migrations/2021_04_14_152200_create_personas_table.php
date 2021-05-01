@@ -22,7 +22,7 @@ class CreatePersonasTable extends Migration
             $table->integer('especialitatsProfessor')->nullable();
             $table->string('rol', 100)->nullable();
             $table->string('instrument', 100)->nullable();
-            $table->date('dataNaixementBallari')->nullable();
+            $table->year('dataNaixementBallari')->nullable();
             $table->date('iniciProfessorat')->nullable();
         });
     }

@@ -38,7 +38,14 @@
       <p>{{idiomaUsuari}}</p>
     </ion-card-content>
   </ion-item>
-
+  <ion-item>
+    <ion-card-content item-left>
+      <h2>Any</h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{dataNaixement}}</p>
+    </ion-card-content>
+  </ion-item>
 
   <ion-item *ngIf="personaid != null">
     <ion-card-content item-left>
@@ -49,9 +56,9 @@
     </ion-card-content>
   </ion-item>
 
-  <ion-item>
+  <ion-item *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
     <ion-card-content item-left>
-      <h2>Any</h2>
+      <h2>Any Bailar</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{dataNaixement}}</p>

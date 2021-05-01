@@ -28,6 +28,7 @@ export class Perfil {
   nomUsuari: string = "";
   email: string = "";
   dataNaixement: Date;
+  anyEmpezarBailar: Date;
   iniciProfessorat: Date;
   nickname: string = "";
   idiomaUsuari: string = "Español";
@@ -83,13 +84,13 @@ export class Perfil {
         this.email = this.usuari.email;
         this.descripcioUsuari = this.usuari.descripcio;
 
-        
+        this.dataNaixement = this.usuari.dataNaixement;
         if (this.usuari.persona_id != null) {
           this.dades
             .getPersona(this.usuari.persona_id)
             .subscribe((jPersona: any) => {
               this.persona = jPersona.json();
-              this.dataNaixement = this.persona.dataNaixementBallari;
+              this.anyEmpezarBailar = this.persona.dataNaixementBallari;
               if (this.usuari.genere == 0) {
                 this.genereUsuari = "Hombre";
               } else {

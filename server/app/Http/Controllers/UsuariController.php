@@ -7,7 +7,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Usuari;
+
 use App\Models\Persona;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Entitat;
 use Illuminate\Http\Request;
 
@@ -47,12 +49,14 @@ class UsuariController extends BaseController
 
     function crearUsuari(Request $request)
     {
+       
         $usuari = new Usuari;
         $usuari->entitat_id = $request->entitat_id;
         $usuari->persona_id = $request->persona_id;
         $usuari->nickname = $request->nickname;
-        $usuari->contrasenya = $request->contrasenya;
+        $usuari->contrasenya = Hash::make($request->contrasenya);
         $usuari->email = $request->email;
+        $usuari->dataNaixement = $request->dataNaixement;
         $usuari->descripcio = $request->descripcio;
         $usuari->imagen = $request->imagen;
         $usuari->idioma = $request->idioma;

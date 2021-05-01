@@ -26,7 +26,7 @@ export class EditUsuario {
   entitatU: Entitat;
   persona: Persona;
   nom: string;
-  rol: string;
+  rol: number;
   escola: number;
   marca: number;
   descripcio: string;

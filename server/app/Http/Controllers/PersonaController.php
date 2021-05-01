@@ -36,6 +36,8 @@ class PersonaController extends BaseController
         $persona = $persona->last();
         return $persona;
     }
+    
+               
     function updatePersona(Request $request, $id)
     {
         $persona = Persona::find($id);
