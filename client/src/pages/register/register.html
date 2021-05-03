@@ -14,8 +14,8 @@
 
 
 <ion-content>
-  
-        <ion-list >
+    <form [formGroup]="formlogin">
+        <ion-list>
             <ion-item>
                 <ion-label>Persona</ion-label>
                 <ion-checkbox [(ngModel)]="personaToggle" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
@@ -32,9 +32,10 @@
                 <ion-label>Marca</ion-label>
                 <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
             </ion-item>
+            
             <ion-item>
                 <ion-label floating>Nickname</ion-label>
-                <ion-input type="text" [(ngModel)]="nickname" ></ion-input>
+                <ion-input type="text" [(ngModel)]="nickname" [formControlName]="nickname"></ion-input>
             </ion-item>
 
             <ion-item *ngIf="entitatToggle">
@@ -159,5 +160,6 @@
 
         </ion-list>
 
+    </form>
 
 </ion-content>
