@@ -148,7 +148,6 @@ export class Register {
     } else {
       this.vacuna = 0;
     }
-<<<<<<< HEAD
     this.persona = {
       rol: rol,
       ballari: this.ballari,
@@ -185,8 +184,6 @@ export class Register {
     //   persona_id: 0,
     //   entitat_id: null
     // }
-=======
->>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
 
     if (especialidadesProfessor == undefined) {
       especialidadesProfessor = 0;
@@ -246,7 +243,6 @@ export class Register {
       //   this.registreIncorrecte();
       // }
     }
-<<<<<<< HEAD
     try {
       this.dades.getPersonaUltima().subscribe((personaUltima) => {
          this.personUltima = personaUltima.json();
@@ -269,8 +265,6 @@ export class Register {
     } catch (e) {
       this.loginToast();
     }
-=======
->>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({

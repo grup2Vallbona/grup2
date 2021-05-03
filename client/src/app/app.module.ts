@@ -18,7 +18,7 @@ import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
 import { Register } from '../pages/register/register';
 import { Principal } from '../pages/principal/principal';
-
+import { RecuperarContra } from '../pages/recuperar-contra/recuperar-contra';
 import { Eventos } from '../pages/eventos/eventos';
 import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
@@ -82,7 +82,8 @@ import { FormsModule } from '@angular/forms';
     Grupo,
     Creargrupo,
     Crearevento,
-    EditUsuario
+    EditUsuario,
+    RecuperarContra
   ],
   imports: [
     BrowserModule,
@@ -113,7 +114,8 @@ import { FormsModule } from '@angular/forms';
     Grupo,
     Creargrupo,
     Crearevento,
-    EditUsuario
+    EditUsuario,
+    RecuperarContra
   ],
   providers: [
     StatusBar,
