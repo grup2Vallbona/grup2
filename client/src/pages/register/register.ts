@@ -143,7 +143,7 @@ export class Register {
       iniciProfessorat: iniciImparticions,
       id: 0,
     };
-    this.personaJ = JSON.stringify(this.persona);
+    // this.personaJ = JSON.stringify(this.persona);
     // console.log(this.personaJ);
     // let user = {
     //   email: email,
@@ -210,7 +210,7 @@ export class Register {
     }
     try {
       this.dades.getPersonaUltima().subscribe((personaUltima) => {
-        this.personUltima = personaUltima.json();
+         this.personUltima = personaUltima.json();
         const formDataUsuari = new FormData();
         formDataUsuari.append("persona_id", this.personUltima.id);
         formDataUsuari.append("genere", genero);
