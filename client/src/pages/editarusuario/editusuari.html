@@ -15,68 +15,99 @@
 
 <ion-content>
 
-  <form #f="ngForm" *ngIf="personaid != null">
+  <form #f="ngForm">
+
     <ion-item>
       <ion-label floating>Nickname</ion-label>
-      <ion-input type="text" name="title" value="{{usuari.nickname}}"></ion-input>
-
+      <ion-input type="text" name="nickname" [(ngModel)] = "nickname" ></ion-input>
     </ion-item>
 
-    
-    
+    <ion-item>
+      <ion-label floating>Idioma</ion-label>
+      <ion-select [(ngModel)]="selectedIdioma" name="idioma">
+        <ion-option value="esp">Español</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="dataNaixement" name="data"></ion-datetime>
+    </ion-item>
+
     <ion-item>
       <ion-label floating>Género</ion-label>
       <ion-select [(ngModel)]="selectedGenere" name="genere">
-        <ion-option value="hom">Hombre</ion-option>
-        <ion-option value="fem">Mujer</ion-option>
-        <ion-option value="otro">Otros</ion-option>
+        <ion-option value=0>Hombre</ion-option>
+        <ion-option value=1>Mujer</ion-option>
+        <ion-option value=2>Otros</ion-option>
       </ion-select>
 
     </ion-item>
-    <ion-item>
+    <!--ion-item>
       <ion-label floating>Pais</ion-label>
       <ion-select [(ngModel)]="selectedPais" name="pais">
         <ion-option *ngFor="let pais of paises" value="{{pais.codeInteger}}">{{pais.name}}</ion-option>
 
       </ion-select>
 
-    </ion-item>
+    </ion-item-->
     <ion-item>
       <ion-label floating>Descripción</ion-label>
-      <ion-textarea value="{{descripcio}}"></ion-textarea>
+      <ion-input type="text" [(ngModel)]="descripcio" name="descripcio" ></ion-input>
 
     </ion-item>
-    <ion-item>
-      <ion-label>Vacunado de covid-19</ion-label>
-      <ion-checkbox type="estaVacunado"></ion-checkbox>
+    
+
+    <ion-item *ngIf="personaid != null">
+      <ion-label>Rol</ion-label>
+      <ion-select>
+        <ion-option value="fol">Follower</ion-option>
+        <ion-option value="lead">Leader</ion-option>
+        <ion-option value="folead">Follower/Leader</ion-option>
+        <ion-option value="leadfol">Leader/Follower</ion-option>
+    </ion-select>
 
     </ion-item>
-
-
-    <ion-item>
-      <ion-label floating>Rol</ion-label>
-      <ion-input type="text" name="title" value="{{rol}}" required></ion-input>
-
-    </ion-item>
-
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico'">
       <ion-item>
         <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" name="title" value="{{instrument}}"></ion-input>
+        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
 
-      </ion-item>
-      <ion-item>
-        <ion-label>Any Inici</ion-label>
-        <ion-input type="date" name="title" value="{{dataNaixement}}"></ion-input>
-      </ion-item>
+      </ion-item>      
 
     </ion-list>
 
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
+      <ion-item>
+        <ion-label floating>Año inicio baile</ion-label>
+        <!--ion-input type="text" name="title" value="{{anyEmpezarBailar}}"></ion-input-->
+        <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar" name="anyEmpezarBailar"></ion-datetime>
+      </ion-item>      
+
+    </ion-list>
+
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Profesor'">
+      <ion-item>
+        <ion-label floating>Inicio</ion-label>
+        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Especialidades</ion-label>
+        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
+      </ion-item>    
+
+    </ion-list>
+
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín, Profesor'">
       <ion-item>
         <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" name="title" value="{{instrument}}"></ion-input>
+        <ion-input type="text" [(ngModel)] = "instrument" name="instrument"></ion-input>
 
+      </ion-item> 
+      <ion-item>
+        <ion-label>Año inicio baile</ion-label>
+        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Inicio</ion-label>
@@ -91,55 +122,80 @@
     </ion-list>
 
 
-    <div class="btn">
-      <div class="btn">
-        <button class="btn" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
-      </div>
-    </div>
-  </form>
 
-  <form #f="ngForm" *ngIf="entitatid != null">
-    <ion-item>
-      <ion-label floating>Nickname</ion-label>
-      <ion-input type="text" name="title" value="{{usuari.nickname}}" required></ion-input>
 
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
+      <ion-item>
+        <ion-label floating>Instrumento</ion-label>
+        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
+
+      </ion-item> 
+      <ion-item>
+        <ion-label>Año inicio baile</ion-label>
+        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
+      <ion-item>
+        <ion-label floating>Instrumento</ion-label>
+        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
+
+      </ion-item> 
+      <ion-item>
+        <ion-label floating>Inicio</ion-label>
+        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Especialidades</ion-label>
+        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín, Profesor'">
+      <ion-item>
+        <ion-label>Año inicio baile</ion-label>
+        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Inicio</ion-label>
+        <ion-datetime displayFormat="YYYY" name="inicio" [(ngModel)]="iniciProfessorat"></ion-datetime>
+
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Especialidades</ion-label>
+        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-item *ngIf="entitatid != null && escola == 1">
+      <ion-label floating>Nombre escuela</ion-label>
+      <ion-input type="text" name="title" [(ngModel)]="nom" required></ion-input>
     </ion-item>
-   
 
-    <ion-item>
-      <ion-label floating>Descripción</ion-label>
-      <ion-textarea type="text" value="{{descripcio}}" required></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Pais</ion-label>
-      <ion-select>
-        <ion-option *ngFor="let pais of paises">{{pais.name}}</ion-option>
-
-      </ion-select>
+    <ion-item *ngIf="entitatid != null && marca == 1">
+      <ion-label floating>Nombre marca</ion-label>
+      <ion-input type="text" name="title" [(ngModel)]="nom" required></ion-input>
 
     </ion-item>
     <ion-item>
       <ion-label>Vacunado de covid-19</ion-label>
       <ion-checkbox type="estaVacunado"></ion-checkbox>
-    </ion-item>
-
-    <ion-item *ngIf="escola==1">
-      <ion-label floating>Nombre escuela</ion-label>
-      <ion-input type="text" name="title" value="{{nom}}" required></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="marca==1">
-      <ion-label floating>Nombre marca</ion-label>
-      <ion-input type="text" name="title" value="{{nom}}" required></ion-input>
 
     </ion-item>
-
-
     <div class="btn">
       <div class="btn">
-        <button class="btn" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
+        <button class="btn" (click)="modificarUsuari(nickname, selectedIdioma, dataNaixement, selectedGenere, descripcio, instrument, nom)" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
       </div>
     </div>
   </form>
+
+
 
 </ion-content>

@@ -14,139 +14,141 @@
 
 
 <ion-content>
+  
+        <ion-list >
+            <ion-item>
+                <ion-label>Persona</ion-label>
+                <ion-checkbox [(ngModel)]="personaToggle" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Entidad</ion-label>
+                <ion-checkbox [(ngModel)]="entitatToggle" (ionChange)='verificacionCheckbox("entitat")'></ion-checkbox>
+            </ion-item>
+            <ion-item *ngIf="entitatToggle">
+                <ion-label>Escuela</ion-label>
+                <ion-checkbox [(ngModel)]="escolaToggle" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
+            </ion-item>
+            <ion-item *ngIf="entitatToggle">
+                <ion-label>Marca</ion-label>
+                <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Nickname</ion-label>
+                <ion-input type="text" [(ngModel)]="nickname" ></ion-input>
+            </ion-item>
 
-    <ion-list>
-        <ion-item>
-            <ion-label>Persona</ion-label>
-            <ion-checkbox [(ngModel)]="personaToggle" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Entidad</ion-label>
-            <ion-checkbox [(ngModel)]="entitatToggle" (ionChange)='verificacionCheckbox("entitat")'></ion-checkbox>
-        </ion-item>
-        <ion-item *ngIf="entitatToggle">
-            <ion-label>Escuela</ion-label>
-            <ion-checkbox [(ngModel)]="escolaToggle" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
-        </ion-item>
-        <ion-item *ngIf="entitatToggle">
-            <ion-label>Marca</ion-label>
-            <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Nickname</ion-label>
-            <ion-input type="text" [(ngModel)]="nickname"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="entitatToggle">
-            <ion-label floating>Nombre entidad</ion-label>
-            <ion-input type="text" [(ngModel)]="nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Genero</ion-label>
-            <ion-select [(ngModel)]="genero">
-                <ion-option value=1>Hombre</ion-option>
-                <ion-option value=2>Mujer</ion-option>
-                <ion-option value=3>Otros</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item *ngIf="personaToggle">
-            <ion-label>Fecha de nacimiento</ion-label>
-            <ion-datetime [(ngModel)]="dataNaixement"></ion-datetime>
-        </ion-item>
-
-
-        <ion-item>
-            <ion-label floating>E-mail</ion-label>
-            <ion-input type="email" [(ngModel)]="email"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Idioma</ion-label>
-            <ion-select [(ngModel)]="idioma">
-                <ion-option value=0>Español</ion-option>
-            </ion-select>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Pais</ion-label>
-            <ion-select [(ngModel)]="pais">
-                <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
-            </ion-select>
-        </ion-item>
+            <ion-item *ngIf="entitatToggle">
+                <ion-label floating>Nombre entidad</ion-label>
+                <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Genero</ion-label>
+                <ion-select [(ngModel)]="genero">
+                    <ion-option value=1>Hombre</ion-option>
+                    <ion-option value=2>Mujer</ion-option>
+                    <ion-option value=3>Otros</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha de nacimiento</ion-label>
+                <ion-datetime [(ngModel)]="dataNaixement"></ion-datetime>
+            </ion-item>
 
 
-        <ion-item *ngIf=" ballariToggle || professorToggle">
-            <ion-label>Rol</ion-label>
-            <ion-select [(ngModel)]="rol">
-                <ion-option value="fol">Follower</ion-option>
-                <ion-option value="lead">Leader</ion-option>
-                <ion-option value="folead">Follower/Leader</ion-option>
-                <ion-option value="leadfol">Leader/Follower</ion-option>
-            </ion-select>
-        </ion-item>
+            <ion-item>
+                <ion-label floating>E-mail</ion-label>
+                <ion-input type="email" [(ngModel)]="email" required></ion-input>
+            </ion-item>
 
-        <ion-item *ngIf="personaToggle">
-            <ion-label>Bailarin</ion-label>
-            <ion-toggle [(ngModel)]="ballariToggle"></ion-toggle>
-        </ion-item>
+            <ion-item>
+                <ion-label floating>Contraseña</ion-label>
+                <ion-input type="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
 
-        <ion-item *ngIf="personaToggle">
-            <ion-label>Profesor</ion-label>
-            <ion-toggle [(ngModel)]="professorToggle"></ion-toggle>
-        </ion-item>
+            <ion-item>
+                <ion-label>Idioma</ion-label>
+                <ion-select [(ngModel)]="idioma">
+                    <ion-option value=0>Español</ion-option>
+                </ion-select>
+            </ion-item>
 
-        <ion-item *ngIf="personaToggle">
-            <ion-label>Musico</ion-label>
-            <ion-toggle [(ngModel)]="musicToggle"></ion-toggle>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Descripción</ion-label>
-            <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="professorToggle">
-            <ion-label floating>Especialidades del professor</ion-label>
-            <ion-input type="number" [(ngModel)]="especialidadesProfessor"></ion-input>
-            
-        </ion-item>
-        <ion-item *ngIf="musicToggle">
-            <ion-label floating> Instrumento</ion-label>
-            <ion-input [(ngModel)]="instrumento"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="ballariToggle">
-            <ion-label>Año inicio baile</ion-label>
-            <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar"></ion-datetime>
-        </ion-item>
-        <ion-item *ngIf="professorToggle">
-            <ion-label>Inicio impartición</ion-label>
-            <ion-datetime [(ngModel)]="iniciImparticions"></ion-datetime>
-        </ion-item>
+            <ion-item>
+                <ion-label>Pais</ion-label>
+                <ion-select [(ngModel)]="pais">
+                    <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
+                </ion-select>
+            </ion-item>
 
-        <ion-item>
-            <ion-label>Vacunado de covid-19</ion-label>
-            <ion-checkbox type="vacunaToggle" [(ngModel)]="vacunaToggle"></ion-checkbox>
-        </ion-item>
-        <div class="btnContainer">
 
-            <div class="btn">
-                <button class="btn" ion-button (click)="openGallery()">Subir Foto</button>
+            <ion-item *ngIf="personaToggle && ballariToggle || professorToggle ">
+                <ion-label>Rol</ion-label>
+                <ion-select [(ngModel)]="rol">
+                    <ion-option value="fol">Follower</ion-option>
+                    <ion-option value="lead">Leader</ion-option>
+                    <ion-option value="folead">Follower/Leader</ion-option>
+                    <ion-option value="leadfol">Leader/Follower</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="personaToggle">
+                <ion-label>Bailarin</ion-label>
+                <ion-toggle [(ngModel)]="ballariToggle"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="personaToggle">
+                <ion-label>Profesor</ion-label>
+                <ion-toggle [(ngModel)]="professorToggle"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="personaToggle">
+                <ion-label>Musico</ion-label>
+                <ion-toggle [(ngModel)]="musicToggle"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Descripción</ion-label>
+                <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="professorToggle">
+                <ion-label floating>Especialidades del professor</ion-label>
+                <ion-input type="number" [(ngModel)]="especialidadesProfessor"></ion-input>
+
+            </ion-item>
+            <ion-item *ngIf="musicToggle">
+                <ion-label floating> Instrumento</ion-label>
+                <ion-input [(ngModel)]="instrumento"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="ballariToggle">
+                <ion-label>Año inicio baile</ion-label>
+                <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar"></ion-datetime>
+            </ion-item>
+            <ion-item *ngIf="professorToggle">
+                <ion-label>Inicio impartición</ion-label>
+                <ion-datetime [(ngModel)]="iniciImparticions"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Vacunado de covid-19</ion-label>
+                <ion-checkbox type="vacunaToggle" [(ngModel)]="vacunaToggle"></ion-checkbox>
+            </ion-item>
+            <div class="btnContainer">
+
+                <div class="btn">
+                    <button class="btn" ion-button (click)="openGallery()">Subir Foto</button>
+                </div>
+
             </div>
 
-        </div>
+            <div class="btnContainer">
 
-        <div class="btnContainer">
+                <div class="btn">
+                    <button *ngIf="personaToggle" class="btn" ion-button
+                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
+                    <button *ngIf="entitatToggle" class="btn" ion-button
+                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button>
+                </div>
 
-            <div class="btn">
-                <button *ngIf="personaToggle" class="btn" ion-button (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
-                <button *ngIf="entitatToggle" class="btn" ion-button (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacuna, escolaToggle, marcaToggle, nombre)">Re</button>
             </div>
-
-        </div>
-        <!-- <div class="btnContainer">
+            <!-- <div class="btnContainer">
 
             <div class="btn">
                 <button *ngIf="entitat" class="btn" ion-button (click)="signupEntitat(email,password, nickname, genero, idioma, pais, ciudad, rol)">Register</button>
@@ -155,8 +157,7 @@
         </div> -->
 
 
-    </ion-list>
-
+        </ion-list>
 
 
 </ion-content>

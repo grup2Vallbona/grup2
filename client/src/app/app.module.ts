@@ -4,7 +4,7 @@ import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 // import { HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -91,7 +91,8 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
     // HttpClientModule
   ],
   bootstrap: [IonicApp],

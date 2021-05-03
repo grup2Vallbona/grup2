@@ -90,7 +90,7 @@ export class Perfil {
             .getPersona(this.usuari.persona_id)
             .subscribe((jPersona: any) => {
               this.persona = jPersona.json();
-              this.anyEmpezarBailar = this.persona.dataNaixementBallari;
+              
               if (this.usuari.genere == 0) {
                 this.genereUsuari = "Hombre";
               } else {
@@ -102,26 +102,26 @@ export class Perfil {
                 this.instrument = this.persona.instrument;
               } else if (this.persona.music == 0 && this.persona.ballari == 1 && this.persona.professor == 0) {
                 this.tipoUsuari = "Bailarín";
-                this.dataNaixement = this.persona.dataNaixementBallari;
+                this.anyEmpezarBailar = this.persona.dataNaixementBallari;
               } else if (this.persona.music == 0 && this.persona.ballari == 0 && this.persona.professor == 1) {
                 this.tipoUsuari = "Profesor";
                 this.iniciProfessorat = this.persona.iniciProfessorat;
               } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 1){
                 this.tipoUsuari = "Músico, Bailarín, Profesor";
                 this.instrument = this.persona.instrument;
-                this.dataNaixement = this.persona.dataNaixementBallari;
+                this.anyEmpezarBailar = this.persona.dataNaixementBallari;
                 this.iniciProfessorat = this.persona.iniciProfessorat;
               } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 0){
                 this.tipoUsuari = "Músico, Bailarín";
                 this.instrument = this.persona.instrument;
-                this.dataNaixement = this.persona.dataNaixementBallari;              
+                this.anyEmpezarBailar = this.persona.dataNaixementBallari;              
               } else if (this.persona.music == 1 && this.persona.professor == 1 && this.persona.ballari == 0){
                 this.tipoUsuari = "Músico, Profesor";
                 this.instrument = this.persona.instrument;                
                 this.iniciProfessorat = this.persona.iniciProfessorat;
               } else if (this.persona.ballari == 1 && this.persona.professor == 1 && this.persona.music == 0){
                 this.tipoUsuari = "Bailarín, Profesor";                
-                this.dataNaixement = this.persona.dataNaixementBallari;
+                this.anyEmpezarBailar = this.persona.dataNaixementBallari;
                 this.iniciProfessorat = this.persona.iniciProfessorat;
               }
             });
