@@ -60,6 +60,10 @@ export class DadesProductesService {
   }
 
   public getEntitatUltima(): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/entitats/ultima/')
+    return this.http.get(this.baseUrl + '/api/entitats/ultima/');
+  }
+
+  public modificarPersona(id: number, user: FormData){
+    return this.http.put(this.baseUrl + '/persona/' + id, user);
   }
 }

@@ -40,30 +40,23 @@
   </ion-item>
   <ion-item>
     <ion-card-content item-left>
-      <h2>Any</h2>
+      <h2>Fecha</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{dataNaixement}}</p>
     </ion-card-content>
   </ion-item>
 
-  <ion-item *ngIf="personaid != null">
+  <ion-item>
     <ion-card-content item-left>
-      <h2>Genere</h2>
+      <h2>Género</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{genereUsuari}}</p>
     </ion-card-content>
   </ion-item>
 
-  <ion-item *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
-    <ion-card-content item-left>
-      <h2>Any Bailar</h2>
-    </ion-card-content>
-    <ion-card-content item-right>
-      <p>{{dataNaixement}}</p>
-    </ion-card-content>
-  </ion-item>
+  
 
 
   <ion-item>
@@ -86,7 +79,7 @@
 
   <ion-item>
     <ion-card-content item-left>
-      <h2>Descripcio</h2>
+      <h2>Descripción</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{descripcioUsuari}}</p>
@@ -95,7 +88,7 @@
 
   <ion-item>
     <ion-card-content item-left>
-      <h2>Vacuna</h2>
+      <h2>Vacunado</h2>
     </ion-card-content>
     <ion-card-content item-right *ngIf="vacunaUsuari == 0">
       <img class="imgVacuna" src="../../assets/images/noVacuna.png">
@@ -142,10 +135,10 @@
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
     <ion-item>
       <ion-card-content item-left>
-        <h2>Any Inici</h2>
+        <h2>Año inicio baile</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{dataNaixement}}</p>
+        <p>{{anyEmpezarBailar}}</p>
       </ion-card-content>
     </ion-item>
   </ion-list>
@@ -179,10 +172,10 @@
     </ion-item>
     <ion-item>
       <ion-card-content item-left>
-        <h2>Any Inici</h2>
+        <h2>Año inicio baile</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{dataNaixement}}</p>
+        <p>{{anyEmpezarBailar}}</p>
       </ion-card-content>
     </ion-item>
     <ion-item>
@@ -215,10 +208,10 @@
     </ion-item>
     <ion-item>
       <ion-card-content item-left>
-        <h2>Any Inici</h2>
+        <h2>Año inicio baile</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{dataNaixement}}</p>
+        <p>{{anyEmpezarBailar}}</p>
       </ion-card-content>
     </ion-item>  
     
@@ -255,10 +248,10 @@
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín, Profesor'">
     <ion-item >
       <ion-card-content item-left>
-        <h2>Any inicio</h2>
+        <h2>Año inicio baile</h2>
       </ion-card-content>
       <ion-card-content item-right>
-        <p>{{dataNaixement}}</p>
+        <p>{{anyEmpezarBailar}}</p>
       </ion-card-content>
     </ion-item>
     <ion-item>
@@ -285,7 +278,7 @@
 
   <ion-item *ngIf="entitatid != null && escola == 1">
     <ion-card-content item-left>
-      <h2>Nom Escola</h2>
+      <h2>Nombre escuela</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{nomEntitat}}</p>
@@ -294,7 +287,7 @@
 
   <ion-item *ngIf="entitatid != null && marca == 1">
     <ion-card-content item-left>
-      <h2>Nom Marca</h2>
+      <h2>Nombre marca</h2>
     </ion-card-content>
     <ion-card-content item-right>
       <p>{{nomEntitat}}</p>

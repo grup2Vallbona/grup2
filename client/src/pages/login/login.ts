@@ -8,6 +8,8 @@ import { HomePage } from '../home/home';
 import { Principal } from '../principal/principal';
 
 import { ToastController, AlertController } from 'ionic-angular';
+
+
 /**
  * Generated class for the Login page.
  *
@@ -70,7 +72,7 @@ export class Login {
     this.afAuth.auth.signOut();
   }
 
-
+ 
 
   //  loginToast() {
   //   let toast = this.toastCtrl.create({
