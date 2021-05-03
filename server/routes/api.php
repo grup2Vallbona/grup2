@@ -25,6 +25,7 @@ use App\Http\Controllers\TipusBallController;
 use App\Http\Controllers\UsuariController;
 use App\Models\Administrador;
 use App\Models\AssignacioBall;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ use App\Models\AssignacioBall;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
 // ----------------- ADMINISTRADOR  -----------------
 Route::get('administradors', [AdministradorController::class, "getAdministradors"]);
 Route::post('administrador', [AdministradorController::class, "administrador"]);
@@ -154,7 +157,6 @@ Route::put('entitat/{id}', [EntitatController::class, "updateEntitat"]);
 Route::post('entitat', [EntitatController::class, "crearEntitat"]);
 Route::delete('entitat/{id}', [EntitatController::class, "eliminarEntitat"]);
 Route::get('entitats/ultima', [EntitatController::class, "getEntitatUltima"]);
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

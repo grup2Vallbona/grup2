@@ -53,4 +53,6 @@ class EntitatController extends BaseController
         $entitat->delete();
         return $entitat;
     }
+
+  
 }

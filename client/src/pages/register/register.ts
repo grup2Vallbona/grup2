@@ -148,6 +148,45 @@ export class Register {
     } else {
       this.vacuna = 0;
     }
+<<<<<<< HEAD
+    this.persona = {
+      rol: rol,
+      ballari: this.ballari,
+      music: this.music,
+      professor: this.profesor,
+      especialitatsProfessor: especialidadesProfessor,
+      instrument: instrumento,
+      dataNaixementBallari: anyEmpezarBailar,
+      iniciProfessorat: iniciImparticions,
+      id: 0,
+    };
+    // this.personaJ = JSON.stringify(this.persona);
+    // console.log(this.personaJ);
+    // let user = {
+    //   email: email,
+    //   contrasenya: password,
+    //   nickname: nickname,
+    //   genere: genero,
+    //   idioma: idioma,
+    //   pais: pais,
+    //   rol: rol,
+    //   descripcio: descripcion,
+    //   vacunaCovid: vacuna,
+    //   imagen: imatge,
+    //   ballari: ballariToggle,
+    //   music: musicToggle,
+    //   professor:  professorToggle,
+    //   especialitatsProfessor: especialidadesProfessor,
+    //   instrument: instrumento,
+    //   dataNaixementBallari: anyEmpezarBailar,
+    //   iniciProfessorat: iniciImparticions,
+    //   dataNaixement: dataNaixement,
+    //   id: 0,
+    //   persona_id: 0,
+    //   entitat_id: null
+    // }
+=======
+>>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
 
     if (especialidadesProfessor == undefined) {
       especialidadesProfessor = 0;
@@ -207,6 +246,31 @@ export class Register {
       //   this.registreIncorrecte();
       // }
     }
+<<<<<<< HEAD
+    try {
+      this.dades.getPersonaUltima().subscribe((personaUltima) => {
+         this.personUltima = personaUltima.json();
+        const formDataUsuari = new FormData();
+        formDataUsuari.append("persona_id", this.personUltima.id);
+        formDataUsuari.append("genere", genero);
+        formDataUsuari.append("email", email);
+        formDataUsuari.append("contrasenya", password);
+        formDataUsuari.append("pais", pais);
+        formDataUsuari.append("dataNaixement", dataNaixement);
+        formDataUsuari.append("nickname", nickname);
+        formDataUsuari.append("idioma", idioma);
+        formDataUsuari.append("descripcio", descripcion);
+        formDataUsuari.append("vacunaCovid", this.vacuna);
+        formDataUsuari.append("imagen", imatge);
+        this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+          console.log(data);
+        });
+      });
+    } catch (e) {
+      this.loginToast();
+    }
+=======
+>>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({

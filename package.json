@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ng2-validation": "^4.2.0"
+  }
+}
