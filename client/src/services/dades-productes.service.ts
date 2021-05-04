@@ -70,4 +70,7 @@ export class DadesProductesService {
   public getPremiUltim(): Observable<any>{
     return this.http.get(this.baseUrl + '/api/premi/ultim/');
   }
+  public crearEvent(event: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/event', event);
+  }
 }

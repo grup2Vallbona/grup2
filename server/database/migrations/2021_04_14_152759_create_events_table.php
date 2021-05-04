@@ -30,7 +30,6 @@ class CreateEventsTable extends Migration
             $table->string('subtitol', 100);
             $table->string('carrer', 100);
             $table->string('descripcio', 100);
-            $table->string('tipusMusica', 100);
             $table->date('data');
         });
     }
