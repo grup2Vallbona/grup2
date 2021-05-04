@@ -10,10 +10,21 @@ use Illuminate\Http\Request;
 
 class EntitatController extends BaseController
 {
-    //
-    
-    // -------- ENTITAT --------
-
+      /**
+     * @OA\Get(
+     *   path="/api/entitats",
+     *   tags={"Entitats"},
+     *   summary="Veure totes les entitats.",
+     *   @OA\Response(
+     *     response=200,
+     *     description="Retorna totes les entitats.",
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="S'ha produit un error.",
+     *   )
+     * )
+     */
     function getEntitats()
     {
         return Entitat::all();

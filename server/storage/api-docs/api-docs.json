@@ -808,6 +808,77 @@
                     }
                 }
             }
+        },
+        "/api/ensenyançaevents": {
+            "get": {
+                "tags": [
+                    "Ensenyança Events"
+                ],
+                "summary": "Veure tots els ensenymanets dins dels events.",
+                "operationId": "App\\Http\\Controllers\\EnsenyançaEventController::getEnsenyança_events",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les ensenyances."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/ensenyançaevent": {
+            "post": {
+                "tags": [
+                    "Ensenyança Events"
+                ],
+                "summary": "Inserir una nova ensenyança.",
+                "operationId": "App\\Http\\Controllers\\EnsenyançaEventController::ensenyança_event",
+                "parameters": [
+                    {
+                        "name": "professor_id",
+                        "in": "query",
+                        "description": "Id del professor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "Id del event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'ensenyament que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/entitats": {
+            "get": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Veure totes les entitats.",
+                "operationId": "App\\Http\\Controllers\\EntitatController::getEntitats",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les entitats."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
         }
     },
     "security": [
