@@ -1,0 +1,357 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API WeSwing",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/M14/Projecte_Final/grup2/server/public/index.php"
+        }
+    ],
+    "paths": {
+        "/api/administradors": {
+            "get": {
+                "tags": [
+                    "Administradors"
+                ],
+                "summary": "Veure tots els administradors.",
+                "operationId": "App\\Http\\Controllers\\AdministradorController::getAdministradors",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els administradors."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/administrador": {
+            "post": {
+                "tags": [
+                    "Administradors"
+                ],
+                "summary": "Inserir un nou administrador.",
+                "operationId": "App\\Http\\Controllers\\AdministradorController::administrador",
+                "parameters": [
+                    {
+                        "name": "entitat_id",
+                        "in": "query",
+                        "description": "id de l'entitat",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "persona_id",
+                        "in": "query",
+                        "description": "id de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "tipus",
+                        "in": "query",
+                        "description": "tipus d'administrador",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'administrador que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/agrupacions": {
+            "get": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Veure totes les agrupacions.",
+                "operationId": "App\\Http\\Controllers\\AgrupacioController::getAgrupacions",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les agrupacions."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/agrupacio/{id}": {
+            "get": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Veure l'agrupacio desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\AgrupacioController::getAgrupacio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agrupacio per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Actualitza agrupacio ja existent",
+                "description": "",
+                "operationId": "updateAgrupacio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id agrupacio a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Eliminar una agrupacio.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\AgrupacioController::eliminarAgrupacio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Arupacio a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio eliminada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/agrupacio": {
+            "post": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Inserir una nova agrupacio.",
+                "operationId": "App\\Http\\Controllers\\AgrupacioController::crearAgrupacio",
+                "parameters": [
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom de l'agrupacio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio de l'agrupacio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'agrupacio que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/assignacioballs": {
+            "get": {
+                "tags": [
+                    "Assignacions Ball"
+                ],
+                "summary": "Veure totes les assignacions",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\AssignacioBallController::getAssignacioBalls",
+                "responses": {
+                    "200": {
+                        "description": "Assignacio mostrada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/persona/ball": {
+            "post": {
+                "tags": [
+                    "Assignacions Ball"
+                ],
+                "summary": "Assignar un ball a una persona.",
+                "operationId": "App\\Http\\Controllers\\AssignacioBallController::assignacioBall",
+                "parameters": [
+                    {
+                        "name": "persona_id",
+                        "in": "query",
+                        "description": "Id de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "ball_id",
+                        "in": "query",
+                        "description": "id del ball",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el ball asignat."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/assistents": {
+            "get": {
+                "tags": [
+                    "Assistents"
+                ],
+                "summary": "Veure tots els assistents",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\AssistentController::getAssistents",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/assistent": {
+            "post": {
+                "tags": [
+                    "Assistents"
+                ],
+                "summary": "Inserir un nou assitent.",
+                "operationId": "App\\Http\\Controllers\\AssistentController::assistent",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "id de l'event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "id de l'usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "posicio",
+                        "in": "query",
+                        "description": "posicio de l'assitent",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'assitent que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

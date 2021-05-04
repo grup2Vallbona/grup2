@@ -13,12 +13,73 @@ use App\Models\Persona;
 
 class AssistentController extends BaseController
 {
-    //
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+ /**
+     * @OA\Get(
+     *     path="/api/assistents",
+     *     tags={"Assistents"},
+     *     summary="Veure tots els assistents",
+     *     description="",
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="S'ha produit un error",
+     *     )
+     * )
+     */
     function getAssistents()
     {
         return Assistent::all();
     }
+
+        /**
+    * @OA\Post(
+    *   path="/api/assistent",
+    *   tags={"Assistents"},
+    *   summary="Inserir un nou assitent.",
+    *   @OA\Parameter(
+    *     name="event_id",
+    *     description="id de l'event",
+    *     required=true,
+    *     in="query",
+    *     @OA\Schema(
+    *       type="integer"
+    *     )
+    *   ),
+    *   @OA\Parameter(
+    *     name="usuari_id",
+    *     description="id de l'usuari",
+    *     required=true,
+    *     in="query",
+    *     @OA\Schema(
+    *       type="integer"
+    *     )
+    *   ),
+    *
+    *     @OA\Parameter(
+    *     name="posicio",
+    *     description="posicio de l'assitent",
+    *     required=false,
+    *     in="query",
+    *     @OA\Schema(
+    *       type="integer"
+    *     )
+    *   ),
+
+    *   @OA\Response(
+    *     response=200,
+    *     description="Retorna l'assitent que hem inserit.",
+    *   ),
+    *   @OA\Response(
+    *     response="default",
+    *     description="S'ha produit un error.",
+    *   )
+    * )
+    */
     function assistent(Request $request)
     {
         $persona = Persona::find($request->persona_id);
