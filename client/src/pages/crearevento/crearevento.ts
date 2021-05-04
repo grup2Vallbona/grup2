@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Storage } from "@ionic/storage";
 import { Usuari } from "../../app/interfaces/iusuari";
+import { Principal } from '../principal/principal';
 
 /**
  * Generated class for the Crearevento page.
@@ -42,6 +43,11 @@ export class Crearevento {
 
   crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,
     premioExistente,fechaEvento,pais,municipio,calle,provincia,maxGanadores){
+      
+      pais = 1;
+      municipio=1;
+      calle="prova";
+      provincia=1;
     if(crearNuevoPremio){
       const formDataPremi = new FormData();
       formDataPremi.append("guanyador_id",this.persona_id);
@@ -69,7 +75,9 @@ export class Crearevento {
     formData.append("carrer",calle);
     formData.append("descripcio",descripcion);
     formData.append("data",fechaEvento);
-
+    this.dades.crearEvent(formData).subscribe((data) => {
+        this.navCtrl.push(Principal);
+    });
   }
   carregarEvents(){
     this.storage.get("email").then((emailUser) => {
