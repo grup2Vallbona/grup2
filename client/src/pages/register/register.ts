@@ -162,7 +162,7 @@ export class Register {
     if (iniciImparticions == undefined) {
       iniciImparticions = "1800-01-01";
     }
-alert(especialidadesProfessor)
+
     const formData = new FormData();
     formData.append("rol", rol);
     formData.append("ballari", this.ballari);
@@ -214,28 +214,28 @@ alert(especialidadesProfessor)
       //   this.registreIncorrecte();
       // }
     }
-    try {
-      this.dades.getPersonaUltima().subscribe((personaUltima) => {
-        this.personUltima = personaUltima.json();
-        const formDataUsuari = new FormData();
-        formDataUsuari.append("persona_id", this.personUltima.id);
-        formDataUsuari.append("genere", genero);
-        formDataUsuari.append("email", email);
-        formDataUsuari.append("contrasenya", password);
-        formDataUsuari.append("pais", pais);
-        formDataUsuari.append("dataNaixement", dataNaixement);
-        formDataUsuari.append("nickname", nickname);
-        formDataUsuari.append("idioma", idioma);
-        formDataUsuari.append("descripcio", descripcion);
-        formDataUsuari.append("vacunaCovid", this.vacuna);
-        formDataUsuari.append("imagen", imatge);
-        this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
-          console.log(data);
-        });
-      });
-    } catch (e) {
-      this.loginToast();
-    }
+    // try {
+    //   this.dades.getPersonaUltima().subscribe((personaUltima) => {
+    //     this.personUltima = personaUltima.json();
+    //     const formDataUsuari = new FormData();
+    //     formDataUsuari.append("persona_id", this.personUltima.id);
+    //     formDataUsuari.append("genere", genero);
+    //     formDataUsuari.append("email", email);
+    //     formDataUsuari.append("contrasenya", password);
+    //     formDataUsuari.append("pais", pais);
+    //     formDataUsuari.append("dataNaixement", dataNaixement);
+    //     formDataUsuari.append("nickname", nickname);
+    //     formDataUsuari.append("idioma", idioma);
+    //     formDataUsuari.append("descripcio", descripcion);
+    //     formDataUsuari.append("vacunaCovid", this.vacuna);
+    //     formDataUsuari.append("imagen", imatge);
+    //     this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+    //       console.log(data);
+    //     });
+    //   });
+    // } catch (e) {
+    //   this.loginToast();
+    // }
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({

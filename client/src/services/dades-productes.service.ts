@@ -33,12 +33,7 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + '/api/tipusballs')
   }
   public crearPersona(persona: FormData): Observable<any> {
-    // console.log(persona)
-    // var personaJ = JSON.stringify(persona);
-    // var headers = new Headers();
-    // headers.append("Accept", 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // const requestOptions = new RequestOptions({ headers: headers });
+   
     return this.http.post(this.baseUrl + '/api/persona/', persona)
   }
   public getPersonaEmail(email: string): Observable<any> {

@@ -49,6 +49,7 @@ export class EditUsuario {
   selectedGenere: any;
   selectedIdioma: string;
   selectedPais: string;
+  selectedRol: any;
   vacuna: number;
   iniciProfessorat: any;
   genero: string;
@@ -80,7 +81,7 @@ export class EditUsuario {
         this.paises = paises;
         for (let index = 0; index < paises.length; index++) {
           if (paises[index]["codeInteger"] == this.usuari.pais) {
-            this.selectedPais = paises[index]["name"];
+            this.selectedPais = paises[index]["codeInteger"];
           }
         }
       },
@@ -136,6 +137,16 @@ export class EditUsuario {
         } else {
           //          this.genero = "Otros";
           this.selectedGenere = 2;
+        }
+
+        if(this.persona.rol == 1){
+          this.selectedRol = 1;
+        } else if(this.persona.rol == 2){
+          this.selectedRol = 2;
+        } else if(this.persona.rol == 3){
+          this.selectedRol = 3;
+        } else if(this.persona.rol == 4){
+          this.selectedRol = 4;
         }
 
         if (this.usuari.idioma == 0) {
