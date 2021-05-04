@@ -153,36 +153,8 @@ export class Register {
       iniciProfessorat: iniciImparticions,
       id: 0,
     };
-<<<<<<< HEAD
 
   
-=======
-    // this.personaJ = JSON.stringify(this.persona);
-    // console.log(this.personaJ);
-    // let user = {
-    //   email: email,
-    //   contrasenya: password,
-    //   nickname: nickname,
-    //   genere: genero,
-    //   idioma: idioma,
-    //   pais: pais,
-    //   rol: rol,
-    //   descripcio: descripcion,
-    //   vacunaCovid: vacuna,
-    //   imagen: imatge,
-    //   ballari: ballariToggle,
-    //   music: musicToggle,
-    //   professor:  professorToggle,
-    //   especialitatsProfessor: especialidadesProfessor,
-    //   instrument: instrumento,
-    //   dataNaixementBallari: anyEmpezarBailar,
-    //   iniciProfessorat: iniciImparticions,
-    //   dataNaixement: dataNaixement,
-    //   id: 0,
-    //   persona_id: 0,
-    //   entitat_id: null
-    // }
->>>>>>> d509303d5407189e7db900fb72e49a929e5ff8f6
 
     if (especialidadesProfessor == undefined) {
       especialidadesProfessor = 0;
