@@ -50,14 +50,16 @@ export class Crearevento {
       provincia=1;
     if(crearNuevoPremio){
       const formDataPremi = new FormData();
-      formDataPremi.append("guanyador_id",this.persona_id);
+      formDataPremi.append("creador_id",this.persona_id);
       formDataPremi.append("titol",premioNuevo);
       formDataPremi.append("maxGuanyadors",maxGanadores);
       formDataPremi.append("categoria",tipoParticipacion);
       this.dades.crearPremi(formDataPremi).subscribe((data) => {
       });
       this.dades.getPremiUltim().subscribe((premiUltimJ) => {
-        this.premio_id = premiUltimJ.json();
+        var premio = premiUltimJ.json();
+        this.premio_id = premio.id;
+
       });
     }else{
       this.premio_id = premioExistente;

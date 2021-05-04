@@ -53,7 +53,6 @@ export class EditUsuario {
   vacuna: number;
   iniciProfessorat: any;
   genero: string;
-  especialidadesProfesor: string = "";
   paises = [];
   tipoUsuari: string = "";
   instrument: string = "";
@@ -190,7 +189,6 @@ export class EditUsuario {
     instrumentR,
     nomR,
     anyEmpezarBailarR,
-    especialidadesProfesorR,
     iniciProfessoratR,
     selectedIdiomaR,
     selectedPaisR
@@ -225,10 +223,6 @@ export class EditUsuario {
       formDataModificarPersona.append("ballari", this.ballari);
       formDataModificarPersona.append("music", this.music);
       formDataModificarPersona.append("professor", this.professor);
-      formDataModificarPersona.append(
-        "especialitatsProfessor",
-        especialidadesProfesorR
-      );
       formDataModificarPersona.append("instrument", instrumentR);
       formDataModificarPersona.append(
         "dataNaixementBallari",
