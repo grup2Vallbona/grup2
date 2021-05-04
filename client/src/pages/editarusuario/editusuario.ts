@@ -240,11 +240,17 @@ export class EditUsuario {
       formDataModificarEntitat.append("escola", this.entitatU.escola);
       formDataModificarEntitat.append("marca", this.entitatU.marca);
       formDataModificarEntitat.append("nom", nomR);
+
+      const formDataModificarUsuari = new FormData();
+      formDataModificarEntitat.append("nickname", nicknameR);
+      formDataModificarEntitat.append("marca", this.entitatU.marca);
+      formDataModificarEntitat.append("nom", nomR);
       
       this.dades.modificarEntitat(this.entitatU.id, formDataModificarEntitat).subscribe(entitatCreada => {
 // this.d = entitatCreada.json();
 // alert(this.d.nom);
        })
+       this.dades
       // this.dades.modificarUsuari()
     }
   }

@@ -26,7 +26,6 @@ export class Crearevento {
   descripcion:string;
   tipoParticipacion:number;
   tipoBaile:number;
-  tipoMusica:number;
   crearNuevoPremio:boolean;
   premioNuevo:string="";
   premioExistente:number;
