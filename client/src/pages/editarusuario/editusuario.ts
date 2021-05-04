@@ -47,7 +47,7 @@ export class EditUsuario {
   anyEmpezarBailar: any;
   //selectedGenere: boolean = true;
   selectedGenere: any;
-  selectedIdioma: string;
+  selectedIdioma: any;
   selectedPais: string;
   selectedRol: any;
   vacuna: number;
@@ -97,6 +97,19 @@ export class EditUsuario {
     } else {
       this.estaVacunado = true;
     }
+
+    if (this.usuari.idioma == 0) {
+      this.selectedIdioma = 0;
+    }
+    if (this.usuari.genere == 0) {
+      this.selectedGenere = 0;
+    } else if (this.usuari.genere == 1) {
+      //this.genero = "Catalan";
+      this.selectedGenere = 1;
+    } else {
+      //          this.genero = "Otros";
+      this.selectedGenere = 2;
+    }
     this.vacuna = this.usuari.vacunaCovid;
     if (this.entitatid != null) {
       this.dades.getEntitat(this.entitatid).subscribe((jEntitat: any) => {
@@ -129,15 +142,7 @@ export class EditUsuario {
         this.anyEmpezarBailar = this.persona.dataNaixementBallari;
         this.iniciProfessorat = this.persona.iniciProfessorat;
         this.rol = this.persona.rol;
-        if (this.usuari.genere == 0) {
-          this.selectedGenere = 0;
-        } else if (this.usuari.genere == 1) {
-          //this.genero = "Catalan";
-          this.selectedGenere = 1;
-        } else {
-          //          this.genero = "Otros";
-          this.selectedGenere = 2;
-        }
+      
 
         if(this.persona.rol == 1){
           this.selectedRol = 1;
@@ -149,9 +154,6 @@ export class EditUsuario {
           this.selectedRol = 4;
         }
 
-        if (this.usuari.idioma == 0) {
-          this.selectedIdioma = "esp";
-        }
 
         if (this.persona.ballari == 1) {
           this.ballariToggle = true;
@@ -178,7 +180,7 @@ export class EditUsuario {
 
   modificarUsuari(
     nicknameR,
-    selectedIdiomaR,
+    
     dataNaixementR,
     professorToggleR,
     ballariToggleR,
@@ -190,6 +192,8 @@ export class EditUsuario {
     anyEmpezarBailarR,
     especialidadesProfesorR,
     iniciProfessoratR,
+    selectedIdiomaR,
+    selectedPaisR
   
   ) {
     if (nicknameR == "") {
@@ -242,15 +246,23 @@ export class EditUsuario {
       formDataModificarEntitat.append("nom", nomR);
 
       const formDataModificarUsuari = new FormData();
-      formDataModificarEntitat.append("nickname", nicknameR);
-      formDataModificarEntitat.append("marca", this.entitatU.marca);
-      formDataModificarEntitat.append("nom", nomR);
+      formDataModificarUsuari.append("nickname", nicknameR);
+      formDataModificarUsuari.append("idioma", selectedIdiomaR);
+      formDataModificarUsuari.append("dataNaixement", dataNaixementR);
+      formDataModificarUsuari.append("genere", selectedGenereR);
+      formDataModificarUsuari.append("pais", selectedPaisR);
+      formDataModificarUsuari.append("pais", selectedPaisR);
+      formDataModificarUsuari.append("pais", selectedPaisR);
+      formDataModificarUsuari.append("pais", selectedPaisR);
+
       
       this.dades.modificarEntitat(this.entitatU.id, formDataModificarEntitat).subscribe(entitatCreada => {
 // this.d = entitatCreada.json();
 // alert(this.d.nom);
        })
-       this.dades
+       this.dades.modificarUsuari(this.usuari.id, formDataModificarUsuari).subscribe(usuariModifica => {
+
+       })
       // this.dades.modificarUsuari()
     }
   }
