@@ -36,30 +36,31 @@
   </ion-item>
   <ion-item>
     <ion-label>Tipo de baile</ion-label>
-    <ion-select id="tipusBalls"  [(ngModel)]="TipoDeBaile">
-      <ion-option *ngFor="let item of tipusBalls" value="{{item}}">{{item}}</ion-option>
+    <ion-select id="tipusBalls"  [(ngModel)]="tipoBaile">
+      <ion-option *ngFor="let item of tipusBalls" value="{{item.id}}">{{item.nom}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label>Tipo de musica</ion-label>
-    <ion-input type="text" [(ngModel)]="TipusDeMusica"></ion-input>
+    <ion-label>Crear un nuevo Premio</ion-label>
+    <ion-checkbox [(ngModel)]="crearNuevoPremio"></ion-checkbox>
   </ion-item>
-  <ion-item>
-    <ion-label>Crear un nuevo evento</ion-label>
-    <ion-checkbox [(ngModel)]="nuevoEvento"></ion-checkbox>
-  </ion-item>
-  <ion-item *ngIf="nuevoEvento">
+  <ion-item *ngIf="crearNuevoPremio">
     <ion-label floating>Título del premio</ion-label>
     <ion-input type="text" [(ngModel)]="premioNuevo" value={}></ion-input>
   </ion-item>
-  <ion-item *ngIf="!nuevoEvento"> 
+  <ion-item *ngIf="crearNuevoPremio">
+    <ion-label floating>Máximo de ganadores</ion-label>
+    <ion-input type="text" [(ngModel)]="maxGanadores" value={}></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!crearNuevoPremio"> 
     <ion-label>Selecciona un premio</ion-label>
     <ion-select [(ngModel)]="premioExistente">
+      <ion-option *ngFor="let item of eventsUsuari" value="{{item.id}}">{{item.titol}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Fecha del evento</ion-label>
-    <ion-datetime displayFormat="DD MM YY" ></ion-datetime>
+    <ion-datetime displayFormat="DD MM YY" [(ngModel)]="fechaEvento"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label>País</ion-label>
@@ -77,10 +78,15 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label floating>Carrer</ion-label>
-    <ion-input type="text" [(ngModel)]="carrer"></ion-input>
+    <ion-label floating>Calle</ion-label>
+    <ion-input type="text" [(ngModel)]="calle"></ion-input>
   </ion-item>
-  <div class="btn">
-    <button class="btn" ion-button >Crear Evento</button>
-  </div>
+  <div class="btnContainer">
+
+    <div class="btn">
+        <button class="btn" ion-button
+            (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,pais,municipio,calle,provincia,maxGanadores)">Crear Evento</button>
+    </div>
+
+</div>
 </ion-content>

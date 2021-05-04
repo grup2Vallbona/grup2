@@ -120,6 +120,7 @@ Route::get('premis/usuari/{id}', [PremiController::class, "getPremisUsuari"]);
 Route::post('premi/{id}', [PremiController::class, "updatePremi"]);
 Route::post('premi', [PremiController::class, "crearPremi"]);
 Route::delete('premi/{id}', [PremiController::class, "eliminarPremi"]);
+Route::get('premi/ultim', [PremiController::class, "getPremiUltim"]);
 
 // ----------------- SEGUIT -----------------
 Route::get('seguits', [SeguitController::class, "getSeguits"]);
