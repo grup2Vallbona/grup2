@@ -12,9 +12,9 @@ import { Usuari } from "../app/interfaces/iusuari";
 export class DadesProductesService {
   // http: any;
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php/api';
+  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-  baseUrl: string = 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
+  baseUrl: string = 'http://localhost/WeSwing/grup2/server/public/index.php';
   constructor(private http: Http) { }
 
 
@@ -60,5 +60,11 @@ export class DadesProductesService {
 
   public modificarEntitat(id: number, entitat: FormData){
     return this.http.put(this.baseUrl + '/api/entitat/' + id, entitat);
+  }
+  public crearPremi(premi: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/premi', premi);
+  }
+  public getPremiUltim(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/premi/ultim/');
   }
 }
