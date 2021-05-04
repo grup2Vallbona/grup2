@@ -24,7 +24,7 @@ class CreateUsuarisTable extends Migration
             $table->string('nickname', 100);
             $table->string('contrasenya', 100);
             $table->string('email', 100);
-            $table->date('dataNaixement')->nullable();
+            $table->date('dataNaixement');
             $table->string('descripcio', 100)->nullable();
             $table->string('imagen', 100);
             $table->integer('idioma');
