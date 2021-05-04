@@ -27,13 +27,13 @@
     <ion-item>
       <ion-label floating>Idioma</ion-label>
       <ion-select [(ngModel)]="selectedIdioma" name="idioma">
-        <ion-option value="esp">Español</ion-option>
+        <ion-option value=0>Español</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Fecha</ion-label>
-      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="dataNaixement" name="data"></ion-datetime>
+      <ion-datetime [(ngModel)]="dataNaixement" name="data"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -125,7 +125,7 @@
     <div class="btn">
       <div class="btn">
         <button class="btn"
-          (click)="modificarUsuari(nickname, selectedIdioma, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, especialidadesProfesor, iniciProfessorat)"
+          (click)="modificarUsuari(nickname, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, especialidadesProfesor, iniciProfessorat, selectedIdioma, selectedPais)"
           block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
       </div>
     </div>

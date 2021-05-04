@@ -65,7 +65,7 @@ class CriticaController extends BaseController
         return $critica;
     }
     /**
-     * @OA\Put(
+     * @OA\Post(
      *     path="/api/critica/{id}",
      *     tags={"Critiques"},
      *     operationId="updateCritica",
@@ -248,7 +248,7 @@ class CriticaController extends BaseController
         $critica->espai = $request->espai;
         $critica->musica = $request->musica;
         $critica->opinio = $request->opinio;
-        $critica->estrelles = $request->estrelles;
+        $critica->estrellas = $request->estrellas;
         $critica->save();
 
         return $critica;

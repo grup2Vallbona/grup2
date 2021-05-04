@@ -65,7 +65,7 @@ class DiplomaController extends BaseController
         return $diploma;
     }
     /**
-     * @OA\Put(
+     * @OA\Post(
      *     path="/api/diploma/{id}",
      *     tags={"Diplomas"},
      *     operationId="updateDiploma",

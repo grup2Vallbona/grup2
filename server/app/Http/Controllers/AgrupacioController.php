@@ -68,7 +68,7 @@ class AgrupacioController extends BaseController
     }
 
 /**
-     * @OA\Put(
+     * @OA\Post(
      *     path="/api/agrupacio/{id}",
      *     tags={"Agrupacions"},
      *     operationId="updateAgrupacio",
