@@ -59,6 +59,9 @@ export class DadesProductesService {
   }
 
   public modificarEntitat(id: number, entitat: FormData){
-    return this.http.put(this.baseUrl + '/api/entitat/' + id, entitat);
+    return this.http.post(this.baseUrl + '/api/entitat/' + id, entitat);
+  }
+  public modificarUsuari(id: number, user: FormData){
+    return this.http.post(this.baseUrl + '/api/usuari/' + id, user);
   }
 }
