@@ -25,12 +25,8 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Entitat } from "../../app/interfaces/ientitat";
-import {
- 
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { CustomValidators } from "ng2-validation";
 
 /**
  * Generated class for the Register page.
@@ -45,7 +41,8 @@ import {
 })
 export class Register {
   formlogin: FormGroup;
-
+  
+  miModelo: any;
   //  paises: Pais[];
   personaJ: string;
   paises = [];
@@ -68,7 +65,7 @@ export class Register {
   vacuna: any;
   personaToggle: boolean = true;
   entitatToggle: boolean = false;
-  escolaToggle: boolean = false;
+  escolaToggle: boolean = true;
   marcaToggle: boolean = false;
   escola: any;
   marca: any;
@@ -88,6 +85,7 @@ export class Register {
   alertController: any;
   ultimaId: any;
   entitatUsuari: Entitat;
+  required: boolean = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -96,17 +94,13 @@ export class Register {
     public db: AngularFireDatabase,
     private http: Http,
     private dades: DadesProductesService,
-    public alertCtrl: AlertController,
-    
+    public alertCtrl: AlertController
   ) {
     this.user = firebaseAuth.authState;
-
-    this.formlogin = new FormGroup({
-      nickname: new FormControl('', Validators.required),
-    });
-   
+    
+  
   }
-
+  
   signupPersona(
     email,
     password,
@@ -148,7 +142,6 @@ export class Register {
     } else {
       this.vacuna = 0;
     }
-<<<<<<< HEAD
     this.persona = {
       rol: rol,
       ballari: this.ballari,
@@ -160,33 +153,8 @@ export class Register {
       iniciProfessorat: iniciImparticions,
       id: 0,
     };
-    // this.personaJ = JSON.stringify(this.persona);
-    // console.log(this.personaJ);
-    // let user = {
-    //   email: email,
-    //   contrasenya: password,
-    //   nickname: nickname,
-    //   genere: genero,
-    //   idioma: idioma,
-    //   pais: pais,
-    //   rol: rol,
-    //   descripcio: descripcion,
-    //   vacunaCovid: vacuna,
-    //   imagen: imatge,
-    //   ballari: ballariToggle,
-    //   music: musicToggle,
-    //   professor:  professorToggle,
-    //   especialitatsProfessor: especialidadesProfessor,
-    //   instrument: instrumento,
-    //   dataNaixementBallari: anyEmpezarBailar,
-    //   iniciProfessorat: iniciImparticions,
-    //   dataNaixement: dataNaixement,
-    //   id: 0,
-    //   persona_id: 0,
-    //   entitat_id: null
-    // }
-=======
->>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
+
+  
 
     if (especialidadesProfessor == undefined) {
       especialidadesProfessor = 0;
@@ -194,7 +162,7 @@ export class Register {
     if (iniciImparticions == undefined) {
       iniciImparticions = "1800-01-01";
     }
-
+alert(especialidadesProfessor)
     const formData = new FormData();
     formData.append("rol", rol);
     formData.append("ballari", this.ballari);
@@ -246,10 +214,9 @@ export class Register {
       //   this.registreIncorrecte();
       // }
     }
-<<<<<<< HEAD
     try {
       this.dades.getPersonaUltima().subscribe((personaUltima) => {
-         this.personUltima = personaUltima.json();
+        this.personUltima = personaUltima.json();
         const formDataUsuari = new FormData();
         formDataUsuari.append("persona_id", this.personUltima.id);
         formDataUsuari.append("genere", genero);
@@ -269,8 +236,6 @@ export class Register {
     } catch (e) {
       this.loginToast();
     }
-=======
->>>>>>> 37782a6e3adf173d6aae3f4f6e8ef925de5ba156
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({

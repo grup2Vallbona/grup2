@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 // import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CustomFormsModule } from 'ng2-validation';
 import { AngularFireModule } from 'angularfire2';
 
 // New imports to update based on AngularFire2 version 4
@@ -92,8 +92,10 @@ import { FormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    ReactiveFormsModule
-    // HttpClientModule
+    ReactiveFormsModule,
+    CustomFormsModule
+  
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

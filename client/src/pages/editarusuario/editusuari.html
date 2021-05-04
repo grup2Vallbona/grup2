@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Editar Persona</ion-title>
+    <ion-title>Editar Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,9 +17,11 @@
 
   <form #f="ngForm">
 
+   
+
     <ion-item>
       <ion-label floating>Nickname</ion-label>
-      <ion-input type="text" name="nickname" [(ngModel)] = "nickname" ></ion-input>
+      <ion-input type="text" name="nickname" [(ngModel)]="nickname"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -53,10 +55,10 @@
     </ion-item-->
     <ion-item>
       <ion-label floating>Descripción</ion-label>
-      <ion-input type="text" [(ngModel)]="descripcio" name="descripcio" ></ion-input>
+      <ion-input type="text" [(ngModel)]="descripcio" name="descripcio"></ion-input>
 
     </ion-item>
-    
+
 
     <ion-item *ngIf="personaid != null">
       <ion-label>Rol</ion-label>
@@ -65,121 +67,52 @@
         <ion-option value="lead">Leader</ion-option>
         <ion-option value="folead">Follower/Leader</ion-option>
         <ion-option value="leadfol">Leader/Follower</ion-option>
-    </ion-select>
+      </ion-select>
 
     </ion-item>
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico'">
-      <ion-item>
-        <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
+    <ion-item *ngIf="personaid != null">
+      <ion-label>Bailarin</ion-label>
+      <ion-toggle [(ngModel)]="ballariToggle" name="ballari"></ion-toggle>
+    </ion-item>
 
-      </ion-item>      
+    <ion-item *ngIf="personaid != null">
+      <ion-label>Musico</ion-label>
+      <ion-toggle [(ngModel)]="musicToggle" name="music"></ion-toggle>
+    </ion-item>
 
-    </ion-list>
+    <ion-item *ngIf="personaid != null">
+      <ion-label>Profesor</ion-label>
+      <ion-toggle [(ngModel)]="professorToggle" name="professor"></ion-toggle>
+    </ion-item>
 
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín'">
-      <ion-item>
-        <ion-label floating>Año inicio baile</ion-label>
-        <!--ion-input type="text" name="title" value="{{anyEmpezarBailar}}"></ion-input-->
-        <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar" name="anyEmpezarBailar"></ion-datetime>
-      </ion-item>      
+    <ion-item *ngIf="professorToggle">
+      <ion-label floating>Especialidades del professor</ion-label>
+      <ion-input type="number" [(ngModel)]="especialidadesProfesor" name="especialidadesProfesor"></ion-input>
 
-    </ion-list>
-
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Profesor'">
-      <ion-item>
-        <ion-label floating>Inicio</ion-label>
-        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
-
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Especialidades</ion-label>
-        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
-      </ion-item>    
-
-    </ion-list>
-
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín, Profesor'">
-      <ion-item>
-        <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" [(ngModel)] = "instrument" name="instrument"></ion-input>
-
-      </ion-item> 
-      <ion-item>
-        <ion-label>Año inicio baile</ion-label>
-        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Inicio</ion-label>
-        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
-
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Especialidades</ion-label>
-        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
-      </ion-item>
-
-    </ion-list>
+    </ion-item>
+    <ion-item *ngIf="musicToggle">
+      <ion-label floating> Instrumento</ion-label>
+      <ion-input [(ngModel)]="instrument" name="instrument"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="ballariToggle">
+      <ion-label>Año inicio baile</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar" name="anyEmpezarBailar"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="professorToggle">
+      <ion-label>Inicio impartición</ion-label>
+      <ion-datetime [(ngModel)]="iniciProfessorat" name="iniciProfessorat"></ion-datetime>
+    </ion-item>
 
 
 
 
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
-      <ion-item>
-        <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
 
-      </ion-item> 
-      <ion-item>
-        <ion-label>Año inicio baile</ion-label>
-        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
-      </ion-item>
-
-    </ion-list>
-
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
-      <ion-item>
-        <ion-label floating>Instrumento</ion-label>
-        <ion-input type="text" [(ngModel)] = "instrument" name="instrument" ></ion-input>
-
-      </ion-item> 
-      <ion-item>
-        <ion-label floating>Inicio</ion-label>
-        <ion-input type="date" name="title" value="{{iniciProfessorat}}"></ion-input>
-
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Especialidades</ion-label>
-        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
-      </ion-item>
-
-    </ion-list>
-
-
-    <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín, Profesor'">
-      <ion-item>
-        <ion-label>Año inicio baile</ion-label>
-        <ion-input type="date" name="title" value="{{anyEmpezarBailar}}"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Inicio</ion-label>
-        <ion-datetime displayFormat="YYYY" name="inicio" [(ngModel)]="iniciProfessorat"></ion-datetime>
-
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Especialidades</ion-label>
-        <ion-input type="text" name="title" value="{{especialidadesProfesor}}"></ion-input>
-      </ion-item>
-
-    </ion-list>
-
-
-    <ion-item *ngIf="entitatid != null && escola == 1">
+    <ion-item *ngIf="escolaToggle">
       <ion-label floating>Nombre escuela</ion-label>
       <ion-input type="text" name="title" [(ngModel)]="nom" required></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="entitatid != null && marca == 1">
+    <ion-item *ngIf="marcaToggle">
       <ion-label floating>Nombre marca</ion-label>
       <ion-input type="text" name="title" [(ngModel)]="nom" required></ion-input>
 
@@ -191,7 +124,9 @@
     </ion-item>
     <div class="btn">
       <div class="btn">
-        <button class="btn" (click)="modificarUsuari(nickname, selectedIdioma, dataNaixement, selectedGenere, descripcio, instrument, nom)" block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
+        <button class="btn"
+          (click)="modificarUsuari(nickname, selectedIdioma, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, especialidadesProfesor, iniciProfessorat)"
+          block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
       </div>
     </div>
   </form>

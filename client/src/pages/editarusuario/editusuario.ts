@@ -27,11 +27,21 @@ export class EditUsuario {
   personaid: number;
   entitatid: number;
   entitatU: Entitat;
+  d: Entitat;
   persona: Persona;
+  professor: any;
+  ballari: any;
+  music: any;
   nom: string;
   rol: any;
-  escola: number;
-  marca: number;
+  professorToggle: boolean = false;
+  personaToggle: boolean = false;
+  ballariToggle: boolean = false;
+  musicToggle: boolean = false;
+  escola: any;
+  escolaToggle: boolean = false;
+  marcaToggle: boolean = false;
+  marca: any;
   descripcio: string;
   descripcioM: string;
   anyEmpezarBailar: any;
@@ -40,13 +50,13 @@ export class EditUsuario {
   selectedIdioma: string;
   selectedPais: string;
   vacuna: number;
-  iniciProfessorat: Date;
+  iniciProfessorat: any;
   genero: string;
-  especialidadesProfesor: string = '';
+  especialidadesProfesor: string = "";
   paises = [];
-  tipoUsuari: string = '';
-  instrument: string = '';
-  instrumentM: string = '';
+  tipoUsuari: string = "";
+  instrument: string = "";
+  instrumentM: string = "";
   dataNaixement: any;
   estaVacunado: boolean = true;
   constructor(
@@ -63,23 +73,22 @@ export class EditUsuario {
 
   ionViewDidLoad() {
     let paises = [] as any;
-    this.http.get('../../assets/json/paises.json').subscribe(
+    this.http.get("../../assets/json/paises.json").subscribe(
       (response: any) => {
         // alert(response);
         paises = response.json();
         this.paises = paises;
         for (let index = 0; index < paises.length; index++) {
-          
-          if(paises[index]['codeInteger'] == this.usuari.pais){
-            this.selectedPais = paises[index]['name']
+          if (paises[index]["codeInteger"] == this.usuari.pais) {
+            this.selectedPais = paises[index]["name"];
           }
-          
         }
-      }, error => {
-        console.log('Error: ', error.message);
+      },
+      (error) => {
+        console.log("Error: ", error.message);
       }
-    )
-  this.dataNaixement = this.usuari.dataNaixement;
+    );
+    this.dataNaixement = this.usuari.dataNaixement;
     this.descripcio = this.usuari.descripcio;
     this.nickname = this.usuari.nickname;
     if (this.usuari.vacunaCovid == 0) {
@@ -95,6 +104,22 @@ export class EditUsuario {
         this.nom = this.entitatU.nom;
         this.escola = this.entitatU.escola;
         this.marca = this.entitatU.marca;
+
+        if (this.entitatU.escola == 1) {
+        
+          this.escolaToggle = true;
+        } else {
+          
+          this.escolaToggle = false;
+        }
+
+        if (this.entitatU.marca == 1) {
+          
+          this.marcaToggle = true;
+        } else {
+      
+          this.marcaToggle = false;
+        }
       });
     } else if (this.personaid != null) {
       this.dades.getPersona(this.personaid).subscribe((jPersona: any) => {
@@ -107,69 +132,124 @@ export class EditUsuario {
           this.selectedGenere = 0;
         } else if (this.usuari.genere == 1) {
           //this.genero = "Catalan";
-          this.selectedGenere = 1;          
+          this.selectedGenere = 1;
         } else {
-//          this.genero = "Otros";
+          //          this.genero = "Otros";
           this.selectedGenere = 2;
         }
 
-        if(this.usuari.idioma == 0){
+        if (this.usuari.idioma == 0) {
           this.selectedIdioma = "esp";
         }
 
-        
-
-        if (this.persona.music == 1 && this.persona.ballari == 0 && this.persona.professor == 0) {
-          this.tipoUsuari = "Músico";
-        
-         
-        } else if (this.persona.music == 0 && this.persona.ballari == 1 && this.persona.professor == 0) {
-          this.tipoUsuari = "Bailarín";
-         
-        } else if (this.persona.music == 0 && this.persona.ballari == 0 && this.persona.professor == 1) {
-          this.tipoUsuari = "Profesor";
-        
-        } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 1){
-          this.tipoUsuari = "Músico, Bailarín, Profesor";
-          
-          
-        } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 0){
-          this.tipoUsuari = "Músico, Bailarín";
-                      
-        } else if (this.persona.music == 1 && this.persona.professor == 1 && this.persona.ballari == 0){
-          this.tipoUsuari = "Músico, Profesor";
-         
-        } else if (this.persona.ballari == 1 && this.persona.professor == 1 && this.persona.music == 0){
-          this.tipoUsuari = "Bailarín, Profesor";               
-         
+        if (this.persona.ballari == 1) {
+          this.ballariToggle = true;
+        } else {
+          this.ballariToggle = false;
         }
+
+        if (this.persona.music == 1) {
+          this.musicToggle = true;
+        } else {
+          this.musicToggle = false;
+        }
+
+        if (this.persona.professor == 1) {
+          this.professorToggle = true;
+        } else {
+          this.professorToggle = false;
+        }
+
+     
       });
     }
   }
 
-  modificarUsuari(nicknameR, selectedIdiomaR, dataNaixementR, selectedGenereR, descripcioR, instrumentR, nomR){
-    if(nicknameR == ""){
+  modificarUsuari(
+    nicknameR,
+    selectedIdiomaR,
+    dataNaixementR,
+    professorToggleR,
+    ballariToggleR,
+    musicToggleR,
+    selectedGenereR,
+    descripcioR,
+    instrumentR,
+    nomR,
+    anyEmpezarBailarR,
+    especialidadesProfesorR,
+    iniciProfessoratR,
+  
+  ) {
+    if (nicknameR == "") {
       nicknameR = this.nickname;
     }
-    if(descripcioR == ""){
+    if (descripcioR == "") {
       descripcioR = this.descripcio;
     }
-    alert(nicknameR);
-    alert(selectedIdiomaR);
-    alert(dataNaixementR);
-    alert(descripcioR);
-    alert(selectedGenereR);
-    alert(instrumentR);
-    alert(nomR)
 
-    // const formDataModificarPersona = new FormData();
-    // formDataModificarPersona.append("rol", this.rol);
-    // formDataModificarPersona.append("ballari", this.ballari);
-    // formDataModificarPersona.append("music", this.music);
-    // formDataModificarPersona.append("professor", this.profesor);
-    // formDataModificarPersona.append("especialitatsProfessor", especialidadesProfessor);
-    // formDataModificarPersona.append("instrument", instrumentR);
-    // formDataModificarPersona.append("dataNaixementBallari", anyEmpezarBailar);
-    // formDataModificarPersona.append("iniciProfessorat", iniciImparticions);
+    if (professorToggleR) {
+      this.professor = 1;
+    } else {
+      this.professor = 0;
+    }
+    if (musicToggleR) {
+      this.music = 1;
+    } else {
+      this.music = 0;
+    }
+    if (ballariToggleR) {
+      this.ballari = 1;
+    } else {
+      this.ballari = 0;
+    }
+
+    if (this.personaid != null) {
+      const formDataModificarPersona = new FormData();
+      formDataModificarPersona.append("rol", this.rol);
+      formDataModificarPersona.append("ballari", this.ballari);
+      formDataModificarPersona.append("music", this.music);
+      formDataModificarPersona.append("professor", this.professor);
+      formDataModificarPersona.append(
+        "especialitatsProfessor",
+        especialidadesProfesorR
+      );
+      formDataModificarPersona.append("instrument", instrumentR);
+      formDataModificarPersona.append(
+        "dataNaixementBallari",
+        anyEmpezarBailarR
+      );
+      formDataModificarPersona.append("iniciProfessorat", iniciProfessoratR);
+       // this.dades.modificarPersona()
+      // this.dades.modificarUsuari()
+    } else if (this.entitatid != null) {
+      
+      
+      const formDataModificarEntitat = new FormData();
+      formDataModificarEntitat.append("escola", this.entitatU.escola);
+      formDataModificarEntitat.append("marca", this.entitatU.marca);
+      formDataModificarEntitat.append("nom", nomR);
+      
+      this.dades.modificarEntitat(this.entitatU.id, formDataModificarEntitat).subscribe(entitatCreada => {
+// this.d = entitatCreada.json();
+// alert(this.d.nom);
+       })
+      // this.dades.modificarUsuari()
+    }
+  }
+  verficacioEntitat(e) {
+    if (e == "escola") {
+      if (this.escolaToggle) {
+        this.marcaToggle = false;
+      } else {
+        this.marcaToggle = true;
+      }
+    } else {
+      if (this.marcaToggle) {
+        this.escolaToggle = false;
+      } else {
+        this.escolaToggle = true;
+      }
+    }
   }
 }

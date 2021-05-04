@@ -1,7 +1,7 @@
 export interface Entitat {
     id: number;
-    escola: number;
-    marca: number;
+    escola: any;
+    marca: any;
     nom: string;
 
 }
