@@ -23,16 +23,12 @@ export class Eventos {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad Eventos');
+    this.carrgarEventos();
   }
+  carrgarEventos(){
 
-
-  gotoMovidas() {
-     this.navCtrl.push(Movidas);
-
-  }
-  crearEvento(){
-    this.navCtrl.push(Crearevento);
   }
 }
