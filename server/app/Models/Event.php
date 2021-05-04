@@ -17,7 +17,6 @@ class Event extends Model
       'municipi',
       'carrer',
       'descripcio',
-      'tipusMusica',
       'participacioTipus'  
     ];
 }

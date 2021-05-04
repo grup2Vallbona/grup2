@@ -12,9 +12,9 @@ import { Usuari } from "../app/interfaces/iusuari";
 export class DadesProductesService {
   // http: any;
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php/api';
+  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-  baseUrl: string = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
+  baseUrl: string = 'http://localhost/WeSwing/grup2/server/public/index.php';
   constructor(private http: Http) { }
 
 
@@ -33,12 +33,7 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + '/api/tipusballs')
   }
   public crearPersona(persona: FormData): Observable<any> {
-    // console.log(persona)
-    // var personaJ = JSON.stringify(persona);
-    // var headers = new Headers();
-    // headers.append("Accept", 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // const requestOptions = new RequestOptions({ headers: headers });
+   
     return this.http.post(this.baseUrl + '/api/persona/', persona)
   }
   public getPersonaEmail(email: string): Observable<any> {
@@ -63,7 +58,16 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + '/api/entitats/ultima/');
   }
 
-  public modificarPersona(id: number, user: FormData){
-    return this.http.put(this.baseUrl + '/persona/' + id, user);
+  public modificarEntitat(id: number, entitat: FormData){
+    return this.http.post(this.baseUrl + '/api/entitat/' + id, entitat);
+  }
+  public modificarUsuari(id: number, user: FormData){
+    return this.http.post(this.baseUrl + '/api/usuari/' + id, user);
+  }
+  public crearPremi(premi: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/premi', premi);
+  }
+  public getPremiUltim(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/premi/ultim/');
   }
 }

@@ -14,7 +14,7 @@
 
 
 <ion-content>
-  
+ 
         <ion-list >
             <ion-item>
                 <ion-label>Persona</ion-label>
@@ -32,9 +32,11 @@
                 <ion-label>Marca</ion-label>
                 <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
             </ion-item>
+            
             <ion-item>
                 <ion-label floating>Nickname</ion-label>
                 <ion-input type="text" [(ngModel)]="nickname" ></ion-input>
+               
             </ion-item>
 
             <ion-item *ngIf="entitatToggle">
@@ -83,10 +85,10 @@
             <ion-item *ngIf="personaToggle && ballariToggle || professorToggle ">
                 <ion-label>Rol</ion-label>
                 <ion-select [(ngModel)]="rol">
-                    <ion-option value="fol">Follower</ion-option>
-                    <ion-option value="lead">Leader</ion-option>
-                    <ion-option value="folead">Follower/Leader</ion-option>
-                    <ion-option value="leadfol">Leader/Follower</ion-option>
+                    <ion-option value=1>Follower</ion-option>
+                    <ion-option value=2>Leader</ion-option>
+                    <ion-option value=3>Follower/Leader</ion-option>
+                    <ion-option value=4>Leader/Follower</ion-option>
                 </ion-select>
             </ion-item>
 
@@ -110,7 +112,12 @@
             </ion-item>
             <ion-item *ngIf="professorToggle">
                 <ion-label floating>Especialidades del professor</ion-label>
-                <ion-input type="number" [(ngModel)]="especialidadesProfessor"></ion-input>
+                <ion-select [(ngModel)]="especialidadesProfessor">
+                    <ion-option value=1>Especialitat1</ion-option>
+                    <ion-option value=2>Especialitat2</ion-option>
+                    <ion-option value=3>Especialitat3</ion-option>
+                    <ion-option value=4>Especialitat4</ion-option>
+                </ion-select>
 
             </ion-item>
             <ion-item *ngIf="musicToggle">
@@ -141,9 +148,9 @@
             <div class="btnContainer">
 
                 <div class="btn">
-                    <button *ngIf="personaToggle" class="btn" ion-button
+                    <button *ngIf="personaToggle" [class.button-disabled]="true" class="btn" ion-button
                         (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
-                    <button *ngIf="entitatToggle" class="btn" ion-button
+                    <button *ngIf="entitatToggle" [disabled] class="btn" ion-button
                         (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button>
                 </div>
 

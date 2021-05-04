@@ -54,4 +54,10 @@ class PremiController extends BaseController
         $premi->delete();
         return $premi;
     }
+    function getPremiUltim()
+    {
+        $premi = Premi::all();
+        $premi = $premi->last();
+        return $premi;
+    }
 }

@@ -47,7 +47,6 @@ class EventController extends BaseController
         $event->municipi = $request->municipi;
         $event->carrer = $request->carrer;
         $event->descripcio = $request->descripcio;
-        $event->tipusMusica = $request->tipusMusica;
         $event->participacioTipus = $request->participacioTipus;
         $event->save();
 

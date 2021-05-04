@@ -25,12 +25,8 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Entitat } from "../../app/interfaces/ientitat";
-import {
- 
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { CustomValidators } from "ng2-validation";
 
 /**
  * Generated class for the Register page.
@@ -45,7 +41,8 @@ import {
 })
 export class Register {
   formlogin: FormGroup;
-
+  
+  miModelo: any;
   //  paises: Pais[];
   personaJ: string;
   paises = [];
@@ -68,7 +65,7 @@ export class Register {
   vacuna: any;
   personaToggle: boolean = true;
   entitatToggle: boolean = false;
-  escolaToggle: boolean = false;
+  escolaToggle: boolean = true;
   marcaToggle: boolean = false;
   escola: any;
   marca: any;
@@ -88,6 +85,7 @@ export class Register {
   alertController: any;
   ultimaId: any;
   entitatUsuari: Entitat;
+  required: boolean = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -96,17 +94,13 @@ export class Register {
     public db: AngularFireDatabase,
     private http: Http,
     private dades: DadesProductesService,
-    public alertCtrl: AlertController,
-    
+    public alertCtrl: AlertController
   ) {
     this.user = firebaseAuth.authState;
-
-    this.formlogin = new FormGroup({
-      nickname: new FormControl('', Validators.required),
-    });
-   
+    
+  
   }
-
+  
   signupPersona(
     email,
     password,
@@ -159,31 +153,8 @@ export class Register {
       iniciProfessorat: iniciImparticions,
       id: 0,
     };
-    // this.personaJ = JSON.stringify(this.persona);
-    // console.log(this.personaJ);
-    // let user = {
-    //   email: email,
-    //   contrasenya: password,
-    //   nickname: nickname,
-    //   genere: genero,
-    //   idioma: idioma,
-    //   pais: pais,
-    //   rol: rol,
-    //   descripcio: descripcion,
-    //   vacunaCovid: vacuna,
-    //   imagen: imatge,
-    //   ballari: ballariToggle,
-    //   music: musicToggle,
-    //   professor:  professorToggle,
-    //   especialitatsProfessor: especialidadesProfessor,
-    //   instrument: instrumento,
-    //   dataNaixementBallari: anyEmpezarBailar,
-    //   iniciProfessorat: iniciImparticions,
-    //   dataNaixement: dataNaixement,
-    //   id: 0,
-    //   persona_id: 0,
-    //   entitat_id: null
-    // }
+
+  
 
     if (especialidadesProfessor == undefined) {
       especialidadesProfessor = 0;
@@ -243,28 +214,28 @@ export class Register {
       //   this.registreIncorrecte();
       // }
     }
-    try {
-      this.dades.getPersonaUltima().subscribe((personaUltima) => {
-         this.personUltima = personaUltima.json();
-        const formDataUsuari = new FormData();
-        formDataUsuari.append("persona_id", this.personUltima.id);
-        formDataUsuari.append("genere", genero);
-        formDataUsuari.append("email", email);
-        formDataUsuari.append("contrasenya", password);
-        formDataUsuari.append("pais", pais);
-        formDataUsuari.append("dataNaixement", dataNaixement);
-        formDataUsuari.append("nickname", nickname);
-        formDataUsuari.append("idioma", idioma);
-        formDataUsuari.append("descripcio", descripcion);
-        formDataUsuari.append("vacunaCovid", this.vacuna);
-        formDataUsuari.append("imagen", imatge);
-        this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
-          console.log(data);
-        });
-      });
-    } catch (e) {
-      this.loginToast();
-    }
+    // try {
+    //   this.dades.getPersonaUltima().subscribe((personaUltima) => {
+    //     this.personUltima = personaUltima.json();
+    //     const formDataUsuari = new FormData();
+    //     formDataUsuari.append("persona_id", this.personUltima.id);
+    //     formDataUsuari.append("genere", genero);
+    //     formDataUsuari.append("email", email);
+    //     formDataUsuari.append("contrasenya", password);
+    //     formDataUsuari.append("pais", pais);
+    //     formDataUsuari.append("dataNaixement", dataNaixement);
+    //     formDataUsuari.append("nickname", nickname);
+    //     formDataUsuari.append("idioma", idioma);
+    //     formDataUsuari.append("descripcio", descripcion);
+    //     formDataUsuari.append("vacunaCovid", this.vacuna);
+    //     formDataUsuari.append("imagen", imatge);
+    //     this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+    //       console.log(data);
+    //     });
+    //   });
+    // } catch (e) {
+    //   this.loginToast();
+    // }
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({
