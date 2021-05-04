@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Assistent;
 use App\Models\Event;
 use App\Models\Persona;
+use App\Models\Usuari;
 
 class AssistentController extends BaseController
 {
@@ -36,7 +37,7 @@ class AssistentController extends BaseController
         return Assistent::all();
     }
 
-        /**
+ /**
     * @OA\Post(
     *   path="/api/assistent",
     *   tags={"Assistents"},
@@ -82,12 +83,12 @@ class AssistentController extends BaseController
     */
     function assistent(Request $request)
     {
-        $persona = Persona::find($request->persona_id);
+        $usuari = Usuari::find($request->usuari_id);
         $event = Event::find($request->event_id);
         $assist = new Assistent();
         
         $assist->posicio=$request->posicio;        
-        $assist->persona()->associate($persona);
+        $assist->usuari()->associate($usuari);
         $assist->event()->associate($event);
         $assist->save();
         

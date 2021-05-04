@@ -11,10 +11,10 @@ class Assistent extends Model
     protected $fillable=[
         'posicio'
     ];
-    public function persona()
+    public function usuari()
     {
         //return $this->hasMany(AssignacioBall::class);
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Usuari::class);
     }
 
     public function event()

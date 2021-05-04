@@ -349,6 +349,465 @@
                     }
                 }
             }
+        },
+        "/api/bloquejats": {
+            "get": {
+                "tags": [
+                    "Bloquejats"
+                ],
+                "summary": "Veure tots els usuaris bloquejats",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\BloquejatController::getBloquejats",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/bloquejar": {
+            "post": {
+                "tags": [
+                    "Bloquejats"
+                ],
+                "summary": "Inserir un nou bloquejat.",
+                "operationId": "App\\Http\\Controllers\\BloquejatController::bloquejar",
+                "parameters": [
+                    {
+                        "name": "bloquejat_id",
+                        "in": "query",
+                        "description": "id del bloquejat",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bloquejador_id",
+                        "in": "query",
+                        "description": "id de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'usuari que hem bloquejat."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/criticas": {
+            "get": {
+                "tags": [
+                    "Critiques"
+                ],
+                "summary": "Veure totes les critiques.",
+                "operationId": "App\\Http\\Controllers\\CriticaController::getCriticas",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les critiques."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/critica/{id}": {
+            "get": {
+                "tags": [
+                    "Critiques"
+                ],
+                "summary": "Veure la critica desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\CriticaController::getCritica",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Critica per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Critica amb id seleccionada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Critiques"
+                ],
+                "summary": "Actualitza la critica ja existent",
+                "description": "",
+                "operationId": "updateCritica",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id agrupacio a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "Id del event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id del usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "terra",
+                        "in": "query",
+                        "description": "Terra",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "espai",
+                        "in": "query",
+                        "description": "Espai",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "musica",
+                        "in": "query",
+                        "description": "Musica",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opinio",
+                        "in": "query",
+                        "description": "Opinio",
+                        "required": true,
+                        "schema": {}
+                    },
+                    {
+                        "name": "estrellas",
+                        "in": "query",
+                        "description": "Estrellas",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Critiques"
+                ],
+                "summary": "Eliminar una critica.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\CriticaController::eliminarCritica",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Critica a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Critica eliminada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/critica": {
+            "post": {
+                "tags": [
+                    "Critiques"
+                ],
+                "summary": "Inserir una nova critica.",
+                "operationId": "App\\Http\\Controllers\\CriticaController::crearCritica",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "terra",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "espai",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "musica",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opinio",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "estrellas",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna la critica que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/diplomas": {
+            "get": {
+                "tags": [
+                    "Diplomas"
+                ],
+                "summary": "Veure tots els diplomas.",
+                "operationId": "App\\Http\\Controllers\\DiplomaController::getDiplomas",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els diplomes."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/diploma/{id}": {
+            "get": {
+                "tags": [
+                    "Diplomas"
+                ],
+                "summary": "Veure el diploma desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\DiplomaController::getDiploma",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Diploma per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diploma amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Diplomas"
+                ],
+                "summary": "Actualitza el diploma ja existent",
+                "description": "",
+                "operationId": "updateDiploma",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id agrupacio a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id de l'usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titol",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diploma modificatsk"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Diplomas"
+                ],
+                "summary": "Eliminar un diploma.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\DiplomaController::eliminarDiploma",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Diploma a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diploma eliminat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/diploma": {
+            "post": {
+                "tags": [
+                    "Diplomas"
+                ],
+                "summary": "Inserir un nou diploma.",
+                "operationId": "App\\Http\\Controllers\\DiplomaController::crearDiploma",
+                "parameters": [
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id del usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titol del diploma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el diploma que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
         }
     },
     "security": [

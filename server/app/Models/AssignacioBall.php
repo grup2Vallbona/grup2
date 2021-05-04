@@ -8,15 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class AssignacioBall extends Model
 {
     use HasFactory;
-    // protected $fillable=[
-    //     'persona_id', 'ball_id'
-    // ];
+    protected $fillable=[
+         'persona_id', 'ball_id'
+    ];
         /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'assignacio_balls';
+
+    function __construct() {
+
+    }
+
     public function persona()
     {
         //return $this->hasMany(AssignacioBall::class);

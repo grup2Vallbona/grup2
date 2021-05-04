@@ -9,7 +9,18 @@ class Bloquejat extends Model
 {
     use HasFactory;
     protected $table = 'bloquejats';
-    public function persona()
+    /*public function persona()
+    {
+        //return $this->hasMany(AssignacioBall::class);
+        return $this->belongsTo(Persona::class);
+    }*/
+    public function bloquejat()
+    {
+        //return $this->hasMany(AssignacioBall::class);
+        return $this->belongsTo(Persona::class);
+    }
+
+    public function bloquejador()
     {
         //return $this->hasMany(AssignacioBall::class);
         return $this->belongsTo(Persona::class);

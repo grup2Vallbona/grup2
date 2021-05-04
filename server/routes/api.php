@@ -51,7 +51,7 @@ Route::delete('agrupacio/{id}', [AgrupacioController::class, "eliminarAgrupacio"
 
 // ----------------- ASSIGNACIO BALL -----------------
 Route::get('assignacioballs', [AssignacioBallController::class, "getAssignacioBalls"]);
-Route::post('persona/ball', [AssignacioBall::class, "assignacioBall"]);
+Route::post('persona/ball', [AssignacioBallController::class, "assignacioBall"]);
 
 // ----------------- ASSISTENT -----------------
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
