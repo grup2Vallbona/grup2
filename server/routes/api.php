@@ -45,7 +45,7 @@ Route::post('administrador', [AdministradorController::class, "administrador"]);
 // ----------------- AGRUPACIONS -----------------
 Route::get('agrupacions', [AgrupacioController::class, "getAgrupacions"]);
 Route::get('agrupacio/{id}', [AgrupacioController::class, "getAgrupacio"]);
-Route::put('agrupacio/{id}', [AgrupacioController::class, "updateAgrupacio"]);
+Route::post('agrupacio/{id}', [AgrupacioController::class, "updateAgrupacio"]);
 Route::post('agrupacio', [AgrupacioController::class, "crearAgrupacio"]);
 Route::delete('agrupacio/{id}', [AgrupacioController::class, "eliminarAgrupacio"]);
 
@@ -64,14 +64,14 @@ Route::post('bloquejar', [BloquejatController::class, "bloquejar"]);
 // ----------------- CRITICA -----------------
 Route::get('criticas', [CriticaController::class, "getCriticas"]);
 Route::get('critica/{id}', [CriticaController::class, "getCritica"]);
-Route::put('critica/{id}', [CriticaController::class, "updateCritica"]);
+Route::post('critica/{id}', [CriticaController::class, "updateCritica"]);
 Route::post('critica', [CriticaController::class, "crearCritica"]);
 Route::delete('critica/{id}', [CriticaController::class, "eliminarCritica"]);
 
 // ----------------- DIPLOMA -----------------
 Route::get('diplomas', [DiplomaController::class, "getDiplomas"]);
 Route::get('diploma/{id}', [DiplomaController::class, "getDiploma"]);
-Route::put('diploma/{id}', [DiplomaController::class, "updateDiploma"]);
+Route::post('diploma/{id}', [DiplomaController::class, "updateDiploma"]);
 Route::post('diploma', [DiplomaController::class, "crearDiploma"]);
 Route::delete('diploma/{id}', [DiplomaController::class, "eliminarDiploma"]);
 
@@ -82,14 +82,14 @@ Route::post('ensenyançaevent', [EnsenyançaEventController::class, "ensenyança
 // ----------------- EVENT ----------------- 
 Route::get('events', [EventController::class, "getEvents"]);
 Route::get('event/{id}', [EventController::class, "getEvent"]);
-Route::put('event/{id}', [EventController::class, "updateEvent"]);
+Route::post('event/{id}', [EventController::class, "updateEvent"]);
 Route::post('event', [EventController::class, "crearEvent"]);
 Route::delete('event/{id}', [EventController::class, "eliminarEvent"]);
 
 // ----------------- FOTOGRAFIA -----------------
 Route::get('fotografias', [FotografiaController::class, "getFotografias"]);
 Route::get('fotografia/{id}', [FotografiaController::class, "getFotografia"]);
-Route::put('fotografia/{id}', [FotografiaController::class, "updateFotografia"]);
+Route::post('fotografia/{id}', [FotografiaController::class, "updateFotografia"]);
 Route::post('fotografia', [FotografiaController::class, "crearFotografia"]);
 Route::delete('fotografia/{id}', [FotografiaController::class, "eliminarFotografia"]);
 
@@ -117,7 +117,7 @@ Route::post('pertanygrup', [PertanyGrupController::class, "pertany_grup"]);
 Route::get('premis', [PremiController::class, "getPremis"]);
 Route::get('premi/{id}', [PremiController::class, "getPremi"]);
 Route::get('premis/usuari/{id}', [PremiController::class, "getPremisUsuari"]);
-Route::put('premi/{id}', [PremiController::class, "updatePremi"]);
+Route::post('premi/{id}', [PremiController::class, "updatePremi"]);
 Route::post('premi', [PremiController::class, "crearPremi"]);
 Route::delete('premi/{id}', [PremiController::class, "eliminarPremi"]);
 
@@ -128,7 +128,7 @@ Route::post('seguir', [SeguitController::class, "seguir"]);
 // ----------------- TIPUS BALL -----------------
 Route::get('tipusballs', [TipusBallController::class, "getTipusBalls"]);
 Route::get('tipusball/{id}', [TipusBallController::class, "getTipusBall"]);
-Route::put('tipusball/{id}', [TipusBallController::class, "updateTipusBall"]);
+Route::post('tipusball/{id}', [TipusBallController::class, "updateTipusBall"]);
 Route::post('tipusball', [TipusBallController::class, "crearTipusBall"]);
 Route::delete('tipusball/{id}', [TipusBallController::class, "eliminarTipusBall"]);
 
@@ -136,7 +136,7 @@ Route::delete('tipusball/{id}', [TipusBallController::class, "eliminarTipusBall"
 Route::get('usuaris', [UsuariController::class, "getUsuaris"]);
 // Route::get('usuari/{id}', [UsuariController::class, "getUsuari"]);
 Route::get('usuari/{correo}', [UsuariController::class, "getUsuariCorreo"]);
-Route::put('usuari/{id}', [UsuariController::class, "updateUsuari"]);
+Route::post('usuari/{id}', [UsuariController::class, "updateUsuari"]);
 Route::post('usuari', [UsuariController::class, "crearUsuari"]);
 Route::delete('usuari/{id}', [UsuariController::class, "eliminarUsuari"]);
 
@@ -144,7 +144,7 @@ Route::delete('usuari/{id}', [UsuariController::class, "eliminarUsuari"]);
 Route::get('personas', [PersonaController::class, "getPersonas"]);
 Route::get('persona/ultima', [PersonaController::class, "getPersonaUltima"]);
 Route::get('persona/{id}', [PersonaController::class, "getPersona"]);
-Route::put('persona/{id}', [PersonaController::class, "updatePersona"]);
+Route::post('persona/{id}', [PersonaController::class, "updatePersona"]);
 Route::post('persona', [PersonaController::class, "crearPersona"]);
 Route::delete('persona/{id}', [PersonaController::class, "eliminarPersona"]);
 Route::get('persona/ultima', [PersonaController::class, "getPersonaUltima"]);
@@ -153,7 +153,7 @@ Route::get('persona/ultima', [PersonaController::class, "getPersonaUltima"]);
 // ----------------- ENTITATS -----------------
 Route::get('entitats', [EntitatController::class, "getEntitats"]);
 Route::get('entitat/{id}', [EntitatController::class, "getEntitat"]);
-Route::put('entitat/{id}', [EntitatController::class, "updateEntitat"]);
+Route::post('entitat/{id}', [EntitatController::class, "updateEntitat"]);
 Route::post('entitat', [EntitatController::class, "crearEntitat"]);
 Route::delete('entitat/{id}', [EntitatController::class, "eliminarEntitat"]);
 Route::get('entitats/ultima', [EntitatController::class, "getEntitatUltima"]);
