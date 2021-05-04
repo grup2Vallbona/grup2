@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { Principal } from '../principal/principal';
-
+import { RecuperarContra } from '../recuperar-contra/recuperar-contra';
 import { ToastController, AlertController } from 'ionic-angular';
 
 
@@ -45,7 +45,9 @@ export class Login {
     });
     alert.present();
   }
- 
+  recuperarContra(){
+    this.navCtrl.push(RecuperarContra);
+  }
   login() {
     try {
       this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
