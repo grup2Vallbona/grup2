@@ -110,16 +110,6 @@
                 <ion-label floating>Descripción</ion-label>
                 <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
             </ion-item>
-            <ion-item *ngIf="professorToggle">
-                <ion-label floating>Especialidades del professor</ion-label>
-                <ion-select [(ngModel)]="especialidadesProfessor">
-                    <ion-option value=1>Especialitat1</ion-option>
-                    <ion-option value=2>Especialitat2</ion-option>
-                    <ion-option value=3>Especialitat3</ion-option>
-                    <ion-option value=4>Especialitat4</ion-option>
-                </ion-select>
-
-            </ion-item>
             <ion-item *ngIf="musicToggle">
                 <ion-label floating> Instrumento</ion-label>
                 <ion-input [(ngModel)]="instrumento"></ion-input>
@@ -149,7 +139,7 @@
 
                 <div class="btn">
                     <button *ngIf="personaToggle" [class.button-disabled]="true" class="btn" ion-button
-                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, especialidadesProfessor, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
+                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
                     <button *ngIf="entitatToggle" [disabled] class="btn" ion-button
                         (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button>
                 </div>

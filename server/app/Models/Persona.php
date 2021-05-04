@@ -15,8 +15,7 @@ class Persona extends Model
       'rol',
       'instrument',
       'dataNaixamentBallari',
-      'iniciProfessorat',
-      'especialitatsProfessor' 
+      'iniciProfessorat'
     ];
 /*    public function assignacioballs()
     {

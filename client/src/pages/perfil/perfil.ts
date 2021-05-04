@@ -32,7 +32,6 @@ export class Perfil {
   iniciProfessorat: Date;
   nickname: string = "";
   idiomaUsuari: string = "Español";
-  especialidadesProfesor: string = '';
   genereUsuari: string = "";
   paisUsuari: string = "";
   descripcioUsuari: string = "";

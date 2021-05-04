@@ -69,7 +69,6 @@ export class Register {
   marcaToggle: boolean = false;
   escola: any;
   marca: any;
-  especialidadesProfessor: any;
   instrumento: any;
   profesor: any;
   professorToggle: boolean = false;
@@ -111,7 +110,6 @@ export class Register {
     rol,
     descripcion,
     vacunaToggle,
-    especialidadesProfessor,
     instrumento,
     dataNaixement,
     professorToggle,
@@ -147,7 +145,6 @@ export class Register {
       ballari: this.ballari,
       music: this.music,
       professor: this.profesor,
-      especialitatsProfessor: especialidadesProfessor,
       instrument: instrumento,
       dataNaixementBallari: anyEmpezarBailar,
       iniciProfessorat: iniciImparticions,
@@ -156,9 +153,6 @@ export class Register {
 
   
 
-    if (especialidadesProfessor == undefined) {
-      especialidadesProfessor = 0;
-    }
     if (iniciImparticions == undefined) {
       iniciImparticions = "1800-01-01";
     }
@@ -168,7 +162,6 @@ export class Register {
     formData.append("ballari", this.ballari);
     formData.append("music", this.music);
     formData.append("professor", this.profesor);
-    formData.append("especialitatsProfessor", especialidadesProfessor);
     formData.append("instrument", instrumento);
     formData.append("dataNaixementBallari", anyEmpezarBailar);
     formData.append("iniciProfessorat", iniciImparticions);

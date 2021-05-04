@@ -85,11 +85,6 @@
       <ion-toggle [(ngModel)]="professorToggle" name="professor"></ion-toggle>
     </ion-item>
 
-    <ion-item *ngIf="professorToggle">
-      <ion-label floating>Especialidades del professor</ion-label>
-      <ion-input type="number" [(ngModel)]="especialidadesProfesor" name="especialidadesProfesor"></ion-input>
-
-    </ion-item>
     <ion-item *ngIf="musicToggle">
       <ion-label floating> Instrumento</ion-label>
       <ion-input [(ngModel)]="instrument" name="instrument"></ion-input>
@@ -125,7 +120,7 @@
     <div class="btn">
       <div class="btn">
         <button class="btn"
-          (click)="modificarUsuari(nickname, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, especialidadesProfesor, iniciProfessorat, selectedIdioma, selectedPais)"
+          (click)="modificarUsuari(nickname, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, iniciProfessorat, selectedIdioma, selectedPais)"
           block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
       </div>
     </div>

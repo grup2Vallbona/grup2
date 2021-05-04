@@ -51,7 +51,6 @@ class PersonaController extends BaseController
         $persona->ballari = $request->ballari;
         $persona->music = $request->music;
         $persona->professor = $request->professor;
-        $persona->especialitatsProfessor = $request->especialitatsProfessor;
         $persona->rol = $request->rol;
         $persona->instrument = $request->instrument;
         $persona->dataNaixementBallari = $request->dataNaixementBallari;

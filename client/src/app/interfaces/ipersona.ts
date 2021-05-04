@@ -7,6 +7,5 @@ export interface Persona {
     instrument: any;
     dataNaixementBallari: any;
     iniciProfessorat: any;
-    especialitatsProfessor: any;
     
 }

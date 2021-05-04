@@ -19,7 +19,6 @@ class CreatePersonasTable extends Migration
             $table->integer('ballari')->nullable();
             $table->integer('music')->nullable();
             $table->integer('professor')->nullable();
-            $table->integer('especialitatsProfessor')->nullable();
             $table->string('rol', 100)->nullable();
             $table->string('instrument', 100)->nullable();
             $table->year('dataNaixementBallari')->nullable();
