@@ -39,10 +39,10 @@ class PremiController extends BaseController
     function crearPremi(Request $request)
     {
         $premi = new Premi;
-        $premi->nom = $request->nom;
+        $premi->titol = $request->titol;
         $premi->guanyador_id = $request->guanyador_id;
         $premi->creador_id = $request->creador_id;
-        $premi->maxGuanyador = $request->maxGuanyador;
+        $premi->maxGuanyadors = $request->maxGuanyadors;
         $premi->categoria = $request->categoria;
         $premi->save();
 
