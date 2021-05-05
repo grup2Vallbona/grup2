@@ -4,6 +4,7 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 import { Storage } from "@ionic/storage";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { Principal } from '../principal/principal';
+import { Novedades } from '../novedades/novedades';
 
 /**
  * Generated class for the Crearevento page.
@@ -78,12 +79,14 @@ export class Crearevento {
     formData.append("descripcio",descripcion);
     formData.append("data",fechaEvento);
     this.dades.crearEvent(formData).subscribe((data) => {
-        this.navCtrl.push(Principal);
+        this.navCtrl.push(Novedades);
     });
   }
-  carregarEvents(){
+  carregarPremis(){
     this.storage.get("email").then((emailUser) => {
+      console.log(emailUser);
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
+        console.log(jUsuario);
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.persona_id;
         this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
@@ -104,10 +107,11 @@ export class Crearevento {
       }
     });
   }
-  ionViewDidLoad() {
+
+  ionViewWillEnter() {
     console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
-    this.carregarEvents();
+    this.carregarPremis();
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
