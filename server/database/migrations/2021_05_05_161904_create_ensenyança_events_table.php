@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEnsenyançaEventsTable extends Migration
 {
-    /**
+    /*
      * Run the migrations.
      *
      * @return void
@@ -24,7 +24,7 @@ class CreateEnsenyançaEventsTable extends Migration
         });
     }
 
-    /**
+    /*
      * Reverse the migrations.
      *
      * @return void
