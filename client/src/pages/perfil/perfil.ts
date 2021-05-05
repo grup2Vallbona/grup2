@@ -7,6 +7,8 @@ import { EditUsuario } from "../editarusuario/editusuario";
 import { Entitat } from "../../app/interfaces/ientitat";
 import { Storage } from "@ionic/storage";
 import { Http } from "@angular/http";
+
+
 /**
  * Generated class for the Usuario page.
  *
@@ -44,39 +46,40 @@ export class Perfil {
   entitat: Entitat;
   personaid: number;
   entitatid: number;
- 
+
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public http: Http
+    public http: Http,
+   
+   
   ) {}
-
+ 
   ionViewDidLoad() {
-    
-    let paises = [] as  any;
+ 
+
+    let paises = [] as any;
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        this.http.get('../../assets/json/paises.json').subscribe(
+        this.http.get("../../assets/json/paises.json").subscribe(
           (response: any) => {
             // alert(response);
             paises = response.json();
-           
+
             for (let index = 0; index < paises.length; index++) {
-              
-              if(paises[index]['codeInteger'] == this.usuari.pais){
-                this.paisUsuari = paises[index]['name'];
-              } else{
-               
+              if (paises[index]["codeInteger"] == this.usuari.pais) {
+                this.paisUsuari = paises[index]["name"];
+              } else {
               }
-              
             }
-          }, error => {
-            console.log('Error: ', error.message);
+          },
+          (error) => {
+            console.log("Error: ", error.message);
           }
-        )
+        );
         this.personaid = this.usuari.persona_id;
         this.entitatid = this.usuari.entitat_id;
         this.nickname = this.usuari.nickname;
@@ -89,37 +92,65 @@ export class Perfil {
             .getPersona(this.usuari.persona_id)
             .subscribe((jPersona: any) => {
               this.persona = jPersona.json();
-              
+
               if (this.usuari.genere == 0) {
                 this.genereUsuari = "Hombre";
               } else {
                 this.genereUsuari = "Mujer";
               }
               this.rolUsuari = this.persona.rol;
-              if (this.persona.music == 1 && this.persona.ballari == 0 && this.persona.professor == 0) {
+              if (
+                this.persona.music == 1 &&
+                this.persona.ballari == 0 &&
+                this.persona.professor == 0
+              ) {
                 this.tipoUsuari = "Músico";
                 this.instrument = this.persona.instrument;
-              } else if (this.persona.music == 0 && this.persona.ballari == 1 && this.persona.professor == 0) {
+              } else if (
+                this.persona.music == 0 &&
+                this.persona.ballari == 1 &&
+                this.persona.professor == 0
+              ) {
                 this.tipoUsuari = "Bailarín";
                 this.anyEmpezarBailar = this.persona.dataNaixementBallari;
-              } else if (this.persona.music == 0 && this.persona.ballari == 0 && this.persona.professor == 1) {
+              } else if (
+                this.persona.music == 0 &&
+                this.persona.ballari == 0 &&
+                this.persona.professor == 1
+              ) {
                 this.tipoUsuari = "Profesor";
                 this.iniciProfessorat = this.persona.iniciProfessorat;
-              } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 1){
+              } else if (
+                this.persona.music == 1 &&
+                this.persona.ballari == 1 &&
+                this.persona.professor == 1
+              ) {
                 this.tipoUsuari = "Músico, Bailarín, Profesor";
                 this.instrument = this.persona.instrument;
                 this.anyEmpezarBailar = this.persona.dataNaixementBallari;
                 this.iniciProfessorat = this.persona.iniciProfessorat;
-              } else if (this.persona.music == 1 && this.persona.ballari == 1 && this.persona.professor == 0){
+              } else if (
+                this.persona.music == 1 &&
+                this.persona.ballari == 1 &&
+                this.persona.professor == 0
+              ) {
                 this.tipoUsuari = "Músico, Bailarín";
                 this.instrument = this.persona.instrument;
-                this.anyEmpezarBailar = this.persona.dataNaixementBallari;              
-              } else if (this.persona.music == 1 && this.persona.professor == 1 && this.persona.ballari == 0){
+                this.anyEmpezarBailar = this.persona.dataNaixementBallari;
+              } else if (
+                this.persona.music == 1 &&
+                this.persona.professor == 1 &&
+                this.persona.ballari == 0
+              ) {
                 this.tipoUsuari = "Músico, Profesor";
-                this.instrument = this.persona.instrument;                
+                this.instrument = this.persona.instrument;
                 this.iniciProfessorat = this.persona.iniciProfessorat;
-              } else if (this.persona.ballari == 1 && this.persona.professor == 1 && this.persona.music == 0){
-                this.tipoUsuari = "Bailarín, Profesor";                
+              } else if (
+                this.persona.ballari == 1 &&
+                this.persona.professor == 1 &&
+                this.persona.music == 0
+              ) {
+                this.tipoUsuari = "Bailarín, Profesor";
                 this.anyEmpezarBailar = this.persona.dataNaixementBallari;
                 this.iniciProfessorat = this.persona.iniciProfessorat;
               }
