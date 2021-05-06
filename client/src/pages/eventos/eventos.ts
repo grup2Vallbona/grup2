@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Movidas } from '../movidas/movidas';
 import { Crearevento } from '../crearevento/crearevento';
+import { DadesProductesService } from '../../services/dades-productes.service';
 
 
 
@@ -20,17 +21,44 @@ import { Crearevento } from '../crearevento/crearevento';
 })
 export class Eventos {
  generic: string = "todos";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ events = [];
+ html = '';
+  constructor(public navCtrl: NavController, public navParams: NavParams,private dades: DadesProductesService) {
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Eventos');
+  
+
+  ionViewWillEnter(){
+    this.carrgarEventos();
   }
-
-
-  gotoMovidas() {
-     this.navCtrl.push(Movidas);
-
+  carrgarEventos(){
+    this.dades.carregarEvents().subscribe((eventsJ: any) => {
+      var eventos = eventsJ.json();
+      console.log(eventos);
+      this.html="";
+      for (let index = 0; index < eventos.length; index++) {
+        //this.events[index]=eventos[index];
+        this.html +='<ion-card class="card card-ios">'+
+                      '<ion-item class="item item-block item-ios">'+
+                       '<ion-avatar item-left>'+
+                         '<img src="./assets/images/foto1.jpg">'+
+                      '</ion-avatar>'+
+                      '<div class="item-inner">'+
+                        '<div class="input-wrapper>"'+
+                          '<ion-label class="label label-ios">'+
+                            '<p>'+eventos.titol+'</p>'+
+                            '<p>17 June, 19:30 London</p>'+
+                            '<p>124 people interested</p>'+
+                          '<ion-label>'+
+                        '</div>'+
+                      '</div>'+
+                      '</ion-item>'+
+                    '</ion-card>';
+      }
+      document.getElementById('body').innerHTML=this.html;
+      
+    });
   }
   crearEvento(){
     this.navCtrl.push(Crearevento);

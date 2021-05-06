@@ -13,22 +13,13 @@
           <ion-icon name="create" ></ion-icon>
         </button>
       </ion-buttons>
-
   </ion-navbar>
 
 <ion-toolbar no-border-top>
 
-
-
-
-
-
     <ion-segment [(ngModel)]="generic">
       <ion-segment-button value="todos">
         Todos
-      </ion-segment-button>
-      <ion-segment-button value="amigos">
-        Amigos
       </ion-segment-button>
       <ion-segment-button value="asistire">
         Asistire
@@ -39,136 +30,8 @@
 
 <ion-content class="bodyTabs">
   <div [ngSwitch]="generic">
-    <ion-list *ngSwitchCase="'todos'">
-        <ion-item>
-          <ion-label>Filtrar</ion-label>
-          <ion-select [(ngModel)]="language">
-            <ion-option value="eng">Reino Unido</ion-option>
-            <ion-option value="esp">Test</ion-option>
-            <ion-option value="cat">Test</ion-option>
-          </ion-select>
-        </ion-item>
-      <div class="grupLabel">
-        <ion-label>17 de Junio de 2017</ion-label>
-      </div>
-      <ion-card (click)="gotoMovidas()">
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto1.jpg">
-              </ion-avatar>
-                <p>Summer Swing</p>
-                <p>17 June, 19:30 London</p>
-                <p>124 people interested</p>
-
-            </ion-item>
-      </ion-card>
-      <div class="grupLabel">
-        <ion-label>18 de Junio de 2017</ion-label>
-      </div>
-      <ion-card>
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto7.jpg">
-              </ion-avatar>
-                <p>Bishopsgate Swing</p>
-                <p>Sunday at 18:30–21:30</p>
-                <p>41 people interested</p>
-            </ion-item>
-      </ion-card>
-      <div class="grupLabel">
-        <ion-label>16 de Julio de 2017</ion-label>
-      </div>
-      <ion-card>
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto3.jpg">
-              </ion-avatar>
-              <p>Swing East</p>
-              <p>16 July, 12:00 London</p>
-              <p>52 people interested</p>
-            </ion-item>
-      </ion-card>
-      <div class="grupLabel">
-        <ion-label>14 de Julio de 2017</ion-label>
-      </div>
-      <ion-card>
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto4.jpg">
-              </ion-avatar>
-              <p>Swing Dance Advanced</p>
-              <p>Wednesday at 20:30–21:30</p>
-              <p>12 people interested</p>
-            </ion-item>
-      </ion-card>
-      <div class="grupLabel">
-        <ion-label>14 de Julio de 2017</ion-label>
-      </div>
-      <ion-card>
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto5.jpg">
-              </ion-avatar>
-              <p>Swing Dance Intermediate</p>
-              <p>Wednesday at 19:30–20:30</p>
-              <p>7 people interested</p>
-            </ion-item>
-      </ion-card>
-      <div class="grupLabel">
-        <ion-label>6 de Agosto de 2017</ion-label>
-      </div>
-      <ion-card>
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto6.jpg">
-              </ion-avatar>
-              <p>Summertime Swing</p>
-              <p>6 July, 14:00 London</p>
-              <p>147 people interested</p>
-            </ion-item>
-      </ion-card>
-
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'amigos'">
-      <ion-item>
-          <ion-label>Filtrar</ion-label>
-          <ion-select [(ngModel)]="language">
-            <ion-option value="eng">Test</ion-option>
-            <ion-option value="esp">Test</ion-option>
-            <ion-option value="cat">Test</ion-option>
-          </ion-select>
-        </ion-item>
-
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'asistire'">
-      <ion-item>
-          <ion-label>Pais</ion-label>
-          <ion-select [(ngModel)]="language">
-            <ion-option value="eng">Test</ion-option>
-            <ion-option value="esp">Test</ion-option>
-            <ion-option value="cat">Test</ion-option>
-          </ion-select>
-        </ion-item>
-
-      <div class="grupLabel">
-        <ion-label>17 de Junio de 2017</ion-label>
-      </div>
-      <ion-card (click)="gotoMovidas()">
-            <ion-item>
-              <ion-avatar item-left>
-                <img src="./assets/images/foto1.jpg">
-              </ion-avatar>
-                <p>Summer Swing</p>
-                <p>17 June, 19:30 London</p>
-                <p>124 people interested</p>
-
-            </ion-item>
-      </ion-card>
-
-
-
+    <ion-list *ngSwitchCase="'todos'"  id="body">
+      
     </ion-list>
   </div>
 </ion-content>

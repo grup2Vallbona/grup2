@@ -73,4 +73,7 @@ export class DadesProductesService {
   public crearEvent(event: FormData): Observable<any>{
     return this.http.post(this.baseUrl + '/api/event', event);
   }
+  public carregarEvents(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/events');
+  }
 }
