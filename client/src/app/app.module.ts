@@ -20,6 +20,7 @@ import { Register } from '../pages/register/register';
 import { Principal } from '../pages/principal/principal';
 import { RecuperarContra } from '../pages/recuperar-contra/recuperar-contra';
 import { Eventos } from '../pages/eventos/eventos';
+import { Evento } from '../pages/evento/evento';
 import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
@@ -72,6 +73,7 @@ import { FormsModule } from '@angular/forms';
     Register,
     Principal,
     Eventos,
+    Evento,
     Foro,
     Valoraciones,
     Novedades,
@@ -106,6 +108,7 @@ import { FormsModule } from '@angular/forms';
     Register,
     Principal,
     Eventos,
+   Evento,
     Foro,
     Valoraciones,
     Novedades,
