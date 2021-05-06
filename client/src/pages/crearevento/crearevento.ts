@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { Principal } from '../principal/principal';
 import { Novedades } from '../novedades/novedades';
+import { Eventos } from '../eventos/eventos';
 
 /**
  * Generated class for the Crearevento page.

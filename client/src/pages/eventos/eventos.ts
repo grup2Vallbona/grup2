@@ -47,7 +47,7 @@ export class Eventos {
                       '<div class="item-inner">'+
                         '<div class="input-wrapper>"'+
                           '<ion-label class="label label-ios">'+
-                            '<p>'+eventos.titol+'</p>'+
+                            '<p>'+eventos[index].titol+'</p>'+
                             '<p>17 June, 19:30 London</p>'+
                             '<p>124 people interested</p>'+
                           '<ion-label>'+

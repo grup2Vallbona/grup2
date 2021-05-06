@@ -125,7 +125,8 @@ import { FormsModule } from '@angular/forms';
     DadesProductesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
-    AlertController
+    AlertController,
+  
   ]
 })
 export class AppModule {}
