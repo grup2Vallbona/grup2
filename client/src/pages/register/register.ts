@@ -61,10 +61,10 @@ export class Register {
   descripcion: string;
   vacunaToggle: boolean = false;
   vacuna: any;
-  personaToggle: boolean = true;
-  entitatToggle: boolean = false;
-  escolaToggle: boolean = true;
-  marcaToggle: boolean = false;
+  personaToggle: boolean;
+  entitatToggle: boolean ;
+  escolaToggle: boolean ;
+  marcaToggle: boolean ;
   escola: any;
   marca: any;
   instrumento: any;
@@ -98,8 +98,8 @@ export class Register {
     
     this.usuarios = this.fb.group({
     nickname: ['', []],
-    personaToggle: ['', []],
-    entitatToggle: ['', []],
+    personaToggle: [true, []],
+    entitatToggle: [false, []],
     escolaToggle: ['', []],
     marcaToggle: ['', []],
     nombre: ['', []],
@@ -110,14 +110,14 @@ export class Register {
     idioma: ['', []],
     pais: ['', []],
     rol: ['', []],
-    ballariToggle: ['', []],
-    professorToggle: ['', []],
-    musicToggle: ['', []],
+    ballariToggle: [true, []],
+    professorToggle: [false, []],
+    musicToggle: [false, []],
     descripcion: ['', []],
     instrumento: ['', []],
     anyEmpezarBailar: ['', []],
     iniciImparticions: ['', []],
-    vacunaToggle: ['', []],
+    vacunaToggle: [, []],
   });
   
   }
@@ -144,8 +144,11 @@ signUp(
   nombre,
   personaToggle
   ){
-    console.log(this.usuarios.value);
-  
+     console.log(this.usuarios.value.nickname);
+  // for (let index = 0; index < this.usuarios; index++) {
+  //   console.log(this.usuarios[index].nickname);
+    
+  // }
 }
   signupPersona(
     email,
