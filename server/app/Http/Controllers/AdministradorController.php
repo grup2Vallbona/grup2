@@ -18,7 +18,7 @@ use App\Models\Persona;
  */
 class AdministradorController extends BaseController
 {
-    //
+    
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
      /**
     * @OA\Get(

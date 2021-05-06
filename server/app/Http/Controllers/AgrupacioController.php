@@ -89,7 +89,7 @@ class AgrupacioController extends BaseController
      *         description="Nom",
      *         in="query",
      *         name="nom",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string"
      *         )
@@ -98,7 +98,7 @@ class AgrupacioController extends BaseController
      *         description="Descripcio",
      *         in="query",
      *         name="descripcio",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string",
      *         )

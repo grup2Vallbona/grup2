@@ -14,38 +14,39 @@
 
 
 <ion-content>
- 
-        <ion-list >
+    <form [formGroup]="usuarios" (ngSubmit)="signUp()">
+        <ion-list>
             <ion-item>
                 <ion-label>Persona</ion-label>
-                <ion-checkbox [(ngModel)]="personaToggle" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
+                <ion-checkbox formControlName="personaToggle" checked (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
             </ion-item>
             <ion-item>
                 <ion-label>Entidad</ion-label>
-                <ion-checkbox [(ngModel)]="entitatToggle" (ionChange)='verificacionCheckbox("entitat")'></ion-checkbox>
+                <ion-checkbox formControlName="entitatToggle" (ionChange)='verificacionCheckbox("entitat")'></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="entitatToggle">
                 <ion-label>Escuela</ion-label>
-                <ion-checkbox [(ngModel)]="escolaToggle" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
+                <ion-checkbox formControlName="escolaToggle" (ionChange)='verficacioEntitat("escola")'></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="entitatToggle">
                 <ion-label>Marca</ion-label>
-                <ion-checkbox [(ngModel)]="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
+                <ion-checkbox formControlName="marcaToggle" (ionChange)='verficacioEntitat("marca")'></ion-checkbox>
             </ion-item>
-            
+
             <ion-item>
                 <ion-label floating>Nickname</ion-label>
-                <ion-input type="text" [(ngModel)]="nickname" ></ion-input>
-               
+                <ion-input type="text" formControlName="nickname"></ion-input>
+                <!-- <ion-label color="danger" *ngIf="usuarios.controls.nombre.errors?.required && (usuarios.touched || usuarios.dirty)">* El nombre es obligatorio </ion-label> -->
+                <!-- <ion-label color="danger" *ngIf="usuarios.controls.nombre.errors?.minlength && (usuarios.touched || usuarios.dirty)">* El nombre tiene que tener al menos 4 caracteres.</ion-label> -->
             </ion-item>
 
             <ion-item *ngIf="entitatToggle">
                 <ion-label floating>Nombre entidad</ion-label>
-                <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+                <ion-input type="text" formControlName="nombre"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Genero</ion-label>
-                <ion-select [(ngModel)]="genero">
+                <ion-select formControlName="genero">
                     <ion-option value=1>Hombre</ion-option>
                     <ion-option value=2>Mujer</ion-option>
                     <ion-option value=3>Otros</ion-option>
@@ -53,30 +54,30 @@
             </ion-item>
             <ion-item>
                 <ion-label>Fecha de nacimiento</ion-label>
-                <ion-datetime [(ngModel)]="dataNaixement"></ion-datetime>
+                <ion-datetime formControlName="dataNaixement"></ion-datetime>
             </ion-item>
 
 
             <ion-item>
                 <ion-label floating>E-mail</ion-label>
-                <ion-input type="email" [(ngModel)]="email" required></ion-input>
+                <ion-input type="email" formControlName="email" required></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>Contraseña</ion-label>
-                <ion-input type="password" [(ngModel)]="password" required></ion-input>
+                <ion-input type="password" formControlName="password" required></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label>Idioma</ion-label>
-                <ion-select [(ngModel)]="idioma">
+                <ion-select formControlName="idioma">
                     <ion-option value=0>Español</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>Pais</ion-label>
-                <ion-select [(ngModel)]="pais">
+                <ion-select formControlName="pais">
                     <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -84,7 +85,7 @@
 
             <ion-item *ngIf="personaToggle && ballariToggle || professorToggle ">
                 <ion-label>Rol</ion-label>
-                <ion-select [(ngModel)]="rol">
+                <ion-select formControlName="rol">
                     <ion-option value=1>Follower</ion-option>
                     <ion-option value=2>Leader</ion-option>
                     <ion-option value=3>Follower/Leader</ion-option>
@@ -94,38 +95,38 @@
 
             <ion-item *ngIf="personaToggle">
                 <ion-label>Bailarin</ion-label>
-                <ion-toggle [(ngModel)]="ballariToggle"></ion-toggle>
+                <ion-toggle formControlName="ballariToggle"></ion-toggle>
             </ion-item>
 
             <ion-item *ngIf="personaToggle">
                 <ion-label>Profesor</ion-label>
-                <ion-toggle [(ngModel)]="professorToggle"></ion-toggle>
+                <ion-toggle formControlName="professorToggle"></ion-toggle>
             </ion-item>
 
             <ion-item *ngIf="personaToggle">
                 <ion-label>Musico</ion-label>
-                <ion-toggle [(ngModel)]="musicToggle"></ion-toggle>
+                <ion-toggle formControlName="musicToggle"></ion-toggle>
             </ion-item>
             <ion-item>
                 <ion-label floating>Descripción</ion-label>
-                <ion-input type="descripcio" [(ngModel)]="descripcion"></ion-input>
+                <ion-input type="descripcio" formControlName="descripcion"></ion-input>
             </ion-item>
             <ion-item *ngIf="musicToggle">
                 <ion-label floating> Instrumento</ion-label>
-                <ion-input [(ngModel)]="instrumento"></ion-input>
+                <ion-input formControlName="instrumento"></ion-input>
             </ion-item>
             <ion-item *ngIf="ballariToggle">
                 <ion-label>Año inicio baile</ion-label>
-                <ion-datetime displayFormat="YYYY" [(ngModel)]="anyEmpezarBailar"></ion-datetime>
+                <ion-datetime displayFormat="YYYY" formControlName="anyEmpezarBailar"></ion-datetime>
             </ion-item>
             <ion-item *ngIf="professorToggle">
                 <ion-label>Inicio impartición</ion-label>
-                <ion-datetime [(ngModel)]="iniciImparticions"></ion-datetime>
+                <ion-datetime formControlName="iniciImparticions"></ion-datetime>
             </ion-item>
 
             <ion-item>
                 <ion-label>Vacunado de covid-19</ion-label>
-                <ion-checkbox type="vacunaToggle" [(ngModel)]="vacunaToggle"></ion-checkbox>
+                <ion-checkbox type="vacunaToggle" formControlName="vacunaToggle"></ion-checkbox>
             </ion-item>
             <div class="btnContainer">
 
@@ -138,10 +139,9 @@
             <div class="btnContainer">
 
                 <div class="btn">
-                    <button *ngIf="personaToggle" [class.button-disabled]="true" class="btn" ion-button
-                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
-                    <button *ngIf="entitatToggle" [disabled] class="btn" ion-button
-                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button>
+                    <!-- <button *ngIf="personaToggle" [disabled]="!usuarios.valid" class="btn" ion-button (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button> -->
+                    <!-- <button *ngIf="entitatToggle" [disabled] class="btn" ion-button (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button> -->
+                    <button class="btn" ion-button type="submit">Registrarse</button>
                 </div>
 
             </div>
@@ -156,5 +156,5 @@
 
         </ion-list>
 
-
+    </form>
 </ion-content>

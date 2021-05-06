@@ -86,7 +86,7 @@ class DiplomaController extends BaseController
      *         description="Id de l'usuari",
      *         in="query",
      *         name="usuari_id",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="integer"
      *         )
@@ -95,7 +95,7 @@ class DiplomaController extends BaseController
      *         description="Titol",
      *         in="query",
      *         name="titol",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string",
      *         )
