@@ -8,13 +8,10 @@ import {
   NavParams,
 } from "ionic-angular";
 import { HomePage } from "../home/home";
-import { Principal } from "../principal/principal";
-import { HttpClient } from "@angular/common/http";
+// import { Principal } from "../principal/principal";
+// import { HttpClient } from "@angular/common/http";
 import { AngularFireAuth } from "angularfire2/auth";
-import {
-  AngularFireDatabase,
-  FirebaseListObservable,
-} from "angularfire2/database";
+import {AngularFireDatabase, FirebaseListObservable,} from "angularfire2/database";
 import * as firebase from "firebase/app";
 
 import { Observable } from "rxjs/Observable";
@@ -25,9 +22,7 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Entitat } from "../../app/interfaces/ientitat";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { CustomValidators } from "ng2-validation";
-
+import { FormControl, FormGroup, Validators, FormBuilder } from "@angular/forms";
 /**
  * Generated class for the Register page.
  *
@@ -40,8 +35,11 @@ import { CustomValidators } from "ng2-validation";
   templateUrl: "register.html",
 })
 export class Register {
-  formlogin: FormGroup;
-  
+  // usuarios = new FormGroup({
+  //   nickname: new FormControl('', [Validators.requiredTrue]),
+
+  // });
+   usuarios: FormGroup;
   miModelo: any;
   //  paises: Pais[];
   personaJ: string;
@@ -93,13 +91,62 @@ export class Register {
     public db: AngularFireDatabase,
     private http: Http,
     private dades: DadesProductesService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private fb: FormBuilder
   ) {
     this.user = firebaseAuth.authState;
     
+    this.usuarios = this.fb.group({
+    nickname: ['', []],
+    personaToggle: ['', []],
+    entitatToggle: ['', []],
+    escolaToggle: ['', []],
+    marcaToggle: ['', []],
+    nombre: ['', []],
+    genero: ['', []],
+    dataNaixement: ['', []],
+    email: ['', []],
+    password: ['', []],
+    idioma: ['', []],
+    pais: ['', []],
+    rol: ['', []],
+    ballariToggle: ['', []],
+    professorToggle: ['', []],
+    musicToggle: ['', []],
+    descripcion: ['', []],
+    instrumento: ['', []],
+    anyEmpezarBailar: ['', []],
+    iniciImparticions: ['', []],
+    vacunaToggle: ['', []],
+  });
   
   }
+signUp(    
+  email,
+  password,
+  nickname,
+  genero,
+  idioma,
+  pais,
+  rol,
+  descripcion,
+  vacunaToggle,
+  instrumento,
+  dataNaixement,
+  professorToggle,
+  musicToggle,
+  ballariToggle,
+  iniciImparticions,
+  imatge,
+  anyEmpezarBailar,
+  escolaToggle,
+  marcaToggle,
+  nombre,
+  personaToggle
+  ){
+    console.log(this.usuarios.value);
   
+}
   signupPersona(
     email,
     password,

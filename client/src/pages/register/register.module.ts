@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Register } from './register';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

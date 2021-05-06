@@ -14,7 +14,7 @@ export class DadesProductesService {
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-  baseUrl: string = 'http://localhost/WeSwing/grup2/server/public/index.php';
+  baseUrl: string = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   constructor(private http: Http) { }
 
 

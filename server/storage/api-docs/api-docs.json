@@ -141,7 +141,7 @@
                         "name": "nom",
                         "in": "query",
                         "description": "Nom",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -150,7 +150,7 @@
                         "name": "descripcio",
                         "in": "query",
                         "description": "Descripcio",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -473,7 +473,7 @@
                         "name": "event_id",
                         "in": "query",
                         "description": "Id del event",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer"
                         }
@@ -482,7 +482,7 @@
                         "name": "usuari_id",
                         "in": "query",
                         "description": "Id del usuari",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer"
                         }
@@ -491,7 +491,7 @@
                         "name": "terra",
                         "in": "query",
                         "description": "Terra",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -500,7 +500,7 @@
                         "name": "espai",
                         "in": "query",
                         "description": "Espai",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -509,7 +509,7 @@
                         "name": "musica",
                         "in": "query",
                         "description": "Musica",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -518,14 +518,14 @@
                         "name": "opinio",
                         "in": "query",
                         "description": "Opinio",
-                        "required": true,
+                        "required": false,
                         "schema": {}
                     },
                     {
                         "name": "estrellas",
                         "in": "query",
                         "description": "Estrellas",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer"
                         }
@@ -719,7 +719,7 @@
                         "name": "usuari_id",
                         "in": "query",
                         "description": "Id de l'usuari",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer"
                         }
@@ -728,7 +728,7 @@
                         "name": "titol",
                         "in": "query",
                         "description": "Titol",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -873,6 +873,679 @@
                 "responses": {
                     "200": {
                         "description": "Retorna totes les entitats."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/entitat/{id}": {
+            "get": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Veure l'entitat desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\EntitatController::getEntitat",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Entitat per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entitat amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Actualitza l'entitat ja existent",
+                "description": "",
+                "operationId": "updateEntitat",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id entitat a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "escola",
+                        "in": "query",
+                        "description": "Escola",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "marca",
+                        "in": "query",
+                        "description": "Marca",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entitat modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Eliminar una entitat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\EntitatController::eliminarEntitat",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Entitat a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entitat eliminada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/entitats/ultima": {
+            "get": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Veure l'ultima entitat inserida.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\EntitatController::getEntitatUltima",
+                "responses": {
+                    "200": {
+                        "description": "Ultima entitat inserida"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/entitat": {
+            "post": {
+                "tags": [
+                    "Entitats"
+                ],
+                "summary": "Inserir una nova entitat.",
+                "operationId": "App\\Http\\Controllers\\EntitatController::crearEntitat",
+                "parameters": [
+                    {
+                        "name": "escola",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "marca",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'entitat que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Veure tots els events.",
+                "operationId": "App\\Http\\Controllers\\EventController::getEvents",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els events."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/event/{id}": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Veure l'event desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\EventController::getEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Actualitza l'event ja existent",
+                "description": "",
+                "operationId": "updateEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del event a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id del usuari",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "ball_id",
+                        "in": "query",
+                        "description": "Id del ball",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "premi_id",
+                        "in": "query",
+                        "description": "Id del premi",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pais",
+                        "in": "query",
+                        "description": "Pais",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "provincia",
+                        "in": "query",
+                        "description": "Provincia",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "municipi",
+                        "in": "query",
+                        "description": "Municipi",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "participacioTipus",
+                        "in": "query",
+                        "description": "Tipus de participacio",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titols",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "subtitol",
+                        "in": "query",
+                        "description": "Subtitol",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "carrer",
+                        "in": "query",
+                        "description": "Carrer",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "in": "query",
+                        "description": "Data",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Eliminar un event.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\EventController::eliminarEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event eliminadt"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/event": {
+            "post": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Inserir una nou event.",
+                "operationId": "App\\Http\\Controllers\\EventController::crearEvent",
+                "parameters": [
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id del usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "ball_id",
+                        "in": "query",
+                        "description": "Id del ball",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "premi_id",
+                        "in": "query",
+                        "description": "Id del premi",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pais",
+                        "in": "query",
+                        "description": "Pais",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "provincia",
+                        "in": "query",
+                        "description": "Provincia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "municipi",
+                        "in": "query",
+                        "description": "Municipi",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "participacioTipus",
+                        "in": "query",
+                        "description": "Tipus de participacio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titols",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "subtitol",
+                        "in": "query",
+                        "description": "Subtitol",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "carrer",
+                        "in": "query",
+                        "description": "Carrer",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "in": "query",
+                        "description": "Data",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'event que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/fotografias": {
+            "get": {
+                "tags": [
+                    "Fotografies"
+                ],
+                "summary": "Veure totes les fotgrafies.",
+                "operationId": "App\\Http\\Controllers\\FotografiaController::getFotografias",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les fotografies."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/fotografia/{id}": {
+            "get": {
+                "tags": [
+                    "Fotografies"
+                ],
+                "summary": "Veure la fotografia desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\FotografiaController::getFotografia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Fotografia per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fotografia amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Fotografies"
+                ],
+                "summary": "Actualitza la fotografia ja existent",
+                "description": "",
+                "operationId": "updateFotografia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id fotografia a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "Id del event",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fotografia modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Fotografies"
+                ],
+                "summary": "Eliminar una fotografia.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\FotografiaController::eliminarFotografia",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Fotografia a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fotografia eliminada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/fotografia": {
+            "post": {
+                "tags": [
+                    "Fotografies"
+                ],
+                "summary": "Inserir una nova fotografia.",
+                "operationId": "App\\Http\\Controllers\\FotografiaController::crearFotografia",
+                "parameters": [
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "Id del event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "nom de la fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna la fotografia que hem inserit."
                     },
                     "default": {
                         "description": "S'ha produit un error."
