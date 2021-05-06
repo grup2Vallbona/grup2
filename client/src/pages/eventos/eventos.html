@@ -31,7 +31,7 @@
 <ion-content class="bodyTabs">
   <div [ngSwitch]="generic">
     <ion-list *ngSwitchCase="'todos'"  id="body">
-      
+      <page-evento *ngFor="let evento of eventos" [evento]="evento"></page-evento>
     </ion-list>
   </div>
 </ion-content>

@@ -12,18 +12,195 @@ use Illuminate\Http\Request;
 
 class EventController extends BaseController
 {
-    //-------- EVENTS --------
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+         /**
+    * @OA\Get(
+    *   path="/api/events",
+    *   tags={"Events"},
+    *   summary="Veure tots els events.",
+    *   @OA\Response(
+    *     response=200,
+    *     description="Retorna tots els events.",
+    *   ),
+    *   @OA\Response(
+    *     response="default",
+    *     description="S'ha produit un error.",
+    *   )
+    * )
+    */
     function getEvents()
     {
         return Event::all();
     }
+           /**
+     * @OA\Get(
+     *     path="/api/event/{id}",
+     *     tags={"Events"},
+     *     summary="Veure l'event desitjat.",
+     *     description="",
+     *
+     *   @OA\Parameter(
+     *         description="Event per id",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Event amb id seleccionat",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="S'ha produit un error",
+     *     )
+     * )
+     */
     function getEvent(Request $request, $id)
     {
         $event = Event::all();
         $event = $event->firstWhere('id', $id);
         return $event;
     }
+    /**
+     * @OA\Post(
+     *     path="/api/event/{id}",
+     *     tags={"Events"},
+     *     operationId="updateEvent",
+     *     summary="Actualitza l'event ja existent",
+     *     description="",
+     *
+     *   @OA\Parameter(
+     *         description="Id del event a modificar",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *   @OA\Parameter(
+     *         description="Id del usuari",
+     *         in="query",
+     *         name="usuari_id",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer"
+     *         )
+     *     ),
+     *   @OA\Parameter(
+     *         description="Id del ball",
+     *         in="query",
+     *         name="ball_id",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     *        @OA\Parameter(
+     *         description="Id del premi",
+     *         in="query",
+     *         name="premi_id",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     *   @OA\Parameter(
+     *         description="Pais",
+     *         in="query",
+     *         name="pais",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Provincia",
+     *         in="query",
+     *         name="provincia",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Municipi",
+     *         in="query",
+     *         name="municipi",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Tipus de participacio",
+     *         in="query",
+     *         name="participacioTipus",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Titols",
+     *         in="query",
+     *         name="titol",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Subtitol",
+     *         in="query",
+     *         name="subtitol",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Carrer",
+     *         in="query",
+     *         name="carrer",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Descripcio",
+     *         in="query",
+     *         name="descripcio",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Data",
+     *         in="query",
+     *         name="data",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Agrupacio modificada",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="S'ha produit un error",
+     *     )
+     * )
+     */
     function updateEvent(Request $request, $id)
     {
         //cal posar en la peticio PUT el Header field:
@@ -33,6 +210,129 @@ class EventController extends BaseController
 
         return $event;
     }
+        /**
+    * @OA\Post(
+    *   path="/api/event",
+    *   tags={"Events"},
+    *   summary="Inserir una nou event.",
+    *  @OA\Parameter(
+     *         description="Id del usuari",
+     *         in="query",
+     *         name="usuari_id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer"
+     *         )
+     *     ),
+     *   @OA\Parameter(
+     *         description="Id del ball",
+     *         in="query",
+     *         name="ball_id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+    *        @OA\Parameter(
+     *         description="Id del premi",
+     *         in="query",
+     *         name="premi_id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     *   @OA\Parameter(
+     *         description="Pais",
+     *         in="query",
+     *         name="pais",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Provincia",
+     *         in="query",
+     *         name="provincia",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Municipi",
+     *         in="query",
+     *         name="municipi",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Tipus de participacio",
+     *         in="query",
+     *         name="participacioTipus",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Titols",
+     *         in="query",
+     *         name="titol",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Subtitol",
+     *         in="query",
+     *         name="subtitol",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Carrer",
+     *         in="query",
+     *         name="carrer",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Descripcio",
+     *         in="query",
+     *         name="descripcio",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         description="Data",
+     *         in="query",
+     *         name="data",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string",
+     *         )
+     *     ),
+    *   @OA\Response(
+    *     response=200,
+    *     description="Retorna l'event que hem inserit.",
+    *   ),
+    *   @OA\Response(
+    *     response="default",
+    *     description="S'ha produit un error.",
+    *   )
+    * )
+    */
     function crearEvent(Request $request)
     {
         $event = new Event;
@@ -52,6 +352,33 @@ class EventController extends BaseController
 
         return $event;
     }
+         /**
+     * @OA\Delete(
+     *     path="/api/event/{id}",
+     *     tags={"Events"},
+     *     summary="Eliminar un event.",
+     *     description="",
+     *
+     *   @OA\Parameter(
+     *         description="Event a eliminar",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Event eliminadt",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="S'ha produit un error",
+     *     )
+     * )
+     */
     function eliminarEvent($id)
     {
         $event = Event::find($id);

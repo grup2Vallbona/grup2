@@ -86,7 +86,7 @@ class CriticaController extends BaseController
      *         description="Id del event",
      *         in="query",
      *         name="event_id",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="integer"
      *         )
@@ -95,7 +95,7 @@ class CriticaController extends BaseController
      *         description="Id del usuari",
      *         in="query",
      *         name="usuari_id",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="integer",
      *         )
@@ -104,7 +104,7 @@ class CriticaController extends BaseController
      *         description="Terra",
      *         in="query",
      *         name="terra",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string",
      *         )
@@ -113,7 +113,7 @@ class CriticaController extends BaseController
      *         description="Espai",
      *         in="query",
      *         name="espai",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string",
      *         )
@@ -122,7 +122,7 @@ class CriticaController extends BaseController
      *         description="Musica",
      *         in="query",
      *         name="musica",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="string",
      *         )
@@ -131,7 +131,7 @@ class CriticaController extends BaseController
      *         description="Opinio",
      *         in="query",
      *         name="opinio",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *         )
      *     ),
@@ -139,7 +139,7 @@ class CriticaController extends BaseController
      *         description="Estrellas",
      *         in="query",
      *         name="estrellas",
-     *         required=true,
+     *         required=false,
      *         @OA\Schema(
      *           type="integer",
      *         )
