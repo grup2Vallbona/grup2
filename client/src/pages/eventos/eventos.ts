@@ -33,8 +33,8 @@ export class Eventos {
     this.carrgarEventos();
   }
   carrgarEventos(){
-    // this.dades.carregarEvents().subscribe((eventsJ: any) => {
-    //   this.eventos = eventsJ.json();
+    this.dades.carregarEvents().subscribe((eventsJ: any) => {
+       this.eventos = eventsJ.json();
       
 
       // console.log(eventos);
@@ -59,8 +59,8 @@ export class Eventos {
       //               '</ion-card>';
       // }
       // document.getElementById('body').innerHTML=this.html;
-      this.eventos = [{titol:"pepe"},{titol:"hola"}];
-    // });
+      //this.eventos = [{titol:"pepe"},{titol:"hola"}];
+   });
   }
   crearEvento(){
     this.navCtrl.push(Crearevento);

@@ -96,29 +96,6 @@ export class Register {
   ) {
     this.user = firebaseAuth.authState;
     
-    this.usuarios = this.fb.group({
-    nickname: ['', []],
-    personaToggle: [true, []],
-    entitatToggle: [false, []],
-    escolaToggle: ['', []],
-    marcaToggle: ['', []],
-    nombre: ['', []],
-    genero: ['', []],
-    dataNaixement: ['', []],
-    email: ['', []],
-    password: ['', []],
-    idioma: ['', []],
-    pais: ['', []],
-    rol: ['', []],
-    ballariToggle: [true, []],
-    professorToggle: [false, []],
-    musicToggle: [false, []],
-    descripcion: ['', []],
-    instrumento: ['', []],
-    anyEmpezarBailar: ['', []],
-    iniciImparticions: ['', []],
-    vacunaToggle: [, []],
-  });
   
   }
 signUp(    
