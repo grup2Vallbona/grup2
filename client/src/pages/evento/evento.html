@@ -1,4 +1,14 @@
-<!-- Generated template for the EventoComponent component -->
-<div>
-  <p>{{evento.titol}}</p>
-</div>
+<ion-card (click)="vistaEvento()">
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="./assets/images/foto1.jpg" />
+    </ion-avatar>
+    <div>
+      <div>
+          <p>{{evento.titol}}</p>
+          <p>{{evento.data}}</p>
+          <p>124 people interested</p>
+      </div>
+    </div>
+  </ion-item>
+</ion-card>

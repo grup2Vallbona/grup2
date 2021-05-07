@@ -35,31 +35,7 @@ export class Eventos {
   carrgarEventos(){
     this.dades.carregarEvents().subscribe((eventsJ: any) => {
        this.eventos = eventsJ.json();
-      
-
-      // console.log(eventos);
-      // this.html="";
-      // for (let index = 0; index < eventos.length; index++) {
-      //   //this.events[index]=eventos[index];
-      //   this.html +='<ion-card class="card card-ios">'+
-      //                 '<ion-item class="item item-block item-ios">'+
-      //                  '<ion-avatar item-left>'+
-      //                    '<img src="./assets/images/foto1.jpg">'+
-      //                 '</ion-avatar>'+
-      //                 '<div class="item-inner">'+
-      //                   '<div class="input-wrapper>"'+
-      //                     '<ion-label class="label label-ios">'+
-      //                       '<p>'+eventos.titol+'</p>'+
-      //                       '<p>17 June, 19:30 London</p>'+
-      //                       '<p>124 people interested</p>'+
-      //                     '<ion-label>'+
-      //                   '</div>'+
-      //                 '</div>'+
-      //                 '</ion-item>'+
-      //               '</ion-card>';
-      // }
-      // document.getElementById('body').innerHTML=this.html;
-      //this.eventos = [{titol:"pepe"},{titol:"hola"}];
+       console.log(this.eventos);
    });
   }
   crearEvento(){

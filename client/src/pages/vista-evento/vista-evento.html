@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crear Evento</ion-title>
+  
+  <ion-buttons *ngIf="tuEvento" right>
+    <button ion-button icon-only color="light" (click)="gotoEditEvento()">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding class="bodyTabs">
+
+  <ion-card>
+    <ion-card-header text-center class="headerMovida">
+      {{evento.titol}}
+    </ion-card-header>
+    <ion-card-content text-center>
+      <p>{{evento.data}}</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+        <ion-item>
+          <ion-card-content item-left class="asistire">
+            <p>Si asistiré</p>
+          </ion-card-content>
+            <ion-toggle ></ion-toggle>
+        </ion-item>
+  </ion-card>
+  
+  <ion-card (click)="gotoEscuela()">
+        <ion-item>
+          <ion-card-header>
+            Organizador
+          </ion-card-header>
+          <ion-avatar item-left>
+            <img src="./assets/images/foto1.jpg">
+          </ion-avatar>
+          <p>{{nickname}}</p>
+        </ion-item>
+  </ion-card>
+    
+  <ion-card (click)="gotoAsistentes()">
+        <ion-item>
+          <ion-card-content item-left>
+            <p>Asistentes</p>
+          </ion-card-content>
+          <ion-card-content item-right>
+            <p>1</p>
+          </ion-card-content>
+        </ion-item>
+  </ion-card>
+  
+  </ion-content>
+  

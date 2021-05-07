@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-
+import { NavController, NavParams } from 'ionic-angular';
+import { DadesProductesService } from '../../services/dades-productes.service';
+import { VistaEvento } from '../vista-evento/vista-evento'
 /**
  * Generated class for the EventoComponent component.
  *
@@ -12,11 +14,14 @@ import { Component, Input } from '@angular/core';
 })
 export class Evento {
  @Input() evento;
-  text: string;
+   
 
-  constructor() {
-    console.log('Hello EventoComponent Component');
-    this.text = 'Hello World';
+  constructor(public navCtrl: NavController, public navParams: NavParams,private dades: DadesProductesService) {
+    
+  }
+  vistaEvento(){
+    this.navCtrl.push(VistaEvento,{evento:this.evento});
   }
 
+  
 }
