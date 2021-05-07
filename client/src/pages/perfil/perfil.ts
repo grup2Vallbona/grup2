@@ -7,6 +7,7 @@ import { EditUsuario } from "../editarusuario/editusuario";
 import { Entitat } from "../../app/interfaces/ientitat";
 import { Storage } from "@ionic/storage";
 import { Http } from "@angular/http";
+import { Seguits } from "../seguits/seguits";
 
 
 /**
@@ -56,7 +57,9 @@ export class Perfil {
    
    
   ) {}
- 
+  goToSeguits(){
+    this.navCtrl.push(Seguits);
+  }
   ionViewDidLoad() {
  
 

@@ -33,7 +33,7 @@ export class Principal {
     private storage: Storage
   ) {
     this.emaail = navParams.get("email");
-    storage.set('email', this.emaail);
+    this.storage.set('email', this.emaail);
     
   
   }

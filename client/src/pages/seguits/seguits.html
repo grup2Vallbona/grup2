@@ -1,0 +1,26 @@
+<!--
+  Generated template for the SeguitsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Usuaris seguits</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content> 
+  
+  <ion-item *ngFor="let seguit of seguits">
+    <ion-card-content item-left>
+      <h2>Nom: </h2>
+    </ion-card-content>
+    <ion-card-content item-right>
+      <p>{{seguit.nom}}</p>
+    </ion-card-content>
+  </ion-item>
+ 
+</ion-content>

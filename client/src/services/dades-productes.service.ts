@@ -78,4 +78,9 @@ export class DadesProductesService {
   public carregarEvents(): Observable<any>{
     return this.http.get(this.baseUrl + '/api/events');
   }
+
+  public getSeguits(id:number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/seguit/'+id);
+
+  }
 }
