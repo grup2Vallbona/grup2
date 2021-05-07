@@ -18,6 +18,14 @@ class SeguitController extends BaseController
     {
         return Seguit::all();
     }
+
+    function getSeguitsId($id)
+    {        
+        $seguit = Seguit::all();
+        $seguit = $seguit->where('seguidor_id', $id);
+        return $seguit;
+    }
+
     function seguir(Request $request)
     {
         $pSeguida = Persona::find($request->seguit_id);
