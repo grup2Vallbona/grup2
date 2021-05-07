@@ -27,11 +27,11 @@ export class Eventos {
     
   }
 
-  
 
   ionViewWillEnter(){
     this.carrgarEventos();
   }
+ 
   carrgarEventos(){
     this.dades.carregarEvents().subscribe((eventsJ: any) => {
        this.eventos = eventsJ.json();
@@ -66,3 +66,6 @@ export class Eventos {
     this.navCtrl.push(Crearevento);
   }
 }
+
+
+

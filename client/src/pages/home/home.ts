@@ -21,11 +21,11 @@ export class HomePage {
   // name: any;
   // email: any;
 
-
+ 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
 
   }
-
+  
   // loginGoogle() {
   //   console.log('Login con google') ;
   // }

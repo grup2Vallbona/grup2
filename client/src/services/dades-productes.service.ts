@@ -57,7 +57,9 @@ export class DadesProductesService {
   public getEntitatUltima(): Observable<any>{
     return this.http.get(this.baseUrl + '/api/entitats/ultima/');
   }
-
+  public modificarPersona(id: number, persona: FormData){
+    return this.http.post(this.baseUrl + '/api/persona/' + id, persona);
+  }
   public modificarEntitat(id: number, entitat: FormData){
     return this.http.post(this.baseUrl + '/api/entitat/' + id, entitat);
   }
