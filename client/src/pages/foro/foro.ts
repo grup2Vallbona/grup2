@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { Grupo } from '../grupo/grupo';
-import { Creargrupo } from '../creargrupo/creargrupo';
+import { Grupo } from "../grupo/grupo";
+import { Creargrupo } from "../creargrupo/creargrupo";
 
-import { GruposService } from '../../services/grupos.services';
+import { GruposService } from "../../services/grupos.services";
+
 
 /**
  * Generated class for the Foro page.
@@ -14,28 +15,29 @@ import { GruposService } from '../../services/grupos.services';
  */
 @IonicPage()
 @Component({
-  selector: 'page-foro',
-  templateUrl: 'foro.html',
+  selector: "page-foro",
+  templateUrl: "foro.html",
 })
 export class Foro {
- generic: string = "general";
- grupos: {title: string}[] = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private grupoService: GruposService) {
+  generic: string = "general";
+ 
+  grupos: { title: string }[] = [];
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private grupoService: GruposService,
+    
+  ) {}
 
-  }
-
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.grupos = this.grupoService.getGrupos();
   }
 
-  gotoGrupo(){
+  gotoGrupo() {
     this.navCtrl.push(Grupo);
   }
-
-  gotoCrearGrupo(){
+ 
+  gotoCrearGrupo() {
     this.navCtrl.push(Creargrupo);
   }
-
-
-
 }

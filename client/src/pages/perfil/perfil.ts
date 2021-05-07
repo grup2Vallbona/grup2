@@ -86,6 +86,14 @@ export class Perfil {
         this.email = this.usuari.email;
         this.descripcioUsuari = this.usuari.descripcio;
 
+        if (this.usuari.genere == 0) {
+          this.genereUsuari = "Hombre";
+        } else if(this.usuari.genere == 1) {
+          this.genereUsuari = "Mujer";
+        } else {
+          this.genereUsuari = "Otros";
+        }
+
         this.dataNaixement = this.usuari.dataNaixement;
         if (this.usuari.persona_id != null) {
           this.dades
@@ -93,11 +101,7 @@ export class Perfil {
             .subscribe((jPersona: any) => {
               this.persona = jPersona.json();
 
-              if (this.usuari.genere == 0) {
-                this.genereUsuari = "Hombre";
-              } else {
-                this.genereUsuari = "Mujer";
-              }
+            
               this.rolUsuari = this.persona.rol;
               if (
                 this.persona.music == 1 &&

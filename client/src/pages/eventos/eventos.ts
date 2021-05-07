@@ -28,10 +28,14 @@ export class Eventos {
   }
 
   
+  crearEvento(){
+    this.navCtrl.push(Crearevento);
+  }
 
   ionViewWillEnter(){
     this.carrgarEventos();
   }
+ 
   carrgarEventos(){
     this.dades.carregarEvents().subscribe((eventsJ: any) => {
       var eventos = eventsJ.json();
@@ -83,8 +87,10 @@ export class Eventos {
       // document.getElementById('body').innerHTML=this.html;
       this.eventos = [{titol:"pepe"},{titol:"hola"}];
     // });
-  }
-  crearEvento(){
-    this.navCtrl.push(Crearevento);
+    })
+  
   }
 }
+
+
+

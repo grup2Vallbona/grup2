@@ -14,11 +14,7 @@ export class DadesProductesService {
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-<<<<<<< HEAD
   baseUrl: string = 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-=======
-  baseUrl: string = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
->>>>>>> 4531cb1d8bf30e3c90af52b6fc08b7a3d167f391
   constructor(private http: Http) { }
 
 
@@ -61,7 +57,9 @@ export class DadesProductesService {
   public getEntitatUltima(): Observable<any>{
     return this.http.get(this.baseUrl + '/api/entitats/ultima/');
   }
-
+  public modificarPersona(id: number, persona: FormData){
+    return this.http.post(this.baseUrl + '/api/persona/' + id, persona);
+  }
   public modificarEntitat(id: number, entitat: FormData){
     return this.http.post(this.baseUrl + '/api/entitat/' + id, entitat);
   }

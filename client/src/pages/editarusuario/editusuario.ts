@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
 import { Http } from "@angular/http";
+import { Storage } from "@ionic/storage";
+import { AngularFireAuth } from "angularfire2/auth";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 import { Entitat } from "../../app/interfaces/ientitat";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
+import { Perfil } from "../perfil/perfil";
 
 /**
  * Generated class for the Creargrupo page.
@@ -30,6 +33,7 @@ export class EditUsuario {
   d: Entitat;
   persona: Persona;
   professor: any;
+  email: any;
   ballari: any;
   music: any;
   nom: string;
@@ -63,12 +67,15 @@ export class EditUsuario {
     private dades: DadesProductesService,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private http: Http
+    private http: Http,
+    public storage: Storage,
+    private firebaseAuth: AngularFireAuth
   ) {
     this.usuari = navParams.get("user");
     this.personaid = this.usuari.persona_id;
     this.entitatid = this.usuari.entitat_id;
     this.descripcio = this.usuari.descripcio;
+    this.email = this.usuari.email;
   }
 
   ionViewDidLoad() {
@@ -119,18 +126,14 @@ export class EditUsuario {
         this.marca = this.entitatU.marca;
 
         if (this.entitatU.escola == 1) {
-        
           this.escolaToggle = true;
         } else {
-          
           this.escolaToggle = false;
         }
 
         if (this.entitatU.marca == 1) {
-          
           this.marcaToggle = true;
         } else {
-      
           this.marcaToggle = false;
         }
       });
@@ -141,18 +144,16 @@ export class EditUsuario {
         this.anyEmpezarBailar = this.persona.dataNaixementBallari;
         this.iniciProfessorat = this.persona.iniciProfessorat;
         this.rol = this.persona.rol;
-      
 
-        if(this.persona.rol == 1){
+        if (this.persona.rol == 1) {
           this.selectedRol = 1;
-        } else if(this.persona.rol == 2){
+        } else if (this.persona.rol == 2) {
           this.selectedRol = 2;
-        } else if(this.persona.rol == 3){
+        } else if (this.persona.rol == 3) {
           this.selectedRol = 3;
-        } else if(this.persona.rol == 4){
+        } else if (this.persona.rol == 4) {
           this.selectedRol = 4;
         }
-
 
         if (this.persona.ballari == 1) {
           this.ballariToggle = true;
@@ -171,15 +172,12 @@ export class EditUsuario {
         } else {
           this.professorToggle = false;
         }
-
-     
       });
     }
   }
 
   modificarUsuari(
     nicknameR,
-    
     dataNaixementR,
     professorToggleR,
     ballariToggleR,
@@ -191,14 +189,34 @@ export class EditUsuario {
     anyEmpezarBailarR,
     iniciProfessoratR,
     selectedIdiomaR,
-    selectedPaisR
-  
+    selectedPaisR,
+    emailR
   ) {
+    
     if (nicknameR == "") {
       nicknameR = this.nickname;
     }
     if (descripcioR == "") {
       descripcioR = this.descripcio;
+    }
+    if (dataNaixementR == ""){
+      dataNaixementR = this.dataNaixement;
+    }
+
+    if (instrumentR == ""){
+      instrumentR = this.instrument;
+    }
+
+    if (dataNaixementR == ""){
+      dataNaixementR = this.dataNaixement;
+    }
+
+    if (dataNaixementR == ""){
+      dataNaixementR = this.dataNaixement;
+    }
+
+    if (dataNaixementR == ""){
+      dataNaixementR = this.dataNaixement;
     }
 
     if (professorToggleR) {
@@ -217,6 +235,8 @@ export class EditUsuario {
       this.ballari = 0;
     }
 
+    this.firebaseAuth.auth.currentUser.updateEmail(emailR);
+
     if (this.personaid != null) {
       const formDataModificarPersona = new FormData();
       formDataModificarPersona.append("rol", this.rol);
@@ -229,11 +249,27 @@ export class EditUsuario {
         anyEmpezarBailarR
       );
       formDataModificarPersona.append("iniciProfessorat", iniciProfessoratR);
-       // this.dades.modificarPersona()
-      // this.dades.modificarUsuari()
+
+      const formDataModificarUsuari = new FormData();
+      formDataModificarUsuari.append("nickname", nicknameR);
+      formDataModificarUsuari.append("email", emailR);
+      formDataModificarUsuari.append("idioma", selectedIdiomaR);
+      formDataModificarUsuari.append("dataNaixement", dataNaixementR);
+      formDataModificarUsuari.append("genere", selectedGenereR);
+      formDataModificarUsuari.append("pais", selectedPaisR);
+      formDataModificarUsuari.append("descripcio", descripcioR);
+
+      this.dades
+        .modificarPersona(this.persona.id, formDataModificarPersona)
+        .subscribe((personaM) => {
+          this.dades
+            .modificarUsuari(this.usuari.id, formDataModificarUsuari)
+            .subscribe((usuariMpersona) => {
+              this.storage.set("email", emailR);
+              this.navCtrl.push(Perfil);
+            });
+        });
     } else if (this.entitatid != null) {
-      
-      
       const formDataModificarEntitat = new FormData();
       formDataModificarEntitat.append("escola", this.entitatU.escola);
       formDataModificarEntitat.append("marca", this.entitatU.marca);
@@ -241,22 +277,26 @@ export class EditUsuario {
 
       const formDataModificarUsuari = new FormData();
       formDataModificarUsuari.append("nickname", nicknameR);
+      formDataModificarUsuari.append("email", emailR);
       formDataModificarUsuari.append("idioma", selectedIdiomaR);
       formDataModificarUsuari.append("dataNaixement", dataNaixementR);
       formDataModificarUsuari.append("genere", selectedGenereR);
       formDataModificarUsuari.append("pais", selectedPaisR);
-      formDataModificarUsuari.append("pais", selectedPaisR);
-      formDataModificarUsuari.append("pais", selectedPaisR);
-      formDataModificarUsuari.append("pais", selectedPaisR);
+      formDataModificarUsuari.append("descripcio", descripcioR);
 
-      
-      this.dades.modificarEntitat(this.entitatU.id, formDataModificarEntitat).subscribe(entitatCreada => {
-// this.d = entitatCreada.json();
-// alert(this.d.nom);
-       })
-       this.dades.modificarUsuari(this.usuari.id, formDataModificarUsuari).subscribe(usuariModifica => {
+      this.dades
+        .modificarEntitat(this.entitatU.id, formDataModificarEntitat)
+        .subscribe((entitatCreada) => {
+          // this.d = entitatCreada.json();
+          // alert(this.d.nom);
+          this.dades
+            .modificarUsuari(this.usuari.id, formDataModificarUsuari)
+            .subscribe((usuariModifica) => {
+              this.storage.set("email", emailR);
+              this.navCtrl.push(Perfil);
+            });
+        });
 
-       })
       // this.dades.modificarUsuari()
     }
   }

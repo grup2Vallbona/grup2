@@ -130,6 +130,7 @@ import { FormsModule } from '@angular/forms';
     AuthProvider,
     AlertController,
   
+  
   ]
 })
 export class AppModule {}
