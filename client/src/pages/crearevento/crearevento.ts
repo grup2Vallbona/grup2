@@ -116,7 +116,8 @@ export class Crearevento {
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        this.persona_id = this.usuari.persona_id;
+        this.persona_id = this.usuari.id;
+        alert(this.persona_id)
       });
     });
   }

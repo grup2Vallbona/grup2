@@ -41,6 +41,8 @@ import { AuthProvider } from '../providers/auth/auth';
 
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { Seguidors } from '../pages/seguidors/seguidors';
+import { Bloquejats } from '../pages/bloquejats/bloquejats';
 
   // Initialize Firebase
   var config = {
@@ -85,7 +87,9 @@ import { FormsModule } from '@angular/forms';
     Crearevento,
     EditUsuario,
     RecuperarContra,
-    Seguits
+    Seguits,
+    Seguidors,
+    Bloquejats
   ],
   imports: [
     BrowserModule,
@@ -120,7 +124,9 @@ import { FormsModule } from '@angular/forms';
     Crearevento,
     EditUsuario,
     RecuperarContra,
-    Seguits
+    Seguits,
+    Seguidors,
+    Bloquejats
   ],
   providers: [
     StatusBar,

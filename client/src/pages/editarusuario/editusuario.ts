@@ -38,13 +38,13 @@ export class EditUsuario {
   music: any;
   nom: string;
   rol: any;
-  professorToggle: boolean = false;
-  personaToggle: boolean = false;
-  ballariToggle: boolean = false;
-  musicToggle: boolean = false;
+  professorToggle: boolean;
+  personaToggle: boolean;
+  ballariToggle: boolean;
+  musicToggle: boolean;
   escola: any;
-  escolaToggle: boolean = false;
-  marcaToggle: boolean = false;
+  escolaToggle: boolean;
+  marcaToggle: boolean;
   marca: any;
   descripcio: string;
   descripcioM: string;
@@ -54,7 +54,7 @@ export class EditUsuario {
   selectedIdioma: any;
   selectedPais: string;
   selectedRol: any;
-  vacuna: number;
+  vacuna: any;
   iniciProfessorat: any;
   genero: string;
   paises = [];
@@ -78,7 +78,7 @@ export class EditUsuario {
     this.email = this.usuari.email;
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     let paises = [] as any;
     this.http.get("../../assets/json/paises.json").subscribe(
       (response: any) => {
@@ -177,87 +177,75 @@ export class EditUsuario {
   }
 
   modificarUsuari(
-    nicknameR,
-    dataNaixementR,
-    professorToggleR,
-    ballariToggleR,
-    musicToggleR,
-    selectedGenereR,
-    descripcioR,
-    instrumentR,
-    nomR,
-    anyEmpezarBailarR,
-    iniciProfessoratR,
-    selectedIdiomaR,
-    selectedPaisR,
-    emailR
+    nicknameModificar,
+    emailModificar,
+    dataNaixementModificar,
+    descripcioModificar,
+    idiomaModificar,
+    genereModificar,
+    paisModificar,
+    vacunaCovidModificar,
+    ballariToggleModificar,
+    musicToggleModificar,
+    professorToggleModificar,
+    rolModificar,
+    instrumentModificar,
+    dataNaixementBallariModificar,
+    iniciProfessoratModificar,
+    nomEntitatModificar
   ) {
-    
-    if (nicknameR == "") {
-      nicknameR = this.nickname;
-    }
-    if (descripcioR == "") {
-      descripcioR = this.descripcio;
-    }
-    if (dataNaixementR == ""){
-      dataNaixementR = this.dataNaixement;
-    }
+   
 
-    if (instrumentR == ""){
-      instrumentR = this.instrument;
-    }
-
-    if (dataNaixementR == ""){
-      dataNaixementR = this.dataNaixement;
-    }
-
-    if (dataNaixementR == ""){
-      dataNaixementR = this.dataNaixement;
-    }
-
-    if (dataNaixementR == ""){
-      dataNaixementR = this.dataNaixement;
-    }
-
-    if (professorToggleR) {
+    if (professorToggleModificar) {
       this.professor = 1;
     } else {
       this.professor = 0;
     }
-    if (musicToggleR) {
+    if (musicToggleModificar) {
       this.music = 1;
     } else {
       this.music = 0;
     }
-    if (ballariToggleR) {
+    if (ballariToggleModificar) {
       this.ballari = 1;
     } else {
       this.ballari = 0;
     }
 
-    this.firebaseAuth.auth.currentUser.updateEmail(emailR);
+    if (vacunaCovidModificar) {
+      this.vacuna = 1;
+    } else {
+      this.vacuna = 0;
+    }
 
+  
+      this.firebaseAuth.auth.currentUser.updateEmail(emailModificar);
+    
     if (this.personaid != null) {
       const formDataModificarPersona = new FormData();
-      formDataModificarPersona.append("rol", this.rol);
+      formDataModificarPersona.append("rol", rolModificar);
       formDataModificarPersona.append("ballari", this.ballari);
       formDataModificarPersona.append("music", this.music);
       formDataModificarPersona.append("professor", this.professor);
-      formDataModificarPersona.append("instrument", instrumentR);
+      formDataModificarPersona.append("instrument", instrumentModificar);
       formDataModificarPersona.append(
         "dataNaixementBallari",
-        anyEmpezarBailarR
+        dataNaixementBallariModificar
       );
-      formDataModificarPersona.append("iniciProfessorat", iniciProfessoratR);
+      formDataModificarPersona.append(
+        "iniciProfessorat",
+        iniciProfessoratModificar
+      );
 
       const formDataModificarUsuari = new FormData();
-      formDataModificarUsuari.append("nickname", nicknameR);
-      formDataModificarUsuari.append("email", emailR);
-      formDataModificarUsuari.append("idioma", selectedIdiomaR);
-      formDataModificarUsuari.append("dataNaixement", dataNaixementR);
-      formDataModificarUsuari.append("genere", selectedGenereR);
-      formDataModificarUsuari.append("pais", selectedPaisR);
-      formDataModificarUsuari.append("descripcio", descripcioR);
+      formDataModificarUsuari.append("nickname", nicknameModificar);
+      formDataModificarUsuari.append("email", emailModificar);
+      formDataModificarUsuari.append("idioma", idiomaModificar);
+      formDataModificarUsuari.append("dataNaixement", dataNaixementModificar);
+      formDataModificarUsuari.append("genere", genereModificar);
+      formDataModificarUsuari.append("pais", paisModificar);
+      formDataModificarUsuari.append("descripcio", descripcioModificar);
+      formDataModificarUsuari.append("vacunaCovid", this.vacuna);
 
       this.dades
         .modificarPersona(this.persona.id, formDataModificarPersona)
@@ -265,54 +253,43 @@ export class EditUsuario {
           this.dades
             .modificarUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariMpersona) => {
-              this.storage.set("email", emailR);
+              this.storage.set("email", emailModificar);
               this.navCtrl.push(Perfil);
             });
         });
     } else if (this.entitatid != null) {
+
+     
       const formDataModificarEntitat = new FormData();
       formDataModificarEntitat.append("escola", this.entitatU.escola);
       formDataModificarEntitat.append("marca", this.entitatU.marca);
-      formDataModificarEntitat.append("nom", nomR);
+      formDataModificarEntitat.append("nom", nomEntitatModificar);
+
+
+     
+       
+     
 
       const formDataModificarUsuari = new FormData();
-      formDataModificarUsuari.append("nickname", nicknameR);
-      formDataModificarUsuari.append("email", emailR);
-      formDataModificarUsuari.append("idioma", selectedIdiomaR);
-      formDataModificarUsuari.append("dataNaixement", dataNaixementR);
-      formDataModificarUsuari.append("genere", selectedGenereR);
-      formDataModificarUsuari.append("pais", selectedPaisR);
-      formDataModificarUsuari.append("descripcio", descripcioR);
+      formDataModificarUsuari.append("nickname", nicknameModificar);
+      formDataModificarUsuari.append("email", emailModificar);
+      formDataModificarUsuari.append("idioma", idiomaModificar);
+      formDataModificarUsuari.append("dataNaixement", dataNaixementModificar);
+      formDataModificarUsuari.append("genere", genereModificar);
+      formDataModificarUsuari.append("pais", paisModificar);
+      formDataModificarUsuari.append("descripcio", descripcioModificar);
+      formDataModificarUsuari.append("vacunaCovid", this.vacuna);
 
       this.dades
         .modificarEntitat(this.entitatU.id, formDataModificarEntitat)
         .subscribe((entitatCreada) => {
-          // this.d = entitatCreada.json();
-          // alert(this.d.nom);
           this.dades
             .modificarUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariModifica) => {
-              this.storage.set("email", emailR);
+              this.storage.set("email", emailModificar);
               this.navCtrl.push(Perfil);
             });
         });
-
-      // this.dades.modificarUsuari()
-    }
-  }
-  verficacioEntitat(e) {
-    if (e == "escola") {
-      if (this.escolaToggle) {
-        this.marcaToggle = false;
-      } else {
-        this.marcaToggle = true;
-      }
-    } else {
-      if (this.marcaToggle) {
-        this.escolaToggle = false;
-      } else {
-        this.escolaToggle = true;
-      }
     }
   }
 }

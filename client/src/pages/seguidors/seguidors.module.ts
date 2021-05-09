@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { Bloquejats } from './bloquejats';
+import { Seguidors } from './seguidors';
 
 @NgModule({
   declarations: [
-    Bloquejats,
+    Seguidors,
   ],
   imports: [
-    IonicPageModule.forChild(Bloquejats),
+    IonicPageModule.forChild(Seguidors),
   ],
   exports: [
-    Bloquejats
+    Seguidors
   ]
 })
-export class BloquejatsModule {}
+export class SeguidorsPage {}

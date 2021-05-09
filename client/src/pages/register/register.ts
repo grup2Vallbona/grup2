@@ -1,8 +1,16 @@
 import { Component } from "@angular/core";
-import { AlertController, IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  AlertController,
+  IonicPage,
+  NavController,
+  NavParams,
+} from "ionic-angular";
 import { HomePage } from "../home/home";
 import { AngularFireAuth } from "angularfire2/auth";
-import {AngularFireDatabase, FirebaseListObservable,} from "angularfire2/database";
+import {
+  AngularFireDatabase,
+  FirebaseListObservable,
+} from "angularfire2/database";
 import * as firebase from "firebase/app";
 
 import { Observable } from "rxjs/Observable";
@@ -55,9 +63,9 @@ export class Register {
   vacunaToggle: boolean = false;
   vacuna: any;
   personaToggle: boolean = true;
-  entitatToggle: boolean= false ;
-  escolaToggle: boolean = true ;
-  marcaToggle: boolean = false ;
+  entitatToggle: boolean = false;
+  escolaToggle: boolean = true;
+  marcaToggle: boolean = false;
   escola: any;
   marca: any;
   instrumento: any;
@@ -73,7 +81,7 @@ export class Register {
   anyEmpezarBailar: any;
   nombre: any;
   alertController: any;
-  ultimaId: any;
+  entitatIdUltima: any;
   entitatUsuari: Entitat;
   required: boolean = true;
   locationWatchStarted: boolean;
@@ -87,44 +95,40 @@ export class Register {
     public db: AngularFireDatabase,
     private http: Http,
     private dades: DadesProductesService,
-    public alertCtrl: AlertController,
-    
-
+    public alertCtrl: AlertController
   ) {
     this.user = firebaseAuth.authState;
-    
-  
   }
 
-// signUp(    
-//   email,
-//   password,
-//   nickname,
-//   genero,
-//   idioma,
-//   pais,
-//   rol,
-//   descripcion,
-//   vacunaToggle,
-//   instrumento,
-//   dataNaixement,
-//   professorToggle,
-//   musicToggle,
-//   ballariToggle,
-//   iniciImparticions,
-//   imatge,
-//   anyEmpezarBailar,
-//   escolaToggle,
-//   marcaToggle,
-//   nombre,
-//   personaToggle
-//   ){
-//      console.log(this.usuarios.value.nickname);
-//   for (let index = 0; index < this.usuarios; index++) {
-//     console.log(this.usuarios[index].nickname);
-    
-//   }
-// }
+  // signUp(
+  //   email,
+  //   password,
+  //   nickname,
+  //   genero,
+  //   idioma,
+  //   pais,
+  //   rol,
+  //   descripcion,
+  //   vacunaToggle,
+  //   instrumento,
+  //   dataNaixement,
+  //   professorToggle,
+  //   musicToggle,
+  //   ballariToggle,
+  //   iniciImparticions,
+  //   imatge,
+  //   anyEmpezarBailar,
+  //   escolaToggle,
+  //   marcaToggle,
+  //   nombre,
+  //   personaToggle
+  //   ){
+  //      console.log(this.usuarios.value.nickname);
+  //   for (let index = 0; index < this.usuarios; index++) {
+  //     console.log(this.usuarios[index].nickname);
+
+  //   }
+  // }
   signupPersona(
     email,
     password,
@@ -165,8 +169,7 @@ export class Register {
     } else {
       this.vacuna = 0;
     }
-  
-  
+
     const formData = new FormData();
     formData.append("rol", rol);
     formData.append("ballari", this.ballari);
@@ -176,41 +179,32 @@ export class Register {
     formData.append("dataNaixementBallari", anyEmpezarBailar);
     formData.append("iniciProfessorat", iniciImparticions);
 
- 
     try {
       this.firebaseAuth.auth
         .createUserWithEmailAndPassword(email, password)
         .then((r) => this.itemObservable.push(formData))
         .then((r) =>
           this.dades.crearPersona(formData).subscribe((data) => {
-          
-          })
-        )
-        .then((r) => {
-          this.dades.getPersonaUltima().subscribe((personaUltimaJson) => {
-            this.personUltima = personaUltimaJson.json();
-      
-
-            const formDataUsuari = new FormData();
-            formDataUsuari.append("persona_id", this.personUltima.id);
-            formDataUsuari.append("genere", genero);
-            formDataUsuari.append("email", email);
-            formDataUsuari.append("contrasenya", password);
-            formDataUsuari.append("pais", pais);
-            formDataUsuari.append("dataNaixement", dataNaixement);
-            formDataUsuari.append("nickname", nickname);
-            formDataUsuari.append("idioma", idioma);
-            formDataUsuari.append("descripcio", descripcion);
-            formDataUsuari.append("vacunaCovid", this.vacuna);
-            formDataUsuari.append("imagen", imatge);
-            this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
-              console.log(data);
+            this.dades.getPersonaUltima().subscribe((personaUltimaJson) => {
+              this.personUltima = personaUltimaJson.json();
+              const formDataUsuari = new FormData();
+              formDataUsuari.append("persona_id", this.personUltima.id);
+              formDataUsuari.append("genere", genero);
+              formDataUsuari.append("email", email);
+              formDataUsuari.append("contrasenya", password);
+              formDataUsuari.append("pais", pais);
+              formDataUsuari.append("dataNaixement", dataNaixement);
+              formDataUsuari.append("nickname", nickname);
+              formDataUsuari.append("idioma", idioma);
+              formDataUsuari.append("descripcio", descripcion);
+              formDataUsuari.append("vacunaCovid", this.vacuna);
+              formDataUsuari.append("imagen", imatge);
+              this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+                this.navCtrl.push(HomePage);
+              });
             });
-          });
-        })
-        .then((r) => {
-          this.navCtrl.push(HomePage);
-        });
+          })
+        );
     } catch (e) {
       console.log(e);
       this.registreIncorrecte();
@@ -218,7 +212,6 @@ export class Register {
       //   this.registreIncorrecte();
       // }
     }
-   
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({
@@ -271,34 +264,30 @@ export class Register {
         .then((r) => this.itemObservable.push(formDataEntidad))
         .then((r) =>
           this.dades.crearEntitat(formDataEntidad).subscribe((dataEntitat) => {
-            // console.log(dataEntitat);
+            this.dades.getEntitatUltima().subscribe((entitatUltimaJson) => {
+              this.entitatUsuari = entitatUltimaJson.json();
+              this.entitatIdUltima = this.entitatUsuari.id;
+              const formDataEntitatUsuari = new FormData();
+              formDataEntitatUsuari.append("entitat_id", this.entitatIdUltima);
+              formDataEntitatUsuari.append("email", email);
+              formDataEntitatUsuari.append("contrasenya", password);
+              formDataEntitatUsuari.append("genere", genero);
+              formDataEntitatUsuari.append("pais", pais);
+              formDataEntitatUsuari.append("dataNaixement", dataNaixement);
+              formDataEntitatUsuari.append("nickname", nickname);
+              formDataEntitatUsuari.append("idioma", idioma);
+              formDataEntitatUsuari.append("descripcio", descripcion);
+              formDataEntitatUsuari.append("vacunaCovid", this.vacuna);
+              formDataEntitatUsuari.append("imagen", imatge);
+  
+              this.dades
+                .crearUsuari(formDataEntitatUsuari).subscribe((dataUsuariEntitat) => {
+                  this.navCtrl.push(HomePage);
+                });
+            });
           })
         )
-        .then((r) => {
-          this.dades.getEntitatUltima().subscribe((entitatUltimaJson) => {
-            this.entitatUsuari = entitatUltimaJson.json();
-            this.ultimaId = this.entitatUsuari.id;
-            const formDataEntitatUsuari = new FormData();
-            formDataEntitatUsuari.append("entitat_id", this.ultimaId);
-            formDataEntitatUsuari.append("email", email);
-            formDataEntitatUsuari.append("contrasenya", password);
-            formDataEntitatUsuari.append("genere", genero);
-            formDataEntitatUsuari.append("pais", pais);
-            formDataEntitatUsuari.append("dataNaixement", dataNaixement);
-            formDataEntitatUsuari.append("nickname", nickname);
-            formDataEntitatUsuari.append("idioma", idioma);
-            formDataEntitatUsuari.append("descripcio", descripcion);
-            formDataEntitatUsuari.append("vacunaCovid", this.vacuna);
-            formDataEntitatUsuari.append("imagen", imatge);
-
-            this.dades
-              .crearUsuari(formDataEntitatUsuari)
-              .subscribe((dataUsuariEntitat) => {});
-          });
-        })
-        .then((r) => {
-          this.navCtrl.push(HomePage);
-        });
+      
     } catch (e) {
       console.log(e);
       this.registreIncorrecte();

@@ -8,6 +8,8 @@ import { Entitat } from "../../app/interfaces/ientitat";
 import { Storage } from "@ionic/storage";
 import { Http } from "@angular/http";
 import { Seguits } from "../seguits/seguits";
+import { Seguidors } from "../seguidors/seguidors";
+import { Bloquejats } from "../bloquejats/bloquejats";
 
 
 /**
@@ -60,7 +62,13 @@ export class Perfil {
   goToSeguits(){
     this.navCtrl.push(Seguits);
   }
-  ionViewDidLoad() {
+  goToSeguidors(){
+    this.navCtrl.push(Seguidors);
+  }
+  goToBloquejats(){
+    this.navCtrl.push(Bloquejats);
+  }
+  ionViewWillEnter() {
  
 
     let paises = [] as any;

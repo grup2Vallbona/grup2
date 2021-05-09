@@ -30,8 +30,23 @@
 
   </ion-card>
   <ion-item>
-   <button (click)="goToSeguits()">Seguidors</button>
+    <div >
+      <button  (click)="goToSeguits()">Seguidos</button>
+      <button  (click)="goToSeguidors()">Seguidores</button>
+    
+    </div>
+
+    
   </ion-item>
+  <ion-item>
+    <div >
+
+      <button  (click)="goToBloquejats()">Bloqueados</button>
+    </div>
+
+    
+  </ion-item>
+
   <ion-item>
     <ion-card-content item-left>
       <h2>Idioma</h2>
@@ -58,7 +73,7 @@
     </ion-card-content>
   </ion-item>
 
-  
+
 
 
   <ion-item>
@@ -123,9 +138,9 @@
       <p>{{tipoUsuari}}</p>
     </ion-card-content>
   </ion-item>
-  
+
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico'">
-    <ion-item >
+    <ion-item>
       <ion-card-content item-left>
         <h2>Instrumento</h2>
       </ion-card-content>
@@ -153,11 +168,11 @@
         <p>{{iniciProfessorat}}</p>
       </ion-card-content>
     </ion-item>
-    
+
   </ion-list>
 
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín, Profesor'">
-    <ion-item >
+    <ion-item>
       <ion-card-content item-left>
         <h2>Instrumento</h2>
       </ion-card-content>
@@ -181,12 +196,12 @@
         <p>{{iniciProfessorat}}</p>
       </ion-card-content>
     </ion-item>
-    
+
   </ion-list>
 
- 
+
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Bailarín'">
-    <ion-item >
+    <ion-item>
       <ion-card-content item-left>
         <h2>Instrumento</h2>
       </ion-card-content>
@@ -201,12 +216,12 @@
       <ion-card-content item-right>
         <p>{{anyEmpezarBailar}}</p>
       </ion-card-content>
-    </ion-item>  
-    
+    </ion-item>
+
   </ion-list>
 
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Músico, Profesor'">
-    <ion-item >
+    <ion-item>
       <ion-card-content item-left>
         <h2>Instrumento</h2>
       </ion-card-content>
@@ -222,12 +237,12 @@
         <p>{{iniciProfessorat}}</p>
       </ion-card-content>
     </ion-item>
-    
-    
+
+
   </ion-list>
-  
+
   <ion-list *ngIf="personaid != null && tipoUsuari == 'Bailarín, Profesor'">
-    <ion-item >
+    <ion-item>
       <ion-card-content item-left>
         <h2>Año inicio baile</h2>
       </ion-card-content>
@@ -243,11 +258,11 @@
         <p>{{iniciProfessorat}}</p>
       </ion-card-content>
     </ion-item>
-    
-    
+
+
   </ion-list>
 
-  
+
 
 
   <ion-item *ngIf="entitatid != null && escola == 1">
