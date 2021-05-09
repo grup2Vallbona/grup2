@@ -59,6 +59,7 @@ Route::post('assistent', [AssistentController::class, "assistent"]);
 
 // ----------------- BLOQUEJAT -----------------
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
+Route::get('bloquejat/{id}', [BloquejatController::class, "getBloquejatsId"]);
 Route::post('bloquejar', [BloquejatController::class, "bloquejar"]);
 
 // ----------------- CRITICA -----------------
@@ -124,8 +125,10 @@ Route::get('premis/ultim', [PremiController::class, "getPremiUltim"]);
 
 // ----------------- SEGUIT -----------------
 Route::get('seguits', [SeguitController::class, "getSeguits"]);
+Route::get('seguidor/{id}', [SeguitController::class, "getSeguidoresId"]);
 Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
+
 
 // ----------------- TIPUS BALL -----------------
 Route::get('tipusballs', [TipusBallController::class, "getTipusBalls"]);
@@ -136,7 +139,7 @@ Route::delete('tipusball/{id}', [TipusBallController::class, "eliminarTipusBall"
 
 // ----------------- USUARIS -----------------
 Route::get('usuaris', [UsuariController::class, "getUsuaris"]);
-// Route::get('usuari/{id}', [UsuariController::class, "getUsuari"]);
+Route::get('usuariId/{id}', [UsuariController::class, "getUsuari"]);
 Route::get('usuari/{correo}', [UsuariController::class, "getUsuariCorreo"]);
 Route::post('usuari/{id}', [UsuariController::class, "updateUsuari"]);
 Route::post('usuari', [UsuariController::class, "crearUsuari"]);

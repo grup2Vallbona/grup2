@@ -27,7 +27,8 @@ class UsuariController extends BaseController
     {
         return Usuari::all();
     }
-    function getUsuari(Request $request, $id)
+    
+    function getUsuari($id)
     {
         $usuari = Usuari::all();
         $usuari = $usuari->firstWhere('id', $id);
