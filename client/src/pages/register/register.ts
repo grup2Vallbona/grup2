@@ -1,28 +1,29 @@
 import { Component } from "@angular/core";
 import {
   AlertController,
-  Checkbox,
-  Form,
   IonicPage,
   NavController,
   NavParams,
 } from "ionic-angular";
 import { HomePage } from "../home/home";
-// import { Principal } from "../principal/principal";
-// import { HttpClient } from "@angular/common/http";
 import { AngularFireAuth } from "angularfire2/auth";
-import {AngularFireDatabase, FirebaseListObservable,} from "angularfire2/database";
+import {
+  AngularFireDatabase,
+  FirebaseListObservable,
+} from "angularfire2/database";
 import * as firebase from "firebase/app";
 
 import { Observable } from "rxjs/Observable";
 import { ToastController } from "ionic-angular";
 
 import { Camera } from "ionic-native";
-import { Http, Headers, RequestOptions } from "@angular/http";
+import { Http } from "@angular/http";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Entitat } from "../../app/interfaces/ientitat";
-import { FormControl, FormGroup, Validators, FormBuilder } from "@angular/forms";
+// import { FormGroup } from "@angular/forms";
+
+//import { FormControl, Validators} from "@angular/forms";
 /**
  * Generated class for the Register page.
  *
@@ -39,7 +40,7 @@ export class Register {
   //   nickname: new FormControl('', [Validators.requiredTrue]),
 
   // });
-   usuarios: FormGroup;
+  //  usuarios: FormGroup;
   miModelo: any;
   //  paises: Pais[];
   personaJ: string;
@@ -61,10 +62,10 @@ export class Register {
   descripcion: string;
   vacunaToggle: boolean = false;
   vacuna: any;
-  personaToggle: boolean;
-  entitatToggle: boolean ;
-  escolaToggle: boolean ;
-  marcaToggle: boolean ;
+  personaToggle: boolean = true;
+  entitatToggle: boolean = false;
+  escolaToggle: boolean = true;
+  marcaToggle: boolean = false;
   escola: any;
   marca: any;
   instrumento: any;
@@ -80,9 +81,12 @@ export class Register {
   anyEmpezarBailar: any;
   nombre: any;
   alertController: any;
-  ultimaId: any;
+  entitatIdUltima: any;
   entitatUsuari: Entitat;
   required: boolean = true;
+  locationWatchStarted: boolean;
+  locationSubscription: any;
+  locationTrace = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -91,65 +95,40 @@ export class Register {
     public db: AngularFireDatabase,
     private http: Http,
     private dades: DadesProductesService,
-    public alertCtrl: AlertController,
-    private fb: FormBuilder
+    public alertCtrl: AlertController
   ) {
     this.user = firebaseAuth.authState;
-    
-    this.usuarios = this.fb.group({
-    nickname: ['', []],
-    personaToggle: [true, []],
-    entitatToggle: [false, []],
-    escolaToggle: ['', []],
-    marcaToggle: ['', []],
-    nombre: ['', []],
-    genero: ['', []],
-    dataNaixement: ['', []],
-    email: ['', []],
-    password: ['', []],
-    idioma: ['', []],
-    pais: ['', []],
-    rol: ['', []],
-    ballariToggle: [true, []],
-    professorToggle: [false, []],
-    musicToggle: [false, []],
-    descripcion: ['', []],
-    instrumento: ['', []],
-    anyEmpezarBailar: ['', []],
-    iniciImparticions: ['', []],
-    vacunaToggle: [, []],
-  });
-  
   }
-signUp(    
-  email,
-  password,
-  nickname,
-  genero,
-  idioma,
-  pais,
-  rol,
-  descripcion,
-  vacunaToggle,
-  instrumento,
-  dataNaixement,
-  professorToggle,
-  musicToggle,
-  ballariToggle,
-  iniciImparticions,
-  imatge,
-  anyEmpezarBailar,
-  escolaToggle,
-  marcaToggle,
-  nombre,
-  personaToggle
-  ){
-     console.log(this.usuarios.value.nickname);
-  // for (let index = 0; index < this.usuarios; index++) {
-  //   console.log(this.usuarios[index].nickname);
-    
+
+  // signUp(
+  //   email,
+  //   password,
+  //   nickname,
+  //   genero,
+  //   idioma,
+  //   pais,
+  //   rol,
+  //   descripcion,
+  //   vacunaToggle,
+  //   instrumento,
+  //   dataNaixement,
+  //   professorToggle,
+  //   musicToggle,
+  //   ballariToggle,
+  //   iniciImparticions,
+  //   imatge,
+  //   anyEmpezarBailar,
+  //   escolaToggle,
+  //   marcaToggle,
+  //   nombre,
+  //   personaToggle
+  //   ){
+  //      console.log(this.usuarios.value.nickname);
+  //   for (let index = 0; index < this.usuarios; index++) {
+  //     console.log(this.usuarios[index].nickname);
+
+  //   }
   // }
-}
   signupPersona(
     email,
     password,
@@ -190,22 +169,6 @@ signUp(
     } else {
       this.vacuna = 0;
     }
-    this.persona = {
-      rol: rol,
-      ballari: this.ballari,
-      music: this.music,
-      professor: this.profesor,
-      instrument: instrumento,
-      dataNaixementBallari: anyEmpezarBailar,
-      iniciProfessorat: iniciImparticions,
-      id: 0,
-    };
-
-  
-
-    if (iniciImparticions == undefined) {
-      iniciImparticions = "1800-01-01";
-    }
 
     const formData = new FormData();
     formData.append("rol", rol);
@@ -216,40 +179,32 @@ signUp(
     formData.append("dataNaixementBallari", anyEmpezarBailar);
     formData.append("iniciProfessorat", iniciImparticions);
 
-    //  console.log(user);
     try {
       this.firebaseAuth.auth
         .createUserWithEmailAndPassword(email, password)
         .then((r) => this.itemObservable.push(formData))
         .then((r) =>
           this.dades.crearPersona(formData).subscribe((data) => {
-            //console.log(data);
-          })
-        )
-        .then((r) => {
-          this.dades.getPersonaUltima().subscribe((personaUltimaJson) => {
-            this.personUltima = personaUltimaJson.json();
-
-            const formDataUsuari = new FormData();
-            formDataUsuari.append("persona_id", this.personUltima.id);
-            formDataUsuari.append("genere", genero);
-            formDataUsuari.append("email", email);
-            formDataUsuari.append("contrasenya", password);
-            formDataUsuari.append("pais", pais);
-            formDataUsuari.append("dataNaixement", dataNaixement);
-            formDataUsuari.append("nickname", nickname);
-            formDataUsuari.append("idioma", idioma);
-            formDataUsuari.append("descripcio", descripcion);
-            formDataUsuari.append("vacunaCovid", this.vacuna);
-            formDataUsuari.append("imagen", imatge);
-            this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
-              console.log(data);
+            this.dades.getPersonaUltima().subscribe((personaUltimaJson) => {
+              this.personUltima = personaUltimaJson.json();
+              const formDataUsuari = new FormData();
+              formDataUsuari.append("persona_id", this.personUltima.id);
+              formDataUsuari.append("genere", genero);
+              formDataUsuari.append("email", email);
+              formDataUsuari.append("contrasenya", password);
+              formDataUsuari.append("pais", pais);
+              formDataUsuari.append("dataNaixement", dataNaixement);
+              formDataUsuari.append("nickname", nickname);
+              formDataUsuari.append("idioma", idioma);
+              formDataUsuari.append("descripcio", descripcion);
+              formDataUsuari.append("vacunaCovid", this.vacuna);
+              formDataUsuari.append("imagen", imatge);
+              this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+                this.navCtrl.push(HomePage);
+              });
             });
-          });
-        })
-        .then((r) => {
-          this.navCtrl.push(HomePage);
-        });
+          })
+        );
     } catch (e) {
       console.log(e);
       this.registreIncorrecte();
@@ -257,28 +212,6 @@ signUp(
       //   this.registreIncorrecte();
       // }
     }
-    // try {
-    //   this.dades.getPersonaUltima().subscribe((personaUltima) => {
-    //     this.personUltima = personaUltima.json();
-    //     const formDataUsuari = new FormData();
-    //     formDataUsuari.append("persona_id", this.personUltima.id);
-    //     formDataUsuari.append("genere", genero);
-    //     formDataUsuari.append("email", email);
-    //     formDataUsuari.append("contrasenya", password);
-    //     formDataUsuari.append("pais", pais);
-    //     formDataUsuari.append("dataNaixement", dataNaixement);
-    //     formDataUsuari.append("nickname", nickname);
-    //     formDataUsuari.append("idioma", idioma);
-    //     formDataUsuari.append("descripcio", descripcion);
-    //     formDataUsuari.append("vacunaCovid", this.vacuna);
-    //     formDataUsuari.append("imagen", imatge);
-    //     this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
-    //       console.log(data);
-    //     });
-    //   });
-    // } catch (e) {
-    //   this.loginToast();
-    // }
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({
@@ -331,34 +264,30 @@ signUp(
         .then((r) => this.itemObservable.push(formDataEntidad))
         .then((r) =>
           this.dades.crearEntitat(formDataEntidad).subscribe((dataEntitat) => {
-            // console.log(dataEntitat);
+            this.dades.getEntitatUltima().subscribe((entitatUltimaJson) => {
+              this.entitatUsuari = entitatUltimaJson.json();
+              this.entitatIdUltima = this.entitatUsuari.id;
+              const formDataEntitatUsuari = new FormData();
+              formDataEntitatUsuari.append("entitat_id", this.entitatIdUltima);
+              formDataEntitatUsuari.append("email", email);
+              formDataEntitatUsuari.append("contrasenya", password);
+              formDataEntitatUsuari.append("genere", genero);
+              formDataEntitatUsuari.append("pais", pais);
+              formDataEntitatUsuari.append("dataNaixement", dataNaixement);
+              formDataEntitatUsuari.append("nickname", nickname);
+              formDataEntitatUsuari.append("idioma", idioma);
+              formDataEntitatUsuari.append("descripcio", descripcion);
+              formDataEntitatUsuari.append("vacunaCovid", this.vacuna);
+              formDataEntitatUsuari.append("imagen", imatge);
+  
+              this.dades
+                .crearUsuari(formDataEntitatUsuari).subscribe((dataUsuariEntitat) => {
+                  this.navCtrl.push(HomePage);
+                });
+            });
           })
         )
-        .then((r) => {
-          this.dades.getEntitatUltima().subscribe((entitatUltimaJson) => {
-            this.entitatUsuari = entitatUltimaJson.json();
-            this.ultimaId = this.entitatUsuari.id;
-            const formDataEntitatUsuari = new FormData();
-            formDataEntitatUsuari.append("entitat_id", this.ultimaId);
-            formDataEntitatUsuari.append("email", email);
-            formDataEntitatUsuari.append("contrasenya", password);
-            formDataEntitatUsuari.append("genere", genero);
-            formDataEntitatUsuari.append("pais", pais);
-            formDataEntitatUsuari.append("dataNaixement", dataNaixement);
-            formDataEntitatUsuari.append("nickname", nickname);
-            formDataEntitatUsuari.append("idioma", idioma);
-            formDataEntitatUsuari.append("descripcio", descripcion);
-            formDataEntitatUsuari.append("vacunaCovid", this.vacuna);
-            formDataEntitatUsuari.append("imagen", imatge);
-
-            this.dades
-              .crearUsuari(formDataEntitatUsuari)
-              .subscribe((dataUsuariEntitat) => {});
-          });
-        })
-        .then((r) => {
-          this.navCtrl.push(HomePage);
-        });
+      
     } catch (e) {
       console.log(e);
       this.registreIncorrecte();

@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 // import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation';
 import { AngularFireModule } from 'angularfire2';
 
 // New imports to update based on AngularFire2 version 4
@@ -20,10 +19,15 @@ import { Register } from '../pages/register/register';
 import { Principal } from '../pages/principal/principal';
 import { RecuperarContra } from '../pages/recuperar-contra/recuperar-contra';
 import { Eventos } from '../pages/eventos/eventos';
+import { Evento } from '../pages/evento/evento';
 import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
-
+<<<<<<< HEAD
+import {Seguits} from '../pages/seguits/seguits';
+=======
+import { VistaEvento } from '../pages/vista-evento/vista-evento';
+>>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
@@ -41,6 +45,8 @@ import { AuthProvider } from '../providers/auth/auth';
 
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { Seguidors } from '../pages/seguidors/seguidors';
+import { Bloquejats } from '../pages/bloquejats/bloquejats';
 
   // Initialize Firebase
   var config = {
@@ -72,6 +78,7 @@ import { FormsModule } from '@angular/forms';
     Register,
     Principal,
     Eventos,
+    Evento,
     Foro,
     Valoraciones,
     Novedades,
@@ -83,7 +90,14 @@ import { FormsModule } from '@angular/forms';
     Creargrupo,
     Crearevento,
     EditUsuario,
-    RecuperarContra
+    RecuperarContra,
+<<<<<<< HEAD
+    Seguits,
+    Seguidors,
+    Bloquejats
+=======
+    VistaEvento
+>>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
   ],
   imports: [
     BrowserModule,
@@ -93,8 +107,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    ReactiveFormsModule,
-    CustomFormsModule
+    ReactiveFormsModule
   
 
   ],
@@ -106,6 +119,7 @@ import { FormsModule } from '@angular/forms';
     Register,
     Principal,
     Eventos,
+   Evento,
     Foro,
     Valoraciones,
     Novedades,
@@ -117,7 +131,14 @@ import { FormsModule } from '@angular/forms';
     Creargrupo,
     Crearevento,
     EditUsuario,
-    RecuperarContra
+    RecuperarContra,
+<<<<<<< HEAD
+    Seguits,
+    Seguidors,
+    Bloquejats
+=======
+    VistaEvento
+>>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
   ],
   providers: [
     StatusBar,
@@ -125,7 +146,9 @@ import { FormsModule } from '@angular/forms';
     DadesProductesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
-    AlertController
+    AlertController,
+  
+  
   ]
 })
 export class AppModule {}

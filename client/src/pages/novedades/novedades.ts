@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { Movidas } from '../movidas/movidas';
-import { Perfil } from '../perfil/perfil';
+import { Movidas } from "../movidas/movidas";
+import { Perfil } from "../perfil/perfil";
 
 
 /**
@@ -13,24 +13,22 @@ import { Perfil } from '../perfil/perfil';
  */
 @IonicPage()
 @Component({
-  selector: 'page-novedades',
-  templateUrl: 'novedades.html',
+  selector: "page-novedades",
+  templateUrl: "novedades.html",
 })
 export class Novedades {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    
+  ) {}
 
   gotoMovidas() {
-     this.navCtrl.push(Movidas);
-
+    this.navCtrl.push(Movidas);
   }
-
+  
 
   gotoPerfil() {
-     this.navCtrl.push(Perfil);
-
+    this.navCtrl.push(Perfil);
   }
-
 }

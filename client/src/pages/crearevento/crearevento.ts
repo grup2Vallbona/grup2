@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { Principal } from '../principal/principal';
 import { Novedades } from '../novedades/novedades';
+import { Eventos } from '../eventos/eventos';
 
 /**
  * Generated class for the Crearevento page.
@@ -115,7 +116,8 @@ export class Crearevento {
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        this.persona_id = this.usuari.persona_id;
+        this.persona_id = this.usuari.id;
+        alert(this.persona_id)
       });
     });
   }

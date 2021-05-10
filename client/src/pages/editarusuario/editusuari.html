@@ -35,6 +35,10 @@
       <ion-label>Fecha</ion-label>
       <ion-datetime [(ngModel)]="dataNaixement" name="data"></ion-datetime>
     </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Género</ion-label>
@@ -55,7 +59,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Descripción</ion-label>
-      <ion-input type="text" [(ngModel)]="descripcio" name="descripcio"></ion-input>
+      <ion-input type="text" [(ngModel)]="descripcio" required name="descripcio"></ion-input>
 
     </ion-item>
 
@@ -114,13 +118,15 @@
     </ion-item>
     <ion-item>
       <ion-label>Vacunado de covid-19</ion-label>
-      <ion-checkbox type="estaVacunado"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="vacuna" name="vacuna" type="estaVacunado"></ion-checkbox>
 
     </ion-item>
     <div class="btn">
       <div class="btn">
+    
         <button class="btn"
-          (click)="modificarUsuari(nickname, dataNaixement, musicToggle, professorToggle, ballariToggle, selectedGenere, descripcio, instrument, nom, anyEmpezarBailar, iniciProfessorat, selectedIdioma, selectedPais)"
+
+          (click)="modificarUsuari(nickname, email, dataNaixement, descripcio, selectedIdioma, selectedGenere, selectedPais, vacuna, ballariToggle, musicToggle, professorToggle, selectedRol, instrument, anyEmpezarBailar, iniciProfessorat, nom)"
           block ion-button type="submit" [disabled]="!f.valid">Modificar</button>
       </div>
     </div>

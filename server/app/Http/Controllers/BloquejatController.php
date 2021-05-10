@@ -81,4 +81,11 @@ class BloquejatController extends BaseController
         
         return $block;
     }
+
+    function getBloquejatsId($id){
+        $bloquejat = Bloquejat::all();
+        $bloquejat = $bloquejat->where('bloquejador_id', $id);
+        return $bloquejat;
+
+    }
 }
