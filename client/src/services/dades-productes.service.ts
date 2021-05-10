@@ -91,4 +91,10 @@ export class DadesProductesService {
   public getBloquejats(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/bloquejat/" + id);
   }
+  public getAssistents(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/assistents')
+  }
+  public getAssistentsId(id: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/assistentsId/' + id)
+  }
 }

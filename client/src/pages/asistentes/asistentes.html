@@ -14,14 +14,16 @@
 
 
 <ion-content padding class="bodyTabs">
-<ion-card (click)="gotoUsuario()">
-      <ion-item>
-        <ion-avatar item-left>
-          <img src="./assets/images/fotoadri.jpg">
-        </ion-avatar>
-        <h3>Adri Canas</h3>
-        <p>Dancer</p>
-      </ion-item>
-</ion-card>
+  <ion-card *ngFor="let assistent of assistentsArray">
+    <ion-item (click)="gotoUsuario(assistent['email'])">
+      <ion-avatar item-left>
+        <img src="./assets/images/fotoadri.jpg">
+      </ion-avatar>
+
+      <ion-label>{{assistent['nickname']}}</ion-label>
+
+
+    </ion-item>
+  </ion-card>
 
 </ion-content>

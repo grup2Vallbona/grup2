@@ -10,7 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { Assistentsperfil } from '../pages/assistentsperfil/assistentsperfil';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -23,11 +23,8 @@ import { Evento } from '../pages/evento/evento';
 import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
-<<<<<<< HEAD
 import {Seguits} from '../pages/seguits/seguits';
-=======
 import { VistaEvento } from '../pages/vista-evento/vista-evento';
->>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
@@ -91,13 +88,11 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Crearevento,
     EditUsuario,
     RecuperarContra,
-<<<<<<< HEAD
     Seguits,
     Seguidors,
-    Bloquejats
-=======
+    Bloquejats,
+    Assistentsperfil,
     VistaEvento
->>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
   ],
   imports: [
     BrowserModule,
@@ -132,13 +127,11 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Crearevento,
     EditUsuario,
     RecuperarContra,
-<<<<<<< HEAD
     Seguits,
     Seguidors,
-    Bloquejats
-=======
-    VistaEvento
->>>>>>> 47625e11d40b5e3de3d0d3aa925fe0d538462cda
+    Bloquejats,
+    Assistentsperfil,
+   VistaEvento
   ],
   providers: [
     StatusBar,
