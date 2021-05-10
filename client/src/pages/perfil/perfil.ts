@@ -28,7 +28,7 @@ export class Perfil {
   usuari: Usuari;
   rolUsuari: string = "";
   tipoUsuari: string = "";
-
+  hideBackButton: boolean = false;
   instrument: string = "";
   nomUsuari: string = "";
   email: string = "";
@@ -113,7 +113,15 @@ export class Perfil {
               this.persona = jPersona.json();
 
             
-              this.rolUsuari = this.persona.rol;
+              if (this.persona.rol == 1) {
+                this.rolUsuari = "Follower";
+              } else if (this.persona.rol == 2) {
+                this.rolUsuari = "Leader";
+              } else if (this.persona.rol == 3) {
+                this.rolUsuari = "Follower/Leader";
+              } else {
+                this.rolUsuari = "Leader/Follower";
+              }
               if (
                 this.persona.music == 1 &&
                 this.persona.ballari == 0 &&

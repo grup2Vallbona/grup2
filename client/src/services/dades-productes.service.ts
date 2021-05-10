@@ -14,7 +14,11 @@ export class DadesProductesService {
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   baseUrl: string =
+<<<<<<< HEAD
     "http://localhost/WeSwing/grup2/server/public/index.php";
+=======
+    "http://localhost/M14/Projecte_Final/grup2/server/public/index.php";
+>>>>>>> a645915059dbd920de343444eede799754962d49
   constructor(private http: Http) {}
 
   public getUsuari(id: number): Observable<any> {
@@ -93,5 +97,11 @@ export class DadesProductesService {
   }
   public getBloquejats(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/bloquejat/" + id);
+  }
+  public getAssistents(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/assistents')
+  }
+  public getAssistentsId(id: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
 }

@@ -94,4 +94,13 @@ class AssistentController extends BaseController
         
         return $assist;
     }
+
+    function getAssistentsId($id)
+    {
+        $assistents = Assistent::all();
+        $assistents = $assistents->where('event_id', $id);
+        return $assistents;
+        
+    }
+
 }

@@ -10,7 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { Assistentsperfil } from '../pages/assistentsperfil/assistentsperfil';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,6 +28,7 @@ import {Seguits} from '../pages/seguits/seguits';
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
+import { Asistente } from '../pages/asistente/asistente';
 import { Escuela } from '../pages/escuela/escuela';
 import { EditUsuario } from '../pages/editarusuario/editusuario';
 import { Grupo } from '../pages/grupo/grupo';
@@ -82,6 +83,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Movidas,
     Perfil,
     Asistentes,
+    Asistente,
     Escuela,
     Grupo,
     Creargrupo,
@@ -91,6 +93,10 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
+<<<<<<< HEAD
+=======
+    Assistentsperfil,
+>>>>>>> a645915059dbd920de343444eede799754962d49
     VistaEvento
   ],
   imports: [
@@ -120,6 +126,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Movidas,
     Perfil,
     Asistentes,
+    Asistente,
     Escuela,
     Grupo,
     Creargrupo,
@@ -129,7 +136,12 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
+<<<<<<< HEAD
     VistaEvento
+=======
+    VistaEvento,
+    Assistentsperfil,
+>>>>>>> a645915059dbd920de343444eede799754962d49
   ],
   providers: [
     StatusBar,

@@ -23,6 +23,9 @@ export class VistaEvento {
     this.evento = navParams.get("evento");
     
   }
+  vistaAssistentes(){
+    this.navCtrl.push(VistaEvento,{evento:this.evento});
+  }
   editEvento(){
     
     if(this.evento.usuari_id==this.persona_id){
