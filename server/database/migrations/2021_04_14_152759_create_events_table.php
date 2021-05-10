@@ -23,8 +23,8 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('premi_id');
             $table->foreign('premi_id')->references('id')->on('premis');
             $table->integer('pais');
-            $table->integer('provincia');
-            $table->integer('municipi');
+            $table->string('provincia',100);
+            $table->string('municipi',100);
             $table->integer('participacioTipus');
             $table->string('titol', 100);
             $table->string('subtitol', 100);
