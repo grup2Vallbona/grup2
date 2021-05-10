@@ -170,6 +170,10 @@ export class Register {
       this.vacuna = 0;
     }
 
+    if(iniciImparticions == ''){
+      iniciImparticions = '1800-01-01';
+    }
+
     const formData = new FormData();
     formData.append("rol", rol);
     formData.append("ballari", this.ballari);
@@ -206,7 +210,7 @@ export class Register {
           })
         );
     } catch (e) {
-      console.log(e);
+     alert(e);
       this.registreIncorrecte();
       // if (e["code"] == "auth/email-already-exists") {
       //   this.registreIncorrecte();

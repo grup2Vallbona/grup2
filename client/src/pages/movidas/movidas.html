@@ -26,12 +26,12 @@
 
 <ion-card>
       <ion-item>
-        <ion-card-content item-left class="asistire">
-          <p>Si asistiré</p>
-        </ion-card-content>
-        <ion-card-content item-right>
+        
+         <ion-label>Assistiré</ion-label>
+       
+        
           <ion-toggle></ion-toggle>
-        </ion-card-content>
+     
       </ion-item>
 </ion-card>
 <ion-card (click)="gotoEscuela()">
@@ -70,7 +70,7 @@
           <p>Asistentes</p>
         </ion-card-content>
         <ion-card-content item-right>
-          <p>1</p>
+          <p>{{comp}}</p>
         </ion-card-content>
       </ion-item>
 </ion-card>
