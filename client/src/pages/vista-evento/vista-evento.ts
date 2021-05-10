@@ -42,6 +42,8 @@ export class VistaEvento {
         this.nickname = this.usuari.nickname
         this.editEvento();
         console.log(this.usuari);
+
+        
       });
     });
     

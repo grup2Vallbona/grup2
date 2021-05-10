@@ -148,6 +148,8 @@ export class Register {
     imatge,
     anyEmpezarBailar
   ) {
+
+
     if (professorToggle) {
       this.profesor = 1;
     } else {
@@ -170,8 +172,8 @@ export class Register {
       this.vacuna = 0;
     }
 
-    if(iniciImparticions == ''){
-      iniciImparticions = '1800-01-01';
+    if (iniciImparticions == undefined) {
+      iniciImparticions = "1800-01-01";
     }
 
     const formData = new FormData();
@@ -210,7 +212,7 @@ export class Register {
           })
         );
     } catch (e) {
-     alert(e);
+      alert(e);
       this.registreIncorrecte();
       // if (e["code"] == "auth/email-already-exists") {
       //   this.registreIncorrecte();
@@ -283,15 +285,15 @@ export class Register {
               formDataEntitatUsuari.append("descripcio", descripcion);
               formDataEntitatUsuari.append("vacunaCovid", this.vacuna);
               formDataEntitatUsuari.append("imagen", imatge);
-  
+
               this.dades
-                .crearUsuari(formDataEntitatUsuari).subscribe((dataUsuariEntitat) => {
+                .crearUsuari(formDataEntitatUsuari)
+                .subscribe((dataUsuariEntitat) => {
                   this.navCtrl.push(HomePage);
                 });
             });
           })
-        )
-      
+        );
     } catch (e) {
       console.log(e);
       this.registreIncorrecte();

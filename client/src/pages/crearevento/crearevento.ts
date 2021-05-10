@@ -61,7 +61,7 @@ export class Crearevento {
       this.dades.getPremiUltim().subscribe((premiUltimJ) => {
         var premio = premiUltimJ.json();
         this.premio_id = premio.id;
-
+alert(this.premio_id)
       });
     }else{
       this.premio_id = premioExistente;
@@ -70,6 +70,7 @@ export class Crearevento {
     formData.append("usuari_id",this.persona_id);
     formData.append("ball_id",tipoBaile);
     formData.append("premi_id",this.premio_id);
+    alert(this.premio_id)
     formData.append("pais",pais);
     formData.append("provincia",provincia);
     formData.append("municipi",municipio);
@@ -117,7 +118,7 @@ export class Crearevento {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.id;
-        alert(this.persona_id)
+        
       });
     });
   }
