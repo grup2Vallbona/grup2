@@ -55,6 +55,7 @@ Route::post('persona/ball', [AssignacioBallController::class, "assignacioBall"])
 
 // ----------------- ASSISTENT -----------------
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
+Route::get('assistentsId/{id}', [AssistentController::class, "getAssistentsId"]);
 Route::post('assistent', [AssistentController::class, "assistent"]);
 
 // ----------------- BLOQUEJAT -----------------
