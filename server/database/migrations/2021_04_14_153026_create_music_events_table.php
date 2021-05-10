@@ -18,6 +18,8 @@ class CreateMusicEventsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('music_id');
             $table->foreign('music_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('event_id')->nullable();
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

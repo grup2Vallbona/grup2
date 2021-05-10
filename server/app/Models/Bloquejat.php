@@ -17,12 +17,12 @@ class Bloquejat extends Model
     public function bloquejat()
     {
         //return $this->hasMany(AssignacioBall::class);
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Usuari::class);
     }
 
     public function bloquejador()
     {
         //return $this->hasMany(AssignacioBall::class);
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Usuari::class);
     }
 }

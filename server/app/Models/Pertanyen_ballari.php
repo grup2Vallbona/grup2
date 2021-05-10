@@ -10,7 +10,7 @@ class Pertanyen_ballari extends Model
 {
     use HasFactory;
     protected $table = 'pertanyen_ballaris';
-    public function persona()
+    public function ballari()
     {
         //return $this->hasMany(AssignacioBall::class);
         return $this->belongsTo(Persona::class);
