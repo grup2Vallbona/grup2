@@ -9,7 +9,7 @@ class Pertany_grup extends Model
 {
     use HasFactory;
     protected $table = 'pertany_grups';
-    public function persona()
+    public function usuari()
     {
         //return $this->hasMany(AssignacioBall::class);
         return $this->belongsTo(Persona::class);

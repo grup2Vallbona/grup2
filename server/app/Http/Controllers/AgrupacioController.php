@@ -33,7 +33,7 @@ class AgrupacioController extends BaseController
     {
         return Agrupacio::all();
     }
-       /**
+     /**
      * @OA\Get(
      *     path="/api/agrupacio/{id}",
      *     tags={"Agrupacions"},
@@ -67,7 +67,7 @@ class AgrupacioController extends BaseController
         return $agrup;
     }
 
-/**
+     /**
      * @OA\Post(
      *     path="/api/agrupacio/{id}",
      *     tags={"Agrupacions"},
@@ -137,7 +137,7 @@ class AgrupacioController extends BaseController
     *   @OA\Parameter(
     *     name="descripcio",
     *     description="Descripcio de l'agrupacio",
-        *     required=true,
+    *     required=true,
     *     in="query",
     *     @OA\Schema(
     *       type="string"

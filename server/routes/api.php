@@ -124,6 +124,7 @@ Route::get('premis/ultim', [PremiController::class, "getPremiUltim"]);
 
 // ----------------- SEGUIT -----------------
 Route::get('seguits', [SeguitController::class, "getSeguits"]);
+Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
 
 // ----------------- TIPUS BALL -----------------
@@ -135,11 +136,11 @@ Route::delete('tipusball/{id}', [TipusBallController::class, "eliminarTipusBall"
 
 // ----------------- USUARIS -----------------
 Route::get('usuaris', [UsuariController::class, "getUsuaris"]);
-// Route::get('usuari/{id}', [UsuariController::class, "getUsuari"]);
 Route::get('usuari/{correo}', [UsuariController::class, "getUsuariCorreo"]);
 Route::post('usuari/{id}', [UsuariController::class, "updateUsuari"]);
 Route::post('usuari', [UsuariController::class, "crearUsuari"]);
 Route::delete('usuari/{id}', [UsuariController::class, "eliminarUsuari"]);
+Route::get('usuariId/{id}', [UsuariController::class, "getUsuari"]);
 
  // ----------------- PERSONAS -----------------
 Route::get('personas', [PersonaController::class, "getPersonas"]);

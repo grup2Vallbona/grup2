@@ -1552,6 +1552,1417 @@
                     }
                 }
             }
+        },
+        "/api/getGentensenyadas": {
+            "get": {
+                "tags": [
+                    "Gent Ensenyada"
+                ],
+                "summary": "Veure totes les persones ensenyades.",
+                "operationId": "App\\Http\\Controllers\\GentEnsenyadaController::getGent_ensenyadas",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les persones ensenyades."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/gentensenyada": {
+            "post": {
+                "tags": [
+                    "Gent Ensenyada"
+                ],
+                "summary": "Inserir gent que ha estat ensenyada.",
+                "operationId": "App\\Http\\Controllers\\GentEnsenyadaController::gent_ensenyada",
+                "parameters": [
+                    {
+                        "name": "ballari_id",
+                        "in": "query",
+                        "description": "Id del ballari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "professor_id",
+                        "in": "query",
+                        "description": "Id del  professor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna la gent ensenyada que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/musicevents": {
+            "get": {
+                "tags": [
+                    "Musics a events"
+                ],
+                "summary": "Veure tots els musics que van a un event.",
+                "operationId": "App\\Http\\Controllers\\MusicEventController::getMusic_events",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els musics que van a un event."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/musicevent": {
+            "post": {
+                "tags": [
+                    "Musics a events"
+                ],
+                "summary": "Inserir un nou music que assitira a un event.",
+                "operationId": "App\\Http\\Controllers\\MusicEventController::music_event",
+                "parameters": [
+                    {
+                        "name": "music_id",
+                        "in": "query",
+                        "description": "Id del music",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "query",
+                        "description": "Id del event",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el nou music que assitira a un event inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/personas": {
+            "get": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Veure totes les persones.",
+                "operationId": "App\\Http\\Controllers\\PersonaController::getPersonas",
+                "responses": {
+                    "200": {
+                        "description": "Retorna totes les persones."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/persona/{id}": {
+            "get": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Veure la persona desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PersonaController::getPersona",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agrupacio per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Actualitza la pesona ja existent",
+                "description": "",
+                "operationId": "updatePersona",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id persona a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "ballari",
+                        "in": "query",
+                        "description": "Ballari",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "music",
+                        "in": "query",
+                        "description": "Music",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "professor",
+                        "in": "query",
+                        "description": "professor",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "rol",
+                        "in": "query",
+                        "description": "Rol",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "instrument",
+                        "in": "query",
+                        "description": "Instrument",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": " dataNaixementBallari ",
+                        "in": "query",
+                        "description": "Data Naixement Ballari",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "iniciProfessorat",
+                        "in": "query",
+                        "description": "Inici Professorat",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Persona modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Eliminar una persona.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PersonaController::eliminarPersona",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Persona a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Persona eliminada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/persona/ultima": {
+            "get": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Veure l'ultima persona inserida.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PersonaController::getPersonaUltima",
+                "responses": {
+                    "200": {
+                        "description": "Ultima persona inserida"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/persona": {
+            "post": {
+                "tags": [
+                    "Persones"
+                ],
+                "summary": "Inserir una nova persona.",
+                "operationId": "App\\Http\\Controllers\\PersonaController::crearPersona",
+                "parameters": [
+                    {
+                        "name": "ballari",
+                        "in": "query",
+                        "description": "ballari",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "music",
+                        "in": "query",
+                        "description": "music",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "professor",
+                        "in": "query",
+                        "description": "professor",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "rol",
+                        "in": "query",
+                        "description": "rol",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "instrument",
+                        "in": "query",
+                        "description": "instrument",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dataNaixementBallari",
+                        "in": "query",
+                        "description": "dataNaixementBallari",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "iniciProfessorat",
+                        "in": "query",
+                        "description": "iniciProfessorat",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna la persona que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanygrups": {
+            "get": {
+                "tags": [
+                    "Pertany Grups"
+                ],
+                "summary": "Veure qui pertany a un grup.",
+                "operationId": "App\\Http\\Controllers\\PertanyGrupController::getPertany_grups",
+                "responses": {
+                    "200": {
+                        "description": "Retorna qui pertany a un grup."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanygrup": {
+            "post": {
+                "tags": [
+                    "Pertany Grups"
+                ],
+                "summary": "Inserir una nova persona a un grup.",
+                "operationId": "App\\Http\\Controllers\\PertanyGrupController::pertany_grup",
+                "parameters": [
+                    {
+                        "name": "agrupacio_id",
+                        "in": "query",
+                        "description": "Id de l'agrupacio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "usuari_id",
+                        "in": "query",
+                        "description": "Id del usuari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna la persona que hem inserit al grup."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanyenballarins": {
+            "get": {
+                "tags": [
+                    "Ballarins"
+                ],
+                "summary": "Veure totes els ballarins.",
+                "operationId": "App\\Http\\Controllers\\PertanyenBallariController::getPertanyen_ballarins",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els ballarins."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanyenballari": {
+            "post": {
+                "tags": [
+                    "Ballarins"
+                ],
+                "summary": "Inserir una nou ballari.",
+                "operationId": "App\\Http\\Controllers\\PertanyenBallariController::pertanyen_ballari",
+                "parameters": [
+                    {
+                        "name": "entitat_id",
+                        "in": "query",
+                        "description": "Id de l'entitat",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "ballari_id",
+                        "in": "query",
+                        "description": "Id del ballari",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el ballari que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanyenprofessors": {
+            "get": {
+                "tags": [
+                    "Professors"
+                ],
+                "summary": "Veure totes els professors.",
+                "operationId": "App\\Http\\Controllers\\PertanyenProfessorController::getPertanyen_professors",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els professors."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/pertanyenprofessor": {
+            "post": {
+                "tags": [
+                    "Professors"
+                ],
+                "summary": "Inserir una nou professor.",
+                "operationId": "App\\Http\\Controllers\\PertanyenProfessorController::pertanyen_professor",
+                "parameters": [
+                    {
+                        "name": "entitat_id",
+                        "in": "query",
+                        "description": "Id de l'entitat",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "professor_id",
+                        "in": "query",
+                        "description": "Id del professor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el professor que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/premis": {
+            "get": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Veure tots els premis.",
+                "operationId": "App\\Http\\Controllers\\PremiController::getPremis",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els premis."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/premi/{id}": {
+            "get": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Veure el premi desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PremiController::getPremi",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Premi per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Premi amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Actualitza el premi ja existent",
+                "description": "",
+                "operationId": "updatePremi",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del premi a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "guanyador_id",
+                        "in": "query",
+                        "description": "Id del guanyador",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "creador_id",
+                        "in": "query",
+                        "description": "Id del creador",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titol",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maxGuanyador",
+                        "in": "query",
+                        "description": "Maxims guanyadors",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "categoria",
+                        "in": "query",
+                        "description": "Categoria",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Agrupacio modificada"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Eliminar un premi.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PremiController::eliminarPremi",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Premi a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Premi eliminat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/premis/usuari/{id}": {
+            "get": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Veure el creador d'un premi.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PremiController::getPremisUsuari",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Creador per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Creador del premi"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/premi": {
+            "post": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Inserir un nou premi.",
+                "operationId": "App\\Http\\Controllers\\PremiController::crearPremi",
+                "parameters": [
+                    {
+                        "name": "guanyador_id",
+                        "in": "query",
+                        "description": "Id del guanyador",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "creador_id",
+                        "in": "query",
+                        "description": "Id del creador",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titol del premi",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maxGuanyadors",
+                        "in": "query",
+                        "description": "Nombre maxim de guanyadors",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "categoria",
+                        "in": "query",
+                        "description": "Categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el premi que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/premis/ultim": {
+            "get": {
+                "tags": [
+                    "Premis"
+                ],
+                "summary": "Veure l'ultim premi inserit.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\PremiController::getPremiUltim",
+                "responses": {
+                    "200": {
+                        "description": "Ultim premi inserit."
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/seguits": {
+            "get": {
+                "tags": [
+                    "Seguidors"
+                ],
+                "summary": "Veure tots els usuaris seguits",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\SeguitController::getSeguits",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/seguit/{id}": {
+            "get": {
+                "tags": [
+                    "Seguidors"
+                ],
+                "summary": "Veure el seguidor desitjada.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\SeguitController::getSeguitsId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Seguidor per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seguidor amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/seguir": {
+            "post": {
+                "tags": [
+                    "Seguidors"
+                ],
+                "summary": "Inserir un nou seguidor.",
+                "operationId": "App\\Http\\Controllers\\SeguitController::seguir",
+                "parameters": [
+                    {
+                        "name": "seguit_id",
+                        "in": "query",
+                        "description": "id del seguit",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "seguidor_id",
+                        "in": "query",
+                        "description": "id de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'usuari que hem seguit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/tipusballs": {
+            "get": {
+                "tags": [
+                    "Tipus de Bll"
+                ],
+                "summary": "Veure tots els tipus de ball.",
+                "operationId": "App\\Http\\Controllers\\TipusBallController::getTipusBalls",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els tipus de ball."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/tipusball/{id}}": {
+            "get": {
+                "tags": [
+                    "Tipus de Bll"
+                ],
+                "summary": "Veure el tipus de ball desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\TipusBallController::getTipusBall",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tipus de ball per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ATipus de ball amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/tipusball/{id}": {
+            "post": {
+                "tags": [
+                    "Tipus de Bll"
+                ],
+                "summary": "Actualitza el tipus de ball ja existent",
+                "description": "",
+                "operationId": "updateTipusBall",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id tipus de ball a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tipus de ball modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Agrupacions"
+                ],
+                "summary": "Eliminar un tipus de ball.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\TipusBallController::eliminarTipusBall",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tipus de ball a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tipus de ball eliminat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/tipusball": {
+            "post": {
+                "tags": [
+                    "Tipus de Bll"
+                ],
+                "summary": "Inserir un nou tipus de ball.",
+                "operationId": "App\\Http\\Controllers\\TipusBallController::crearTipusBall",
+                "parameters": [
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "Nom del tipus de ball",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el tipus de ball que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/usuaris": {
+            "get": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Veure tots els usuaris.",
+                "operationId": "App\\Http\\Controllers\\UsuariController::getUsuaris",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els usuaris."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/usuari/{correo}": {
+            "get": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Veure l'usuari desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\UsuariController::getUsuariCorreo",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "usuari per correu",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuari amb email seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/usuari/{id}": {
+            "post": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Actualitza l'usuari ja existent",
+                "description": "",
+                "operationId": "updateUsuari",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id usuari a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "entitat_id",
+                        "in": "query",
+                        "description": "Id de l'entitat",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "persona_id",
+                        "in": "query",
+                        "description": "Id de la persona",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nickname",
+                        "in": "query",
+                        "description": "Nickname",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contrasenya",
+                        "in": "query",
+                        "description": "Contrasenya",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dataNaixement",
+                        "in": "query",
+                        "description": "Data de Naixement",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "imagen",
+                        "in": "query",
+                        "description": "Imatge",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idioma",
+                        "in": "query",
+                        "description": "Idioma",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "idioma",
+                        "in": "query",
+                        "description": "Idioma",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "genere",
+                        "in": "query",
+                        "description": "Genere",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pais",
+                        "in": "query",
+                        "description": "Pais",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "vacunaCovid",
+                        "in": "query",
+                        "description": "Vacuna Covid-19",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuari modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Eliminar un usuari.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\UsuariController::eliminarUsuari",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Usuari a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuari eliminat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/usuari": {
+            "post": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Inserir un nou usuari.",
+                "operationId": "App\\Http\\Controllers\\UsuariController::crearUsuari",
+                "parameters": [
+                    {
+                        "name": "enitat_id",
+                        "in": "query",
+                        "description": "Id de l'entitat",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "persona_id",
+                        "in": "query",
+                        "description": "Id de la persona",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nickname",
+                        "in": "query",
+                        "description": "Nickname",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contrasenya",
+                        "in": "query",
+                        "description": "Contrasenya",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dataNaixement",
+                        "in": "query",
+                        "description": "Data de Naixement",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descripcio",
+                        "in": "query",
+                        "description": "Descripcio",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "imagen",
+                        "in": "query",
+                        "description": "Imatge",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idioma",
+                        "in": "query",
+                        "description": "Idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "idioma",
+                        "in": "query",
+                        "description": "Idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "genere",
+                        "in": "query",
+                        "description": "Genere",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pais",
+                        "in": "query",
+                        "description": "Pais",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "vacunaCovid",
+                        "in": "query",
+                        "description": "Vacuna Covid-19",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna l'usuari que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/usuariId/{id}": {
+            "get": {
+                "tags": [
+                    "Usuaris"
+                ],
+                "summary": "Veure l'usuari desitjat.",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\UsuariController::getUsuari",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Usuari per id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuari amb id seleccionat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
         }
     },
     "security": [

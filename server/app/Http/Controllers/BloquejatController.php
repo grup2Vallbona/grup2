@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Bloquejat;
 use App\Models\Persona;
+use App\Models\Usuari;
 
 class BloquejatController extends BaseController
 {
@@ -35,7 +36,7 @@ class BloquejatController extends BaseController
     {
         return Bloquejat::all();
     }
-      /**
+    /**
     * @OA\Post(
     *   path="/api/bloquejar",
     *   tags={"Bloquejats"},
@@ -70,8 +71,8 @@ class BloquejatController extends BaseController
     */
     function bloquejar(Request $request)
     {
-        $pBloquejada = Persona::find($request->bloquejat_id);
-        $pBloquejadora = Persona::find($request->bloquejador_id);
+        $pBloquejada = Usuari::find($request->bloquejat_id);
+        $pBloquejadora = Usuari::find($request->bloquejador_id);
         $block = new Bloquejat();
              
         $block->bloquejat()->associate($pBloquejada);

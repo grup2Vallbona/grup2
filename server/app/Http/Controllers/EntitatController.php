@@ -63,7 +63,7 @@ class EntitatController extends BaseController
         $entitat = $entitat->firstWhere('id', $id);
         return $entitat;
     }
-           /**
+     /**
      * @OA\Get(
      *     path="/api/entitats/ultima",
      *     tags={"Entitats"},
