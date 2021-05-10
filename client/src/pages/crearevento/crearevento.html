@@ -26,14 +26,7 @@
     <ion-label floating>Descripción</ion-label>
     <ion-input type="text" [(ngModel)]="descripcion"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label>Tipo de participación</ion-label>
-    <ion-select [(ngModel)]="tipoParticipacion">
-      <ion-option value="1">Solos</ion-option>
-      <ion-option value="2">Duos</ion-option>
-      <ion-option value="3">Escuelas</ion-option>
-    </ion-select>
-  </ion-item>
+  
   <ion-item>
     <ion-label>Tipo de baile</ion-label>
     <ion-select id="tipusBalls"  [(ngModel)]="tipoBaile">
@@ -52,6 +45,14 @@
     <ion-label floating>Máximo de ganadores</ion-label>
     <ion-input type="text" [(ngModel)]="maxGanadores" value={}></ion-input>
   </ion-item>
+  <ion-item *ngIf="crearNuevoPremio">
+    <ion-label>Tipo de participación</ion-label>
+    <ion-select [(ngModel)]="tipoParticipacion">
+      <ion-option value="1">Solos</ion-option>
+      <ion-option value="2">Duos</ion-option>
+      <ion-option value="3">Escuelas</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-item *ngIf="!crearNuevoPremio"> 
     <ion-label>Selecciona un premio</ion-label>
     <ion-select [(ngModel)]="premioExistente">
@@ -60,22 +61,21 @@
   </ion-item>
   <ion-item>
     <ion-label>Fecha del evento</ion-label>
-    <ion-datetime displayFormat="DD MM YY" [(ngModel)]="fechaEvento"></ion-datetime>
+    <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="fechaEvento"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>País</ion-label>
-    <ion-select [(ngModel)]="pais">
+    <ion-label>Pais</ion-label>
+    <ion-select required name="pais" [(ngModel)]="pais">
+        <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises">{{pais.name}}</ion-option>
     </ion-select>
+</ion-item>
+  <ion-item>
+    <ion-label floating>Provincia</ion-label>
+    <ion-input type="text" [(ngModel)]="provincia"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Provincia</ion-label>
-    <ion-select [(ngModel)]="provincia">
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Municipio</ion-label>
-    <ion-select [(ngModel)]="municipio">
-    </ion-select>
+    <ion-label floating>Municipio</ion-label>
+    <ion-input type="text" [(ngModel)]="municipio"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>Calle</ion-label>

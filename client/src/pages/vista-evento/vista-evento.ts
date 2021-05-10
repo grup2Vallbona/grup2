@@ -37,11 +37,9 @@ export class VistaEvento {
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        console.log(this.usuari);
         this.persona_id = this.usuari.id;
         this.nickname = this.usuari.nickname
         this.editEvento();
-        console.log(this.usuari);
       });
     });
     
