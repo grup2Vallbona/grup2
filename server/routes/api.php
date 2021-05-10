@@ -127,6 +127,7 @@ Route::get('premis/ultim', [PremiController::class, "getPremiUltim"]);
 // ----------------- SEGUIT -----------------
 Route::get('seguits', [SeguitController::class, "getSeguits"]);
 Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
+Route::get('seguidor/{id}', [SeguitController::class, "getSeguidorsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
 
 

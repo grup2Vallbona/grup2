@@ -114,4 +114,11 @@ class SeguitController extends BaseController
        
          return $follow;
     }
+
+    function getSeguidorsId($id)
+    {
+        $seguit = Seguit::all();
+        $seguit = $seguit->where('seguit_id', $id);
+        return $seguit;
+    }
 }
