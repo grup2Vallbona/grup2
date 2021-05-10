@@ -28,6 +28,7 @@ import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
+import { Asistente } from '../pages/asistente/asistente';
 import { Escuela } from '../pages/escuela/escuela';
 import { EditUsuario } from '../pages/editarusuario/editusuario';
 import { Grupo } from '../pages/grupo/grupo';
@@ -82,6 +83,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Movidas,
     Perfil,
     Asistentes,
+    Asistente,
     Escuela,
     Grupo,
     Creargrupo,
@@ -121,6 +123,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Movidas,
     Perfil,
     Asistentes,
+    Asistente,
     Escuela,
     Grupo,
     Creargrupo,
@@ -130,8 +133,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
+    VistaEvento,
     Assistentsperfil,
-   VistaEvento
   ],
   providers: [
     StatusBar,

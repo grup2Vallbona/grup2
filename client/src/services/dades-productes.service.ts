@@ -14,7 +14,7 @@ export class DadesProductesService {
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   baseUrl: string =
-    "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
+    "http://localhost/M14/Projecte_Final/grup2/server/public/index.php";
   constructor(private http: Http) {}
 
   public getUsuari(id: number): Observable<any> {
@@ -95,6 +95,6 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + '/api/assistents')
   }
   public getAssistentsId(id: number): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/assistentsId/' + id)
+    return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
 }
