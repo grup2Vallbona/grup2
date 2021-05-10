@@ -24,7 +24,7 @@ import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
 import {Seguits} from '../pages/seguits/seguits';
-// import { VistaEvento } from '../pages/vista-evento/vista-evento';
+import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
@@ -90,8 +90,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     RecuperarContra,
     Seguits,
     Seguidors,
-    Bloquejats
-    // VistaEvento
+    Bloquejats,
+    VistaEvento
   ],
   imports: [
     BrowserModule,
@@ -128,8 +128,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     RecuperarContra,
     Seguits,
     Seguidors,
-    Bloquejats
-    // VistaEvento
+    Bloquejats,
+    VistaEvento
   ],
   providers: [
     StatusBar,
