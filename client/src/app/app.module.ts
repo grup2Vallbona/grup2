@@ -15,6 +15,7 @@ import { Assistentsperfil } from '../pages/assistentsperfil/assistentsperfil';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
+import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Register } from '../pages/register/register';
 import { Principal } from '../pages/principal/principal';
 import { RecuperarContra } from '../pages/recuperar-contra/recuperar-contra';
@@ -24,7 +25,6 @@ import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
 import {Seguits} from '../pages/seguits/seguits';
-import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
@@ -93,7 +93,10 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
+<<<<<<< HEAD
+=======
     Assistentsperfil,
+>>>>>>> a645915059dbd920de343444eede799754962d49
     VistaEvento
   ],
   imports: [
@@ -133,8 +136,12 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
+<<<<<<< HEAD
+    VistaEvento
+=======
     VistaEvento,
     Assistentsperfil,
+>>>>>>> a645915059dbd920de343444eede799754962d49
   ],
   providers: [
     StatusBar,
