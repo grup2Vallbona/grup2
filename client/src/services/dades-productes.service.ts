@@ -97,4 +97,8 @@ export class DadesProductesService {
   public getAssistentsId(id: number): Observable<any>{
     return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
+
+  public seguir(): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/seguir/");
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DadesProductesService } from '../../services/dades-productes.service';
 import { Assistentsperfil } from '../assistentsperfil/assistentsperfil';
 
 /**
@@ -15,11 +16,13 @@ import { Assistentsperfil } from '../assistentsperfil/assistentsperfil';
 })
 export class Asistente {
 @Input() asistente;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService) {
   }
 
   gotoUsuario(email) {
     this.navCtrl.push(Assistentsperfil, { asistente: this.asistente });
   }
-
+follow(){
+ 
+}
 }
