@@ -1,9 +1,18 @@
-<ion-card (click)="gotoUsuario(asistente.email)">
-    <ion-avatar item-left>
-        <img src="./assets/images/fotoadri.jpg">
-    </ion-avatar>
-    <div>
-        <ion-label>{{asistente.nickname}}</ion-label>
-        <ion-buttons>Seguir</ion-buttons>
-    </div>
+<ion-card >
+    <ion-item>
+        <ion-avatar item-left>
+            <img src="./assets/images/fotoadri.jpg"/>
+        </ion-avatar>
+        <div>
+            <div>
+                <h2>{{asistente['nickname']}}</h2>
+                <button (click)="gotoUsuario()">Perfil</button>
+                <button>Seguir</button>
+                
+            </div>
+         
+        </div>
+    </ion-item>
 </ion-card>
+
+

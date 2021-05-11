@@ -11,6 +11,7 @@ use App\Models\Assistent;
 use App\Models\Event;
 use App\Models\Persona;
 use App\Models\Usuari;
+use Illuminate\Support\Facades\DB;
 
 class AssistentController extends BaseController
 {
@@ -97,8 +98,12 @@ class AssistentController extends BaseController
 
     function getAssistentsId($id)
     {
-        $assistents = Assistent::all();
-        $assistents = $assistents->where('event_id', $id);
+        $assistents = DB::table('assistents')
+                ->select('assistents.*','usuaris.nickname', 'usuaris.email')
+                ->join('usuaris','assistents.usuari_id', '=', 'usuaris.id')
+                ->where('assistents.event_id', $id)
+                ->get();
+
         return $assistents;
         
     }

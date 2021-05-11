@@ -14,19 +14,12 @@
 
 
 <ion-content padding class="bodyTabs">
-    <ion-card>
-        <!-- <ion-item (click)="gotoUsuario(assistent['email'])"> -->
+    <div [ngSwitch]="generic">
+    <ion-list *ngSwitchCase="'todos'" id="body">
+       
         <page-asistente *ngFor="let asistente of asistentes" [asistente]="asistente"></page-asistente>
-        <!-- <ion-label></ion-label>
-        <ion-avatar item-left>
-            <img src="./assets/images/fotoadri.jpg">
-        </ion-avatar> -->
-        <!-- <div>
-            <ion-label>{{assistent['nickname']}}</ion-label>
-            <ion-buttons>Seguir</ion-buttons>
-        </div> -->
-        <!-- </ion-item> -->
+       
 
-    </ion-card>
-
+    </ion-list>
+</div>
 </ion-content>

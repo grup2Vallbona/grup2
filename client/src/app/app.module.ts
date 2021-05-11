@@ -93,11 +93,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-<<<<<<< HEAD
-=======
-    Assistentsperfil,
->>>>>>> a645915059dbd920de343444eede799754962d49
-    VistaEvento
+    VistaEvento,
+    Assistentsperfil
   ],
   imports: [
     BrowserModule,
@@ -136,12 +133,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-<<<<<<< HEAD
-    VistaEvento
-=======
     VistaEvento,
-    Assistentsperfil,
->>>>>>> a645915059dbd920de343444eede799754962d49
+    Assistentsperfil
   ],
   providers: [
     StatusBar,

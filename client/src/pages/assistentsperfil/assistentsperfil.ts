@@ -40,6 +40,9 @@ export class Assistentsperfil {
   nom: any;
   escola: any;
   marca: any;
+  usuariActual: any;
+  idUsuariActual: any;
+  assistent: any;
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
@@ -47,18 +50,50 @@ export class Assistentsperfil {
     public storage: Storage,
     public http: Http
   ) {
-    this.email = navParams.get("emailPassat");
+    this.assistent = navParams.get("asistente");
   }
 
-  ionViewDidLoad() {
-    this.dades.getUsuariEmail(this.email).subscribe((usuari) => {
-      this.usuari = usuari.json();
+  ionViewWillEnter() {
+
+    this.storage.get("email").then(emailUser => {
+      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
+        this.usuariActual = jUsuario.json();
+        this.idUsuariActual = this.usuariActual.id;
+   
+      })
+    })
+ 
+      // console.log(this.assistent.email)
+
+      this.dades
+        .getUsuariEmail(this.assistent.email)
+        .subscribe((usuari) => {
+          this.usuari = usuari.json();
+
+          this.dades.getBloquejats(this.usuari.id).subscribe((usuarisBlo) => {
+            var usuarisBloq = usuarisBlo.json();
+          
+            for (let index = 0; index < usuarisBloq.length; index++) {
+              
+            
+              if (this.idUsuariActual == usuarisBloq[index].bloquejat_id) {
+                alert("L'usuari t'ha bloquejat");
+                
+              } else {
+               
+              }
+            }
+          });
+       
+
       this.nickname = this.usuari.nickname;
+      this.email = this.usuari.email;
       this.descripcio = this.usuari.descripcio;
       this.dataNaixement = this.usuari.dataNaixement;
       this.vacuna = this.usuari.vacunaCovid;
       this.personaid = this.usuari.persona_id;
       this.entitatid = this.usuari.entitat_id;
+      
       if (this.usuari.genere == 0) {
         this.genere = "Hombre";
       } else if (this.usuari.genere == 1) {
@@ -100,59 +135,61 @@ export class Assistentsperfil {
             this.anyEmpezarBailar = this.persona.dataNaixementBallari;
             this.iniciProfessorat = this.persona.iniciProfessorat;
 
-            if (this.persona.music == 1 && this.persona.ballari == 0 && this.persona.professor == 0) {
+            if (
+              this.persona.music == 1 &&
+              this.persona.ballari == 0 &&
+              this.persona.professor == 0
+            ) {
               this.tipo = "Músico";
-              
-            } else if (this.persona.music == 0 && this.persona.ballari == 1 && this.persona.professor == 0) {
+            } else if (
+              this.persona.music == 0 &&
+              this.persona.ballari == 1 &&
+              this.persona.professor == 0
+            ) {
               this.tipo = "Bailarín";
-              
             } else if (
               this.persona.music == 0 &&
               this.persona.ballari == 0 &&
               this.persona.professor == 1
             ) {
               this.tipo = "Profesor";
-              
             } else if (
               this.persona.music == 1 &&
               this.persona.ballari == 1 &&
               this.persona.professor == 1
             ) {
               this.tipo = "Músico, Bailarín, Profesor";
-             
             } else if (
               this.persona.music == 1 &&
               this.persona.ballari == 1 &&
               this.persona.professor == 0
             ) {
               this.tipo = "Músico, Bailarín";
-          
             } else if (
               this.persona.music == 1 &&
               this.persona.professor == 1 &&
               this.persona.ballari == 0
             ) {
               this.tipo = "Músico, Profesor";
-        
-            
             } else if (
               this.persona.ballari == 1 &&
               this.persona.professor == 1 &&
               this.persona.music == 0
             ) {
               this.tipo = "Bailarín, Profesor";
-           
             }
-            
           });
       } else {
-        this.dades.getEntitat(this.usuari.entitat_id).subscribe(entitatJson => {
-          this.entitat = entitatJson.json();
-          this.escola = this.entitat.escola;
-          this.marca = this.entitat.marca;
-          this.nom = this.entitat.nom;
-        })
+        this.dades
+          .getEntitat(this.usuari.entitat_id)
+          .subscribe((entitatJson) => {
+            this.entitat = entitatJson.json();
+            this.escola = this.entitat.escola;
+            this.marca = this.entitat.marca;
+            this.nom = this.entitat.nom;
+          });
       }
-    });
+    })
   }
-}
+  }
+
