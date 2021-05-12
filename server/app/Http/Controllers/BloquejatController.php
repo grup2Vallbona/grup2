@@ -88,4 +88,12 @@ class BloquejatController extends BaseController
         return $bloquejat;
 
     }
+
+    function deleteBloquejador($idseguit, $idseguidor){
+        $bloquejatBloquejador = Bloquejat::where('bloquejat_id', '=', $idseguit)
+                                        ->where('bloquejador_id', '=', $idseguidor)
+                                        ->delete();
+        
+        return $bloquejatBloquejador;
+    }
 }

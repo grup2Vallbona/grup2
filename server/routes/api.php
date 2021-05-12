@@ -62,6 +62,7 @@ Route::post('assistent', [AssistentController::class, "assistent"]);
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
 Route::get('bloquejat/{id}', [BloquejatController::class, "getBloquejatsId"]);
 Route::post('bloquejar', [BloquejatController::class, "bloquejar"]);
+Route::delete('eliminarBloquejar/{idseguit}/{idseguidor}', [BloquejatController::class, "deleteBloquejador"]);
 
 // ----------------- CRITICA -----------------
 Route::get('criticas', [CriticaController::class, "getCriticas"]);
