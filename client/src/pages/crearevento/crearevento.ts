@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Storage } from "@ionic/storage";
 import { Usuari } from "../../app/interfaces/iusuari";
-import { Principal } from '../principal/principal';
-import { Novedades } from '../novedades/novedades';
-import { Eventos } from '../eventos/eventos';
-import { Http } from '@angular/http';
+import { Principal } from "../principal/principal";
+import { Novedades } from "../novedades/novedades";
+import { Eventos } from "../eventos/eventos";
+import { Http } from "@angular/http";
 
 /**
  * Generated class for the Crearevento page.
@@ -16,85 +16,101 @@ import { Http } from '@angular/http';
  */
 @IonicPage()
 @Component({
-  selector: 'page-crearevento',
-  templateUrl: 'crearevento.html',
+  selector: "page-crearevento",
+  templateUrl: "crearevento.html",
 })
 export class Crearevento {
-  
-  tipusBalls=[];
-  eventsUsuari=[];
+  tipusBalls = [];
+  eventsUsuari = [];
   usuari: Usuari;
   persona_id: any;
-  titulo:string;
-  subtitulo:string;
-  descripcion:string;
-  tipoParticipacion:number;
-  tipoBaile:number;
-  crearNuevoPremio:boolean;
-  premioNuevo:string="";
-  premioExistente:number;
-  fechaEvento:Date;
-  pais:number;
-  provincia:string;
-  municipio:string;
-  calle:string;
-  premio_id:any;
-  maxGanadores:number;
+  titulo: string;
+  subtitulo: string;
+  descripcion: string;
+  tipoParticipacion: number;
+  tipoBaile: number;
+  crearNuevoPremio: boolean;
+  premioNuevo: string = "";
+  premioExistente: number;
+  fechaEvento: Date;
+  pais: number;
+  provincia: string;
+  municipio: string;
+  calle: string;
+  premio_id: any;
+  maxGanadores: number;
   paises: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService,private storage: Storage,private http: Http) {
-   
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private dades: DadesProductesService,
+    private storage: Storage,
+    private http: Http
+  ) {}
 
-  crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,
-    premioExistente,fechaEvento,pais,municipio,calle,provincia,maxGanadores){
-      
-      
-    if(crearNuevoPremio){
-      const formDataPremi = new FormData();
-      formDataPremi.append("creador_id",this.persona_id);
-      formDataPremi.append("titol",premioNuevo);
-      formDataPremi.append("maxGuanyadors",maxGanadores);
-      formDataPremi.append("categoria",tipoParticipacion);
-      this.dades.crearPremi(formDataPremi).subscribe((data) => {
-        console.log("holaaaaa");
-        this.dades.getPremiUltim().subscribe((premiUltimJ) => {
-          var premio = premiUltimJ.json();
-          this.premio_id = premio.id;
-          this.tipoParticipacion = premio.categoria;
-        });
+  crearEvento(
+    titulo,
+    subtitulo,
+    descripcion,
+    tipoParticipacion,
+    tipoBaile,
+    crearNuevoPremio,
+    premioNuevo,
+    premioExistente,
+    fechaEvento,
+    pais,
+    municipio,
+    calle,
+    provincia,
+    maxGanadores
+  ) {
+    if (crearNuevoPremio) {
+      const formData = new FormData();
+      formData.append("creador_id", this.persona_id);
+      formData.append("titol", premioNuevo);
+      formData.append("maxGuanyadors", maxGanadores);
+      formData.append("categoria", tipoParticipacion);
+      formData.append("usuari_id", this.persona_id);
+      formData.append("ball_id", tipoBaile);
+      formData.append("premi_id", this.premio_id);
+      formData.append("pais", pais);
+      formData.append("provincia", provincia);
+      formData.append("municipi", municipio);
+      formData.append("participacioTipus", tipoParticipacion);
+      formData.append("titol", titulo);
+      formData.append("subtitol", subtitulo);
+      formData.append("carrer", calle);
+      formData.append("descripcio", descripcion);
+      formData.append("data", fechaEvento);
+      this.dades.crearEventPremi(formData).subscribe((data) => {
+        this.navCtrl.push(Novedades);
       });
-      this.dades.getPremiUltim().subscribe((premiUltimJ) => {
-        var premio = premiUltimJ.json();
-        this.premio_id = premio.id;
-alert(this.premio_id)
-      });
-    }else{
+    } else {
       this.premio_id = premioExistente;
       this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
         var premio = premioJ.json();
-        this.tipoParticipacion = premio.categoria;
+        const formData = new FormData();
+        formData.append("usuari_id", this.persona_id);
+        formData.append("ball_id", tipoBaile);
+        formData.append("premi_id", premio.id);
+        formData.append("pais", pais);
+        formData.append("provincia", provincia);
+        formData.append("municipi", municipio);
+        formData.append("participacioTipus", premio.categoria);
+        formData.append("titol", titulo);
+        formData.append("subtitol", subtitulo);
+        formData.append("carrer", calle);
+        formData.append("descripcio", descripcion);
+        formData.append("data", fechaEvento);
+        this.dades.crearEvent(formData).subscribe((data) => {
+         this.navCtrl.push(Novedades);
+        });
       });
     }
+
     
-    const formData = new FormData();
-    formData.append("usuari_id",this.persona_id);
-    formData.append("ball_id",tipoBaile);
-    formData.append("premi_id",this.premio_id);
-    alert(this.premio_id)
-    formData.append("pais",pais);
-    formData.append("provincia",provincia);
-    formData.append("municipi",municipio);
-    formData.append("participacioTipus",tipoParticipacion);
-    formData.append("titol",titulo);
-    formData.append("subtitol",subtitulo);
-    formData.append("carrer",calle);
-    formData.append("descripcio",descripcion);
-    formData.append("data",fechaEvento);
-    this.dades.crearEvent(formData).subscribe((data) => {
-        this.navCtrl.push(Novedades);
-    });
   }
-  carregarPremis(){
+  carregarPremis() {
     this.storage.get("email").then((emailUser) => {
       console.log(emailUser);
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
@@ -104,31 +120,29 @@ alert(this.premio_id)
         this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
           var event = events.json();
           for (let index = 0; index < event.length; index++) {
-            this.eventsUsuari[index]=event[index];
+            this.eventsUsuari[index] = event[index];
           }
         });
       });
     });
-   
   }
-  carregarBalls(){
+  carregarBalls() {
     this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
       var event = tipusBalls.json();
       for (let index = 0; index < event.length; index++) {
-        this.tipusBalls[index]=event[index];
+        this.tipusBalls[index] = event[index];
       }
     });
   }
 
   ionViewWillEnter() {
-    console.log('ionViewDidLoad Crearevento');
+    console.log("ionViewDidLoad Crearevento");
     this.carregarBalls();
     this.carregarPremis();
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.id;
-        
       });
     });
     this.http.get("../../assets/json/paises.json").subscribe(
@@ -141,6 +155,4 @@ alert(this.premio_id)
       }
     );
   }
-  
-
 }

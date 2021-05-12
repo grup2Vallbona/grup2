@@ -86,6 +86,7 @@ Route::get('events', [EventController::class, "getEvents"]);
 Route::get('event/{id}', [EventController::class, "getEvent"]);
 Route::post('event/{id}', [EventController::class, "updateEvent"]);
 Route::post('event', [EventController::class, "crearEvent"]);
+Route::post('eventpremi', [EventController::class, "crearEventPremi"]);
 Route::delete('event/{id}', [EventController::class, "eliminarEvent"]);
 
 // ----------------- FOTOGRAFIA -----------------

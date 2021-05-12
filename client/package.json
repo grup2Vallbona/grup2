@@ -16,7 +16,7 @@
         "@angular/compiler": "4.1.0",
         "@angular/compiler-cli": "4.1.0",
         "@angular/core": "4.1.0",
-        "@angular/fire": "^6.1.4",
+        "@angular/fire": "6.1.4",
         "@angular/forms": "4.1.0",
         "@angular/http": "4.1.0",
         "@angular/platform-browser": "4.1.0",
@@ -30,13 +30,14 @@
         "@ionic/storage": "^2.0.1",
         "angularfire2": "^4.0.0-rc.0",
         "cordova": "^10.0.0",
+        "cordova-ios": "6.2.0",
         "cordova-plugin-advanced-http": "^3.1.0",
         "cordova-plugin-datepicker": "^0.9.3",
         "cordova-plugin-file": "^6.0.2",
         "firebase": "^4.0.0",
-        "ionic": "^5.4.16",
+        "ionic": "5.4.16",
         "ionic-angular": "3.2.1",
-        "ionic-native": "^2.9.0",
+        "ionic-native": "2.9.0",
         "ionicons": "3.0.0",
         "ng2-validation": "^4.2.0",
         "promise-polyfill": "8.2.0",
@@ -46,7 +47,7 @@
     },
     "devDependencies": {
         "@capacitor/cli": "2.4.7",
-        "@ionic/app-scripts": "3.2.4",
+        "@ionic/app-scripts": "^3.2.4",
         "@ionic/lab": "3.2.10",
         "cordova-android": "^9.1.0",
         "cordova-plugin-device": "2.0.2",
@@ -82,7 +83,9 @@
                 "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
             },
             "cordova-plugin-ionic-keyboard": {},
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-geolocation": {
+                "GPS_REQUIRED": "true"
+            }
         },
         "platforms": [
             "android"
