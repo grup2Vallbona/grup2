@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -14,7 +15,7 @@ use App\Models\Usuari;
 class SeguitController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-     /**
+    /**
      * @OA\Get(
      *     path="/api/seguits",
      *     tags={"Seguidors"},
@@ -35,7 +36,7 @@ class SeguitController extends BaseController
     {
         return Seguit::all();
     }
-     /**
+    /**
      * @OA\Get(
      *     path="/api/seguit/{id}",
      *     tags={"Seguidors"},
@@ -69,38 +70,38 @@ class SeguitController extends BaseController
         return $seguit;
     }
     /**
-    * @OA\Post(
-    *   path="/api/seguir",
-    *   tags={"Seguidors"},
-    *   summary="Inserir un nou seguidor.",
-    *   @OA\Parameter(
-    *     name="seguit_id",
-    *     description="id del seguit",
-    *     required=true,
-    *     in="query",
-    *     @OA\Schema(
-    *       type="integer"
-    *     )
-    *   ),
-    *   @OA\Parameter(
-    *     name="seguidor_id",
-    *     description="id de la persona",
-    *     required=true,
-    *     in="query",
-    *     @OA\Schema(
-    *       type="integer"
-    *     )
-    *   ),
-    *   @OA\Response(
-    *     response=200,
-    *     description="Retorna l'usuari que hem seguit.",
-    *   ),
-    *   @OA\Response(
-    *     response="default",
-    *     description="S'ha produit un error.",
-    *   )
-    * )
-    */
+     * @OA\Post(
+     *   path="/api/seguir",
+     *   tags={"Seguidors"},
+     *   summary="Inserir un nou seguidor.",
+     *   @OA\Parameter(
+     *     name="seguit_id",
+     *     description="id del seguit",
+     *     required=true,
+     *     in="query",
+     *     @OA\Schema(
+     *       type="integer"
+     *     )
+     *   ),
+     *   @OA\Parameter(
+     *     name="seguidor_id",
+     *     description="id de la persona",
+     *     required=true,
+     *     in="query",
+     *     @OA\Schema(
+     *       type="integer"
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="Retorna l'usuari que hem seguit.",
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="S'ha produit un error.",
+     *   )
+     * )
+     */
     function seguir(Request $request)
     {
         $pSeguida = Usuari::find($request->seguit_id);
@@ -111,7 +112,27 @@ class SeguitController extends BaseController
         $follow->seguit()->associate($pSeguida);
         $follow->seguidor()->associate($pSeguidor);
         $follow->save();
-       
-         return $follow;
+
+        return $follow;
+    }
+
+    function getSeguidorsId($id)
+    {
+        $seguit = Seguit::all();
+        $seguit = $seguit->where('seguit_id', $id);
+        return $seguit;
+    }
+
+
+    function deleteSeguits($idseguit, $idseguidor)
+    {
+        $seguitSeguidor = Seguit::where('seguit_id', '=', $idseguit)
+                                ->where('seguidor_id', '=', $idseguidor)
+                                ->firstOrFail();
+                                
+        Seguit::where('seguit_id', '=', $idseguit)
+                                ->where('seguidor_id', '=', $idseguidor)
+                                ->delete();
+        return $seguitSeguidor;
     }
 }

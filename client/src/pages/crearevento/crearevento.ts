@@ -6,6 +6,7 @@ import { Usuari } from "../../app/interfaces/iusuari";
 import { Principal } from '../principal/principal';
 import { Novedades } from '../novedades/novedades';
 import { Eventos } from '../eventos/eventos';
+import { Http } from '@angular/http';
 
 /**
  * Generated class for the Crearevento page.
@@ -34,22 +35,20 @@ export class Crearevento {
   premioExistente:number;
   fechaEvento:Date;
   pais:number;
-  provincia:number;
-  municipio:number;
+  provincia:string;
+  municipio:string;
   calle:string;
   premio_id:any;
   maxGanadores:number;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService,private storage: Storage) {
+  paises: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dades: DadesProductesService,private storage: Storage,private http: Http) {
    
   }
 
   crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,
     premioExistente,fechaEvento,pais,municipio,calle,provincia,maxGanadores){
       
-      pais = 1;
-      municipio=1;
-      calle="prova";
-      provincia=1;
+      
     if(crearNuevoPremio){
       const formDataPremi = new FormData();
       formDataPremi.append("creador_id",this.persona_id);
@@ -57,19 +56,31 @@ export class Crearevento {
       formDataPremi.append("maxGuanyadors",maxGanadores);
       formDataPremi.append("categoria",tipoParticipacion);
       this.dades.crearPremi(formDataPremi).subscribe((data) => {
+        console.log("holaaaaa");
+        this.dades.getPremiUltim().subscribe((premiUltimJ) => {
+          var premio = premiUltimJ.json();
+          this.premio_id = premio.id;
+          this.tipoParticipacion = premio.categoria;
+        });
       });
       this.dades.getPremiUltim().subscribe((premiUltimJ) => {
         var premio = premiUltimJ.json();
         this.premio_id = premio.id;
-
+alert(this.premio_id)
       });
     }else{
       this.premio_id = premioExistente;
+      this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
+        var premio = premioJ.json();
+        this.tipoParticipacion = premio.categoria;
+      });
     }
+    
     const formData = new FormData();
     formData.append("usuari_id",this.persona_id);
     formData.append("ball_id",tipoBaile);
     formData.append("premi_id",this.premio_id);
+    alert(this.premio_id)
     formData.append("pais",pais);
     formData.append("provincia",provincia);
     formData.append("municipi",municipio);
@@ -85,9 +96,9 @@ export class Crearevento {
   }
   carregarPremis(){
     this.storage.get("email").then((emailUser) => {
-      console.log(emailUser);
+      // console.log(emailUser);
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
-        console.log(jUsuario);
+        // console.log(jUsuario);
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.persona_id;
         this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
@@ -110,16 +121,25 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewDidLoad Crearevento');
+    // console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
     this.carregarPremis();
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.id;
-        alert(this.persona_id)
+        
       });
     });
+    this.http.get("../../assets/json/paises.json").subscribe(
+      (response: any) => {
+        // alert(response);
+        this.paises = response.json();
+      },
+      (error) => {
+        console.log("Error: ", error.message);
+      }
+    );
   }
   
 

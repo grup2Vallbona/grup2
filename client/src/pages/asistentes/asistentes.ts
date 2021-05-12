@@ -4,7 +4,8 @@ import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Perfil } from "../perfil/perfil";
-import { Asistente } from "../asistente"
+import { Asistente } from "../asistente/asistente";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 /**
  * Generated class for the Asistentes page.
  *
@@ -17,10 +18,10 @@ import { Asistente } from "../asistente"
   templateUrl: "asistentes.html",
 })
 export class Asistentes {
-
   assistentsArray = [];
   usuari: Usuari;
-  asistentes =[];
+  asistentes = [];
+  generic: string = "todos";
   evento;
   constructor(
     public navCtrl: NavController,
@@ -31,14 +32,16 @@ export class Asistentes {
   }
 
   ionViewWillEnter() {
-    this.dades.getAssistents().subscribe((assistentsJson) => {
+    this.dades.getAssistentsId(this.evento.id).subscribe((assistentsJson) => {
       this.asistentes = assistentsJson.json();
+      
+      
     });
   }
   // gotoUsuario(email) {
   //   this.navCtrl.push(Assistentsperfil, { emailPassat: email });
   // }
   seguirUsuari() {
-    // alert("hola");
+    
   }
 }

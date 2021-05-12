@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DadesProductesService } from '../../services/dades-productes.service';
 import { Storage } from "@ionic/storage";
+import { Assistentsperfil } from '../assistentsperfil/assistentsperfil';
+import { Asistentes } from '../asistentes/asistentes';
 /**
  * Generated class for the VistaEventoComponent component.
  *
@@ -24,7 +26,7 @@ export class VistaEvento {
     
   }
   vistaAssistentes(){
-    this.navCtrl.push(VistaEvento,{evento:this.evento});
+    this.navCtrl.push(Asistentes,{evento:this.evento});
   }
   editEvento(){
     
@@ -40,11 +42,12 @@ export class VistaEvento {
     this.storage.get("email").then((emailUser) => {
       this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        console.log(this.usuari);
         this.persona_id = this.usuari.id;
         this.nickname = this.usuari.nickname
         this.editEvento();
         console.log(this.usuari);
+
+        
       });
     });
     

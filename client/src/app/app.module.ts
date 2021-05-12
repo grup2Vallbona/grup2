@@ -15,6 +15,7 @@ import { Assistentsperfil } from '../pages/assistentsperfil/assistentsperfil';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
+import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Register } from '../pages/register/register';
 import { Principal } from '../pages/principal/principal';
 import { RecuperarContra } from '../pages/recuperar-contra/recuperar-contra';
@@ -24,7 +25,6 @@ import { Foro } from '../pages/foro/foro';
 import { Valoraciones } from '../pages/valoraciones/valoraciones';
 import { Novedades } from '../pages/novedades/novedades';
 import {Seguits} from '../pages/seguits/seguits';
-import { VistaEvento } from '../pages/vista-evento/vista-evento';
 import { Movidas } from '../pages/movidas/movidas';
 import { Perfil } from '../pages/perfil/perfil';
 import { Asistentes } from '../pages/asistentes/asistentes';
@@ -93,8 +93,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-    Assistentsperfil,
-    VistaEvento
+    VistaEvento,
+    Assistentsperfil
   ],
   imports: [
     BrowserModule,
@@ -134,7 +134,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguidors,
     Bloquejats,
     VistaEvento,
-    Assistentsperfil,
+    Assistentsperfil
   ],
   providers: [
     StatusBar,
