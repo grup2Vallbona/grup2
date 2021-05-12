@@ -14,12 +14,12 @@
 
 
 <ion-content padding class="bodyTabs">
-    <div [ngSwitch]="generic">
-    <ion-list *ngSwitchCase="'todos'" id="body">
-       
+    <!-- <div [ngSwitch]="generic"> -->
+    <ion-list>
+
         <page-asistente *ngFor="let asistente of asistentes" [asistente]="asistente"></page-asistente>
-       
 
     </ion-list>
-</div>
+
+    <!-- </div> -->
 </ion-content>

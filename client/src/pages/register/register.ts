@@ -100,35 +100,6 @@ export class Register {
     this.user = firebaseAuth.authState;
   }
 
-  // signUp(
-  //   email,
-  //   password,
-  //   nickname,
-  //   genero,
-  //   idioma,
-  //   pais,
-  //   rol,
-  //   descripcion,
-  //   vacunaToggle,
-  //   instrumento,
-  //   dataNaixement,
-  //   professorToggle,
-  //   musicToggle,
-  //   ballariToggle,
-  //   iniciImparticions,
-  //   imatge,
-  //   anyEmpezarBailar,
-  //   escolaToggle,
-  //   marcaToggle,
-  //   nombre,
-  //   personaToggle
-  //   ){
-  //      console.log(this.usuarios.value.nickname);
-  //   for (let index = 0; index < this.usuarios; index++) {
-  //     console.log(this.usuarios[index].nickname);
-
-  //   }
-  // }
   signupPersona(
     email,
     password,

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Event;
-
+use App\Models\Premi;
 use Illuminate\Http\Request;
 
 class EventController extends BaseController
@@ -348,6 +348,36 @@ class EventController extends BaseController
         $event->carrer = $request->carrer;
         $event->descripcio = $request->descripcio;
         $event->participacioTipus = $request->participacioTipus;
+        $event->save();
+
+        return $event;
+    }
+    function crearEventPremi(Request $request)
+    {
+        $premi = new Premi;
+        $premi->titol = $request->titol;
+        $premi->guanyador_id = $request->guanyador_id;
+        $premi->creador_id = $request->creador_id;
+        $premi->maxGuanyadors = $request->maxGuanyadors;
+        $premi->categoria = $request->categoria;
+        $premi->save();
+
+        $premi = Premi::all();
+        $premi = $premi->last();
+
+        $event = new Event;
+        $event->usuari_id = $request->usuari_id;
+        $event->ball_id = $request->ball_id;
+        $event->premi_id = $premi->id;
+        $event->titol = $request->titol;
+        $event->subtitol = $request->subtitol;
+        $event->data = $request->data;
+        $event->pais = $request->pais;
+        $event->provincia = $request->provincia;
+        $event->municipi = $request->municipi;
+        $event->carrer = $request->carrer;
+        $event->descripcio = $request->descripcio;
+        $event->participacioTipus = $premi->categoria;
         $event->save();
 
         return $event;

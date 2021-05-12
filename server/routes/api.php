@@ -87,6 +87,7 @@ Route::get('events', [EventController::class, "getEvents"]);
 Route::get('event/{id}', [EventController::class, "getEvent"]);
 Route::post('event/{id}', [EventController::class, "updateEvent"]);
 Route::post('event', [EventController::class, "crearEvent"]);
+Route::post('eventpremi', [EventController::class, "crearEventPremi"]);
 Route::delete('event/{id}', [EventController::class, "eliminarEvent"]);
 
 // ----------------- FOTOGRAFIA -----------------
@@ -130,6 +131,7 @@ Route::get('seguits', [SeguitController::class, "getSeguits"]);
 Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::get('seguidor/{id}', [SeguitController::class, "getSeguidorsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
+Route::delete('eliminarSeguir/{idseguit}/{idseguidor}', [SeguitController::class,"deleteSeguits"]);
 
 
 // ----------------- TIPUS BALL -----------------

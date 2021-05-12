@@ -4,7 +4,7 @@ import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Perfil } from "../perfil/perfil";
-import { Asistente } from "../asistente";
+import { Asistente } from "../asistente/asistente";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 /**
  * Generated class for the Asistentes page.
@@ -36,13 +36,12 @@ export class Asistentes {
       this.asistentes = assistentsJson.json();
       
       
-      
     });
   }
   // gotoUsuario(email) {
   //   this.navCtrl.push(Assistentsperfil, { emailPassat: email });
   // }
   seguirUsuari() {
-    // alert("hola");
+    
   }
 }
