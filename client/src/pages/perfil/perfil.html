@@ -8,11 +8,23 @@
 
   <ion-navbar  >
     <ion-title>Usuario</ion-title>   
-    <ion-buttons right>
-      <button ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
+    <ion-buttons right *ngIf="botonsDreta == true">
+      <button  ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
         <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons right *ngIf="botonsDreta == false">
+            
+      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light" (click)="bloquearUsuario()">
+        B
+      </button>
+      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light" (click)="desbloquearUsuario()">
+        D
+      </button>
+   
+    </ion-buttons>
+    
+    
   </ion-navbar>
 
 </ion-header>
@@ -41,7 +53,7 @@
   <ion-item>
     <div >
 
-      <button  (click)="goToBloquejats()">Bloqueados</button>
+      <button *ngIf="botoBloquejar == true"  (click)="goToBloquejats()">Bloqueados</button>
     </div>
 
     

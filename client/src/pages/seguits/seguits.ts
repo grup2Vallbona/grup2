@@ -20,8 +20,8 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 export class Seguits {
   seguits = [];
   lal = [];
-  usuari: Usuari;
-
+  usuariSeguidor: Usuari;
+usuariSeguit: Usuari;
   id: any;
   nom: any;
   constructor(
@@ -29,15 +29,17 @@ export class Seguits {
     public navParams: NavParams,
     private dades: DadesProductesService,
     public storage: Storage
-  ) {}
+  ) {
+    this.usuariSeguidor = this.navParams.get("usuari");
+  }
 
   ionViewWillEnter() {
-    this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
-        this.usuari = jUsuario.json();
-        
+    // this.storage.get("email").then((emailUser) => {
+      this.dades.getUsuariEmail(this.usuariSeguidor.email).subscribe((jUsuario: any) => {
+        this.usuariSeguit = jUsuario.json();
+        console.log(this.usuariSeguit);
 
-        this.dades.getSeguits(this.usuari.id).subscribe((seguit) => {
+        this.dades.getSeguits(this.usuariSeguit.id).subscribe((seguit) => {
           this.seguits = seguit.json();
           
          
@@ -47,8 +49,8 @@ export class Seguits {
             this.dades
             .getUsuari(this.seguits[index].seguit_id)
             .subscribe((as) => {
-              this.usuari = as.json();
-              this.lal.push(this.usuari);
+              this.usuariSeguit = as.json();
+              this.lal.push(this.usuariSeguit);
               // this.nom = this.usuariS.nickname;
             });
 
@@ -57,7 +59,7 @@ export class Seguits {
            
           
         });
-      });
-    });
+     });
+    // });
   }
 }

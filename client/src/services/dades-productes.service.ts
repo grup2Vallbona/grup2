@@ -102,4 +102,11 @@ export class DadesProductesService {
   public getAssistentsId(id: number): Observable<any>{
     return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
+  public bloquejar(bloquejar: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/bloquejar', bloquejar)
+  }
+
+  public eliminarBloquejar(idseguit: number, idseguidor: number): Observable<any>{
+    return this.http.delete(this.baseUrl + '/api/eliminarBloquejar/' + idseguit + '/' + idseguidor);
+  }
 }

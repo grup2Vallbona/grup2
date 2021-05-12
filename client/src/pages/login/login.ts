@@ -35,7 +35,7 @@ export class Login {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
+   
   }
   contraseñaIncorrecta() {
     let alert = this.alertCtrl.create({
@@ -64,8 +64,7 @@ export class Login {
 
       //  }
     } catch (e) {
-      //  this.loginToast();
-      console.log(e)
+  
     }
 
   }

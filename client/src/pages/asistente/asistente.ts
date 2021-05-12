@@ -30,14 +30,9 @@ export class Asistente {
     
     this.storage.get("email").then(emailUser => {
       this.email = emailUser;
-      console.log(this.email);
-      console.log(this.asistente.email);
-      console.log(this.email == this.asistente.email);
-      if (this.email == this.asistente.email) {
-        this.navCtrl.push(Perfil);
-      } else {
-        this.navCtrl.push(Assistentsperfil, { asistente: this.asistente });
-      }
+  
+      this.navCtrl.push(Perfil, { usuari: this.asistente });
+      
     });
    
    

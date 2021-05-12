@@ -17,29 +17,32 @@ import { DadesProductesService } from '../../services/dades-productes.service';
 })
 export class Seguidors {
 
-  
+  seguidor = [];
+  lal = [];
+  usuariSeguidor: Usuari;
+
+  usuariSeguit: Usuari;
+  id: any;
+  nom: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
     public storage: Storage
-  ) {}
+  ) {
+    this.usuariSeguidor = this.navParams.get("usuari");
+  }
 
-  seguidor = [];
-  lal = [];
-  usuari: Usuari;
-
-  usuariS: Usuari;
-  id: any;
-  nom: any;
+  
 
 
   ionViewWillEnter() {
-    this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
-        this.usuari = jUsuario.json();
 
-        this.dades.getSeguidors(this.usuari.id).subscribe((seguidor) => {
+      this.dades.getUsuariEmail(this.usuariSeguidor.email).subscribe((jUsuario: any) => {
+        this.usuariSeguit = jUsuario.json();
+
+        this.dades.getSeguidors(this.usuariSeguit.id).subscribe((seguidor) => {
           this.seguidor = seguidor.json();
           
           for (let index in this.seguidor) {
@@ -48,13 +51,13 @@ export class Seguidors {
             this.dades
               .getUsuari(this.seguidor[index].seguidor_id)
               .subscribe((as) => {
-                this.usuari = as.json();
-                this.lal.push(this.usuari);
+                this.usuariSeguit = as.json();
+                this.lal.push(this.usuariSeguit);
                 // this.nom = this.usuariS.nickname;
               });
           }
         });
       });
-    });
+    
   }
 }
