@@ -29,6 +29,7 @@ export class Asistente {
   deixatSeguir = [];
   botoFollowUnfollow: boolean = false;
   botoSeguidor: boolean = false;
+  idBloquejador: any;
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
@@ -85,11 +86,16 @@ export class Asistente {
 
   }
   ngOnInit() {
+    console.log('hola');
     this.storage.get("email").then(emailUser => {
 
       this.dades.getUsuariEmail(emailUser).subscribe((data) => {
         this.usuari = data.json();
-        this.idSeguidor = this.usuari.id
+        this.idBloquejador = this.usuari.id
+        console.log(this.idSeguidor)
+        this.dades.getBloquejats(this.idBloquejador).subscribe(usuarisBloquejatsJ => {
+          console.log(usuarisBloquejatsJ.json())
+        })
 
         this.dades.getSeguits(this.idSeguidor).subscribe((data) => {
           this.seguits = data.json();

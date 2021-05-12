@@ -14,12 +14,8 @@ export class DadesProductesService {
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   baseUrl: string =
-<<<<<<< HEAD
 
-    "http://localhost/M14/Projecte_Final/grup2/server/public/index.php";
-=======
-    "http://localhost/WeSwing/grup2/server/public/index.php";
->>>>>>> f1f2b0146de34d2d47b373e66e2e6d72be2c0a81
+    "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
 
   constructor(private http: Http) {}
 
@@ -109,20 +105,17 @@ export class DadesProductesService {
   public getAssistentsId(id: number): Observable<any>{
     return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
-<<<<<<< HEAD
   public bloquejar(bloquejar: FormData): Observable<any>{
     return this.http.post(this.baseUrl + '/api/bloquejar', bloquejar)
   }
 
   public eliminarBloquejar(idseguit: number, idseguidor: number): Observable<any>{
     return this.http.delete(this.baseUrl + '/api/eliminarBloquejar/' + idseguit + '/' + idseguidor);
-=======
-
+  }
   public seguir(seguir: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/seguir/" , seguir);
   }
   public deixarSeguir(idseguit: number, idseguidor: number):Observable<any>{
     return this.http.delete(this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor);
->>>>>>> c68a0583581c62d25a14ee86daafe05533d2884b
   }
 }
