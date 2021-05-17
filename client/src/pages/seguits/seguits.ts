@@ -18,10 +18,10 @@ import { DadesProductesService } from "../../services/dades-productes.service";
   templateUrl: "seguits.html",
 })
 export class Seguits {
-  seguits = [];
-  lal = [];
-  usuariSeguidor: Usuari;
-usuariSeguit: Usuari;
+  
+  usuarisSeguits = [];
+  usuariRebut: Usuari;
+  usuariSeguit: Usuari;
   id: any;
   nom: any;
   constructor(
@@ -30,36 +30,20 @@ usuariSeguit: Usuari;
     private dades: DadesProductesService,
     public storage: Storage
   ) {
-    this.usuariSeguidor = this.navParams.get("usuari");
+    this.usuariRebut = this.navParams.get("usuari");
   }
 
   ionViewWillEnter() {
     // this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(this.usuariSeguidor.email).subscribe((jUsuario: any) => {
+    this.dades
+      .getUsuariEmail(this.usuariRebut.email)
+      .subscribe((jUsuario: any) => {
         this.usuariSeguit = jUsuario.json();
         console.log(this.usuariSeguit);
 
-        this.dades.getSeguits(this.usuariSeguit.id).subscribe((seguit) => {
-          this.seguits = seguit.json();
-          
-         
-          for (let index in this.seguits) {
-
-
-            this.dades
-            .getUsuari(this.seguits[index].seguit_id)
-            .subscribe((as) => {
-              this.usuariSeguit = as.json();
-              this.lal.push(this.usuariSeguit);
-              // this.nom = this.usuariS.nickname;
-            });
-
-           
-          };
-           
-          
+        this.dades.getSeguits(this.usuariRebut.id).subscribe((seguit) => {
+          this.usuarisSeguits = seguit.json();
         });
-     });
-    // });
+      });
   }
 }

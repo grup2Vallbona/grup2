@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { Principal } from '../principal/principal';
 import { RecuperarContra } from '../recuperar-contra/recuperar-contra';
 import { ToastController, AlertController } from 'ionic-angular';
+import { Novedades } from '../novedades/novedades';
 
 
 /**

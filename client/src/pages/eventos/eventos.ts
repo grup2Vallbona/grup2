@@ -37,6 +37,7 @@ export class Eventos {
        this.eventos = eventsJ.json();
      
    });
+
   }
   crearEvento(){
     this.navCtrl.push(Crearevento);

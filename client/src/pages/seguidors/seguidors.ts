@@ -17,9 +17,9 @@ import { DadesProductesService } from '../../services/dades-productes.service';
 })
 export class Seguidors {
 
-  seguidor = [];
-  lal = [];
-  usuariSeguidor: Usuari;
+  
+  usuarisSeguidors = [];
+  usuariRebut: Usuari;
 
   usuariSeguit: Usuari;
   id: any;
@@ -31,7 +31,7 @@ export class Seguidors {
     private dades: DadesProductesService,
     public storage: Storage
   ) {
-    this.usuariSeguidor = this.navParams.get("usuari");
+    this.usuariRebut = this.navParams.get("usuari");
   }
 
   
@@ -39,23 +39,12 @@ export class Seguidors {
 
   ionViewWillEnter() {
 
-      this.dades.getUsuariEmail(this.usuariSeguidor.email).subscribe((jUsuario: any) => {
+      this.dades.getUsuariEmail(this.usuariRebut.email).subscribe((jUsuario: any) => {
         this.usuariSeguit = jUsuario.json();
 
         this.dades.getSeguidors(this.usuariSeguit.id).subscribe((seguidor) => {
-          this.seguidor = seguidor.json();
-          
-          for (let index in this.seguidor) {
-           
-            
-            this.dades
-              .getUsuari(this.seguidor[index].seguidor_id)
-              .subscribe((as) => {
-                this.usuariSeguit = as.json();
-                this.lal.push(this.usuariSeguit);
-                // this.nom = this.usuariS.nickname;
-              });
-          }
+          this.usuarisSeguidors = seguidor.json();
+     
         });
       });
     
