@@ -57,6 +57,8 @@ Route::post('persona/ball', [AssignacioBallController::class, "assignacioBall"])
 Route::get('assistents', [AssistentController::class, "getAssistents"]);
 Route::get('assistents/{id}', [AssistentController::class, "getAssistentsId"]);
 Route::post('assistent', [AssistentController::class, "assistent"]);
+Route::delete('eliminarAssistent/{idevent}/{idassistent}', [AssistentController::class, "deleteAssistent"]);
+Route::get('assistentscount/{id}', [AssistentController::class, "countAssistentsEvent"]);
 
 // ----------------- BLOQUEJAT -----------------
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
@@ -132,6 +134,7 @@ Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::get('seguidor/{id}', [SeguitController::class, "getSeguidorsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
 Route::delete('eliminarSeguir/{idseguit}/{idseguidor}', [SeguitController::class,"deleteSeguits"]);
+Route::get('existeixSeguit/{idseguit}/{idseguidor}', [SeguitController::class, "existeixSeguitSeguidor"]);
 
 
 // ----------------- TIPUS BALL -----------------
