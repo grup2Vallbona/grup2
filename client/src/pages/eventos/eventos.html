@@ -34,6 +34,13 @@
       <page-evento *ngFor="let evento of eventos" [evento]="evento"></page-evento>
     </ion-list>
   </div>
+
+  <div [ngSwitch]="generic">
+    <ion-list *ngSwitchCase="'asistire'"  id="body">
+      <page-evento *ngFor="let evento of eventos" [evento]="evento"></page-evento>
+    </ion-list>
+  </div>
+
 </ion-content>
 
 

@@ -6,13 +6,25 @@
 -->
 <ion-header>
 
-  <ion-navbar  >
+  <ion-navbar>
     <ion-title>Usuario</ion-title>   
-    <ion-buttons right>
-      <button ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
+    <ion-buttons right *ngIf="botonsDreta == true">
+      <button  ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
         <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons right *ngIf="botonsDreta == false">
+            
+      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light" (click)="bloquearUsuario()">
+        <ion-icon name="logo-xbox"></ion-icon>
+      </button>
+      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light" (click)="desbloquearUsuario()">
+        <ion-icon name="logo-octocat"></ion-icon>
+      </button>
+   
+    </ion-buttons>
+    
+    
   </ion-navbar>
 
 </ion-header>
@@ -41,7 +53,7 @@
   <ion-item>
     <div >
 
-      <button  (click)="goToBloquejats()">Bloqueados</button>
+      <button *ngIf="botoBloquejar == true"  (click)="goToBloquejats()">Bloqueados</button>
     </div>
 
     
@@ -282,5 +294,17 @@
       <p>{{nomEntitat}}</p>
     </ion-card-content>
   </ion-item>
+
+ 
+  <div class="btnContainer" *ngIf="botonsDreta == true">
+
+    <div class="btn">
+        <button class="btn" (click)="logout()" ion-button>Cerrar Sesión</button>
+    </div>
+
+</div>
+
+
+  
 
 </ion-content>

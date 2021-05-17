@@ -20,7 +20,7 @@ export class HomePage {
   // picture: any;
   // name: any;
   // email: any;
-
+  
  
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
 

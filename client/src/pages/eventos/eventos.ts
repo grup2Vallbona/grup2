@@ -35,8 +35,9 @@ export class Eventos {
   carrgarEventos(){
     this.dades.carregarEvents().subscribe((eventsJ: any) => {
        this.eventos = eventsJ.json();
-       console.log(this.eventos);
+     
    });
+
   }
   crearEvento(){
     this.navCtrl.push(Crearevento);

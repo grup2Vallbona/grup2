@@ -27,7 +27,7 @@
           <ion-card-content item-left class="asistire">
             <p>Si asistiré</p>
           </ion-card-content>
-            <ion-toggle ></ion-toggle>
+            <ion-toggle [(ngModel)]="isSelectedAssistir" name="selectedAssistir" (click)="assistirEvent()"></ion-toggle>
         </ion-item>
   </ion-card>
   
@@ -49,10 +49,11 @@
             <p>Asistentes</p>
           </ion-card-content>
           <ion-card-content item-right>
-            <p>1</p>
+            <p>{{numeroAssistents}}</p>
           </ion-card-content>
         </ion-item>
   </ion-card>
   
   </ion-content>
+
   

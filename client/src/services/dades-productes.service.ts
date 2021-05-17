@@ -15,7 +15,11 @@ export class DadesProductesService {
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   baseUrl: string =
 
+<<<<<<< HEAD
     "http://localhost/WeSwing/grup2/server/public/index.php";
+=======
+    "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
+>>>>>>> 6e988bce2a35f11114ccce874480944cbef64256
 
   constructor(private http: Http) {}
 
@@ -57,6 +61,9 @@ export class DadesProductesService {
   public getPersonaUltima(): Observable<any> {
     return this.http.get(this.baseUrl + "/api/persona/ultima/");
   }
+  public assistent(assistent: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/assistent/', assistent);
+  }
 
   public getEntitatUltima(): Observable<any> {
     return this.http.get(this.baseUrl + "/api/entitats/ultima/");
@@ -88,6 +95,9 @@ export class DadesProductesService {
   public carregarEvents(): Observable<any> {
     return this.http.get(this.baseUrl + "/api/events");
   }
+  public getEventId(idEvent: number): Observable <any>{
+    return this.http.get(this.baseUrl + '/api/event/' + idEvent);
+  }
 
   public getSeguits(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/seguit/" + id);
@@ -105,11 +115,23 @@ export class DadesProductesService {
   public getAssistentsId(id: number): Observable<any>{
     return this.http.get(this.baseUrl + '/api/assistents/' + id)
   }
+  public bloquejar(bloquejar: FormData): Observable<any>{
+    return this.http.post(this.baseUrl + '/api/bloquejar', bloquejar)
+  }
 
+  public eliminarBloquejar(idseguit: number, idseguidor: number): Observable<any>{
+    return this.http.delete(this.baseUrl + '/api/eliminarBloquejar/' + idseguit + '/' + idseguidor);
+  }
   public seguir(seguir: FormData): Observable<any> {
-    return this.http.post(this.baseUrl + "/api/seguir/" , seguir);
+    return this.http.post(this.baseUrl + '/api/seguir' , seguir);
   }
   public deixarSeguir(idseguit: number, idseguidor: number):Observable<any>{
-    return this.http.delete(this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor);
+    return this.http.delete(this.baseUrl + '/api/eliminarSeguir/' + idseguit + '/' + idseguidor);
+  }
+  public eliminarAssistent(idevent: number, idassistent: number): Observable<any>{
+    return this.http.delete(this.baseUrl + '/api/eliminarAssistent/' + idevent + '/' + idassistent);
+  }
+  public countAssistents(idevent: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/assistentscount/' + idevent);
   }
 }

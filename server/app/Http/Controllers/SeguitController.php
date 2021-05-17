@@ -65,8 +65,10 @@ class SeguitController extends BaseController
      */
     function getSeguitsId($id)
     {
-        $seguit = Seguit::all();
-        $seguit = $seguit->where('seguidor_id', $id);
+        $seguit = Seguit::select('seguits.*', 'usuaris.*')
+            ->join('usuaris', 'seguits.seguit_id', '=', 'usuaris.id')
+            ->where('seguits.seguidor_id', $id)
+            ->get();
         return $seguit;
     }
     /**
@@ -118,21 +120,19 @@ class SeguitController extends BaseController
 
     function getSeguidorsId($id)
     {
-        $seguit = Seguit::all();
-        $seguit = $seguit->where('seguit_id', $id);
+        $seguit = Seguit::select('seguits.*', 'usuaris.*')
+            ->join('usuaris', 'seguits.seguidor_id', '=', 'usuaris.id')
+            ->where('seguits.seguit_id', $id)
+            ->get();
         return $seguit;
     }
 
 
     function deleteSeguits($idseguit, $idseguidor)
     {
-        $seguitSeguidor = Seguit::where('seguit_id', '=', $idseguit)
-                                ->where('seguidor_id', '=', $idseguidor)
-                                ->firstOrFail();
-                                
-        Seguit::where('seguit_id', '=', $idseguit)
-                                ->where('seguidor_id', '=', $idseguidor)
-                                ->delete();
+        $seguitSeguidor = Seguit::where('seguit_id', $idseguit)
+                                ->where('seguidor_id', $idseguidor)
+->delete();
         return $seguitSeguidor;
     }
 }

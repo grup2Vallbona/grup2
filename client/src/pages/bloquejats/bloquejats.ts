@@ -17,10 +17,10 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 })
 export class Bloquejats {
   bloquejats = [];
-  lal = [];
-  usuari: Usuari;
-
-  usuariS: Usuari;
+  usuarisBloquejats = [];
+  usuariBloquejador: Usuari;
+  
+  usuariBloquejat: Usuari;
   id: any;
   nom: any;
   constructor(
@@ -28,14 +28,16 @@ export class Bloquejats {
     public navParams: NavParams,
     private dades: DadesProductesService,
     public storage: Storage
-  ) {}
+  ) {
+    this.usuariBloquejador = this.navParams.get("usuari");
+  }
 
   ionViewDidLoad() {
-    this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
-        this.usuari = jUsuario.json();
+ 
+      this.dades.getUsuariEmail(this.usuariBloquejador.email).subscribe((jUsuario: any) => {
+        this.usuariBloquejat = jUsuario.json();
 
-        this.dades.getBloquejats(this.usuari.id).subscribe((bloquejat) => {
+        this.dades.getBloquejats(this.usuariBloquejador.id).subscribe((bloquejat) => {
             this.bloquejats = bloquejat.json();
           
 
@@ -45,14 +47,14 @@ export class Bloquejats {
               this.dades
                 .getUsuari(this.bloquejats[index].bloquejat_id)
                 .subscribe((as) => {
-                  this.usuari = as.json();
-                  this.lal.push(this.usuari);
+                  this.usuarisBloquejats = as.json();
+           
              
-                  // this.nom = this.usuariS.nickname;
+                
                 });
             }
           });
       });
-    });
+    
   }
 }
