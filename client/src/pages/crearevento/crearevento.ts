@@ -136,11 +136,7 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-<<<<<<< HEAD
     // console.log('ionViewDidLoad Crearevento');
-=======
-    console.log("ionViewDidLoad Crearevento");
->>>>>>> f1f2b0146de34d2d47b373e66e2e6d72be2c0a81
     this.carregarBalls();
     this.carregarPremis();
     this.storage.get("email").then((emailUser) => {
