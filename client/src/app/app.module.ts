@@ -45,7 +45,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Seguidors } from '../pages/seguidors/seguidors';
 import { Bloquejats } from '../pages/bloquejats/bloquejats';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyD2zHm9yWRvsWVqm6YS93HUWtQOlGvcwJg",
@@ -143,7 +143,7 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController,
-  
+    
   
   ]
 })
