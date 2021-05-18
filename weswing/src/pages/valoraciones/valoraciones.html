@@ -1,0 +1,196 @@
+<ion-header>
+
+  <ion-navbar no-border-bottom>
+    <ion-title>Valoraciones</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only color="light">
+        </button>
+      </ion-buttons>
+
+  </ion-navbar>
+
+<ion-toolbar no-border-top>
+
+
+
+
+
+
+    <ion-segment [(ngModel)]="generic">
+      <ion-segment-button value="todas">
+        Todas
+      </ion-segment-button>
+      <ion-segment-button value="hechas">
+        Hechas
+      </ion-segment-button>
+      <ion-segment-button value="valoradas">
+        Valoradas
+      </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>
+</ion-header>
+
+<ion-content class="bodyTabs">
+  <div [ngSwitch]="generic">
+    <ion-list *ngSwitchCase="'todas'">
+        <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Estilo de baile</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Ordenar Por</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="./assets/images/foto1.jpg">
+              </ion-avatar>
+              <h3>Summer Swing</h3>
+              <p>5/5</p>
+            </ion-item>
+      </ion-card>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'hechas'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Estilo de baile</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Ordenar Por</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'valoradas'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Estilo de baile</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Ordenar Por</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'stars'">
+      <ion-item>
+          <ion-label>Pais</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Estilo de baile</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label>Ordenar Por</ion-label>
+          <ion-select [(ngModel)]="language">
+            <ion-option value="eng">Test</ion-option>
+            <ion-option value="esp">Test</ion-option>
+            <ion-option value="cat">Test</ion-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="./assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="./assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="./assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+      <ion-card (click)="gotoGrupo()">
+            <ion-item>
+              <ion-avatar item-left>
+                <img src="./assets/icon/logoband.png">
+              </ion-avatar>
+              <h3>Wait a minute. Wait a minute,</h3>
+              <p>Wait a minute. Wait a minute,</p>
+            </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>
+
