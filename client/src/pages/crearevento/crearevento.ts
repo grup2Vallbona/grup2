@@ -7,6 +7,7 @@ import { Principal } from "../principal/principal";
 import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
+import { GlobalProvider } from "../../providers/global/global";
 // import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
 /**
  * Generated class for the Crearevento page.
@@ -41,12 +42,14 @@ export class Crearevento {
   maxGanadores: number;
   paises: any;
   ubicacionGeolocalizada:any;
+  email:string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
     private storage: Storage,
     private http: Http,
+    public global: GlobalProvider
     // public geolocation: Geolocation
   ) {}
   // mapaGeolocalizacion(){
@@ -68,9 +71,11 @@ export class Crearevento {
     municipio,
     calle,
     provincia,
-    maxGanadores
+    maxGanadores,
+    
   ) {
     if (crearNuevoPremio) {
+      console.log(this.persona_id);
       const formData = new FormData();
       formData.append("creador_id", this.persona_id);
       formData.append("titol", premioNuevo);
@@ -80,12 +85,12 @@ export class Crearevento {
       formData.append("ball_id", tipoBaile);
       formData.append("premi_id", this.premio_id);
       formData.append("pais", pais);
-      formData.append("provincia", provincia);
-      formData.append("municipi", municipio);
+      formData.append("provincia", 1);
+      formData.append("municipi", 2);
       formData.append("participacioTipus", tipoParticipacion);
       formData.append("titol", titulo);
       formData.append("subtitol", subtitulo);
-      formData.append("carrer", calle);
+      formData.append("carrer", "calle");
       formData.append("descripcio", descripcion);
       formData.append("data", fechaEvento);
       this.dades.createEventPremi(formData).subscribe((data) => {
@@ -117,9 +122,9 @@ export class Crearevento {
     
   }
   carregarPremis() {
-    this.storage.get("email").then((emailUser) => {
+    this.email = this.global.get();
       // console.log(emailUser);
-      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
+      this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         // console.log(jUsuario);
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.persona_id;
@@ -130,7 +135,7 @@ export class Crearevento {
           }
         });
       });
-    });
+    
   }
   carregarBalls() {
     this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
@@ -145,12 +150,13 @@ export class Crearevento {
     // console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
     this.carregarPremis();
-    this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(emailUser).subscribe((jUsuario: any) => {
+    this.email = this.global.get();
+    console.log(this.email);
+      this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.id;
+        
       });
-    });
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);

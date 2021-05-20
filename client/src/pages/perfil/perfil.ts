@@ -18,7 +18,7 @@ import { Seguidors } from "../seguidors/seguidors";
 import { Bloquejats } from "../bloquejats/bloquejats";
 import { HomePage } from "../home/home";
 import { MyApp } from "../../app/app.component";
-
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the Usuario page.
  *
@@ -69,7 +69,8 @@ export class Perfil {
     public navParams: NavParams,
     public storage: Storage,
     public http: Http,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public global: GlobalProvider
   ) {
     this.usuariRebut = navParams.get("usuari");
     this.email = this.usuariRebut.email;
@@ -185,15 +186,15 @@ export class Perfil {
   }
 
   ngOnInit() {
-    this.storage.get("email").then((emailUser) => {
-      if (emailUser == this.usuariRebut.email) {
+    this.email = this.global.get();
+      if (this.email == this.usuariRebut.email) {
         this.botonsDreta = true;
         this.botoBloquejar = true;
       } else {
         this.botonsDreta = false;
         this.botoBloquejar = false;
       }
-    });
+
   }
   desbloquearUsuario() {
 
@@ -219,8 +220,9 @@ export class Perfil {
         }
       });
 
-    this.storage.get("email").then((emailUser) => {
-      this.dades.getUsuariEmail(emailUser).subscribe((user) => {
+      this.email = this.global.get();
+      
+      this.dades.getUsuariEmail(this.email).subscribe((user) => {
         this.usuari = user.json();
         this.dades.getBloquejats(this.usuari.id).subscribe((user) => {
           this.bloquejats = user.json();
@@ -233,7 +235,6 @@ export class Perfil {
               this.botonsIconosBloquejar = true;
             }
           }
-        });
       });
     });
 
