@@ -1,7 +1,0 @@
-{
-  "name": "weswing",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
