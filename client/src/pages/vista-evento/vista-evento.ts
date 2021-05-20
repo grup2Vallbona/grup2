@@ -4,6 +4,7 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 import { Storage } from "@ionic/storage";
 import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Asistentes } from "../asistentes/asistentes";
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the VistaEventoComponent component.
  *
@@ -24,11 +25,13 @@ export class VistaEvento {
   text: string;
   tuEvento: boolean = false;
   isSelectedAssistir: boolean = false;
+  email:string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    private storage: Storage
+    private storage: Storage,
+    public global: GlobalProvider
   ) {
     this.evento = navParams.get("evento");
   }
@@ -44,14 +47,13 @@ export class VistaEvento {
     let posicio: any = 76547654;
 
     if (this.isSelectedAssistir == true) {
-      this.storage.get("email").then((emailUser) => {
-        this.dades.getUsuariEmail(emailUser).subscribe((jUsuario) => {
+      this.email = this.global.get();
+        this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
           this.usuari = jUsuario.json();
 
           const formDataAssistent = new FormData();
           formDataAssistent.append("event_id", this.evento.id);
           formDataAssistent.append("usuari_id", this.usuari.id);
-          formDataAssistent.append("posicio", posicio);
 
           this.dades.createAssistent(formDataAssistent).subscribe((asisstent) => {
             this.dades
@@ -62,11 +64,11 @@ export class VistaEvento {
           });
           });
         });
-      });
+     
     } else {
  
-      this.storage.get("email").then((emailUser) => {
-        this.dades.getUsuariEmail(emailUser).subscribe((jUsuario) => {
+      this.email = this.global.get();
+        this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
           this.usuari = jUsuario.json();
 
           this.dades
@@ -80,7 +82,7 @@ export class VistaEvento {
           });
             });
         });
-      });
+      
     }
   }
   gotoEscuela() {

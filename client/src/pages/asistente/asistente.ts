@@ -7,7 +7,7 @@ import { Perfil } from "../perfil/perfil";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { TouchID } from "ionic-native";
-
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the AsistentePage page.
  *
@@ -34,12 +34,13 @@ export class Asistente {
   botoSeguirBloquejar: boolean = false;
   idBloquejador: any;
   emailStorage: any;
-
+  email:string;
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
     public navParams: NavParams,
-    public storage: Storage
+    public storage: Storage,
+    public global: GlobalProvider
   ) {}
 
   gotoUsuario() {
@@ -55,8 +56,8 @@ export class Asistente {
       formDataSeguir.append("seguidor_id", this.idSeguidor);
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
-          this.storage.set("arraySeguitsSeguidors", this.seguits);
-
+          
+          this.global.set(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
@@ -68,8 +69,8 @@ export class Asistente {
       this.idSeguidor = this.usuari.id;
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
-        this.storage.set("arraySeguitsSeguidors", this.seguits);
-
+        
+        this.global.set(this.seguits);
         this.botoFollowUnfollow = false;
 
         this.dades
@@ -81,8 +82,9 @@ export class Asistente {
 
   ngOnInit() {
    
-    this.storage.get("email").then((emailUser) => {
-      this.emailStorage = emailUser;
+    
+      this.email = this.global.get();
+      this.emailStorage = this.email;
 
       if (this.asistente.email == this.emailStorage) {
         this.botoSeguidor = true;
@@ -103,8 +105,6 @@ export class Asistente {
         })
       }
      
-        
-    });
     this.storage
     .get("arraySeguitsSeguidors")
     .then((arraySeguitsSeguidors) => {

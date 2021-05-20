@@ -7,7 +7,7 @@ import { Eventos } from "../eventos/eventos";
 
 import { Movidas } from "../movidas/movidas";
 import { Perfil } from "../perfil/perfil";
-
+import { GlobalProvider } from "../../providers/global/global";
 
 /**
  * Generated class for the Novedades page.
@@ -22,12 +22,13 @@ import { Perfil } from "../perfil/perfil";
 })
 export class Novedades {
   usuari: Usuari;
+  email:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public dades: DadesProductesService
-    
+    public dades: DadesProductesService,
+    public global: GlobalProvider
   ) {}
 
   gotoMovidas() {
@@ -36,14 +37,12 @@ export class Novedades {
   
 
   gotoPerfil() {
-
-
-    this.storage.get("email").then((emailUser)=>{
-      this.dades.getUsuariEmail(emailUser).subscribe(usuariJ => {
-this.usuari = usuariJ.json();
-this.navCtrl.push(Perfil, {usuari: this.usuari});
+    this.email = this.global.get();
+    this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {
+    this.usuari = usuariJ.json();
+    this.navCtrl.push(Perfil, {usuari: this.usuari});
       })
-    })
+ 
     
   }
 }
