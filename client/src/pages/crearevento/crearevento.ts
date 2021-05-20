@@ -7,7 +7,7 @@ import { Principal } from "../principal/principal";
 import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
-import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
+// import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
 /**
  * Generated class for the Crearevento page.
  *
@@ -47,13 +47,13 @@ export class Crearevento {
     private dades: DadesProductesService,
     private storage: Storage,
     private http: Http,
-    public geolocation: Geolocation
+    // public geolocation: Geolocation
   ) {}
-  mapaGeolocalizacion(){
-    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
-      console.log(geoposition);
-    });
-  }
+  // mapaGeolocalizacion(){
+  //   this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+  //     console.log(geoposition);
+  //   });
+  // }
   crearEvento(
     titulo,
     subtitulo,
