@@ -16,16 +16,9 @@ export class DadesProductesService {
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-<<<<<<< HEAD
   // baseUrl: string = "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
   
   baseUrl: string = this.urlDavid;
-=======
-  baseUrl: string =
-
-    "http://localhost/WeSwing/grup2/server/public/index.php";
-
->>>>>>> ca50812f5a05d6c9ecfafe383b8e4482a204b74e
   constructor(private http: Http) {}
 
   //USUARI
