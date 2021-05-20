@@ -24,6 +24,7 @@
         "@capacitor/android": "^2.4.7",
         "@capacitor/core": "2.4.7",
         "@ionic-native/core": "3.7.0",
+        "@ionic-native/geolocation": "^5.33.0",
         "@ionic-native/google-plus": "^5.32.1",
         "@ionic-native/splash-screen": "3.7.0",
         "@ionic-native/status-bar": "3.7.0",
@@ -83,9 +84,7 @@
                 "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
             },
             "cordova-plugin-ionic-keyboard": {},
-            "cordova-plugin-geolocation": {
-                "GPS_REQUIRED": "true"
-            }
+            "cordova-plugin-geolocation": {}
         },
         "platforms": [
             "android"

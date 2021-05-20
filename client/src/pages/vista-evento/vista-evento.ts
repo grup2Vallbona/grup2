@@ -41,7 +41,7 @@ export class VistaEvento {
     }
   }
   assistirEvent() {
-    let posicio: any = 34;
+    let posicio: any = 76547654;
 
     if (this.isSelectedAssistir == true) {
       this.storage.get("email").then((emailUser) => {
@@ -53,7 +53,7 @@ export class VistaEvento {
           formDataAssistent.append("usuari_id", this.usuari.id);
           formDataAssistent.append("posicio", posicio);
 
-          this.dades.assistent(formDataAssistent).subscribe((asisstent) => {
+          this.dades.createAssistent(formDataAssistent).subscribe((asisstent) => {
             this.dades
           .countAssistents(this.evento.id)
           .subscribe((countAssistents) => {
@@ -64,13 +64,13 @@ export class VistaEvento {
         });
       });
     } else {
-      console.log('hola pepsicola')
+ 
       this.storage.get("email").then((emailUser) => {
         this.dades.getUsuariEmail(emailUser).subscribe((jUsuario) => {
           this.usuari = jUsuario.json();
 
           this.dades
-            .eliminarAssistent(this.evento.id, this.usuari.id)
+            .deleteAssistent(this.evento.id, this.usuari.id)
             .subscribe((asisstent) => {
               this.dades
           .countAssistents(this.evento.id)
@@ -101,6 +101,7 @@ export class VistaEvento {
 
           for (let index = 0; index < this.asistents.length; index++) {
             if (emailLoguejat == this.asistents[index].email) {
+             
               this.isSelectedAssistir = true;
             }
           }

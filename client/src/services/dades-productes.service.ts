@@ -10,124 +10,149 @@ import { Usuari } from "../app/interfaces/iusuari";
 @Injectable()
 export class DadesProductesService {
   // http: any;
+  urlDavid = 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
+  urlAlbert = 'http://localhost/WeSwing/grup2/server/public/index.php';
+  urlNil = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
   //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
   //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-  baseUrl: string =
 
-    "http://localhost/M14/Projecte_Final/grup2/server/public/index.php";
+  // baseUrl: string = "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
+  
+  baseUrl: string = this.urlDavid;
+
+
+
 
   constructor(private http: Http) {}
 
+  //USUARI
   public getUsuari(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/usuariId/" + id);
   }
-
-  public getPersona(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/persona/" + id);
-  }
-
-  public getEntitat(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/entitat/" + id);
-  }
-
   public getUsuariEmail(email: string): Observable<any> {
     return this.http.get(this.baseUrl + "/api/usuari/" + email);
   }
-  public getTipusBalls(): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/tipusballs");
+  public createUsuari(usuari: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + "/api/usuari/", usuari);
   }
-  public crearPersona(persona: FormData): Observable<any> {
+  public modifyUsuari(id: number, user: FormData) {
+    return this.http.post(this.baseUrl + "/api/usuari/" + id, user);
+  }
+
+  //PERSONA
+  public getPersona(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/persona/" + id);
+  }
+  public createPersona(persona: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/persona/", persona);
+  }
+  public modifyPersona(id: number, persona: FormData) {
+    return this.http.post(this.baseUrl + "/api/persona/" + id, persona);
+  }
+  public getPersonaUltima(): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/persona/ultima/");
   }
   public getPersonaEmail(email: string): Observable<any> {
     return this.http.get(this.baseUrl + "/api/email/" + email);
   }
-  public crearUsuari(usuari: FormData): Observable<any> {
-    return this.http.post(this.baseUrl + "/api/usuari/", usuari);
-  }
-  public getPremisUsuari(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/premis/usuari/" + id);
-  }
 
-  public crearEntitat(entitat: FormData): Observable<any> {
+  //ENTITAT
+  public getEntitat(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/entitat/" + id);
+  }
+  public createEntitat(entitat: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/entitat", entitat);
   }
-
-  public getPersonaUltima(): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/persona/ultima/");
+  public modifyEntitat(id: number, entitat: FormData) {
+    return this.http.post(this.baseUrl + "/api/entitat/" + id, entitat);
   }
-  public assistent(assistent: FormData): Observable<any>{
-    return this.http.post(this.baseUrl + '/api/assistent/', assistent);
-  }
-
   public getEntitatUltima(): Observable<any> {
     return this.http.get(this.baseUrl + "/api/entitats/ultima/");
   }
-  public modificarPersona(id: number, persona: FormData) {
-    return this.http.post(this.baseUrl + "/api/persona/" + id, persona);
+
+  //BLOQUEJAT
+  public getBloquejats(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/bloquejat/" + id);
   }
-  public modificarEntitat(id: number, entitat: FormData) {
-    return this.http.post(this.baseUrl + "/api/entitat/" + id, entitat);
+  public getBloquejadors(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/bloquejador/" + id);
   }
-  public modificarUsuari(id: number, user: FormData) {
-    return this.http.post(this.baseUrl + "/api/usuari/" + id, user);
+  public bloquejar(bloquejar: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + "/api/bloquejar", bloquejar);
   }
-  public crearPremi(premi: FormData): Observable<any> {
-    return this.http.post(this.baseUrl + "/api/premi", premi);
+  public deleteBloquejar(idseguit: number, idseguidor: number): Observable<any> {
+    return this.http.delete(this.baseUrl + "/api/eliminarBloquejar/" + idseguit + "/" + idseguidor);
   }
-  public getPremi(premi: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/premi/"+ premi);
+
+  //SEGUIT
+  public getSeguits(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/seguit/" + id);
   }
-  public getPremiUltim(): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/premis/ultim/");
+  public getSeguidors(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/seguidor/" + id);
   }
-  public crearEvent(event: FormData): Observable<any> {
+  public seguir(seguir: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + "/api/seguir", seguir);
+  }
+  public deleteSeguir(idseguit: number, idseguidor: number): Observable<any> {
+    return this.http.delete(
+      this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor
+    );
+  }
+
+  //EVENTO
+  public createEvent(event: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/event", event);
   }
-  public crearEventPremi(all: FormData): Observable<any> {
+  public createEventPremi(all: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/eventpremi", all);
   }
   public carregarEvents(): Observable<any> {
     return this.http.get(this.baseUrl + "/api/events");
   }
-  public getEventId(idEvent: number): Observable <any>{
-    return this.http.get(this.baseUrl + '/api/event/' + idEvent);
+  public getEventId(idEvent: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/event/" + idEvent);
   }
 
-  public getSeguits(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/seguit/" + id);
+  //PREMIS
+  public getPremisUsuari(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/premis/usuari/" + id);
   }
-  
-  public getSeguidors(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/seguidor/" + id);
+  public createPremi(premi: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + "/api/premi", premi);
   }
-  public getBloquejats(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/api/bloquejat/" + id);
+  public getPremi(premi: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/premi/" + premi);
   }
-  public getAssistents(): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/assistents')
-  }
-  public getAssistentsId(id: number): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/assistents/' + id)
-  }
-  public bloquejar(bloquejar: FormData): Observable<any>{
-    return this.http.post(this.baseUrl + '/api/bloquejar', bloquejar)
+  public getPremiUltim(): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/premis/ultim/");
   }
 
-  public eliminarBloquejar(idseguit: number, idseguidor: number): Observable<any>{
-    return this.http.delete(this.baseUrl + '/api/eliminarBloquejar/' + idseguit + '/' + idseguidor);
+  //ASSISTENT
+  public createAssistent(assistent: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + "/api/assistent/", assistent);
   }
-  public seguir(seguir: FormData): Observable<any> {
-    return this.http.post(this.baseUrl + '/api/seguir' , seguir);
+  public deleteAssistent(
+    idevent: number,
+    idassistent: number
+  ): Observable<any> {
+    return this.http.delete(
+      this.baseUrl + "/api/eliminarAssistent/" + idevent + "/" + idassistent
+    );
   }
-  public deixarSeguir(idseguit: number, idseguidor: number):Observable<any>{
-    return this.http.delete(this.baseUrl + '/api/eliminarSeguir/' + idseguit + '/' + idseguidor);
+  public countAssistents(idevent: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/assistentscount/" + idevent);
   }
-  public eliminarAssistent(idevent: number, idassistent: number): Observable<any>{
-    return this.http.delete(this.baseUrl + '/api/eliminarAssistent/' + idevent + '/' + idassistent);
+  public getAssistents(): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/assistents");
   }
-  public countAssistents(idevent: number): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/assistentscount/' + idevent);
+  public getAssistentsId(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/assistents/" + id);
+  }
+
+  //TIPUS BALLS
+  public getTipusBalls(): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/tipusballs");
   }
 }

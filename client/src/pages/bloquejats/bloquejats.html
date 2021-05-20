@@ -12,24 +12,26 @@
 
 </ion-header>
 
-<ion-content> 
-  <ion-card *ngFor="let bloque of lal">
-    <ion-item >
-      <ion-avatar item-left *ngIf="bloque['genere'] == 0">
-        <img src="../../assets/icon/hhombre.png">
-      </ion-avatar>
-      <ion-avatar item-left *ngIf="bloque['genere'] == 1">
-        <img src="../../assets/icon/mmujer.png">
-      </ion-avatar>
-      <ion-avatar item-left *ngIf="bloque['genere'] == 2">
-        <img src="../../assets/icon/anonymous-mask.png">
-      </ion-avatar>
-      <h2>{{bloque['nickname']}} </h2>      
-    </ion-item>
-</ion-card>
- 
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
 
-  
+    <page-bloquejat *ngFor="let bloquejat of usuarisBloquejats" [bloquejat]="bloquejat"></page-bloquejat>
 
- 
+  </ion-list>
+
+
+
+
+
+
+
+
 </ion-content>

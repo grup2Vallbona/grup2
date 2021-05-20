@@ -83,9 +83,27 @@ class BloquejatController extends BaseController
     }
 
     function getBloquejatsId($id){
-        $bloquejat = Bloquejat::all();
-        $bloquejat = $bloquejat->where('bloquejador_id', $id);
+        $bloquejat = Bloquejat::select('bloquejats.*', 'usuaris.*')
+                                ->join('usuaris', 'bloquejats.bloquejat_id', '=', 'usuaris.id')
+                                ->where('bloquejador_id', $id)
+                                ->get();
         return $bloquejat;
+
+
+      
+
+    }
+
+
+    function getBloquejadorsId($id){
+        $bloquejador = Bloquejat::select('bloquejats.*', 'usuaris.*')
+                                ->join('usuaris', 'bloquejats.bloquejador_id', '=', 'usuaris.id')
+                                ->where('bloquejat_id', $id)
+                                ->get();
+        return $bloquejador;
+
+
+      
 
     }
 

@@ -80,7 +80,7 @@ export class EditUsuario {
 
   ionViewWillEnter() {
     let paises = [] as any;
-    this.http.get("../../assets/json/paises.json").subscribe(
+    this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);
         paises = response.json();
@@ -248,13 +248,14 @@ export class EditUsuario {
       formDataModificarUsuari.append("vacunaCovid", this.vacuna);
 
       this.dades
-        .modificarPersona(this.persona.id, formDataModificarPersona)
+        .modifyPersona(this.persona.id, formDataModificarPersona)
         .subscribe((personaM) => {
           this.dades
-            .modificarUsuari(this.usuari.id, formDataModificarUsuari)
+            .modifyUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariMpersona) => {
+              this.usuari = usuariMpersona.json();
               this.storage.set("email", emailModificar);
-              this.navCtrl.push(Perfil);
+              this.navCtrl.push(Perfil, {usuari: this.usuari});
             });
         });
     } else if (this.entitatid != null) {
@@ -281,13 +282,14 @@ export class EditUsuario {
       formDataModificarUsuari.append("vacunaCovid", this.vacuna);
 
       this.dades
-        .modificarEntitat(this.entitatU.id, formDataModificarEntitat)
+        .modifyEntitat(this.entitatU.id, formDataModificarEntitat)
         .subscribe((entitatCreada) => {
           this.dades
-            .modificarUsuari(this.usuari.id, formDataModificarUsuari)
+            .modifyUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariModifica) => {
+              this.usuari = usuariModifica.json();
               this.storage.set("email", emailModificar);
-              this.navCtrl.push(Perfil);
+              this.navCtrl.push(Perfil, {usuari: this.usuari});
             });
         });
     }

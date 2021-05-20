@@ -36,19 +36,11 @@ import { Entitat } from "../../app/interfaces/ientitat";
   templateUrl: "register.html",
 })
 export class Register {
-  // usuarios = new FormGroup({
-  //   nickname: new FormControl('', [Validators.requiredTrue]),
-
-  // });
-  //  usuarios: FormGroup;
-  miModelo: any;
-  //  paises: Pais[];
-  personaJ: string;
+ 
+ 
   paises = [];
-  persona: Persona;
   personUltima: Persona;
   private imageSrc: string;
-  users: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
   itemObservable = this.db.list("/users");
   email: string;
@@ -57,8 +49,7 @@ export class Register {
   genero: string;
   idioma: string;
   pais: string;
-  rol: any;
-  // alertCtrl: any;
+  rol: any;  
   descripcion: string;
   vacunaToggle: boolean = false;
   vacuna: any;
@@ -80,13 +71,13 @@ export class Register {
   imatge: string;
   anyEmpezarBailar: any;
   nombre: any;
-  alertController: any;
+  //alertController: any;
   entitatIdUltima: any;
   entitatUsuari: Entitat;
-  required: boolean = true;
-  locationWatchStarted: boolean;
-  locationSubscription: any;
-  locationTrace = [];
+  //required: boolean = true;
+  //locationWatchStarted: boolean;
+  //locationSubscription: any;
+  //locationTrace = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -119,49 +110,28 @@ export class Register {
     imatge,
     anyEmpezarBailar
   ) {
-
-
-    if (professorToggle) {
-      this.profesor = 1;
-    } else {
-      this.profesor = 0;
-    }
-    if (musicToggle) {
-      this.music = 1;
-    } else {
-      this.music = 0;
-    }
-    if (ballariToggle) {
-      this.ballari = 1;
-    } else {
-      this.ballari = 0;
-    }
-
-    if (vacunaToggle) {
-      this.vacuna = 1;
-    } else {
-      this.vacuna = 0;
-    }
-
-    if (iniciImparticions == undefined) {
-      iniciImparticions = "1800-01-01";
-    }
-
-    const formData = new FormData();
-    formData.append("rol", rol);
-    formData.append("ballari", this.ballari);
-    formData.append("music", this.music);
-    formData.append("professor", this.profesor);
-    formData.append("instrument", instrumento);
-    formData.append("dataNaixementBallari", anyEmpezarBailar);
-    formData.append("iniciProfessorat", iniciImparticions);
-
     try {
+      professorToggle ? (this.profesor = 1) : (this.profesor = 0);
+      musicToggle ? (this.music = 1) : (this.music = 0);
+      ballariToggle ? (this.ballari = 1) : (this.ballari = 0);
+      vacunaToggle ? (this.vacuna = 1) : (this.vacuna = 0);
+
+      if (!iniciImparticions) iniciImparticions = "1800-01-01";
+
+      const formData = new FormData();
+      formData.append("rol", rol);
+      formData.append("ballari", this.ballari);
+      formData.append("music", this.music);
+      formData.append("professor", this.profesor);
+      formData.append("instrument", instrumento);
+      formData.append("dataNaixementBallari", anyEmpezarBailar);
+      formData.append("iniciProfessorat", iniciImparticions);
+
       this.firebaseAuth.auth
         .createUserWithEmailAndPassword(email, password)
         .then((r) => this.itemObservable.push(formData))
         .then((r) =>
-          this.dades.crearPersona(formData).subscribe((data) => {
+          this.dades.createPersona(formData).subscribe((data) => {
             this.dades.getPersonaUltima().subscribe((personaUltimaJson) => {
               this.personUltima = personaUltimaJson.json();
               const formDataUsuari = new FormData();
@@ -176,19 +146,26 @@ export class Register {
               formDataUsuari.append("descripcio", descripcion);
               formDataUsuari.append("vacunaCovid", this.vacuna);
               formDataUsuari.append("imagen", imatge);
-              this.dades.crearUsuari(formDataUsuari).subscribe((data) => {
+              this.dades.createUsuari(formDataUsuari).subscribe((data) => {
                 this.navCtrl.push(HomePage);
               });
             });
           })
-        );
-    } catch (e) {
-      alert(e);
-      this.registreIncorrecte();
-      // if (e["code"] == "auth/email-already-exists") {
-      //   this.registreIncorrecte();
-      // }
-    }
+        )
+        .catch((e) => {
+          console.log(e);
+        
+          if (e["code"] == "auth/email-already-in-use") {
+            this.emailAlreadyInUse();
+          } 
+          if (e["code"] == "auth/weak-password") {
+            this.weakPassword();
+          }
+          if(e["code"] == "auth/invalid-email"){
+            this.invalidEmail();
+          }
+        });
+    } catch (e) {}
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({
@@ -213,23 +190,11 @@ export class Register {
     nombre,
     genero
   ) {
-    if (escolaToggle) {
-      this.escola = 1;
-    } else {
-      this.escola = 0;
-    }
-    if (marcaToggle) {
-      this.marca = 1;
-    } else {
-      this.marca = 0;
-    }
 
-    if (vacunaToggle) {
-      this.vacuna = 1;
-    } else {
-      this.vacuna = 0;
-    }
-
+    escolaToggle ? (this.escola = 1) : (this.escola = 0);
+    marcaToggle ? (this.marca = 1) : (this.marca = 0);
+    vacunaToggle ? (this.vacuna = 1) : (this.vacuna = 0);
+      
     const formDataEntidad = new FormData();
     formDataEntidad.append("escola", this.escola);
     formDataEntidad.append("marca", this.marca);
@@ -240,7 +205,7 @@ export class Register {
         .createUserWithEmailAndPassword(email, password)
         .then((r) => this.itemObservable.push(formDataEntidad))
         .then((r) =>
-          this.dades.crearEntitat(formDataEntidad).subscribe((dataEntitat) => {
+          this.dades.createEntitat(formDataEntidad).subscribe((dataEntitat) => {
             this.dades.getEntitatUltima().subscribe((entitatUltimaJson) => {
               this.entitatUsuari = entitatUltimaJson.json();
               this.entitatIdUltima = this.entitatUsuari.id;
@@ -258,40 +223,54 @@ export class Register {
               formDataEntitatUsuari.append("imagen", imatge);
 
               this.dades
-                .crearUsuari(formDataEntitatUsuari)
+                .createUsuari(formDataEntitatUsuari)
                 .subscribe((dataUsuariEntitat) => {
                   this.navCtrl.push(HomePage);
                 });
             });
           })
-        );
+        ).catch(e=>{
+
+        });
     } catch (e) {
       console.log(e);
-      this.registreIncorrecte();
-      // if (e["code"] == "auth/email-already-exists") {
-      //   this.registreIncorrecte();
-      // }
+
+      if (e["code"] == "auth/email-already-in-use") {
+        this.emailAlreadyInUse();
+      } if (e["code"] == "auth/weak-password") {
+        this.weakPassword();
+      }
+      if(e["code"] == "auth/invalid-email"){
+        this.invalidEmail();
+      }    
+    
     }
   }
-
-  presentAlert() {
+  weakPassword() {
     let alert = this.alertCtrl.create({
-      title: "El email ja esta en us",
-      // subTitle: '10% of battery remaining',
+      title: "La contraseña tiene que tener mas de 6 carácteres",
+      
       buttons: ["Aceptar"],
     });
     alert.present();
   }
-  // signup(email: string, password: string, nickname: string, genero: string, idioma: string, pais: string, ciudad: string, rol: string) {
-  // this.firebaseAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(r => this.navCtrl.push(Principal))
-  // .catch(e=>{
-  //   if (e['code'] == 'auth/invalid-email-verified') {
-  //     console.log("burro")
-  //     // this.presentAlert();
-  //   }
-  // })
-  // // this.itemObservable.push({email: email, nickname: nickname, genero: genero, idioma: idioma, pais: pais, ciudad: ciudad, rol: rol})
-  // }
+  invalidEmail(){
+    let alert = this.alertCtrl.create({
+      title: "El email esta mal formado",
+    
+      buttons: ["Aceptar"],
+    });
+    alert.present();
+  }
+  emailAlreadyInUse() {
+    let alert = this.alertCtrl.create({
+      title: "El email ya esta en uso",
+     
+      buttons: ["Aceptar"],
+    });
+    alert.present();
+  }
+
 
   loginToast() {
     let toast = this.toastCtrl.create({
@@ -349,14 +328,12 @@ export class Register {
       }
     }
   }
-  // createForm() {
-  //   this.nickname = new FormControl('Dayana', Validators.required)
-  // }
+
   ionViewDidLoad() {
-    // this.createForm();
-    this.http.get("../../assets/json/paises.json").subscribe(
+
+    this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
-        // alert(response);
+      
         this.paises = response.json();
       },
       (error) => {

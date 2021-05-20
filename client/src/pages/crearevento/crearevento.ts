@@ -7,7 +7,7 @@ import { Principal } from "../principal/principal";
 import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
-
+import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
 /**
  * Generated class for the Crearevento page.
  *
@@ -40,14 +40,20 @@ export class Crearevento {
   premio_id: any;
   maxGanadores: number;
   paises: any;
+  ubicacionGeolocalizada:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
     private storage: Storage,
-    private http: Http
+    private http: Http,
+    public geolocation: Geolocation
   ) {}
-
+  mapaGeolocalizacion(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      console.log(geoposition);
+    });
+  }
   crearEvento(
     titulo,
     subtitulo,
@@ -82,7 +88,7 @@ export class Crearevento {
       formData.append("carrer", calle);
       formData.append("descripcio", descripcion);
       formData.append("data", fechaEvento);
-      this.dades.crearEventPremi(formData).subscribe((data) => {
+      this.dades.createEventPremi(formData).subscribe((data) => {
         this.navCtrl.push(Novedades);
       });
     } else {
@@ -102,7 +108,7 @@ export class Crearevento {
         formData.append("carrer", calle);
         formData.append("descripcio", descripcion);
         formData.append("data", fechaEvento);
-        this.dades.crearEvent(formData).subscribe((data) => {
+        this.dades.createEvent(formData).subscribe((data) => {
          this.navCtrl.push(Novedades);
         });
       });
@@ -136,7 +142,7 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-  
+    // console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
     this.carregarPremis();
     this.storage.get("email").then((emailUser) => {
@@ -145,7 +151,7 @@ export class Crearevento {
         this.persona_id = this.usuari.id;
       });
     });
-    this.http.get("../../assets/json/paises.json").subscribe(
+    this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);
         this.paises = response.json();
@@ -155,4 +161,5 @@ export class Crearevento {
       }
     );
   }
+
 }
