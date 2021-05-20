@@ -34,7 +34,7 @@ import { EditUsuario } from '../pages/editarusuario/editusuario';
 import { Grupo } from '../pages/grupo/grupo';
 import { Creargrupo } from '../pages/creargrupo/creargrupo';
 import { Crearevento } from '../pages/crearevento/crearevento';
-
+import { Bloquejat } from '../pages/bloquejat/bloquejat'
 import { DadesProductesService } from '../services/dades-productes.service';
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -93,7 +93,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-    VistaEvento
+    VistaEvento,
+    Bloquejat
     
   ],
   imports: [
@@ -133,7 +134,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-    VistaEvento
+    VistaEvento,
+    Bloquejat
     
   ],
   providers: [

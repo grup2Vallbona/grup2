@@ -35,13 +35,22 @@ export class Asistentes {
 
   ionViewWillEnter() {
     this.storage.get("email").then(email => {
-      console.log(email)
+     
     })
     this.dades.getAssistentsId(this.evento.id).subscribe((assistentsJson) => {
       this.asistentes = assistentsJson.json();
       
       
     });
+    
+  }
+  doRefresh(event) {
+
+
+    setTimeout(() => {
+      
+      event.target.complete();
+    }, 2000);
   }
  
 }

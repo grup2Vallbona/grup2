@@ -17,18 +17,14 @@ import { Principal } from '../principal/principal';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // picture: any;
-  // name: any;
-  // email: any;
+
   
  
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
 
   }
   
-  // loginGoogle() {
-  //   console.log('Login con google') ;
-  // }
+
   async loginGoogle() {
     try{
       if (this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())) {
@@ -42,10 +38,7 @@ export class HomePage {
 
 
   }
-    // console.log(user);
-    // this.picture = user.photoURL;
-    // this.name = user.displayName;
-    // this.email = user.email;
+    
  
    gotoLogin() {
      this.navCtrl.push(Login);

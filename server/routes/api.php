@@ -63,6 +63,7 @@ Route::get('assistentscount/{id}', [AssistentController::class, "countAssistents
 // ----------------- BLOQUEJAT -----------------
 Route::get('bloquejats', [BloquejatController::class, "getBloquejats"]);
 Route::get('bloquejat/{id}', [BloquejatController::class, "getBloquejatsId"]);
+Route::get('bloquejador/{id}', [BloquejatController::class, "getBloquejadorsId"]);
 Route::post('bloquejar', [BloquejatController::class, "bloquejar"]);
 Route::delete('eliminarBloquejar/{idseguit}/{idseguidor}', [BloquejatController::class, "deleteBloquejador"]);
 

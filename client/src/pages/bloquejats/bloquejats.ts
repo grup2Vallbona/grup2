@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, NgZone } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
@@ -18,43 +18,50 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 export class Bloquejats {
   bloquejats = [];
   usuarisBloquejats = [];
-  usuariBloquejador: Usuari;
-  
+  usuariRebut: Usuari;
+  usuari: Usuari;
   usuariBloquejat: Usuari;
   id: any;
   nom: any;
+ 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    public storage: Storage
+    public storage: Storage,
+    public zone: NgZone
   ) {
-    this.usuariBloquejador = this.navParams.get("usuari");
+    this.usuariRebut = this.navParams.get("usuari");
+   
   }
 
-  ionViewDidLoad() {
- 
-      this.dades.getUsuariEmail(this.usuariBloquejador.email).subscribe((jUsuario: any) => {
+  ngOnInit() {
+
+
+   
+    
+
+    this.dades
+      .getUsuariEmail(this.usuariRebut.email)
+      .subscribe((jUsuario: any) => {
         this.usuariBloquejat = jUsuario.json();
 
-        this.dades.getBloquejats(this.usuariBloquejador.id).subscribe((bloquejat) => {
-            this.bloquejats = bloquejat.json();
+        this.dades
+          .getBloquejats(this.usuariBloquejat.id)
+          .subscribe((bloquejat) => {
+            this.usuarisBloquejats = bloquejat.json();
           
-
-            
-
-            for (let index in this.bloquejats) {
-              this.dades
-                .getUsuari(this.bloquejats[index].bloquejat_id)
-                .subscribe((as) => {
-                  this.usuarisBloquejats = as.json();
            
-             
-                
-                });
-            }
           });
       });
-    
   }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.complete();
+    }, 2000);
+  }
+  
 }

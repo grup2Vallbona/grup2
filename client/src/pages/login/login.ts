@@ -29,7 +29,7 @@ export class Login {
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
   alertController: any;
-
+butons: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController, public alertCtrl:AlertController) {
     this.user = this.afAuth.authState;
@@ -43,7 +43,11 @@ export class Login {
       title: 'Usuario o contraseña incorrecta',
 
       buttons: ['Aceptar']
+      
+    
     });
+   
+   
     alert.present();
   }
   recuperarContra(){
@@ -54,6 +58,7 @@ export class Login {
       this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
         .then(r => this.navCtrl.push(Principal,{email:this.email}))
         .catch(e => {
+          
           this.contraseñaIncorrecta();
     
         })

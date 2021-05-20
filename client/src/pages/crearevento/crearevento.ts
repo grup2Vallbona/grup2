@@ -82,7 +82,7 @@ export class Crearevento {
       formData.append("carrer", calle);
       formData.append("descripcio", descripcion);
       formData.append("data", fechaEvento);
-      this.dades.crearEventPremi(formData).subscribe((data) => {
+      this.dades.createEventPremi(formData).subscribe((data) => {
         this.navCtrl.push(Novedades);
       });
     } else {
@@ -102,7 +102,7 @@ export class Crearevento {
         formData.append("carrer", calle);
         formData.append("descripcio", descripcion);
         formData.append("data", fechaEvento);
-        this.dades.crearEvent(formData).subscribe((data) => {
+        this.dades.createEvent(formData).subscribe((data) => {
          this.navCtrl.push(Novedades);
         });
       });
@@ -145,7 +145,7 @@ export class Crearevento {
         this.persona_id = this.usuari.id;
       });
     });
-    this.http.get("../../assets/json/paises.json").subscribe(
+    this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);
         this.paises = response.json();

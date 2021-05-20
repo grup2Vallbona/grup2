@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import {
+  AlertController,
   IonicPage,
   MenuController,
   NavController,
@@ -16,6 +17,7 @@ import { Seguits } from "../seguits/seguits";
 import { Seguidors } from "../seguidors/seguidors";
 import { Bloquejats } from "../bloquejats/bloquejats";
 import { HomePage } from "../home/home";
+import { MyApp } from "../../app/app.component";
 
 /**
  * Generated class for the Usuario page.
@@ -34,7 +36,7 @@ export class Perfil {
   usuari: Usuari;
   rolUsuari: string = "";
   tipoUsuari: string = "";
-seguits = [];
+  seguits = [];
   instrument: string = "";
   nomUsuari: string = "";
   email: string = "";
@@ -66,16 +68,15 @@ seguits = [];
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public http: Http
+    public http: Http,
+    public alertCtrl: AlertController
   ) {
     this.usuariRebut = navParams.get("usuari");
     this.email = this.usuariRebut.email;
-    
-   
   }
-  logout(){
-    this.storage.remove("email");
-    this.navCtrl.push(HomePage)
+  logout() {
+    this.storage.clear();
+    this.navCtrl.push(MyApp);
   }
   goToSeguits() {
     this.navCtrl.push(Seguits, { usuari: this.usuariRebut });
@@ -86,47 +87,104 @@ seguits = [];
   goToBloquejats() {
     this.navCtrl.push(Bloquejats, { usuari: this.usuariRebut });
   }
-
+  presentConfirmBloquear() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm purchase',
+      message: 'Vols bloquejar aquest usuari?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Aceptar clicked');
+            this.bloquearUsuario();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  presentConfirmDesbloquear() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm purchase',
+      message: 'Vols desbloquejar aquest usuari?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+           
+            
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+           this.desbloquearUsuario();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   bloquearUsuario() {
-    let id: any;
-    confirm("Quieres bloquear a " + this.nickname + " ?");
+    
+ 
 
-    id = this.usuari.id;
+    let idUsuariLoguejat: any;
+    let idUsuariRebut: any;
+    idUsuariLoguejat = this.usuari.id;
+    idUsuariRebut = this.usuariRebut.usuari_id;
     const formDataBloquejar = new FormData();
-    formDataBloquejar.append("bloquejat_id", this.usuariRebut.usuari_id);
-    formDataBloquejar.append("bloquejador_id", id);
+    formDataBloquejar.append("bloquejat_id", idUsuariRebut);
+    formDataBloquejar.append("bloquejador_id", idUsuariLoguejat);
     this.dades.bloquejar(formDataBloquejar).subscribe((data) => {
-      this.dades.getBloquejats(id).subscribe((user) => {
-        this.bloquejats = user.json();
-        for (let index = 0; index < this.bloquejats.length; index++) {
-          if (
-            this.usuariRebut.usuari_id == this.bloquejats[index].bloquejat_id
-          ) {
-            this.botonsIconosBloquejar = true;
-          } else {
-            this.botonsIconosBloquejar = false;
+      this.botonsIconosBloquejar = true;
+
+      this.dades.getSeguits(idUsuariLoguejat).subscribe((user) => {
+        this.seguits = user.json();
+
+        if (Object.keys(this.seguits).length === 0) {
+          this.dades.getSeguidors(idUsuariLoguejat).subscribe((user) => {
+            this.seguits = user.json();
+
+            for (const index in this.seguits) {
+              if (idUsuariRebut == this.seguits[index].seguidor_id) {
+                this.dejarSeguir(idUsuariLoguejat, idUsuariRebut);
+              }
+            }
+          });
+        } else {
+          for (const index in this.seguits) {
+            if (idUsuariRebut == this.seguits[index].seguit_id) {
+              this.dejarSeguir(idUsuariRebut, idUsuariLoguejat);
+              console.log(idUsuariRebut);
+              this.dades.getSeguits(idUsuariRebut).subscribe((data) => {
+                for (const key in data.json()) {
+                  if (idUsuariLoguejat == data.json()[key].seguit_id) {
+                    this.dejarSeguir(idUsuariLoguejat, idUsuariRebut);
+                  }
+                }
+              });
+            }
           }
         }
       });
-      this.dades.getSeguits(id).subscribe(user => {
-        this.seguits = user.json();
-
-        for (const key in this.seguits) {
-          if(this.usuariRebut.usuari_id == this.seguits[key].seguit_id){
-            this.dades.deixarSeguir(this.usuariRebut.usuari_id, id).subscribe(data => {
-              this.dades.deixarSeguir(id,this.usuariRebut.usuari_id).subscribe(data => {
-              
-              })
-            })
-          }
-        }
-
-      })
     });
   }
-  
+
+  dejarSeguir(idseguit, idseguidor) {
+    this.dades.deleteSeguir(idseguit, idseguidor).subscribe((data) => {});
+  }
+
   ngOnInit() {
- 
     this.storage.get("email").then((emailUser) => {
       if (emailUser == this.usuariRebut.email) {
         this.botonsDreta = true;
@@ -135,35 +193,22 @@ seguits = [];
         this.botonsDreta = false;
         this.botoBloquejar = false;
       }
-       
-      
     });
-
-     
   }
   desbloquearUsuario() {
-    confirm("Quieres desbloquear a " + this.nickname + " ?");
 
-    this.dades.getBloquejats(this.usuari.id).subscribe((user) => {
-      this.bloquejats = user.json();
 
-      for (let index = 0; index < this.bloquejats.length; index++) {
-        if (this.usuariRebut.usuari_id == this.bloquejats[index].bloquejat_id) {
-          this.botonsIconosBloquejar = false;
-        } else {
-          this.botonsIconosBloquejar = true;
-        }
-      }
+    this.botonsIconosBloquejar = false;
 
-      this.dades
-        .eliminarBloquejar(this.usuariRebut.usuari_id, this.usuari.id)
-        .subscribe((data) => {});
-    });
+    this.dades
+      .deleteBloquejar(this.usuariRebut.usuari_id, this.usuari.id)
+      .subscribe((data) => {});
   }
+
   ionViewWillEnter() {
     let paises = [] as any;
     this.http
-      .get("../../assets/json/paises.json")
+      .get("../../assets/json/countries.json")
       .subscribe((response: any) => {
         paises = response.json();
         for (let index = 0; index < paises.length; index++) {
@@ -174,27 +219,23 @@ seguits = [];
         }
       });
 
-      this.storage.get("email").then((emailUser) => {
-   
-        this.dades.getUsuariEmail(emailUser).subscribe((user) => {
-          this.usuari = user.json();
-          this.dades.getBloquejats(this.usuari.id).subscribe((user) => {
-            this.bloquejats = user.json();
-  
-            this.usuariRebut.usuari_id;
-            for (let index = 0; index < this.bloquejats.length; index++) {
-              if (
-                this.usuariRebut.usuari_id == this.bloquejats[index].bloquejat_id
-              ) {
-                this.botonsIconosBloquejar = true;
-              }
-            }
-          });
-        });
-        
-      });
+    this.storage.get("email").then((emailUser) => {
+      this.dades.getUsuariEmail(emailUser).subscribe((user) => {
+        this.usuari = user.json();
+        this.dades.getBloquejats(this.usuari.id).subscribe((user) => {
+          this.bloquejats = user.json();
 
-     
+          // this.usuariRebut.usuari_id;
+          for (const key in this.bloquejats) {
+            if (
+              this.usuariRebut.usuari_id == this.bloquejats[key].bloquejat_id
+            ) {
+              this.botonsIconosBloquejar = true;
+            }
+          }
+        });
+      });
+    });
 
     this.personaid = this.usuariRebut.persona_id;
     this.entitatid = this.usuariRebut.entitat_id;

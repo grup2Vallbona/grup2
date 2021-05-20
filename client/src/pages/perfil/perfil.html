@@ -15,10 +15,10 @@
     </ion-buttons>
     <ion-buttons right *ngIf="botonsDreta == false">
             
-      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light" (click)="bloquearUsuario()">
+      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light" (click)="presentConfirmBloquear()">
         <ion-icon name="logo-xbox"></ion-icon>
       </button>
-      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light" (click)="desbloquearUsuario()">
+      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light" (click)="presentConfirmDesbloquear()">
         <ion-icon name="logo-octocat"></ion-icon>
       </button>
    

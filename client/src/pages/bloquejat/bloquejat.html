@@ -1,0 +1,21 @@
+
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-left *ngIf="bloquejat['genere'] == 0">
+        <img src="../../assets/icon/hhombre.png">
+      </ion-avatar>
+      <ion-avatar item-left *ngIf="bloquejat['genere'] == 1">
+        <img src="../../assets/icon/mmujer.png">
+      </ion-avatar>
+      <ion-avatar item-left *ngIf="bloquejat['genere'] == 2">
+        <img src="../../assets/icon/anonymous-mask.png">
+      </ion-avatar>
+      <h2>{{bloquejat['nickname']}} </h2>
+      <div>
+        <div>
+          <button onclick="return confirm('Estas segur que vols eliminar el llibre')" (click)="desbloquearUsuario()">Desbloquear</button>
+        </div>
+      </div>
+    </ion-item>
+  </ion-card>
+
