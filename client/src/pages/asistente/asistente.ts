@@ -216,7 +216,7 @@ export class Asistente {
         });
       }
       this.storage.get("arraySeguitsSeguidors").then((arraySeguitsSeguidors) => {
-      
+        console.log(arraySeguitsSeguidors);
         for (let index in arraySeguitsSeguidors) {
     
           if (
@@ -224,10 +224,12 @@ export class Asistente {
           ) {
             
             this.botoFollowUnfollow = true;
+          }else {
+            this.botoFollowUnfollow = false;
           }
         }
       });
     });
-    
+  
   }
 }

@@ -1,16 +1,15 @@
 <ion-card>
     <ion-item>
-        <ion-avatar item-left>
-            <img src="./assets/images/fotoadri.jpg" />
+        <ion-avatar item-left (click)="gotoUsuario()"> 
+            <img src="./assets/images/fotoadri.jpg" /> 
         </ion-avatar>
         <div>
             <div>
-                <h2>{{asistente['nickname']}}</h2>
-                <button (click)="gotoUsuario()">Perfil</button>
-                <button *ngIf="botoFollowUnfollow == false && botoSeguidor == false" (click)="follow()">Seguir</button>
-                <button *ngIf="botoFollowUnfollow == true" (click)="unfollow() ">Dejar de seguir</button>
+                <h2>{{asistente['nickname'].charAt(0).toUpperCase() + asistente['nickname'].slice(1)}}</h2> <button
+                    class="botoSeguir" *ngIf="botoFollowUnfollow == false && botoSeguidor == false"
+                    (click)="follow()">Seguir</button> <button *ngIf="botoFollowUnfollow == true"
+                    (click)="unfollow() ">Siguiendo</button>
             </div>
-
         </div>
     </ion-item>
 </ion-card>

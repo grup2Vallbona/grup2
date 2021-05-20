@@ -10,7 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { Assistentsperfil } from '../pages/assistentsperfil/assistentsperfil';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -93,8 +93,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-    VistaEvento,
-    Assistentsperfil
+    VistaEvento
+    
   ],
   imports: [
     BrowserModule,
@@ -133,8 +133,8 @@ import { Bloquejats } from '../pages/bloquejats/bloquejats';
     Seguits,
     Seguidors,
     Bloquejats,
-    VistaEvento,
-    Assistentsperfil
+    VistaEvento
+    
   ],
   providers: [
     StatusBar,

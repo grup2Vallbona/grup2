@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { Principal } from '../principal/principal';
 import { RecuperarContra } from '../recuperar-contra/recuperar-contra';
 import { ToastController, AlertController } from 'ionic-angular';
+import { Novedades } from '../novedades/novedades';
 
 
 /**
@@ -35,7 +36,7 @@ export class Login {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
+   
   }
   contraseñaIncorrecta() {
     let alert = this.alertCtrl.create({
@@ -64,8 +65,7 @@ export class Login {
 
       //  }
     } catch (e) {
-      //  this.loginToast();
-      console.log(e)
+  
     }
 
   }
