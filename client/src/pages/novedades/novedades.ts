@@ -3,6 +3,7 @@ import { Storage } from "@ionic/storage";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
+import { Eventos } from "../eventos/eventos";
 
 import { Movidas } from "../movidas/movidas";
 import { Perfil } from "../perfil/perfil";
@@ -35,6 +36,8 @@ export class Novedades {
   
 
   gotoPerfil() {
+
+
     this.storage.get("email").then((emailUser)=>{
       this.dades.getUsuariEmail(emailUser).subscribe(usuariJ => {
 this.usuari = usuariJ.json();
