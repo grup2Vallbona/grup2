@@ -51,6 +51,7 @@ export class Asistente {
   }
 
   follow() {
+    console.log(this.emailStorage);
     this.dades.getUsuariEmail(this.emailStorage).subscribe((user) => {
       this.usuari = user.json();
       this.idSeguidor = this.usuari.id;

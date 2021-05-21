@@ -20,7 +20,7 @@ export class DadesProductesService {
 
   // baseUrl: string = "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
   
-  baseUrl: string = this.urlServer;
+  baseUrl: string = this.urlNil;
 
 
 
