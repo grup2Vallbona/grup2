@@ -51,7 +51,7 @@ export class Asistente {
   }
 
   follow() {
-    console.log(this.emailStorage);
+
     this.dades.getUsuariEmail(this.emailStorage).subscribe((user) => {
       this.usuari = user.json();
       this.idSeguidor = this.usuari.id;
@@ -61,23 +61,25 @@ export class Asistente {
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           
-          this.global.setEmail(this.seguits);
+           this.global.setSeguitSeguidor(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
     });
   }
   unfollow() {
+    
     this.dades.getUsuariEmail(this.emailStorage).subscribe((user) => {
       this.usuari = user.json();
       this.idSeguidor = this.usuari.id;
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
         
-        this.global.setEmail(this.seguits);
+         this.global.setSeguitSeguidor(this.seguits);
         this.botoFollowUnfollow = false;
-
-        this.dades
+        console.log(this.asistente.usuari_id);
+        console.log(this.idSeguidor);
+                this.dades
           .deleteSeguir(this.asistente.usuari_id, this.idSeguidor)
           .subscribe((data) => {});
       });

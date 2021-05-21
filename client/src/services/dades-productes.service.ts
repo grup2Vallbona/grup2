@@ -14,13 +14,9 @@ export class DadesProductesService {
   urlAlbert = 'http://localhost/WeSwing/grup2/server/public/index.php';
   urlNil = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
   urlServer = 'http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php'
-  //David 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-  //Albert 'http://localhost/WeSwing/grup2/server/public/index.php';
-  //Nil 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-
-  // baseUrl: string = "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
   
-  baseUrl: string = this.urlNil;
+  
+  baseUrl: string = this.urlServer;
 
 
 
@@ -32,6 +28,8 @@ export class DadesProductesService {
     return this.http.get(this.baseUrl + "/api/usuariId/" + id);
   }
   public getUsuariEmail(email: string): Observable<any> {
+     
+
     return this.http.get(this.baseUrl + "/api/usuari/" + email);
   }
   public createUsuari(usuari: FormData): Observable<any> {

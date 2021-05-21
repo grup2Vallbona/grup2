@@ -3,6 +3,7 @@ import { Storage } from "@ionic/storage";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
+import { Eventos } from "../eventos/eventos";
 
 import { Movidas } from "../movidas/movidas";
 import { Perfil } from "../perfil/perfil";
@@ -37,10 +38,12 @@ export class Novedades {
 
   gotoPerfil() {
     this.email = this.global.getEmail();
+    console.log(this.email);
     this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {
     this.usuari = usuariJ.json();
     this.navCtrl.push(Perfil, {usuari: this.usuari});
-      })
+      
+  })
  
     
   }
