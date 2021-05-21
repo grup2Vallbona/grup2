@@ -9,7 +9,7 @@ import { Persona } from "../../app/interfaces/ipersona";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Perfil } from "../perfil/perfil";
-
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the Creargrupo page.
  *
@@ -69,7 +69,8 @@ export class EditUsuario {
     public navParams: NavParams,
     private http: Http,
     public storage: Storage,
-    private firebaseAuth: AngularFireAuth
+    private firebaseAuth: AngularFireAuth,
+    public global: GlobalProvider
   ) {
     this.usuari = navParams.get("user");
     this.personaid = this.usuari.persona_id;
@@ -254,7 +255,7 @@ export class EditUsuario {
             .modifyUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariMpersona) => {
               this.usuari = usuariMpersona.json();
-              this.storage.set("email", emailModificar);
+              this.global.set(emailModificar);
               this.navCtrl.push(Perfil, {usuari: this.usuari});
             });
         });

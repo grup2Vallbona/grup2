@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Perfil } from "../perfil/perfil";
-
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the BloquejatPage page.
  *
@@ -19,20 +19,21 @@ import { Perfil } from "../perfil/perfil";
 export class Bloquejat {
   @Input() bloquejat;
   usuari: Usuari;
-
+  email:string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public dades: DadesProductesService,
-    public storage: Storage
+    public storage: Storage,
+    public global: GlobalProvider
   ) {}
 
   ionViewWillEnter() {
     console.log(this.bloquejat);
   }
   desbloquearUsuario() {
-    this.storage.get("email").then((email) => {
-      this.dades.getUsuariEmail(email).subscribe((user) => {
+    this.email = this.global.get();
+      this.dades.getUsuariEmail(this.email).subscribe((user) => {
         this.usuari = user.json();
 
         this.dades
@@ -41,6 +42,5 @@ export class Bloquejat {
             
           });
       });
-    });
   }
 }

@@ -8,7 +8,7 @@ import { Foro } from "../foro/foro";
 import { Valoraciones } from "../valoraciones/valoraciones";
 import { Novedades } from "../novedades/novedades";
 import { Storage } from '@ionic/storage';
-
+import { GlobalProvider } from "../../providers/global/global";
 /**
  * Generated class for the Principal page.
  *
@@ -21,7 +21,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: "principal.html",
 })
 export class Principal {
-  emaail: string;
+  email: string;
   tab1Root = Novedades;
   tab2Root = Foro;
   tab3Root = Valoraciones;
@@ -30,11 +30,11 @@ export class Principal {
   constructor(
     private dades: DadesProductesService,
     public navParams: NavParams,
-    private storage: Storage
+    public global: GlobalProvider
   ) {
-    this.emaail = navParams.get("email");
-    this.storage.set('email', this.emaail);
-    
+
+    this.email = navParams.get("email");
+    this.global.set(this.email);
   
   }
 }
