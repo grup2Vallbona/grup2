@@ -53,15 +53,15 @@ export class Crearevento {
     private storage: Storage,
     private http: Http,
     public global: GlobalProvider,
-    public geolocation: Geolocation
+    // public geolocation: Geolocation
   ) {}
-  mapaGeolocalizacion(){
-     this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
-       this.lat= geoposition.coords.latitude;
-       this.lon= geoposition.coords.longitude;
-       console.log(this.lat +' '+ this.lon);
-     });
-   }
+  // mapaGeolocalizacion(){
+  //    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+  //      this.lat= geoposition.coords.latitude;
+  //      this.lon= geoposition.coords.longitude;
+  //      console.log(this.lat +' '+ this.lon);
+  //    });
+  //  }
   crearEvento(
     titulo,
     subtitulo,
