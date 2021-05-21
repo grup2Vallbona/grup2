@@ -17,6 +17,7 @@ export class GlobalProvider {
   arrayBloquejadors=[];
   constructor(public http: Http) {
     console.log('Hello GlobalProvider Provider');
+    
   }
 
   setEmail(email){
