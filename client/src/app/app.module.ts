@@ -143,7 +143,7 @@ import { GlobalProvider } from '../providers/global/global';
     StatusBar,
     SplashScreen,
     DadesProductesService,
-    Geolocation,
+    // Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController,
