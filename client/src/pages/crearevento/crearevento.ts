@@ -8,7 +8,8 @@ import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
 import { GlobalProvider } from "../../providers/global/global";
-import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation,Geoposition } from '@ionic-native/geolocation';
+
 /**
  * Generated class for the Crearevento page.
  *
@@ -43,6 +44,8 @@ export class Crearevento {
   paises: any;
   ubicacionGeolocalizada:any;
   email:string;
+  lat:any;
+  lon:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -54,7 +57,9 @@ export class Crearevento {
   ) {}
   mapaGeolocalizacion(){
      this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
-       console.log(geoposition);
+       this.lat= geoposition.coords.latitude;
+       this.lon= geoposition.coords.longitude;
+       console.log(this.lat +' '+ this.lon);
      });
    }
   crearEvento(

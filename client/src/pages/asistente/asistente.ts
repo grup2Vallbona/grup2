@@ -57,7 +57,7 @@ export class Asistente {
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           
-          this.global.set(this.seguits);
+          this.global.setsetEmail(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
@@ -70,7 +70,7 @@ export class Asistente {
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
         
-        this.global.set(this.seguits);
+        this.global.setEmail(this.seguits);
         this.botoFollowUnfollow = false;
 
         this.dades
