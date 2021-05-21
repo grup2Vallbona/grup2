@@ -122,7 +122,7 @@ export class Crearevento {
     
   }
   carregarPremis() {
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
       // console.log(emailUser);
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         // console.log(jUsuario);
@@ -150,7 +150,7 @@ export class Crearevento {
     // console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
     this.carregarPremis();
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
     console.log(this.email);
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();

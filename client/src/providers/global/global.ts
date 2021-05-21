@@ -16,10 +16,10 @@ export class GlobalProvider {
     console.log('Hello GlobalProvider Provider');
   }
 
-  set(email){
+  setEmail(email){
     this.email = email;
   }
-  get(){
+  getEmail(){
     return this.email;
   }
 }

@@ -47,7 +47,7 @@ export class VistaEvento {
     let posicio: any = 76547654;
 
     if (this.isSelectedAssistir == true) {
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
         this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
           this.usuari = jUsuario.json();
 
@@ -67,7 +67,7 @@ export class VistaEvento {
      
     } else {
  
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
         this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
           this.usuari = jUsuario.json();
 

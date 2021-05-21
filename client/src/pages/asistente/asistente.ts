@@ -83,7 +83,7 @@ export class Asistente {
   ngOnInit() {
    
     
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
       this.emailStorage = this.email;
 
       if (this.asistente.email == this.emailStorage) {
