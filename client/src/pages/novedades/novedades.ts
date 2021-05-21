@@ -36,7 +36,7 @@ export class Novedades {
   
 
   gotoPerfil() {
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
     this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {
     this.usuari = usuariJ.json();
     this.navCtrl.push(Perfil, {usuari: this.usuari});

@@ -186,7 +186,7 @@ export class Perfil {
   }
 
   ngOnInit() {
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
       if (this.email == this.usuariRebut.email) {
         this.botonsDreta = true;
         this.botoBloquejar = true;
@@ -220,7 +220,7 @@ export class Perfil {
         }
       });
 
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
       
       this.dades.getUsuariEmail(this.email).subscribe((user) => {
         this.usuari = user.json();

@@ -255,7 +255,7 @@ export class EditUsuario {
             .modifyUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariMpersona) => {
               this.usuari = usuariMpersona.json();
-              this.global.set(emailModificar);
+              this.global.setEmail(emailModificar);
               this.navCtrl.push(Perfil, {usuari: this.usuari});
             });
         });

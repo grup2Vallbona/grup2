@@ -35,9 +35,9 @@ export class Asistente {
   idBloquejador: any;
   emailStorage: any;
   email:string;
-  seguitsSeguidors: [];
-  arrayBloquejats:[];
-  arrayBloquejadors:[];
+  seguitsSeguidors = [];
+  arrayBloquejats=[];
+  arrayBloquejadors=[];
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
@@ -60,7 +60,7 @@ export class Asistente {
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           
-          this.global.set(this.seguits);
+          this.global.setEmail(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
@@ -73,7 +73,7 @@ export class Asistente {
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
         
-        this.global.set(this.seguits);
+        this.global.setEmail(this.seguits);
         this.botoFollowUnfollow = false;
 
         this.dades
@@ -86,7 +86,7 @@ export class Asistente {
   ngOnInit() {
    
     
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
       this.emailStorage = this.email;
 
       if (this.asistente.email == this.emailStorage) {

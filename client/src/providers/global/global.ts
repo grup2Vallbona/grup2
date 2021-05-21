@@ -12,17 +12,17 @@ import 'rxjs/add/operator/map';
 export class GlobalProvider {
 
   email:string="";
-  arraySeguitsSeguidors : [];
-  arrayBloquejats: [];
-  arrayBloquejadors:[];
+  arraySeguitsSeguidors= [];
+  arrayBloquejats= [];
+  arrayBloquejadors=[];
   constructor(public http: Http) {
     console.log('Hello GlobalProvider Provider');
   }
 
-  set(email){
+  setEmail(email){
     this.email = email;
   }
-  get(){
+  getEmail(){
     return this.email;
   }
 
