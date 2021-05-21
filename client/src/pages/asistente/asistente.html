@@ -8,7 +8,7 @@
             <div>
                 <h2>{{asistente['nickname'].charAt(0).toUpperCase() + asistente['nickname'].slice(1)}}</h2>
                 <button *ngIf="botoSeguirBloquejar == false" (click)="gotoUsuario() ">Perfil</button>
-                <button class="botoSeguir" *ngIf="botoSeguirBloquejar==false && botoFollowUnfollow == false && botoSeguidor == false" (click)="follow()">Seguir</button>
+                <button class="botoSeguir" *ngIf="botoSeguirBloquejar==false && botoSeguidor == true" (click)="follow()">Seguir</button>
                 <button *ngIf="botoFollowUnfollow == true" (click)="unfollow() ">Siguiendo</button>
                 
             </div>

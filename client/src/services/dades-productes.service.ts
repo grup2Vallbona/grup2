@@ -22,7 +22,7 @@ export class DadesProductesService {
 
 
   constructor(private http: Http) {}
-
+  
   //USUARI
   public getUsuari(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/usuariId/" + id);
