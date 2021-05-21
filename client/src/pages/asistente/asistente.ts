@@ -35,6 +35,9 @@ export class Asistente {
   idBloquejador: any;
   emailStorage: any;
   email:string;
+  seguitsSeguidors = [];
+  arrayBloquejats=[];
+  arrayBloquejadors=[];
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
@@ -57,7 +60,7 @@ export class Asistente {
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           
-          this.global.set(this.seguits);
+          this.global.setEmail(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
@@ -70,7 +73,7 @@ export class Asistente {
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
         
-        this.global.set(this.seguits);
+        this.global.setEmail(this.seguits);
         this.botoFollowUnfollow = false;
 
         this.dades
@@ -83,50 +86,53 @@ export class Asistente {
   ngOnInit() {
    
     
-      this.email = this.global.get();
+      this.email = this.global.getEmail();
       this.emailStorage = this.email;
 
       if (this.asistente.email == this.emailStorage) {
         this.botoSeguidor = true;
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           this.seguits = data.json();
-     
-          this.storage.set("arraySeguitsSeguidors", this.seguits);
+          
+          this.global.setSeguitSeguidor(this.seguits);
+          // this.storage.set("arraySeguitsSeguidors", this.seguits);
         });
         this.dades.getBloquejats(this.asistente.usuari_id).subscribe(user => {
           this.bloquejats = user.json();
-          this.storage.set("arrayBloquejats", this.bloquejats);
+          this.global.setBloquejats(this.bloquejats);
+          // this.storage.set("arrayBloquejats", this.bloquejats);
           
         });
         this.dades.getBloquejadors(this.asistente.usuari_id).subscribe(user => {
           this.bloquejadors = user.json();
-          this.storage.set("arrayBloquejadors", this.bloquejadors);
+          this.global.setBloquejador(this.bloquejadors);
+          // this.storage.set("arrayBloquejadors", this.bloquejadors);
           
         })
       }
-     
-    this.storage
-    .get("arraySeguitsSeguidors")
-    .then((arraySeguitsSeguidors) => {
+     this.seguitsSeguidors = this.global.getSeguitSeguidor();
+    // this.storage = this.seguitsSeguidors;
+    // .get("arraySeguitsSeguidors")
+    // .then((arraySeguitsSeguidors) => {
       
-      for (let index in arraySeguitsSeguidors) {
+      for (let index in this.seguitsSeguidors) {
         if (
-          this.asistente.usuari_id == arraySeguitsSeguidors[index].seguit_id
+          this.asistente.usuari_id == this.seguitsSeguidors[index]['seguit_id']
         ) {
           this.botoFollowUnfollow = true;
         } else {
           this.botoFollowUnfollow = false;
         }
       }
-    });
-    this.storage
-    .get("arrayBloquejats")
-    .then((arrayBloquejats) => {
-      
-      for (let index in arrayBloquejats) {
+    // });
+    // this.storage
+    // .get("arrayBloquejats")
+    // .then((arrayBloquejats) => {
+      this.arrayBloquejats = this.global.getBloquejats();
+      for (let index in this.arrayBloquejats) {
      
         if (
-          this.asistente.usuari_id == arrayBloquejats[index].bloquejat_id
+          this.asistente.usuari_id == this.arrayBloquejats[index]['bloquejat_id']
         ) {
         
       
@@ -134,14 +140,15 @@ export class Asistente {
         } 
       
       }
-      this.storage.get("arrayBloquejadors").then(arrayBloquejadors => {
-        for (const key in arrayBloquejadors) {
-          if (this.asistente.usuari_id == arrayBloquejadors[key].bloquejador_id) {
+      this.arrayBloquejadors = this.global.getBloquejador();
+      // this.storage.get("arrayBloquejadors").then(arrayBloquejadors => {
+        for (const key in this.arrayBloquejadors) {
+          if (this.asistente.usuari_id == this.arrayBloquejadors[key]['bloquejador_id']) {
             this.botoSeguirBloquejar = true;
             
           }
         }
-      })
-    });
+      // })
+    // });
   }
 }

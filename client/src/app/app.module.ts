@@ -45,7 +45,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Seguidors } from '../pages/seguidors/seguidors';
 import { Bloquejats } from '../pages/bloquejats/bloquejats';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 import { GlobalProvider } from '../providers/global/global';
   // Initialize Firebase
   var config = {
@@ -106,7 +106,8 @@ import { GlobalProvider } from '../providers/global/global';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   
 
   ],
@@ -143,6 +144,7 @@ import { GlobalProvider } from '../providers/global/global';
     StatusBar,
     SplashScreen,
     DadesProductesService,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController,

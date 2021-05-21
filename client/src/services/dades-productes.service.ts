@@ -16,7 +16,7 @@ export class DadesProductesService {
   urlServer = 'http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php'
   
   
-  baseUrl: string = this.urlServer;
+  baseUrl: string = this.urlDavid;
 
 
 
@@ -29,7 +29,7 @@ export class DadesProductesService {
   }
   public getUsuariEmail(email: string): Observable<any> {
      
-    alert(this.baseUrl + email)
+
     return this.http.get(this.baseUrl + "/api/usuari/" + email);
   }
   public createUsuari(usuari: FormData): Observable<any> {

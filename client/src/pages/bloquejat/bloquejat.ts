@@ -32,7 +32,7 @@ export class Bloquejat {
     console.log(this.bloquejat);
   }
   desbloquearUsuario() {
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
       this.dades.getUsuariEmail(this.email).subscribe((user) => {
         this.usuari = user.json();
 

@@ -8,7 +8,8 @@ import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
 import { GlobalProvider } from "../../providers/global/global";
-// import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation,Geoposition } from '@ionic-native/geolocation';
+
 /**
  * Generated class for the Crearevento page.
  *
@@ -43,20 +44,24 @@ export class Crearevento {
   paises: any;
   ubicacionGeolocalizada:any;
   email:string;
+  lat:any;
+  lon:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
     private storage: Storage,
     private http: Http,
-    public global: GlobalProvider
+    public global: GlobalProvider,
     // public geolocation: Geolocation
   ) {}
   // mapaGeolocalizacion(){
-  //   this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
-  //     console.log(geoposition);
-  //   });
-  // }
+  //    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+  //      this.lat= geoposition.coords.latitude;
+  //      this.lon= geoposition.coords.longitude;
+  //      console.log(this.lat +' '+ this.lon);
+  //    });
+  //  }
   crearEvento(
     titulo,
     subtitulo,
@@ -122,7 +127,7 @@ export class Crearevento {
     
   }
   carregarPremis() {
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
       // console.log(emailUser);
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         // console.log(jUsuario);
@@ -150,7 +155,7 @@ export class Crearevento {
     // console.log('ionViewDidLoad Crearevento');
     this.carregarBalls();
     this.carregarPremis();
-    this.email = this.global.get();
+    this.email = this.global.getEmail();
     console.log(this.email);
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
