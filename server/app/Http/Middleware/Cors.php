@@ -16,6 +16,7 @@ class Cors
      */
     public function handle(Request $request, Closure $next)
     {
+        
         return $next($request)
         ->header("Access-Control-Allow-Origin", "http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php")
         //Métodos que a los que se da acceso
