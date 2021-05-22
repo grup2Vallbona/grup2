@@ -10,6 +10,8 @@ import { Http } from "@angular/http";
 import { GlobalProvider } from "../../providers/global/global";
 import { Geolocation,Geoposition } from '@ionic-native/geolocation';
 
+//leaflet imports
+import * as Leaflet from 'leaflet';
 /**
  * Generated class for the Crearevento page.
  *
@@ -46,6 +48,8 @@ export class Crearevento {
   email:string;
   lat:any;
   lon:any;
+  map : Leaflet.Map;
+  marker:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -54,14 +58,27 @@ export class Crearevento {
     private http: Http,
     public global: GlobalProvider,
     public geolocation: Geolocation
-  ) {}
+  ) {
+    
+  }
   mapaGeolocalizacion(){
      this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
        this.lat= geoposition.coords.latitude;
        this.lon= geoposition.coords.longitude;
        console.log(this.lat +' '+ this.lon);
+       this.map = new Leaflet.Map('map').setView([this.lat,this.lon], 16);
+       Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
+       this.map.on("click",(e)=>{
+         if(this.map.hasLayer(this.marker)){
+          this.map.removeLayer(this.marker);
+         }
+        this.lat = e.latlng.lat;
+        this.lon = e.latlng.lng;
+        this.marker = Leaflet.marker([this.lat,this.lon]).addTo(this.map);
+       });
      });
    }
+  
   crearEvento(
     titulo,
     subtitulo,
@@ -153,6 +170,7 @@ export class Crearevento {
 
   ionViewWillEnter() {
     // console.log('ionViewDidLoad Crearevento');
+    this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();
     this.email = this.global.getEmail();
