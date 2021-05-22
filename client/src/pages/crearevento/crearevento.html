@@ -67,17 +67,15 @@
       [(ngModel)]="fechaEvento"
     ></ion-datetime>
   </ion-item>
-  <ion-item>
+  <!--<ion-item>
     <ion-label>Pais</ion-label>
     <ion-select required name="pais" [(ngModel)]="pais">
       <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises"
         >{{pais.name}}</ion-option>
     </ion-select>
   </ion-item>
-  <ion-item>
-    <button (click)="mapaGeolocalizacion()">+</button>
-  </ion-item>
-  <!--<ion-item *ngIf="!ubicacionGeolocalizada">
+  
+  <ion-item *ngIf="!ubicacionGeolocalizada">
     <ion-label floating>Provincia</ion-label>
     <ion-input type="text" [(ngModel)]="provincia"></ion-input>
   </ion-item>
@@ -89,12 +87,19 @@
     <ion-label floating>Calle</ion-label>
     <ion-input type="text" [(ngModel)]="calle"></ion-input>
   </ion-item>-->
+
+  <ion-item>
+    <ion-label>Ubicación</ion-label>
+  </ion-item>
+  <div id="map" style="height: 80%;width: 100%;" >
+  </div>
+
   <div class="btnContainer">
     <div class="btn">
       <button
         class="btn"
         ion-button
-        (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,pais,municipio,calle,provincia,maxGanadores)"
+        (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,maxGanadores)"
       >
         Crear Evento
       </button>

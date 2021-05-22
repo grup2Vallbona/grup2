@@ -12,10 +12,8 @@ class Event extends Model
       'titol',
       'subtitol',
       'data',
-      'pais',
-      'provincia',
-      'municipi',
-      'carrer',
+      'latitud',
+      'longuitud',
       'descripcio',
       'participacioTipus'  
     ];

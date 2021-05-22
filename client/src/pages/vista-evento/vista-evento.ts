@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Asistentes } from "../asistentes/asistentes";
 import { GlobalProvider } from "../../providers/global/global";
+import * as Leaflet from 'leaflet';
 /**
  * Generated class for the VistaEventoComponent component.
  *
@@ -26,6 +27,10 @@ export class VistaEvento {
   tuEvento: boolean = false;
   isSelectedAssistir: boolean = false;
   email:string;
+  map : Leaflet.Map;
+  marker:any;
+  lat:any;
+  lon:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,6 +39,15 @@ export class VistaEvento {
     public global: GlobalProvider
   ) {
     this.evento = navParams.get("evento");
+  }
+  mapa(){
+      console.log(this.evento);
+      console.log(this.evento.longitud);
+      console.log(this.evento.latitud);
+      this.map = new Leaflet.Map('map').setView([this.evento.latitud,this.evento.longitud], 16);
+      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
+      this.marker = Leaflet.marker([parseFloat(this.evento.latitud),parseFloat(this.evento.longitud)]).addTo(this.map);
+    
   }
   vistaAssistentes() {
     this.navCtrl.push(Asistentes, { evento: this.evento });
@@ -93,7 +107,7 @@ console.log(this.isSelectedAssistir);
   }
   ionViewWillEnter() {
     this.email = this.global.getEmail();
-
+    this.mapa();
     // this.storage.get("email").then((emailLoguejat) => {
       this.dades.getUsuari(this.evento.usuari_id).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();

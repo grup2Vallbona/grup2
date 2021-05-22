@@ -342,10 +342,8 @@ class EventController extends BaseController
         $event->titol = $request->titol;
         $event->subtitol = $request->subtitol;
         $event->data = $request->data;
-        $event->pais = $request->pais;
-        $event->provincia = $request->provincia;
-        $event->municipi = $request->municipi;
-        $event->carrer = $request->carrer;
+        $event->longitud = $request->longitud;
+        $event->latitud = $request->latitud;
         $event->descripcio = $request->descripcio;
         $event->participacioTipus = $request->participacioTipus;
         $event->save();
@@ -372,10 +370,8 @@ class EventController extends BaseController
         $event->titol = $request->titol;
         $event->subtitol = $request->subtitol;
         $event->data = $request->data;
-        $event->pais = $request->pais;
-        $event->provincia = $request->provincia;
-        $event->municipi = $request->municipi;
-        $event->carrer = $request->carrer;
+        $event->longitud = $request->longitud;
+        $event->latitud = $request->latitud;
         $event->descripcio = $request->descripcio;
         $event->participacioTipus = $premi->categoria;
         $event->save();
