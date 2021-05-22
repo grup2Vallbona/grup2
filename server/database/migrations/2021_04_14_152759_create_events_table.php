@@ -22,8 +22,8 @@ class CreateEventsTable extends Migration
             $table->foreign('ball_id')->references('id')->on('tipus_balls');
             $table->unsignedBigInteger('premi_id');
             $table->foreign('premi_id')->references('id')->on('premis');
-            $table->double('latitud',20,20);
-            $table->double('longitud',20,20);
+            $table->string('latitud',50);
+            $table->string('longitud',50);
             $table->integer('participacioTipus');
             $table->string('titol', 100);
             $table->string('subtitol', 100);
