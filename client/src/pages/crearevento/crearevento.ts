@@ -8,7 +8,7 @@ import { Novedades } from "../novedades/novedades";
 import { Eventos } from "../eventos/eventos";
 import { Http } from "@angular/http";
 import { GlobalProvider } from "../../providers/global/global";
-import { Geolocation,Geoposition } from '@ionic-native/geolocation';
+import { Geolocation,Geoposition } from '@ionic-native/geolocation/ngx';
 
 //leaflet imports
 import * as Leaflet from 'leaflet';
@@ -30,7 +30,7 @@ export class Crearevento {
   persona_id: any;
   titulo: string;
   subtitulo: string;
-  descripcion: string;
+  descripcion: string; 
   tipoParticipacion: number;
   tipoBaile: number;
   crearNuevoPremio: boolean;
@@ -62,7 +62,7 @@ export class Crearevento {
     
   }
   mapaGeolocalizacion(){
-     this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+     navigator.geolocation.getCurrentPosition((geoposition: Geoposition)=>{
        this.lat= geoposition.coords.latitude;
        this.lon= geoposition.coords.longitude;
        console.log(this.lat +' '+ this.lon);

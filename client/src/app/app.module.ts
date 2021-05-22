@@ -9,7 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth'; 
 
 
 import { MyApp } from './app.component';
@@ -45,7 +45,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Seguidors } from '../pages/seguidors/seguidors';
 import { Bloquejats } from '../pages/bloquejats/bloquejats';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GlobalProvider } from '../providers/global/global';
   // Initialize Firebase
   var config = {
@@ -136,7 +136,7 @@ import { GlobalProvider } from '../providers/global/global';
     Seguits,
     Seguidors,
     Bloquejats,
-    VistaEvento,
+    VistaEvento, 
     Bloquejat
     
   ],
@@ -144,7 +144,7 @@ import { GlobalProvider } from '../providers/global/global';
     StatusBar,
     SplashScreen,
     DadesProductesService,
-    
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController,
