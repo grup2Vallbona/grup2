@@ -33,7 +33,7 @@ export class Asistentes {
     this.evento = navParams.get("evento");
   }
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this.dades.getAssistentsId(this.evento.id).subscribe((assistentsJson) => {
       this.asistentes = assistentsJson.json();
       
@@ -41,13 +41,5 @@ export class Asistentes {
     });
     
   }
-  doRefresh(event) {
-
-
-    setTimeout(() => {
-      
-      event.target.complete();
-    }, 2000);
-  }
- 
+  
 }

@@ -30,11 +30,14 @@ export class Asistente {
   bloquejats = [];
   deixatSeguir = [];
   botoFollowUnfollow: boolean = false;
-  botoSeguidor: boolean = false;
+  botoSeguidor: boolean = true;
   botoSeguirBloquejar: boolean = false;
   idBloquejador: any;
   emailStorage: any;
-  email:string;
+  email: string;
+  seguitsSeguidors = [];
+  arrayBloquejats = [];
+  arrayBloquejadors = [];
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
@@ -56,8 +59,7 @@ export class Asistente {
       formDataSeguir.append("seguidor_id", this.idSeguidor);
       this.dades.seguir(formDataSeguir).subscribe((data) => {
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
-          
-          this.global.setEmail(this.seguits);
+          this.global.setSeguitSeguidor(this.seguits);
           this.botoFollowUnfollow = true;
         });
       });
@@ -69,10 +71,11 @@ export class Asistente {
       this.idSeguidor = this.usuari.id;
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
         this.seguits = data.json();
-        
-        this.global.setEmail(this.seguits);
-        this.botoFollowUnfollow = false;
 
+        this.global.setSeguitSeguidor(this.seguits);
+        this.botoFollowUnfollow = false;
+        console.log(this.asistente.usuari_id);
+        console.log(this.idSeguidor);
         this.dades
           .deleteSeguir(this.asistente.usuari_id, this.idSeguidor)
           .subscribe((data) => {});
@@ -81,67 +84,70 @@ export class Asistente {
   }
 
   ngOnInit() {
-   
-    
-      this.email = this.global.getEmail();
-      this.emailStorage = this.email;
+    this.email = this.global.getEmail();
 
-      if (this.asistente.email == this.emailStorage) {
-        this.botoSeguidor = true;
+    
+     
+      if (this.email == this.asistente.email) {
+        this.botoSeguidor = false;
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           this.seguits = data.json();
-     
-          this.storage.set("arraySeguitsSeguidors", this.seguits);
+         console.log(this.seguits)
+      
+  
+          // this.global.setSeguitSeguidor(this.seguits);
+          // this.storage.set("arraySeguitsSeguidors", this.seguits);
         });
-        this.dades.getBloquejats(this.asistente.usuari_id).subscribe(user => {
+        this.dades.getBloquejats(this.asistente.usuari_id).subscribe((user) => {
           this.bloquejats = user.json();
-          this.storage.set("arrayBloquejats", this.bloquejats);
-          
+          this.global.setBloquejats(this.bloquejats);
+          // this.storage.set("arrayBloquejats", this.bloquejats);
         });
-        this.dades.getBloquejadors(this.asistente.usuari_id).subscribe(user => {
+        this.dades.getBloquejadors(this.asistente.usuari_id).subscribe((user) => {
           this.bloquejadors = user.json();
-          this.storage.set("arrayBloquejadors", this.bloquejadors);
-          
-        })
-      }
-     
-    this.storage
-    .get("arraySeguitsSeguidors")
-    .then((arraySeguitsSeguidors) => {
-      
-      for (let index in arraySeguitsSeguidors) {
-        if (
-          this.asistente.usuari_id == arraySeguitsSeguidors[index].seguit_id
-        ) {
-          this.botoFollowUnfollow = true;
-        } else {
-          this.botoFollowUnfollow = false;
-        }
-      }
-    });
-    this.storage
-    .get("arrayBloquejats")
-    .then((arrayBloquejats) => {
-      
-      for (let index in arrayBloquejats) {
-     
-        if (
-          this.asistente.usuari_id == arrayBloquejats[index].bloquejat_id
-        ) {
-        
-      
-          this.botoSeguirBloquejar = true;
-        } 
-      
-      }
-      this.storage.get("arrayBloquejadors").then(arrayBloquejadors => {
-        for (const key in arrayBloquejadors) {
-          if (this.asistente.usuari_id == arrayBloquejadors[key].bloquejador_id) {
-            this.botoSeguirBloquejar = true;
+          this.global.setBloquejador(this.bloquejadors);
+          // this.storage.set("arrayBloquejadors", this.bloquejadors);
+        });
+      } 
+    
+    
+    
+    this.seguitsSeguidors = this.global.getSeguitSeguidor();
+    for (let index in this.seguitsSeguidors) {
             
-          }
-        }
-      })
-    });
+      if (this.asistente.usuari_id == this.seguitsSeguidors[index].id) {
+        this.botoFollowUnfollow = true;
+      } else {
+        this.botoFollowUnfollow = true;
+      }
+    }
+    // this.storage = this.seguitsSeguidors;
+    // .get("arraySeguitsSeguidors")
+    // .then((arraySeguitsSeguidors) => {
+
+    // });
+    // this.storage
+    // .get("arrayBloquejats")
+    // .then((arrayBloquejats) => {
+    this.arrayBloquejats = this.global.getBloquejats();
+    for (let index in this.arrayBloquejats) {
+      if (
+        this.asistente.usuari_id == this.arrayBloquejats[index]["bloquejat_id"]
+      ) {
+        this.botoSeguirBloquejar = true;
+      }
+    }
+    this.arrayBloquejadors = this.global.getBloquejador();
+    // this.storage.get("arrayBloquejadors").then(arrayBloquejadors => {
+    for (const key in this.arrayBloquejadors) {
+      if (
+        this.asistente.usuari_id ==
+        this.arrayBloquejadors[key]["bloquejador_id"]
+      ) {
+        this.botoSeguirBloquejar = true;
+      }
+    }
+    // })
+    // });
   }
 }

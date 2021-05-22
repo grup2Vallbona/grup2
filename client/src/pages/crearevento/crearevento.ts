@@ -116,7 +116,7 @@ export class Crearevento {
       formData.append("descripcio", descripcion);
       formData.append("data", fechaEvento);
       this.dades.createEventPremi(formData).subscribe((data) => {
-        this.navCtrl.push(Novedades);
+        this.navCtrl.push(Novedades); 
       });
     } else {
       this.premio_id = premioExistente;

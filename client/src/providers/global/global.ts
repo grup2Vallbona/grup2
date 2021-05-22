@@ -12,8 +12,12 @@ import 'rxjs/add/operator/map';
 export class GlobalProvider {
 
   email:string="";
+  arraySeguitsSeguidors= [];
+  arrayBloquejats= [];
+  arrayBloquejadors=[];
   constructor(public http: Http) {
     console.log('Hello GlobalProvider Provider');
+    
   }
 
   setEmail(email){
@@ -22,4 +26,24 @@ export class GlobalProvider {
   getEmail(){
     return this.email;
   }
+
+  setSeguitSeguidor(arraySeguitsSeguidors){
+    this.arraySeguitsSeguidors = arraySeguitsSeguidors;
+  }
+  getSeguitSeguidor(){
+    return this.arraySeguitsSeguidors;
+  }
+  setBloquejats(arrayBloquejats){
+    this.arrayBloquejats = arrayBloquejats;
+  }
+  getBloquejats(){
+    return this.arrayBloquejats;
+  }
+  setBloquejador(arrayBloquejadors){
+    this.arrayBloquejadors = arrayBloquejadors;
+  }
+  getBloquejador(){
+    return this.arrayBloquejadors;
+  }
+  
 }

@@ -39,6 +39,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+    //Rutas a las que se permitirá acceso
+
 // ----------------- ADMINISTRADOR  -----------------
 Route::get('administradors', [AdministradorController::class, "getAdministradors"]);
 Route::post('administrador', [AdministradorController::class, "administrador"]);
@@ -134,7 +136,9 @@ Route::get('seguits', [SeguitController::class, "getSeguits"]);
 Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::get('seguidor/{id}', [SeguitController::class, "getSeguidorsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
+Route::group(['middleware' => ['cors']], function () {
 Route::delete('eliminarSeguir/{idseguit}/{idseguidor}', [SeguitController::class,"deleteSeguits"]);
+});
 Route::get('existeixSeguit/{idseguit}/{idseguidor}', [SeguitController::class, "existeixSeguitSeguidor"]);
 
 

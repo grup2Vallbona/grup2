@@ -45,7 +45,7 @@ export class VistaEvento {
   }
   assistirEvent() {
     let posicio: any = 76547654;
-
+console.log(this.isSelectedAssistir);
     if (this.isSelectedAssistir == true) {
       this.email = this.global.getEmail();
         this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
@@ -92,7 +92,9 @@ export class VistaEvento {
     // this.navCtrl.push();
   }
   ionViewWillEnter() {
-    this.storage.get("email").then((emailLoguejat) => {
+    this.email = this.global.getEmail();
+
+    // this.storage.get("email").then((emailLoguejat) => {
       this.dades.getUsuari(this.evento.usuari_id).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
         this.persona_id = this.usuari.id;
@@ -102,7 +104,7 @@ export class VistaEvento {
           this.asistents = data.json();
 
           for (let index = 0; index < this.asistents.length; index++) {
-            if (emailLoguejat == this.asistents[index].email) {
+            if (this.email == this.asistents[index].email) {
              
               this.isSelectedAssistir = true;
             }
@@ -115,6 +117,6 @@ export class VistaEvento {
 
           });
       });
-    });
+    // });
   }
 }

@@ -106,7 +106,8 @@ import { GlobalProvider } from '../providers/global/global';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   
 
   ],
@@ -143,7 +144,7 @@ import { GlobalProvider } from '../providers/global/global';
     StatusBar,
     SplashScreen,
     DadesProductesService,
-    Geolocation,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}, GruposService,
     AuthProvider,
     AlertController,
