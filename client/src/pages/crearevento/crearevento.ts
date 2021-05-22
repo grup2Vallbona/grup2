@@ -24,7 +24,7 @@ import * as Leaflet from 'leaflet';
   templateUrl: "crearevento.html",
 })
 export class Crearevento {
-  tipusBalls = [];
+  tipusBalls = []; 
   eventsUsuari = [];
   usuari: Usuari;
   persona_id: any;

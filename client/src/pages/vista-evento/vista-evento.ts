@@ -44,10 +44,12 @@ export class VistaEvento {
       console.log(this.evento);
       console.log(this.evento.longitud);
       console.log(this.evento.latitud);
-      this.map = new Leaflet.Map('map').setView([this.evento.latitud,this.evento.longitud], 16);
-      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-      this.marker = Leaflet.marker([parseFloat(this.evento.latitud),parseFloat(this.evento.longitud)]).addTo(this.map);
-    
+      console.log(this.map);
+      if(this.map == undefined){
+        this.map = new Leaflet.Map('map').setView([this.evento.latitud,this.evento.longitud], 16);
+        Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
+        this.marker = Leaflet.marker([parseFloat(this.evento.latitud),parseFloat(this.evento.longitud)]).addTo(this.map);
+      }
   }
   vistaAssistentes() {
     this.navCtrl.push(Asistentes, { evento: this.evento });
