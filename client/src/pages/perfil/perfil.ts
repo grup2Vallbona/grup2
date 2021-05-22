@@ -60,7 +60,7 @@ export class Perfil {
   botonsDreta: boolean = true;
   botoBloquejar: boolean = true;
   botonsIconosBloquejar: boolean = false;
-
+  emailLoguejat: any;
   usuariRebut: any;
 
   constructor(
@@ -74,6 +74,7 @@ export class Perfil {
   ) {
     this.usuariRebut = navParams.get("usuari");
     this.email = this.usuariRebut.email;
+   
   }
   logout() {
     this.storage.clear();
@@ -186,8 +187,8 @@ export class Perfil {
   }
 
   ngOnInit() {
-    this.email = this.global.getEmail();
-      if (this.email == this.usuariRebut.email) {
+    this.emailLoguejat = this.global.getEmail()
+      if (this.emailLoguejat == this.usuariRebut.email) {
         this.botonsDreta = true;
         this.botoBloquejar = true;
       } else {
@@ -220,17 +221,17 @@ export class Perfil {
         }
       });
 
-      this.email = this.global.getEmail();
+      
       
       this.dades.getUsuariEmail(this.email).subscribe((user) => {
         this.usuari = user.json();
-        this.dades.getBloquejats(this.usuari.id).subscribe((user) => {
+        this.dades.getBloquejats(this.usuariRebut.id).subscribe((user) => {
           this.bloquejats = user.json();
 
           // this.usuariRebut.usuari_id;
           for (const key in this.bloquejats) {
             if (
-              this.usuariRebut.usuari_id == this.bloquejats[key].bloquejat_id
+              this.usuariRebut.id == this.bloquejats[key].bloquejat_id
             ) {
               this.botonsIconosBloquejar = true;
             }

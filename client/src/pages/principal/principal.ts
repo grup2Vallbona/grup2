@@ -9,6 +9,7 @@ import { Valoraciones } from "../valoraciones/valoraciones";
 import { Novedades } from "../novedades/novedades";
 import { Storage } from '@ionic/storage';
 import { GlobalProvider } from "../../providers/global/global";
+import { Perfil } from "../perfil/perfil";
 /**
  * Generated class for the Principal page.
  *
@@ -22,10 +23,9 @@ import { GlobalProvider } from "../../providers/global/global";
 })
 export class Principal {
   email: string;
-  tab1Root = Novedades;
-  tab2Root = Foro;
-  tab3Root = Valoraciones;
-  tab4Root = Eventos;
+  tab1Root = Eventos;
+
+  tab4Root = Novedades;
 
   constructor(
     private dades: DadesProductesService,

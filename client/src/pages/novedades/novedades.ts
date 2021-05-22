@@ -1,11 +1,9 @@
 import { Component } from "@angular/core";
-import { Storage } from "@ionic/storage";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+
+import { IonicPage, NavController} from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
-import { Eventos } from "../eventos/eventos";
 
-import { Movidas } from "../movidas/movidas";
 import { Perfil } from "../perfil/perfil";
 import { GlobalProvider } from "../../providers/global/global";
 
@@ -24,19 +22,15 @@ export class Novedades {
   usuari: Usuari;
   email:any;
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public storage: Storage,
+    public navCtrl: NavController,    
     public dades: DadesProductesService,
     public global: GlobalProvider
   ) {}
 
-  gotoMovidas() {
-    this.navCtrl.push(Movidas);
-  }
+
   
 
-  gotoPerfil() {
+  ngOnInit() {
     this.email = this.global.getEmail();
     console.log(this.email);
     this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {

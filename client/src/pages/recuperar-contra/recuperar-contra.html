@@ -1,16 +1,23 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-title>Recuperaración</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label style="font-weight: bold;">RECUPERAR CONTRASEÑA</ion-label>
+<ion-content padding class="body">
+  <ion-list>
+    <div class="imgLogo">
+      <img src="../../assets/icon/logoband.png">
+    </div>
+
+
+  <ion-item >
+      <ion-input  placeholder="Email" type="text" name="email" [(ngModel)]="email" required></ion-input>
   </ion-item>
-  <ion-item>
-      <ion-input placeholder="Email" type="text" name="email" [(ngModel)]="email" required></ion-input>
-  </ion-item>
+
+  <p class="btnForgot" (click)="inicio()" text-left>Volver al inicio</p>
+
     <div class="btnContainer">
 
       <div class="btn">
@@ -19,12 +26,10 @@
 
   </div>
 
-    <div class="btnContainer">
 
-      <div class="btn">
-          <button class="btn" ion-button (click)="inicio()">Volver al inicio</button>
-      </div>
-  </div>
+ 
+
+</ion-list>
 </ion-content>
 
 

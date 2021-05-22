@@ -44,7 +44,9 @@ export class Asistente {
     public navParams: NavParams,
     public storage: Storage,
     public global: GlobalProvider
-  ) {}
+  ) {
+    this.emailStorage = this.global.getEmail();
+  }
 
   gotoUsuario() {
     this.navCtrl.push(Perfil, { usuari: this.asistente });

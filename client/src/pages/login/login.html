@@ -6,55 +6,31 @@
 -->
 <ion-header>
 
-    <ion-navbar >
+    <ion-navbar>
         <ion-title>Login</ion-title>
     </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding class="body">
 
-    <ion-list>
-
-        <div class="imgLogo">
-            <img src="./assets/icon/logoband.png">
-        </div>
-
-
-
+    <div class="imgLogo">
+        <img src="./assets/icon/logoband.png">
+    </div>
+    <form #form="ngForm" (ngSubmit)="login(form)" method="post">
         <ion-item>
-            <ion-input placeholder="Username" type="text" name="email" [(ngModel)]="email"></ion-input>
+            <ion-input placeholder="Email" type="text" name="email" [(ngModel)]="email"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="password"></ion-input>
         </ion-item>
 
-        <div class="btnContainer">
+        <p class="btnForgot" (click)="recuperarContra()" text-right>¿Has olvidado la contraseña?</p>
 
-            <div class="btn">
-                <button class="btn" ion-button (click)="login()">Login</button>
-            </div>
-
+        <div class="btn">
+            <button class="btn" ion-button (click)="login()">Login</button>
         </div>
-        <div class="btnContainer">
-
-            <div class="btn">
-                <button class="btn" ion-button (click)="recuperarContra()">Recuperar Contraseña</button>
-            </div>
-
-        </div>
-        <!--div class="btn">
-
-            <div class="ion-text-center ion-margin-top">
-                <a routerLink="../recuperarpassword/"><small class="letraLink">¿Olvidaste la contraseña?</small> </a>
-            </div>
-
-        </div-->
-       
-
-
-    </ion-list>
+    </form>
 
 </ion-content>
