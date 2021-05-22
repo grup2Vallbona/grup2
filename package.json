@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@types/leaflet": "^1.7.0",
+    "leaflet": "^1.7.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
