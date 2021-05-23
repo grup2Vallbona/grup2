@@ -71,7 +71,10 @@
   
       </div>
   
-    
+      <div style="margin: inherit;" *ngIf="botonsDreta == true">
+        <button class="buttonEditarPerfil " ion-button icon-only color="light" (click)="seguirUsuario()">Seguir </button>
+  <!-- ngIf si tu no eres esta persona que aparezca este boton -->
+      </div>
   
 
 
