@@ -8,7 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Event;
 use App\Models\Premi;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class EventController extends BaseController
 {
@@ -30,7 +32,9 @@ class EventController extends BaseController
     */
     function getEvents()
     {
-        return Event::all();
+        $data = new DateTime();
+        $event = Event::select('*')->where('data','>=',$data)->orderBy('data', 'asc')->get();
+        return $event;
     }
            /**
      * @OA\Get(

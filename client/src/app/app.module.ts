@@ -113,7 +113,7 @@ import { Seguidor } from '../pages/seguidor/seguidor';
     ReactiveFormsModule,
     
   
-
+ 
   ],
   bootstrap: [IonicApp],
   entryComponents: [

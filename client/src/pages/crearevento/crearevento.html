@@ -55,7 +55,7 @@
   <ion-item *ngIf="!crearNuevoPremio">
     <ion-label>Selecciona un premio</ion-label>
     <ion-select [(ngModel)]="premioExistente">
-      <ion-option *ngFor="let item of eventsUsuari" value="{{item['id']}}">{{item['titol']}}</ion-option>
+      <ion-option *ngFor="let item of eventsUsuari"  value="{{item.id}}" >{{item.titol}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>

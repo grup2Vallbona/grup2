@@ -128,23 +128,20 @@ class SeguitController extends BaseController
     }
     function countSeguits($id)
     {
-        $count = Seguit::where('seguidor_id', $id)
-            ->count();
+        $count = Seguit::where('seguidor_id', $id)->count();
         return $count;
     }
     function countSeguidors($id)
     {
-        $count = Seguit::where('seguit_id', $id)
-            ->count();
+        $count = Seguit::where('seguit_id', $id)->count();
         return $count;
     }
-
 
     function deleteSeguits($idseguit, $idseguidor)
     {
         $seguitSeguidor = Seguit::where('seguit_id', $idseguit)
-                                ->where('seguidor_id', $idseguidor)
-->delete();
+            ->where('seguidor_id', $idseguidor)
+            ->delete();
         return $seguitSeguidor;
     }
 }

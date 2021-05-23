@@ -59,8 +59,8 @@ export class Asistente {
           this.global.setSeguitSeguidor(this.seguits);
           this.botoFollowUnfollow = true;
         });
-      });
-    });
+      });     
+    }); 
   }
   unfollow() {
     this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((user) => {
@@ -79,21 +79,14 @@ export class Asistente {
       });
     });
   }
-
+ 
   ngOnInit() {
     this.email = this.global.getEmail();
-
-    
-     
-      if (this.email == this.asistente.email) {
+      // if (this.email == this.asistente.email) {
         this.botoSeguidor = false;
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
-          this.seguits = data.json();
-         
-      
-         
-  
-          // this.global.setSeguitSeguidor(this.seguits);
+          this.seguits = data.json(); // 
+           this.global.setSeguitSeguidor(this.seguits);
           // this.storage.set("arraySeguitsSeguidors", this.seguits);
         });
         this.dades.getBloquejats(this.asistente.usuari_id).subscribe((user) => {
@@ -106,17 +99,18 @@ export class Asistente {
           this.global.setBloquejador(this.bloquejadors);
           // this.storage.set("arrayBloquejadors", this.bloquejadors);
         });
-      } 
+      // } 
     
-      console.log(this.seguits)
-    
+      
+     
     this.seguitsSeguidors = this.global.getSeguitSeguidor();
+    console.log(this.seguitsSeguidors)
     for (let index in this.seguitsSeguidors) {
             
       if (this.asistente.usuari_id == this.seguitsSeguidors[index].id) {
         this.botoFollowUnfollow = true;
       } else {
-        this.botoFollowUnfollow = true;
+        this.botoFollowUnfollow = false;
       }
     }
     // this.storage = this.seguitsSeguidors;
