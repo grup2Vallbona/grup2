@@ -24,7 +24,7 @@ import * as Leaflet from 'leaflet';
   templateUrl: "crearevento.html",
 })
 export class Crearevento {
-  tipusBalls = [];
+  tipusBalls = []; 
   eventsUsuari = [];
   minDate: string = new Date().toISOString();
 maxDate : any = (new Date()).getFullYear() + 5;
