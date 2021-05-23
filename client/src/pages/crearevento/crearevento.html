@@ -27,7 +27,9 @@
   <ion-item>
     <ion-label>Tipo de baile</ion-label>
     <ion-select id="tipusBalls" [(ngModel)]="tipoBaile">
-      <ion-option *ngFor="let item of tipusBalls" value="{{item.id}}">{{item.nom}}</ion-option>
+      <ion-option *ngFor="let item of tipusBalls" value="{{item.id}}"
+        >{{item.nom}}</ion-option
+      >
     </ion-select>
   </ion-item>
   <ion-item>
@@ -53,7 +55,7 @@
   <ion-item *ngIf="!crearNuevoPremio">
     <ion-label>Selecciona un premio</ion-label>
     <ion-select [(ngModel)]="premioExistente">
-      <ion-option *ngFor="let item of eventsUsuari" >{{item.titol}}</ion-option>
+      <ion-option *ngFor="let item of eventsUsuari"  value="{{item.id}}" >{{item.titol}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
@@ -87,13 +89,16 @@
   <ion-item>
     <ion-label>Ubicación</ion-label>
   </ion-item>
-  <div id="map" style="height: 80%;width: 100%;">
+  <div id="map" style="height: 80%;width: 100%;" >
   </div>
 
   <div class="btnContainer">
     <div class="btn">
-      <button class="btn" ion-button
-        (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,maxGanadores)">
+      <button
+        class="btn"
+        ion-button
+        (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,maxGanadores)"
+      >
         Crear Evento
       </button>
     </div>
