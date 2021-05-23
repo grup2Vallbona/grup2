@@ -83,10 +83,7 @@ export class Perfil {
     }
     
   }
-  logout() {
-    // this.storage.clear();
-    this.navCtrl.push(MyApp);
-  }
+  
   goToSeguits() {
     this.navCtrl.push(Seguits, { email: this.emailLoguejat });
   }
@@ -212,7 +209,7 @@ this.usuari = user.json();
       this.personaid = this.usuari.persona_id;
       this.entitatid = this.usuari.entitat_id;
       this.nickname = this.usuari.nickname;
-      this.vacunaUsuari = this.usuari.vacunaCovid;
+      this.vacunaUsuari = this.usuari.vacunaCovid; 
       this.email = this.usuari.email;
       this.dataNaixement = this.usuari.dataNaixement;
       console.log(this.nickname) 

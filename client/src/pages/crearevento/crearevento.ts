@@ -24,11 +24,11 @@ import * as Leaflet from 'leaflet';
   templateUrl: "crearevento.html",
 })
 export class Crearevento {
-  tipusBalls = []; 
+  tipusBalls = [];
   eventsUsuari = [];
-  minDate: string = new Date().toISOString();
-maxDate : any = (new Date()).getFullYear() + 5;
   usuari: Usuari;
+  minDate: string = new Date().toISOString();
+maxDate : any = (new Date()).getFullYear() + 6;
   persona_id: any;
   titulo: string;
   subtitulo: string;
@@ -41,7 +41,7 @@ maxDate : any = (new Date()).getFullYear() + 5;
   fechaEvento: Date;
   pais: number;
   provincia: string;
-  municipio: string; 
+  municipio: string;
   calle: string;
   premio_id: any;
   maxGanadores: number;
@@ -70,12 +70,12 @@ maxDate : any = (new Date()).getFullYear() + 5;
        console.log(this.lat +' '+ this.lon);
        this.map = new Leaflet.Map('map').setView([this.lat,this.lon], 16);
        Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-       this.map.on("click", <LeafletMouseEvent>(e)=>{
-         if(this.map.hasLayer(this.marker)){ 
+       this.map.on("click",(e)=>{
+         if(this.map.hasLayer(this.marker)){
           this.map.removeLayer(this.marker);
          }
-         this.lat = e.latlng.lat;
-         this.lon = e.latlng.lng;
+        this.lat = e.latlng.lat;
+        this.lon = e.latlng.lng;
         this.marker = Leaflet.marker([this.lat,this.lon]).addTo(this.map);
        });
      });
@@ -150,7 +150,7 @@ maxDate : any = (new Date()).getFullYear() + 5;
           }
         });
       });
-
+    
   }
   carregarBalls() {
     this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
@@ -168,10 +168,8 @@ maxDate : any = (new Date()).getFullYear() + 5;
     this.carregarPremis();
     this.email = this.global.getEmail();
     console.log(this.email);
-    
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
-        console.log(this.usuari.id)
         this.persona_id = this.usuari.id;
         
       });
@@ -182,7 +180,7 @@ maxDate : any = (new Date()).getFullYear() + 5;
       },
       (error) => {
         console.log("Error: ", error.message);
-      } 
+      }
     );
   }
 

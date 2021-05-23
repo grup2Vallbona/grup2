@@ -11,6 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Login } from '../login/login';
 import { Register } from '../register/register';
 import { Principal } from '../principal/principal';
+import { GlobalProvider } from '../../providers/global/global';
 
 @Component({
   selector: 'page-home',
@@ -20,24 +21,14 @@ export class HomePage {
 
   
  
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public global: GlobalProvider) {
 
   }
   
-
-  async loginGoogle() {
-    try{
-      if (this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())) {
-          this.navCtrl.push(Principal);
-      } else {
-        this.navCtrl.push(HomePage);
-      }
-    }catch(e){
-      console.log("Error");
-    }
-
-
-  }
+ionViewWillEnter(){
+  
+}
+  
     
  
    gotoLogin() {
@@ -50,16 +41,6 @@ export class HomePage {
 
   }
 
-  loginFacebook() {
-    try{
-      if (this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())) {
-          this.navCtrl.push(Principal);
-      }
-    }catch(e){
-      console.log("Error");
-    }
-
-
-  }
+ 
 
 }
