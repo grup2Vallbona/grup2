@@ -24,24 +24,25 @@ export class Seguits {
   usuariSeguit: Usuari;
   id: any;
   nom: any;
+  email: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    public storage: Storage
+   
   ) {
-    this.usuariRebut = this.navParams.get("usuari");
+    this.email = this.navParams.get("email");
   }
 
   ionViewWillEnter() {
-    // this.storage.get("email").then((emailUser) => {
+    // this.storage.get("email").then((emailUser) => { 
     this.dades
-      .getUsuariEmail(this.usuariRebut.email)
-      .subscribe((jUsuario: any) => {
+      .getUsuariEmail(this.email)
+      .subscribe((jUsuario: any) => { 
         this.usuariSeguit = jUsuario.json();
         console.log(this.usuariSeguit);
 
-        this.dades.getSeguits(this.usuariRebut.id).subscribe((seguit) => {
+        this.dades.getSeguits(this.usuariSeguit.id).subscribe((seguit) => {
           this.usuarisSeguits = seguit.json();
         });
       });

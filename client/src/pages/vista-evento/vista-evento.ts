@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
-import { Storage } from "@ionic/storage";
+
 import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Asistentes } from "../asistentes/asistentes";
 import { GlobalProvider } from "../../providers/global/global";
@@ -35,7 +35,7 @@ export class VistaEvento {
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    private storage: Storage,
+ 
     public global: GlobalProvider
   ) {
     this.evento = navParams.get("evento");

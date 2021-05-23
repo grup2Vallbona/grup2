@@ -22,19 +22,20 @@ import { Perfil } from "../perfil/perfil";
   templateUrl: "principal.html",
 })
 export class Principal {
-  email: string;
+  email: string;  
   tab1Root = Eventos;
-
-  tab4Root = Novedades;
+  tab2Root = Perfil;
 
   constructor(
     private dades: DadesProductesService,
     public navParams: NavParams,
-    public global: GlobalProvider
+    public global: GlobalProvider,
+    public ba: NavController
   ) {
 
     this.email = navParams.get("email");
+    console.log(this.email)
     this.global.setEmail(this.email);
-  
+   
   }
 }

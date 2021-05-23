@@ -126,6 +126,18 @@ class SeguitController extends BaseController
             ->get();
         return $seguit;
     }
+    function countSeguits($id)
+    {
+        $count = Seguit::where('seguidor_id', $id)
+            ->count();
+        return $count;
+    }
+    function countSeguidors($id)
+    {
+        $count = Seguit::where('seguit_id', $id)
+            ->count();
+        return $count;
+    }
 
 
     function deleteSeguits($idseguit, $idseguidor)

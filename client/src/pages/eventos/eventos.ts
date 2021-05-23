@@ -28,7 +28,7 @@ export class Eventos {
   }
 
 
-  ionViewWillEnter(){
+  ngOnInit(){
     this.carrgarEventos();
   }
  

@@ -17,7 +17,7 @@
     <div class="imgLogo">
         <img src="./assets/icon/logoband.png">
     </div>
-    <form #form="ngForm" (ngSubmit)="login(form)" method="post">
+    <form #form="ngForm" method="post">
         <ion-item>
             <ion-input placeholder="Email" type="text" name="email" [(ngModel)]="email"></ion-input>
         </ion-item>
@@ -29,7 +29,7 @@
         <p class="btnForgot" (click)="recuperarContra()" text-right>¿Has olvidado la contraseña?</p>
 
         <div class="btn">
-            <button class="btn" ion-button (click)="login()">Login</button>
+            <button class="btn" ion-button (tap)="login()">Login</button>
         </div>
     </form>
 

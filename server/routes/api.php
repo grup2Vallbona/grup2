@@ -25,6 +25,7 @@ use App\Http\Controllers\TipusBallController;
 use App\Http\Controllers\UsuariController;
 use App\Models\Administrador;
 use App\Models\AssignacioBall;
+use App\Models\Seguit;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -136,10 +137,12 @@ Route::get('seguits', [SeguitController::class, "getSeguits"]);
 Route::get('seguit/{id}', [SeguitController::class, "getSeguitsId"]);
 Route::get('seguidor/{id}', [SeguitController::class, "getSeguidorsId"]);
 Route::post('seguir', [SeguitController::class, "seguir"]);
-Route::group(['middleware' => ['cors']], function () {
+
 Route::delete('eliminarSeguir/{idseguit}/{idseguidor}', [SeguitController::class,"deleteSeguits"]);
-});
+
 Route::get('existeixSeguit/{idseguit}/{idseguidor}', [SeguitController::class, "existeixSeguitSeguidor"]);
+Route::get('seguitscount/{id}', [SeguitController::class, "countSeguits"]);
+Route::get('seguidorscount/{id}', [SeguitController::class, "countSeguidors"]);
 
 
 // ----------------- TIPUS BALL -----------------

@@ -1,10 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
-
-import { Storage } from "@ionic/storage";
 import { Perfil } from "../perfil/perfil";
-import { Persona } from "../../app/interfaces/ipersona";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { TouchID } from "ionic-native";
 import { GlobalProvider } from "../../providers/global/global";
@@ -22,38 +19,36 @@ import { GlobalProvider } from "../../providers/global/global";
 export class Asistente {
   @Input() asistente;
   usuari: Usuari;
-  idSeguit: any;
-  idSeguidor: any;
-  asistentes = [];
-  seguits = [];
+   idSeguidor: any;
+    seguits = [];
   bloquejadors = [];
-  bloquejats = [];
-  deixatSeguir = [];
-  botoFollowUnfollow: boolean = false;
-  botoSeguidor: boolean = true;
-  botoSeguirBloquejar: boolean = false;
-  idBloquejador: any;
-  emailStorage: any;
-  email: string;
-  seguitsSeguidors = [];
-  arrayBloquejats = [];
-  arrayBloquejadors = [];
+   bloquejats = [];
+ 
+   botoFollowUnfollow: boolean = false;
+   botoSeguidor: boolean = true;
+   botoSeguirBloquejar: boolean = false;
+  
+   emailGlobalProvider: any;
+   email: string;
+   seguitsSeguidors = [];
+   arrayBloquejats = [];
+   arrayBloquejadors = [];
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,
     public navParams: NavParams,
-    public storage: Storage,
+   
     public global: GlobalProvider
   ) {
-    this.emailStorage = this.global.getEmail();
+    this.emailGlobalProvider = this.global.getEmail();
   }
 
   gotoUsuario() {
     this.navCtrl.push(Perfil, { usuari: this.asistente });
-  }
+  } 
 
   follow() {
-    this.dades.getUsuariEmail(this.emailStorage).subscribe((user) => {
+    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((user) => {
       this.usuari = user.json();
       this.idSeguidor = this.usuari.id;
       const formDataSeguir = new FormData();
@@ -68,7 +63,7 @@ export class Asistente {
     });
   }
   unfollow() {
-    this.dades.getUsuariEmail(this.emailStorage).subscribe((user) => {
+    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((user) => {
       this.usuari = user.json();
       this.idSeguidor = this.usuari.id;
       this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
@@ -94,8 +89,9 @@ export class Asistente {
         this.botoSeguidor = false;
         this.dades.getSeguits(this.asistente.usuari_id).subscribe((data) => {
           this.seguits = data.json();
-         console.log(this.seguits)
+         
       
+         
   
           // this.global.setSeguitSeguidor(this.seguits);
           // this.storage.set("arraySeguitsSeguidors", this.seguits);
@@ -112,7 +108,7 @@ export class Asistente {
         });
       } 
     
-    
+      console.log(this.seguits)
     
     this.seguitsSeguidors = this.global.getSeguitSeguidor();
     for (let index in this.seguitsSeguidors) {

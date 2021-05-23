@@ -28,3 +28,20 @@
 .item-background-color{
     --ion-item-background:#015f01d5;
 }
+.divComptadors{
+    display: $display;
+    align-items: center;
+    justify-content: space-between;
+    img{
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+.fontSizeNickname{
+    font-size: 20px !important;
+}
+.ionitemSeguit{
+    display: $display !important;
+    align-items: center !important;
+    margin: 0 !important;
+}
