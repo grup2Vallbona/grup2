@@ -50,8 +50,8 @@ maxDate : any = (new Date()).getFullYear() + 5;
   email:string;
   lat:any;
   lon:any;
-  map : Leaflet.Map;
-  marker:any;
+  map : Leaflet.Map; 
+  marker:any; 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -61,8 +61,8 @@ maxDate : any = (new Date()).getFullYear() + 5;
     public global: GlobalProvider,
     public geolocation: Geolocation
   ) {
-    
-  }
+     
+  }   
   mapaGeolocalizacion(){
      navigator.geolocation.getCurrentPosition((geoposition: Geoposition)=>{
        this.lat= geoposition.coords.latitude;
@@ -160,7 +160,7 @@ maxDate : any = (new Date()).getFullYear() + 5;
       }
     });
   }
-
+ 
   ionViewWillEnter() {
     // console.log('ionViewDidLoad Crearevento');
     this.mapaGeolocalizacion(); 
@@ -173,7 +173,7 @@ maxDate : any = (new Date()).getFullYear() + 5;
         this.usuari = jUsuario.json();
         console.log(this.usuari.id)
         this.persona_id = this.usuari.id;
-        
+        console.log(this.persona_id);
       });
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
