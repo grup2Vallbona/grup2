@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
-import { Storage } from "@ionic/storage";
+
 import { Usuari } from "../../app/interfaces/iusuari";
 import { Principal } from "../principal/principal";
 import { Novedades } from "../novedades/novedades";
@@ -24,8 +24,10 @@ import * as Leaflet from 'leaflet';
   templateUrl: "crearevento.html",
 })
 export class Crearevento {
-  tipusBalls = [];
+  tipusBalls = []; 
   eventsUsuari = [];
+  minDate: string = new Date().toISOString();
+maxDate : any = (new Date()).getFullYear() + 5;
   usuari: Usuari;
   persona_id: any;
   titulo: string;
@@ -39,7 +41,7 @@ export class Crearevento {
   fechaEvento: Date;
   pais: number;
   provincia: string;
-  municipio: string;
+  municipio: string; 
   calle: string;
   premio_id: any;
   maxGanadores: number;
@@ -54,7 +56,7 @@ export class Crearevento {
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    private storage: Storage,
+   
     private http: Http,
     public global: GlobalProvider,
     public geolocation: Geolocation
@@ -68,12 +70,12 @@ export class Crearevento {
        console.log(this.lat +' '+ this.lon);
        this.map = new Leaflet.Map('map').setView([this.lat,this.lon], 16);
        Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-       this.map.on("click",(e)=>{
-         if(this.map.hasLayer(this.marker)){
+       this.map.on("click", <LeafletMouseEvent>(e)=>{
+         if(this.map.hasLayer(this.marker)){ 
           this.map.removeLayer(this.marker);
          }
-        this.lat = e.latlng.lat;
-        this.lon = e.latlng.lng;
+         this.lat = e.latlng.lat;
+         this.lon = e.latlng.lng;
         this.marker = Leaflet.marker([this.lat,this.lon]).addTo(this.map);
        });
      });
@@ -109,7 +111,7 @@ export class Crearevento {
       formData.append("latitud",this.lat.toString());
       formData.append("longitud",this.lon.toString());
       this.dades.createEventPremi(formData).subscribe((data) => {
-        this.navCtrl.push(Novedades); 
+        this.navCtrl.push(Eventos); 
       });
     } else {
       this.premio_id = premioExistente;
@@ -127,12 +129,12 @@ export class Crearevento {
         formData.append("latitud",this.lat.toString());
         formData.append("longitud",this.lon.toString());
         this.dades.createEvent(formData).subscribe((data) => {
-         this.navCtrl.push(Novedades);
+         this.navCtrl.push(Eventos);
         });
       });
     }
 
-    
+     
   }
   carregarPremis() {
     this.email = this.global.getEmail();
@@ -148,7 +150,7 @@ export class Crearevento {
           }
         });
       });
-    
+
   }
   carregarBalls() {
     this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
@@ -166,8 +168,10 @@ export class Crearevento {
     this.carregarPremis();
     this.email = this.global.getEmail();
     console.log(this.email);
+    
       this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuari = jUsuario.json();
+        console.log(this.usuari.id)
         this.persona_id = this.usuari.id;
         
       });
@@ -178,7 +182,7 @@ export class Crearevento {
       },
       (error) => {
         console.log("Error: ", error.message);
-      }
+      } 
     );
   }
 

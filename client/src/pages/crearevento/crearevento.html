@@ -55,15 +55,13 @@
   <ion-item *ngIf="!crearNuevoPremio">
     <ion-label>Selecciona un premio</ion-label>
     <ion-select [(ngModel)]="premioExistente">
-      <ion-option *ngFor="let item of eventsUsuari" value="{{item.id}}"
-        >{{item.titol}}</ion-option
-      >
+      <ion-option *ngFor="let item of eventsUsuari" >{{item.titol}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Fecha del evento</ion-label>
-    <ion-datetime
-      displayFormat="DD MM YYYY"
+    <ion-datetime [min]="minDate" [max]="maxDate"
+      displayFormat="DD MM YYYY" 
       [(ngModel)]="fechaEvento"
     ></ion-datetime>
   </ion-item>

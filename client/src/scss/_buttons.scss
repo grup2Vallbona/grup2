@@ -19,3 +19,25 @@
     background-color: $color-principal;
     color: $color-font;
 }
+.btnForgot{
+    font-size: $font-size;
+    text-align: right !important;
+    margin: $margin; 
+}
+.buttonEditarPerfil{
+    width: $width;
+    background-color: transparent !important;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px !important;
+  height: $height-buttonEditPerfil !important;
+    font-size: $font-size;
+}
+.buttonDejarSeguir{
+    background-color: transparent !important;
+    color: black;
+
+    border: 1px solid black;
+    border-radius: 8px !important;
+  height: $height-buttonEditPerfil !important;
+}

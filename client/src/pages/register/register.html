@@ -14,9 +14,9 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content >
  <form #f="ngForm">
-        <ion-list >
+       
             <ion-item>
                 <ion-label>Persona</ion-label>
                 <ion-checkbox name="personaToggle" [(ngModel)]="personaToggle" (ionChange)='verificacionCheckbox("persona")'></ion-checkbox>
@@ -36,7 +36,7 @@
             
             <ion-item>
                 <ion-label floating>Nickname</ion-label>
-                <ion-input required  type="text" name="nickname"   [(ngModel)]="nickname" ></ion-input>
+                <ion-input required pattern type="text" name="nickname"   [(ngModel)]="nickname" ></ion-input>
                
             </ion-item>
 
@@ -129,7 +129,7 @@
                 <ion-checkbox name="vacuna" type="vacunaToggle" [(ngModel)]="vacunaToggle"></ion-checkbox>
             </ion-item>
            
-            <div class="btnContainer">
+            <!--div class="btnContainer">
 
                 <div class="btn">
                     
@@ -138,15 +138,15 @@
                     <button class="btn" ion-button (click)="openGallery()">Subir Foto</button>
                 </div>
 
-            </div>
+            </div-->
 
             <div class="btnContainer">
 
                 <div class="btn">
                     <button *ngIf="personaToggle" [disabled]="!f.valid" class="btn" ion-button
-                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Registrarse</button>
+                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Crear Cuenta</button>
                     <button *ngIf="entitatToggle" [disabled]="!f.valid" class="btn" ion-button
-                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Registrarse</button>
+                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Crear Cuenta</button>
                 </div>
 
             </div>
@@ -159,7 +159,7 @@
         </div> -->
 
 
-        </ion-list>
+     
     </form>
 
 </ion-content>

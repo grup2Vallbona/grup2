@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
 import { Http } from "@angular/http";
-import { Storage } from "@ionic/storage";
+
 import { AngularFireAuth } from "angularfire2/auth";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
-
 import { Entitat } from "../../app/interfaces/ientitat";
 import { Persona } from "../../app/interfaces/ipersona";
 import { Usuari } from "../../app/interfaces/iusuari";
@@ -23,14 +22,10 @@ import { GlobalProvider } from "../../providers/global/global";
 })
 export class EditUsuario {
   nickname: string = "";
-  nicknameM: string = "";
   usuari: Usuari;
-  aUsuari: Usuari[] = [];
-  id: number;
   personaid: number;
   entitatid: number;
   entitatU: Entitat;
-  d: Entitat;
   persona: Persona;
   professor: any;
   email: any;
@@ -38,8 +33,7 @@ export class EditUsuario {
   music: any;
   nom: string;
   rol: any;
-  professorToggle: boolean;
-  personaToggle: boolean;
+  professorToggle: boolean;  
   ballariToggle: boolean;
   musicToggle: boolean;
   escola: any;
@@ -47,36 +41,32 @@ export class EditUsuario {
   marcaToggle: boolean;
   marca: any;
   descripcio: string;
-  descripcioM: string;
+  anyEmp: any;  
   anyEmpezarBailar: any;
-  //selectedGenere: boolean = true;
   selectedGenere: any;
   selectedIdioma: any;
   selectedPais: string;
   selectedRol: any;
   vacuna: any;
-  iniciProfessorat: any;
-  genero: string;
-  paises = [];
-  tipoUsuari: string = "";
+  iniciProfessorat: any; 
+  paises = []; 
   instrument: string = "";
-  instrumentM: string = "";
   dataNaixement: any;
   estaVacunado: boolean = true;
+
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private http: Http,
-    public storage: Storage,
+    private http: Http,   
     private firebaseAuth: AngularFireAuth,
     public global: GlobalProvider
   ) {
     this.usuari = navParams.get("user");
     this.personaid = this.usuari.persona_id;
     this.entitatid = this.usuari.entitat_id;
-    this.descripcio = this.usuari.descripcio;
-    this.email = this.usuari.email;
+   
+    
   }
 
   ionViewWillEnter() {
@@ -86,7 +76,7 @@ export class EditUsuario {
         // alert(response);
         paises = response.json();
         this.paises = paises;
-        for (let index = 0; index < paises.length; index++) {
+        for (let index in paises) {
           if (paises[index]["codeInteger"] == this.usuari.pais) {
             this.selectedPais = paises[index]["codeInteger"];
           }
@@ -99,6 +89,8 @@ export class EditUsuario {
     this.dataNaixement = this.usuari.dataNaixement;
     this.descripcio = this.usuari.descripcio;
     this.nickname = this.usuari.nickname;
+    this.vacuna = this.usuari.vacunaCovid;
+    this.email = this.usuari.email;
     if (this.usuari.vacunaCovid == 0) {
       this.estaVacunado = false;
     } else {
@@ -111,13 +103,12 @@ export class EditUsuario {
     if (this.usuari.genere == 0) {
       this.selectedGenere = 0;
     } else if (this.usuari.genere == 1) {
-      //this.genero = "Catalan";
       this.selectedGenere = 1;
-    } else {
-      //          this.genero = "Otros";
+    } else {   
       this.selectedGenere = 2;
     }
-    this.vacuna = this.usuari.vacunaCovid;
+
+    
     if (this.entitatid != null) {
       this.dades.getEntitat(this.entitatid).subscribe((jEntitat: any) => {
         this.entitatU = jEntitat.json();
@@ -126,23 +117,16 @@ export class EditUsuario {
         this.escola = this.entitatU.escola;
         this.marca = this.entitatU.marca;
 
-        if (this.entitatU.escola == 1) {
-          this.escolaToggle = true;
-        } else {
-          this.escolaToggle = false;
-        }
-
-        if (this.entitatU.marca == 1) {
-          this.marcaToggle = true;
-        } else {
-          this.marcaToggle = false;
-        }
+        this.escolaToggle = this.entitatU.escola == 1;
+        this.marcaToggle = this.entitatU.marca == 1;
       });
     } else if (this.personaid != null) {
       this.dades.getPersona(this.personaid).subscribe((jPersona: any) => {
         this.persona = jPersona.json();
         this.instrument = this.persona.instrument;
+
         this.anyEmpezarBailar = this.persona.dataNaixementBallari;
+      console.log(this.anyEmpezarBailar)
         this.iniciProfessorat = this.persona.iniciProfessorat;
         this.rol = this.persona.rol;
 
@@ -156,23 +140,15 @@ export class EditUsuario {
           this.selectedRol = 4;
         }
 
-        if (this.persona.ballari == 1) {
-          this.ballariToggle = true;
-        } else {
-          this.ballariToggle = false;
-        }
-
-        if (this.persona.music == 1) {
-          this.musicToggle = true;
-        } else {
-          this.musicToggle = false;
-        }
-
-        if (this.persona.professor == 1) {
-          this.professorToggle = true;
-        } else {
-          this.professorToggle = false;
-        }
+        this.persona.ballari == 1
+          ? (this.ballariToggle = true)
+          : (this.ballariToggle = false);
+        this.persona.music == 1
+          ? (this.musicToggle = true)
+          : (this.musicToggle = false);
+        this.persona.professor == 1
+          ? (this.professorToggle = true)
+          : (this.professorToggle = false);
       });
     }
   }
@@ -195,33 +171,13 @@ export class EditUsuario {
     iniciProfessoratModificar,
     nomEntitatModificar
   ) {
-   
+    professorToggleModificar ? (this.professor = 1) : (this.professor = 0);
+    musicToggleModificar ? (this.music = 1) : (this.music = 0);
+    ballariToggleModificar ? (this.ballari = 1) : (this.professor = 0);
+    vacunaCovidModificar ? (this.vacuna = 1) : (this.vacuna = 0);
 
-    if (professorToggleModificar) {
-      this.professor = 1;
-    } else {
-      this.professor = 0;
-    }
-    if (musicToggleModificar) {
-      this.music = 1;
-    } else {
-      this.music = 0;
-    }
-    if (ballariToggleModificar) {
-      this.ballari = 1;
-    } else {
-      this.ballari = 0;
-    }
+    this.firebaseAuth.auth.currentUser.updateEmail(emailModificar);
 
-    if (vacunaCovidModificar) {
-      this.vacuna = 1;
-    } else {
-      this.vacuna = 0;
-    }
-
-  
-      this.firebaseAuth.auth.currentUser.updateEmail(emailModificar);
-    
     if (this.personaid != null) {
       const formDataModificarPersona = new FormData();
       formDataModificarPersona.append("rol", rolModificar);
@@ -256,21 +212,14 @@ export class EditUsuario {
             .subscribe((usuariMpersona) => {
               this.usuari = usuariMpersona.json();
               this.global.setEmail(emailModificar);
-              this.navCtrl.push(Perfil, {usuari: this.usuari});
+              this.navCtrl.push(Perfil, { usuari: this.usuari });
             });
         });
     } else if (this.entitatid != null) {
-
-     
       const formDataModificarEntitat = new FormData();
       formDataModificarEntitat.append("escola", this.entitatU.escola);
       formDataModificarEntitat.append("marca", this.entitatU.marca);
       formDataModificarEntitat.append("nom", nomEntitatModificar);
-
-
-     
-       
-     
 
       const formDataModificarUsuari = new FormData();
       formDataModificarUsuari.append("nickname", nicknameModificar);
@@ -289,8 +238,8 @@ export class EditUsuario {
             .modifyUsuari(this.usuari.id, formDataModificarUsuari)
             .subscribe((usuariModifica) => {
               this.usuari = usuariModifica.json();
-              this.storage.set("email", emailModificar);
-              this.navCtrl.push(Perfil, {usuari: this.usuari});
+              this.global.setEmail(emailModificar);
+              this.navCtrl.push(Perfil, { usuari: this.usuari });
             });
         });
     }

@@ -24,14 +24,14 @@ export class Seguidors {
   usuariSeguit: Usuari;
   id: any;
   nom: any;
-
+email: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    public storage: Storage
+    
   ) {
-    this.usuariRebut = this.navParams.get("usuari");
+    this.email = this.navParams.get("email");
   }
 
   
@@ -39,7 +39,7 @@ export class Seguidors {
 
   ionViewWillEnter() {
 
-      this.dades.getUsuariEmail(this.usuariRebut.email).subscribe((jUsuario: any) => {
+      this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
         this.usuariSeguit = jUsuario.json();
 
         this.dades.getSeguidors(this.usuariSeguit.id).subscribe((seguidor) => {

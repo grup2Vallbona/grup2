@@ -1,5 +1,5 @@
 import { Component, NgZone } from "@angular/core";
-import { Storage } from "@ionic/storage";
+
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
@@ -23,45 +23,31 @@ export class Bloquejats {
   usuariBloquejat: Usuari;
   id: any;
   nom: any;
- 
+  email: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dades: DadesProductesService,
-    public storage: Storage,
+   
     public zone: NgZone
   ) {
-    this.usuariRebut = this.navParams.get("usuari");
-   
+    this.email = this.navParams.get("email");
   }
 
   ngOnInit() {
-
-
-   
-    
-
-    this.dades
-      .getUsuariEmail(this.usuariRebut.email)
-      .subscribe((jUsuario: any) => {
-        this.usuariBloquejat = jUsuario.json();
-
-        this.dades
-          .getBloquejats(this.usuariBloquejat.id)
-          .subscribe((bloquejat) => {
-            this.usuarisBloquejats = bloquejat.json();
-          
-           
-          });
-      });
+    this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
+      this.usuariBloquejat = jUsuario.json();
+      this.dades
+        .getBloquejats(this.usuariBloquejat.id)
+        .subscribe((bloquejat) => this.usuarisBloquejats = bloquejat.json());
+    });
   }
   doRefresh(event) {
-    console.log('Begin async operation');
+    console.log("Begin async operation");
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+      console.log("Async operation has ended");
       event.complete();
     }, 2000);
   }
-  
 }

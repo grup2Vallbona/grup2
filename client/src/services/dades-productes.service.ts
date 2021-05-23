@@ -94,6 +94,12 @@ export class DadesProductesService {
   public seguir(seguir: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/seguir", seguir);
   }
+  public countSeguits(id: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/seguitscount/' + id);
+  }
+  public countSeguidors(id: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/seguidorscount/' + id);
+  }
   public deleteSeguir(idseguit: number, idseguidor: number): Observable<any> {
     return this.http.delete(
       this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor

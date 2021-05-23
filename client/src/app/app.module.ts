@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-// import { HttpClientModule } from '@angular/common/http';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 
@@ -35,8 +35,9 @@ import { Grupo } from '../pages/grupo/grupo';
 import { Creargrupo } from '../pages/creargrupo/creargrupo';
 import { Crearevento } from '../pages/crearevento/crearevento';
 import { Bloquejat } from '../pages/bloquejat/bloquejat'
+import { Seguit } from '../pages/seguit/seguit';
 import { DadesProductesService } from '../services/dades-productes.service';
-import { IonicStorageModule } from '@ionic/storage';
+
 
 import { GruposService } from '../services/grupos.services';
 import { AuthProvider } from '../providers/auth/auth';
@@ -47,6 +48,7 @@ import { Seguidors } from '../pages/seguidors/seguidors';
 import { Bloquejats } from '../pages/bloquejats/bloquejats';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GlobalProvider } from '../providers/global/global';
+import { Seguidor } from '../pages/seguidor/seguidor';
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyD2zHm9yWRvsWVqm6YS93HUWtQOlGvcwJg",
@@ -57,18 +59,7 @@ import { GlobalProvider } from '../providers/global/global';
     messagingSenderId: "98135874116",
   };
  
-  // var firebaseConfig = {
-  //   apiKey: "AIzaSyD2zHm9yWRvsWVqm6YS93HUWtQOlGvcwJg",
-  //   authDomain: "weswing-ffe0d.firebaseapp.com",
-  //   projectId: "weswing-ffe0d",
-  //   storageBucket: "weswing-ffe0d.appspot.com",
-  //   messagingSenderId: "98135874116",
-  //   appId: "1:98135874116:web:acf776d9f3dea79943fa11",
-  //   measurementId: "G-W27Z7TDGD0"
-  // };
-
-
-
+ 
 @NgModule({
   declarations: [
     MyApp,
@@ -95,13 +86,15 @@ import { GlobalProvider } from '../providers/global/global';
     Seguidors,
     Bloquejats,
     VistaEvento,
-    Bloquejat
+    Bloquejat,
+    Seguit,
+    Seguidor
     
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+ 
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -109,7 +102,7 @@ import { GlobalProvider } from '../providers/global/global';
     ReactiveFormsModule,
     
   
-
+ 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -137,7 +130,9 @@ import { GlobalProvider } from '../providers/global/global';
     Seguidors,
     Bloquejats,
     VistaEvento, 
-    Bloquejat
+    Bloquejat,
+    Seguit,
+    Seguidor
     
   ],
   providers: [

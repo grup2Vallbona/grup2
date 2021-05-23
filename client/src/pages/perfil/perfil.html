@@ -7,24 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Usuario</ion-title>   
-    <ion-buttons right *ngIf="botonsDreta == true">
-      <button  ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">
-        <ion-icon name="create"></ion-icon>
+    <ion-title>Usuario</ion-title>
+
+    <ion-buttons right>
+
+      <button ion-button icon-only color="light" *ngIf="botoBloquejar == true" (click)="goToBloquejats()">
+        <ion-icon name="information-circle-outline"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons right *ngIf="botonsDreta == false">
-            
-      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light" (click)="presentConfirmBloquear()">
+
+      <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light"
+        (click)="presentConfirmBloquear()">
         <ion-icon name="logo-xbox"></ion-icon>
       </button>
-      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light" (click)="presentConfirmDesbloquear()">
+      <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light"
+        (click)="presentConfirmDesbloquear()">
         <ion-icon name="logo-octocat"></ion-icon>
       </button>
-   
+
     </ion-buttons>
-    
-    
+
+
   </ion-navbar>
 
 </ion-header>
@@ -32,32 +36,46 @@
 
 <ion-content>
   <ion-card text-center>
+    <ion-item>
+      
+   
+        <div class="divComptadors">
+          <ion-avatar>
+            <img src="../../assets/images/fotoadri.jpg" />
+          </ion-avatar>
+          <div (click)="goToSeguits()">
+            <p style="text-align: center;">{{comptadorSeguits}}</p>
+            <button style="background-color: transparent;" >Seguidos</button>
+          </div>
+          <div (click)="goToSeguidors()">
+            <p style="text-align: center;">{{comptadorSeguidors}}</p>
+            <button style="background-color: transparent;" >Seguidores</button>
+          </div>
+        </div>    
 
-    <ion-avatar>
+       
 
-    </ion-avatar>
-    <ion-card-content>
-      <h1>{{nickname}}</h1>
-    </ion-card-content>
-
-  </ion-card>
-  <ion-item>
-    <div >
-      <button  (click)="goToSeguits()">Seguidos</button>
-      <button  (click)="goToSeguidors()">Seguidores</button>
+          <h1 class="fontSizeNickname">{{nickname}}</h1>
+  
+  
+  
+  
+        
     
-    </div>
+    </ion-item>
 
+   
+      <div style="margin: inherit;" *ngIf="botonsDreta == true">
+        <button class="buttonEditarPerfil " ion-button icon-only color="light" (click)="gotoEditUsuario(usuari)">Editar
+          perfil</button>
+  
+      </div>
+  
     
-  </ion-item>
-  <ion-item>
-    <div >
+  
 
-      <button *ngIf="botoBloquejar == true"  (click)="goToBloquejats()">Bloqueados</button>
-    </div>
 
-    
-  </ion-item>
+
 
   <ion-item>
     <ion-card-content item-left>
@@ -295,16 +313,16 @@
     </ion-card-content>
   </ion-item>
 
- 
+</ion-card>
   <div class="btnContainer" *ngIf="botonsDreta == true">
 
     <div class="btn">
-        <button class="btn" (click)="logout()" ion-button>Cerrar Sesión</button>
+      <button class="btn" (click)="logout()" ion-button>Cerrar Sesión</button>
     </div>
 
-</div>
+  </div>
 
 
-  
+
 
 </ion-content>

@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-item >
+    <ion-avatar item-left *ngIf="seguit['genere'] == 0">
+      <img src="../../assets/icon/hhombre.png">
+    </ion-avatar>
+    <ion-avatar item-left *ngIf="seguit['genere'] == 1">
+      <img src="../../assets/icon/mmujer.png">
+    </ion-avatar>
+    <ion-avatar item-left *ngIf="seguit['genere'] == 2">
+      <img src="../../assets/icon/anonymous-mask.png">
+    </ion-avatar>
+    <h2>{{seguit.nickname}} </h2>     
+    <div>
+      <div>
+        <button class="buttonDejarSeguir" (click)="presentConfirmDejarSeguir()">Eliminar</button>
+      </div>
+    </div> 
+  </ion-item>
+</ion-card>

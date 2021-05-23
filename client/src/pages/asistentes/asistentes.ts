@@ -6,7 +6,7 @@ import { Assistentsperfil } from "../assistentsperfil/assistentsperfil";
 import { Perfil } from "../perfil/perfil";
 import { Asistente } from "../asistente/asistente";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
-import { Storage } from "@ionic/storage";
+
 /**
  * Generated class for the Asistentes page.
  *
@@ -28,7 +28,7 @@ export class Asistentes {
     public navCtrl: NavController,
     public navParams: NavParams,
     public dades: DadesProductesService,
-    public storage: Storage
+    
   ) {
     this.evento = navParams.get("evento");
   }
