@@ -1,10 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  AlertController,
-  IonicPage,
-  NavController,
-  NavParams,
-} from "ionic-angular";
+import { AlertController, IonicPage, NavController, NavParams } from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
 
 import { Usuari } from "../../app/interfaces/iusuari";
@@ -34,7 +29,6 @@ export class Crearevento {
   minDate: string = new Date().toISOString();
   maxDate: any = new Date().getFullYear() + 5;
   usuari: Usuari;
-
   persona_id: any;
   titulo: string;
   subtitulo: string;
@@ -67,12 +61,12 @@ export class Crearevento {
     public global: GlobalProvider,
     public geolocation: Geolocation,
     public alertCtrl: AlertController
-  ) {}
+  ) {} 
   mapaGeolocalizacion() {
     navigator.geolocation.getCurrentPosition((geoposition: Geoposition) => {
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
-
+      console.log(this.lat + " " + this.lon);
       this.map = new Leaflet.Map("map").setView([this.lat, this.lon], 16);
       Leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -101,79 +95,74 @@ export class Crearevento {
     fechaEvento,
     maxGanadores
   ) {
-    if (crearNuevoPremio) {
-      const formData = new FormData();
-      formData.append("creador_id", this.persona_id);
-      formData.append("titol", premioNuevo);
-      formData.append("maxGuanyadors", maxGanadores);
-      formData.append("categoria", tipoParticipacion);
-      formData.append("usuari_id", this.persona_id);
-      formData.append("ball_id", tipoBaile);
-      formData.append("premi_id", this.premio_id);
-      formData.append("participacioTipus", tipoParticipacion);
-      formData.append("titol", titulo);
-      formData.append("subtitol", subtitulo);
-      formData.append("descripcio", descripcion);
-      formData.append("data", fechaEvento);
-      formData.append("latitud", this.lat.toString());
-      formData.append("longitud", this.lon.toString());
-      this.dades.createEventPremi(formData).subscribe(
-        (data) => {
-          this.navCtrl.push(Eventos);
-        },
-        (e) => {
-          let alert = this.alertCtrl.create({
-            title: "Datos incorrectos!",
-
-            buttons: ["Aceptar"],
-          });
-          alert.present();
-        }
-      );
-    } else {
-      this.premio_id = premioExistente;
-      this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
-        var premio = premioJ.json();
+      if (crearNuevoPremio) {
+        console.log(this.lat + " " + this.lon);
         const formData = new FormData();
+        formData.append("creador_id", this.persona_id);
+        formData.append("titol", premioNuevo);
+        formData.append("maxGuanyadors", maxGanadores);
+        formData.append("categoria", tipoParticipacion);
         formData.append("usuari_id", this.persona_id);
         formData.append("ball_id", tipoBaile);
-        formData.append("premi_id", premio.id);
-        formData.append("participacioTipus", premio.categoria);
+        formData.append("premi_id", this.premio_id);
+        formData.append("participacioTipus", tipoParticipacion);
         formData.append("titol", titulo);
         formData.append("subtitol", subtitulo);
         formData.append("descripcio", descripcion);
         formData.append("data", fechaEvento);
         formData.append("latitud", this.lat.toString());
         formData.append("longitud", this.lon.toString());
-        this.dades.createEvent(formData).subscribe(
-          (data) => {
+        this.dades.createEventPremi(formData).subscribe((data) => {
+          this.navCtrl.push(Eventos);
+        },(e)=>{
+          let alert = this.alertCtrl.create({
+            title: "Datos incorrectos!",
+           
+            buttons: ["Aceptar"],
+          });
+          alert.present();
+        });
+      } else {
+        this.premio_id = premioExistente;
+        this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
+          var premio = premioJ.json();
+          const formData = new FormData();
+          formData.append("usuari_id", this.persona_id);
+          formData.append("ball_id", tipoBaile);
+          formData.append("premi_id", premio.id);
+          formData.append("participacioTipus", premio.categoria);
+          formData.append("titol", titulo);
+          formData.append("subtitol", subtitulo);
+          formData.append("descripcio", descripcion);
+          formData.append("data", fechaEvento);
+          formData.append("latitud", this.lat.toString());
+          formData.append("longitud", this.lon.toString());
+          this.dades.createEvent(formData).subscribe((data) => {
             this.navCtrl.push(Eventos);
-          },
-          (e) => {
+          },(e)=>{
             let alert = this.alertCtrl.create({
               title: "Datos incorrectos!",
-
+             
               buttons: ["Aceptar"],
             });
             alert.present();
-          }
-        );
-      });
-    }
+          });
+        });
+      }
   }
 
   carregarPremis() {
     this.email = this.global.getEmail();
-
+    // console.log(emailUser);
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
       this.persona_id = this.usuari.persona_id;
-      this.dades.getPremisUsuari(this.usuari.id).subscribe((events: any) => {
+      this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
         var event = events.json();
-      
+        
         for (let index = 0; index < event.length; index++) {
           this.eventsUsuari[index] = event[index];
-        
+          
         }
       });
     });
@@ -188,14 +177,16 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
+    // console.log('ionViewDidLoad Crearevento');
     this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();
     this.email = this.global.getEmail();
+    console.log(this.email);
 
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
-
+      console.log(this.usuari.id);
       this.persona_id = this.usuari.id;
     });
     this.http.get("../../assets/json/countries.json").subscribe(
