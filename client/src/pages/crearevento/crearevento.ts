@@ -51,7 +51,7 @@ export class Crearevento {
   email: string;
   lat: any;
   lon: any;
-  map: Leaflet.Map =undefined;
+  map: Leaflet.Map = undefined;
   marker: any;
   constructor(
     public navCtrl: NavController,
@@ -145,42 +145,11 @@ export class Crearevento {
         formData.append("data", fechaEvento);
         formData.append("latitud", this.lat.toString());
         formData.append("longitud", this.lon.toString());
-<<<<<<< HEAD
-        this.dades.createEventPremi(formData).subscribe((data) => {
-          this.navCtrl.push(Novedades);
-        },(e)=>{
-          let alert = this.alertCtrl.create({
-            title: "Datos incorrectos!",
-           
-            buttons: ["Aceptar"],
-          });
-          alert.present();
-        });
-      } else {
-        this.premio_id = premioExistente;
-        this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
-          var premio = premioJ.json();
-          const formData = new FormData();
-          formData.append("usuari_id", this.persona_id);
-          formData.append("ball_id", tipoBaile);
-          formData.append("premi_id", premio.id);
-          formData.append("participacioTipus", premio.categoria);
-          formData.append("titol", titulo);
-          formData.append("subtitol", subtitulo);
-          formData.append("descripcio", descripcion);
-          formData.append("data", fechaEvento);
-          formData.append("latitud", this.lat.toString());
-          formData.append("longitud", this.lon.toString());
-          this.dades.createEvent(formData).subscribe((data) => {
-            this.navCtrl.push(Novedades);
-          },(e)=>{
-=======
         this.dades.createEvent(formData).subscribe(
           (data) => {
             this.navCtrl.setRoot(Eventos);
           },
           (e) => {
->>>>>>> 32a0cb0f3c5800474c1256a8068a98c67152c9ee
             let alert = this.alertCtrl.create({
               title: "Datos incorrectos!",
              

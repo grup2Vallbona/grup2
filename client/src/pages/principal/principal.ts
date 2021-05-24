@@ -27,7 +27,7 @@ export class Principal {
     public global: GlobalProvider,
     public ba: NavController
   ) {
-
+ 
     this.email = navParams.get("email");
   
     this.global.setEmail(this.email);

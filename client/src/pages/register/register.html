@@ -67,6 +67,10 @@
                 <ion-label floating>Contraseña</ion-label>
                 <ion-input required name="password" type="password" [(ngModel)]="password" ></ion-input>
             </ion-item>
+            <ion-item>
+                <ion-label floating>Repetir contraseña</ion-label>
+                <ion-input required name="password2" type="password" [(ngModel)]="password2" ></ion-input>
+            </ion-item>
 
             <ion-item>
                 <ion-label>Idioma</ion-label>
@@ -144,9 +148,9 @@
 
                 <div class="btn">
                     <button *ngIf="personaToggle" [disabled]="!f.valid" class="btn" ion-button
-                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar)">Crear Cuenta</button>
+                        (click)="signupPersona(email,password, nickname, genero, idioma, pais, rol, descripcion, vacunaToggle, instrumento, dataNaixement, professorToggle, musicToggle, ballariToggle, iniciImparticions, imatge, anyEmpezarBailar, password2)">Crear Cuenta</button>
                     <button *ngIf="entitatToggle" [disabled]="!f.valid" class="btn" ion-button
-                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero)">Crear Cuenta</button>
+                        (click)="signupEntitat(email,password, nickname, dataNaixement, descripcion, imatge, idioma, pais, vacunaToggle, escolaToggle, marcaToggle, nombre, genero, password2)">Crear Cuenta</button>
                 </div>
 
             </div>

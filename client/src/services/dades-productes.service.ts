@@ -10,26 +10,22 @@ import { Usuari } from "../app/interfaces/iusuari";
 @Injectable()
 export class DadesProductesService {
   // http: any;
-  urlDavid = 'http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php';
-  urlAlbert = 'http://localhost/WeSwing/grup2/server/public/index.php';
-  urlNil = 'http://localhost/M14/Projecte_Final/grup2/server/public/index.php';
-  urlServer = 'http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php'
-  
-  
-  baseUrl: string = this.urlDavid; 
+  urlDavid =
+    "http://localhost/2DAW/M14/ProjecteFinal/grup2/server/public/index.php";
+  urlAlbert = "http://localhost/WeSwing/grup2/server/public/index.php";
+  urlNil = "http://localhost/M14/Projecte_Final/grup2/server/public/index.php";
+  urlServer =
+    "http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php";
 
-
-
+  baseUrl: string = this.urlServer;
 
   constructor(private http: Http) {}
-  
+
   //USUARI
   public getUsuari(id: number): Observable<any> {
     return this.http.get(this.baseUrl + "/api/usuariId/" + id);
   }
   public getUsuariEmail(email: string): Observable<any> {
-     
-
     return this.http.get(this.baseUrl + "/api/usuari/" + email);
   }
   public createUsuari(usuari: FormData): Observable<any> {
@@ -80,8 +76,13 @@ export class DadesProductesService {
   public bloquejar(bloquejar: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/bloquejar", bloquejar);
   }
-  public deleteBloquejar(idseguit: number, idseguidor: number): Observable<any> {
-    return this.http.delete(this.baseUrl + "/api/eliminarBloquejar/" + idseguit + "/" + idseguidor);
+  public deleteBloquejar(
+    idseguit: number,
+    idseguidor: number
+  ): Observable<any> {
+    return this.http.delete(
+      this.baseUrl + "/api/eliminarBloquejar/" + idseguit + "/" + idseguidor
+    );
   }
 
   //SEGUIT
@@ -94,15 +95,24 @@ export class DadesProductesService {
   public seguir(seguir: FormData): Observable<any> {
     return this.http.post(this.baseUrl + "/api/seguir", seguir);
   }
-  public countSeguits(id: number): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/seguitscount/' + id);
+  public countSeguits(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/seguitscount/" + id);
   }
-  public countSeguidors(id: number): Observable<any>{
-    return this.http.get(this.baseUrl + '/api/seguidorscount/' + id);
+  public countSeguidors(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + "/api/seguidorscount/" + id);
   }
   public deleteSeguir(idseguit: number, idseguidor: number): Observable<any> {
+    const httpHeaders = new Headers();
+    httpHeaders.append("Access-Control-Allow-Origin", "*");
+
+    // const options = { params: new RequestOptions().params.set("observe", "response") };
+
     return this.http.delete(
-      this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor
+      this.baseUrl + "/api/eliminarSeguir/" + idseguit + "/" + idseguidor,
+      {
+       
+        headers: httpHeaders,
+      }
     );
   }
 

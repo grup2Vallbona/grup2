@@ -36,8 +36,7 @@ import { Entitat } from "../../app/interfaces/ientitat";
   templateUrl: "register.html",
 })
 export class Register {
- 
- 
+  password2: any;
   paises = [];
   personUltima: Persona;
   private imageSrc: string;
@@ -49,7 +48,7 @@ export class Register {
   genero: string;
   idioma: string;
   pais: string;
-  rol: any;  
+  rol: any;
   descripcion: string;
   vacunaToggle: boolean = false;
   vacuna: any;
@@ -108,23 +107,31 @@ export class Register {
     ballariToggle,
     iniciImparticions,
     imatge,
-    anyEmpezarBailar
+    anyEmpezarBailar,
+    passwordRepite
   ) {
-    try {
-      professorToggle ? (this.profesor = 1) : (this.profesor = 0);
-      musicToggle ? (this.music = 1) : (this.music = 0);
-      ballariToggle ? (this.ballari = 1) : (this.ballari = 0);
-      vacunaToggle ? (this.vacuna = 1) : (this.vacuna = 0);
+    professorToggle ? (this.profesor = 1) : (this.profesor = 0);
+    musicToggle ? (this.music = 1) : (this.music = 0);
+    ballariToggle ? (this.ballari = 1) : (this.ballari = 0);
+    vacunaToggle ? (this.vacuna = 1) : (this.vacuna = 0);
 
-      if (!iniciImparticions) iniciImparticions = "1800-01-01";
-
+    if(this.profesor == 0 && this.ballari == 0 && this.music == 0){
+      this.ballari = 1;
+    }
+    if (!iniciImparticions)  iniciImparticions = "1800-01-01";
+    
+    if (password == passwordRepite) {
+      
       const formData = new FormData();
       formData.append("rol", rol);
       formData.append("ballari", this.ballari);
       formData.append("music", this.music);
       formData.append("professor", this.profesor);
-      formData.append("instrument", instrumento);
-      formData.append("dataNaixementBallari", anyEmpezarBailar);
+      formData.append("instrument", instrumento);  
+      if (anyEmpezarBailar) {
+        formData.append("dataNaixementBallari", anyEmpezarBailar);
+      }    
+    
       formData.append("iniciProfessorat", iniciImparticions);
 
       this.firebaseAuth.auth
@@ -138,6 +145,7 @@ export class Register {
               formDataUsuari.append("persona_id", this.personUltima.id);
               formDataUsuari.append("genere", genero);
               formDataUsuari.append("email", email);
+
               formDataUsuari.append("contrasenya", password);
               formDataUsuari.append("pais", pais);
               formDataUsuari.append("dataNaixement", dataNaixement);
@@ -153,19 +161,28 @@ export class Register {
           })
         )
         .catch((e) => {
-        
-        
           if (e["code"] == "auth/email-already-in-use") {
             this.emailAlreadyInUse();
-          } 
+          }
           if (e["code"] == "auth/weak-password") {
             this.weakPassword();
           }
-          if(e["code"] == "auth/invalid-email"){
+          if (e["code"] == "auth/invalid-email") {
             this.invalidEmail();
           }
         });
-    } catch (e) {}
+    } else {
+      this.passwordNotEquals();
+    }
+  }
+
+  passwordNotEquals() {
+    let alert = this.alertCtrl.create({
+      title: "La contraseña no coincide",
+
+      buttons: ["Aceptar"],
+    });
+    alert.present();
   }
   registreIncorrecte() {
     let alert = this.alertCtrl.create({
@@ -190,11 +207,10 @@ export class Register {
     nombre,
     genero
   ) {
-
     escolaToggle ? (this.escola = 1) : (this.escola = 0);
     marcaToggle ? (this.marca = 1) : (this.marca = 0);
     vacunaToggle ? (this.vacuna = 1) : (this.vacuna = 0);
-      
+
     const formDataEntidad = new FormData();
     formDataEntidad.append("escola", this.escola);
     formDataEntidad.append("marca", this.marca);
@@ -229,35 +245,32 @@ export class Register {
                 });
             });
           })
-        ).catch(e=>{
-
-        });
+        )
+        .catch((e) => {});
     } catch (e) {
-
-
       if (e["code"] == "auth/email-already-in-use") {
         this.emailAlreadyInUse();
-      } if (e["code"] == "auth/weak-password") {
+      }
+      if (e["code"] == "auth/weak-password") {
         this.weakPassword();
       }
-      if(e["code"] == "auth/invalid-email"){
+      if (e["code"] == "auth/invalid-email") {
         this.invalidEmail();
-      }    
-    
+      }
     }
   }
   weakPassword() {
     let alert = this.alertCtrl.create({
       title: "La contraseña tiene que tener mas de 6 carácteres",
-      
+
       buttons: ["Aceptar"],
     });
     alert.present();
   }
-  invalidEmail(){
+  invalidEmail() {
     let alert = this.alertCtrl.create({
       title: "El email esta mal formado",
-    
+
       buttons: ["Aceptar"],
     });
     alert.present();
@@ -265,12 +278,11 @@ export class Register {
   emailAlreadyInUse() {
     let alert = this.alertCtrl.create({
       title: "El email ya esta en uso",
-     
+
       buttons: ["Aceptar"],
     });
     alert.present();
   }
-
 
   loginToast() {
     let toast = this.toastCtrl.create({
@@ -292,8 +304,7 @@ export class Register {
     };
 
     Camera.getPicture(cameraOptions).then(
-      (file_uri) => (this.imageSrc = file_uri),
-     
+      (file_uri) => (this.imageSrc = file_uri)
     );
   }
 
@@ -330,15 +341,11 @@ export class Register {
   }
 
   ionViewDidLoad() {
-
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
-      
         this.paises = response.json();
       },
-      (error) => {
-        
-      }
+      (error) => {}
     );
   }
 }

@@ -31,7 +31,7 @@ export class Novedades {
 
   
 
-  ngOnInit() {
+  ngOnInit() { 
     
   
 

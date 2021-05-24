@@ -124,8 +124,8 @@ export class EditUsuario {
       this.dades.getPersona(this.personaid).subscribe((jPersona: any) => {
         this.persona = jPersona.json();
         this.instrument = this.persona.instrument;
-
-        this.anyEmpezarBailar = this.persona.dataNaixementBallari;
+    
+        this.anyEmpezarBailar = parseInt(this.persona.dataNaixementBallari);
       
         this.iniciProfessorat = this.persona.iniciProfessorat;
         this.rol = this.persona.rol;

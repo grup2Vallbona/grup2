@@ -21,6 +21,7 @@ import { MyApp } from "../../app/app.component";
 import { GlobalProvider } from "../../providers/global/global";
 import { TouchID } from "ionic-native";
 import { Eventos } from "../eventos/eventos";
+import { Asistentes } from "../asistentes/asistentes";
 /**
  * Generated class for the Usuario page.
  *
@@ -208,6 +209,7 @@ export class Perfil {
                 }
                 
               });
+              
             } else {
               for (const index in this.seguits) {
                 if (idUsuariBloquejat == this.seguits[index].seguit_id) {
@@ -226,9 +228,11 @@ export class Perfil {
                 }
               }
             }
+
           });
         });
       });
+      this.navCtrl.setRoot(Eventos)
     });
   }
 
