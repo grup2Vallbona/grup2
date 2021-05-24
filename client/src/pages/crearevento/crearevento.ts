@@ -12,6 +12,7 @@ import { Geolocation, Geoposition } from "@ionic-native/geolocation/ngx";
 
 //leaflet imports
 import * as Leaflet from "leaflet";
+import { Evento } from "../evento/evento";
 /**
  * Generated class for the Crearevento page.
  *
@@ -50,7 +51,7 @@ export class Crearevento {
   email: string;
   lat: any;
   lon: any;
-  map: Leaflet.Map;
+  map: Leaflet.Map =undefined;
   marker: any;
   constructor(
     public navCtrl: NavController,
@@ -67,14 +68,12 @@ export class Crearevento {
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
       console.log(this.lat + " " + this.lon);
-      if(this.map==undefined){
       this.map = new Leaflet.Map("map").setView([this.lat, this.lon], 16);
       Leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {}
       ).addTo(this.map);
-    }
-      this.map.on("click", <LeafletMouseEvent>(e) => {
+      this.map.on("click", <LeafletMouseEvent>(e) => { 
         if (this.map.hasLayer(this.marker)) {
           this.map.removeLayer(this.marker);
         }
@@ -82,7 +81,7 @@ export class Crearevento {
         this.lon = e.latlng.lng;
         this.marker = Leaflet.marker([this.lat, this.lon]).addTo(this.map);
       });
-    });
+      });
   }
 
   crearEvento(
@@ -97,8 +96,40 @@ export class Crearevento {
     fechaEvento,
     maxGanadores
   ) {
-      if (crearNuevoPremio) {
-        console.log(this.lat + " " + this.lon);
+    if (crearNuevoPremio) {
+      const formData = new FormData();
+      formData.append("creador_id", this.persona_id);
+      formData.append("titol", premioNuevo);
+      formData.append("maxGuanyadors", maxGanadores);
+      formData.append("categoria", tipoParticipacion);
+      formData.append("usuari_id", this.persona_id);
+      formData.append("ball_id", tipoBaile);
+      formData.append("premi_id", this.premio_id);
+      formData.append("participacioTipus", tipoParticipacion);
+      formData.append("titol", titulo);
+      formData.append("subtitol", subtitulo);
+      formData.append("descripcio", descripcion);
+      formData.append("data", fechaEvento);
+      formData.append("latitud", this.lat.toString());
+      formData.append("longitud", this.lon.toString());
+      this.dades.createEventPremi(formData).subscribe(
+        (data) => {
+          
+          this.navCtrl.setRoot(Eventos);
+        },
+        (e) => {
+          let alert = this.alertCtrl.create({
+            title: "Datos incorrectos!",
+
+            buttons: ["Aceptar"],
+          });
+          alert.present();
+        }
+      );
+    } else {
+      this.premio_id = premioExistente;
+      this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
+        var premio = premioJ.json();
         const formData = new FormData();
         formData.append("creador_id", this.persona_id);
         formData.append("titol", premioNuevo);
@@ -114,6 +145,7 @@ export class Crearevento {
         formData.append("data", fechaEvento);
         formData.append("latitud", this.lat.toString());
         formData.append("longitud", this.lon.toString());
+<<<<<<< HEAD
         this.dades.createEventPremi(formData).subscribe((data) => {
           this.navCtrl.push(Novedades);
         },(e)=>{
@@ -142,6 +174,13 @@ export class Crearevento {
           this.dades.createEvent(formData).subscribe((data) => {
             this.navCtrl.push(Novedades);
           },(e)=>{
+=======
+        this.dades.createEvent(formData).subscribe(
+          (data) => {
+            this.navCtrl.setRoot(Eventos);
+          },
+          (e) => {
+>>>>>>> 32a0cb0f3c5800474c1256a8068a98c67152c9ee
             let alert = this.alertCtrl.create({
               title: "Datos incorrectos!",
              
@@ -193,7 +232,7 @@ export class Crearevento {
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);
-        this.paises = response.json();
+        this.paises = response.json(); 
       },
       (error) => {
         console.log("Error: ", error.message);
