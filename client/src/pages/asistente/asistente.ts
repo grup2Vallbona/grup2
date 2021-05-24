@@ -78,7 +78,7 @@ export class Asistente {
           .subscribe((data) => {});
       });
     });
-  }
+  } 
  
   ngOnInit() {
     this.email = this.global.getEmail();

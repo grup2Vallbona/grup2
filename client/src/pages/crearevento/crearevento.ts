@@ -156,10 +156,9 @@ export class Crearevento {
     // console.log(emailUser);
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
-      this.persona_id = this.usuari.persona_id;
+      this.persona_id = this.usuari.id;
       this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
         var event = events.json();
-        
         for (let index = 0; index < event.length; index++) {
           this.eventsUsuari[index] = event[index];
           
