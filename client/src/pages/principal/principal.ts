@@ -17,7 +17,7 @@ import { Novedades } from "../novedades/novedades";
 })
 export class Principal {
   email: string;  
-  tab1Root = Novedades;
+  
   tab2Root = Eventos;
   tab3Root = Perfil;
  

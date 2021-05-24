@@ -301,7 +301,7 @@ export class Perfil {
 
       if (this.usuari.genere == 0) {
         this.genereUsuari = "Hombre";
-      } else if (this.usuari.genere == 1) {
+      } else if (this.usuari.genere == 1) { 
         this.genereUsuari = "Mujer";
       } else {
         this.genereUsuari = "Otros";
