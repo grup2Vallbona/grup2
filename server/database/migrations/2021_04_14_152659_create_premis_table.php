@@ -21,7 +21,7 @@ class CreatePremisTable extends Migration
             $table->unsignedBigInteger('creador_id');
             $table->foreign('creador_id')->references('id')->on('usuaris');
             $table->string('titol', 100);
-            $table->integer('maxGuanyadors');
+            $table->unsignedBigInteger('maxGuanyadors');
             $table->integer('categoria');
         });
     }

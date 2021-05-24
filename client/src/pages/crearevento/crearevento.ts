@@ -17,6 +17,7 @@ import { Geolocation, Geoposition } from "@ionic-native/geolocation/ngx";
 
 //leaflet imports
 import * as Leaflet from "leaflet";
+import { Evento } from "../evento/evento";
 /**
  * Generated class for the Crearevento page.
  *
@@ -56,7 +57,7 @@ export class Crearevento {
   email: string;
   lat: any;
   lon: any;
-  map: Leaflet.Map;
+  map: Leaflet.Map =undefined;
   marker: any;
   constructor(
     public navCtrl: NavController,
@@ -78,7 +79,7 @@ export class Crearevento {
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {}
       ).addTo(this.map);
-      this.map.on("click", <LeafletMouseEvent>(e) => {
+      this.map.on("click", <LeafletMouseEvent>(e) => { 
         if (this.map.hasLayer(this.marker)) {
           this.map.removeLayer(this.marker);
         }
@@ -119,7 +120,8 @@ export class Crearevento {
       formData.append("longitud", this.lon.toString());
       this.dades.createEventPremi(formData).subscribe(
         (data) => {
-          this.navCtrl.push(Eventos);
+          
+          this.navCtrl.setRoot(Eventos);
         },
         (e) => {
           let alert = this.alertCtrl.create({
@@ -147,7 +149,7 @@ export class Crearevento {
         formData.append("longitud", this.lon.toString());
         this.dades.createEvent(formData).subscribe(
           (data) => {
-            this.navCtrl.push(Eventos);
+            this.navCtrl.setRoot(Eventos);
           },
           (e) => {
             let alert = this.alertCtrl.create({
@@ -201,7 +203,7 @@ export class Crearevento {
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);
-        this.paises = response.json();
+        this.paises = response.json(); 
       },
       (error) => {
         console.log("Error: ", error.message);
