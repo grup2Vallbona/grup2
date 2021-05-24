@@ -67,11 +67,13 @@ export class Crearevento {
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
       console.log(this.lat + " " + this.lon);
+      if(this.map==undefined){
       this.map = new Leaflet.Map("map").setView([this.lat, this.lon], 16);
       Leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {}
       ).addTo(this.map);
+    }
       this.map.on("click", <LeafletMouseEvent>(e) => {
         if (this.map.hasLayer(this.marker)) {
           this.map.removeLayer(this.marker);
@@ -149,17 +151,16 @@ export class Crearevento {
           });
         });
       }
-  }
+  } 
 
   carregarPremis() {
     this.email = this.global.getEmail();
     // console.log(emailUser);
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
-      this.persona_id = this.usuari.persona_id;
+      this.persona_id = this.usuari.id;
       this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
         var event = events.json();
-        
         for (let index = 0; index < event.length; index++) {
           this.eventsUsuari[index] = event[index];
           
