@@ -67,11 +67,13 @@ export class Crearevento {
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
       console.log(this.lat + " " + this.lon);
+      if(this.map==undefined){
       this.map = new Leaflet.Map("map").setView([this.lat, this.lon], 16);
       Leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {}
       ).addTo(this.map);
+    }
       this.map.on("click", <LeafletMouseEvent>(e) => {
         if (this.map.hasLayer(this.marker)) {
           this.map.removeLayer(this.marker);
@@ -149,7 +151,7 @@ export class Crearevento {
           });
         });
       }
-  }
+  } 
 
   carregarPremis() {
     this.email = this.global.getEmail();
@@ -176,7 +178,7 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-    // console.log('ionViewDidLoad Crearevento'); 
+    // console.log('ionViewDidLoad Crearevento');
     this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();
