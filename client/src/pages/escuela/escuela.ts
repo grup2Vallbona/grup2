@@ -18,7 +18,7 @@ export class Escuela {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Escuela');
+    
   }
 
 }

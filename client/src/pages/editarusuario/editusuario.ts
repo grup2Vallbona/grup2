@@ -126,7 +126,7 @@ export class EditUsuario {
         this.instrument = this.persona.instrument;
 
         this.anyEmpezarBailar = this.persona.dataNaixementBallari;
-      console.log(this.anyEmpezarBailar)
+      
         this.iniciProfessorat = this.persona.iniciProfessorat;
         this.rol = this.persona.rol;
 

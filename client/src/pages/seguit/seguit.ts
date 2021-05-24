@@ -28,7 +28,7 @@ export class Seguit {
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad SeguitPage");
+  
   }
   dejarSeguir() {
     this.email = this.global.getEmail();

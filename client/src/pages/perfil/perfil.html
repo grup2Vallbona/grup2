@@ -19,11 +19,12 @@
 
       <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light"
         (click)="presentConfirmBloquear()">
-        <ion-icon name="logo-xbox"></ion-icon>
+        <i class="fas fa-lock"></i>
+
       </button>
       <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light"
         (click)="presentConfirmDesbloquear()">
-        <ion-icon name="logo-octocat"></ion-icon>
+        <i class="fas fa-unlock"></i>
       </button>
 
     </ion-buttons>
@@ -71,8 +72,9 @@
   
       </div>
   
-      <div style="margin: inherit;" *ngIf="botonsDreta == true">
-        <button class="buttonEditarPerfil " ion-button icon-only color="light" (click)="seguirUsuario()">Seguir </button>
+      <div style="margin: inherit;" *ngIf="botonsDreta == false">
+        <button *ngIf="botoASiguiendo == false" class="buttonSeguir " ion-button icon-only color="light" (click)="seguirUsuario()">Seguir </button>
+        <button *ngIf="botoASiguiendo == true" class="buttonEditarPerfil " ion-button icon-only color="light" (click)="dejarSeguirUsuario()">Siguiendo </button>
   <!-- ngIf si tu no eres esta persona que aparezca este boton -->
       </div>
   
@@ -317,13 +319,7 @@
   </ion-item>
 
 </ion-card>
-  <div class="btnContainer" *ngIf="botonsDreta == true">
-
-    <div class="btn">
-      <button class="btn" (click)="logout()" ion-button>Cerrar Sesión</button>
-    </div>
-
-  </div>
+  
 
 
 

@@ -26,7 +26,7 @@ export class Eventos {
   constructor(public navCtrl: NavController, public navParams: NavParams,private dades: DadesProductesService) {
     
   }
-
+ 
 
   ngOnInit(){
     this.carrgarEventos();

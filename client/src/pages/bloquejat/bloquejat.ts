@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Storage } from "@ionic/storage";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+
+import { AlertController, IonicPage, NavController, NavParams } from "ionic-angular";
 import { Usuari } from "../../app/interfaces/iusuari";
 import { DadesProductesService } from "../../services/dades-productes.service";
 import { Perfil } from "../perfil/perfil";
@@ -24,12 +24,13 @@ export class Bloquejat {
     public navCtrl: NavController,
     public navParams: NavParams,
     public dades: DadesProductesService,
-    public storage: Storage,
-    public global: GlobalProvider
+   
+    public global: GlobalProvider,
+    public alertCtrl: AlertController
   ) {}
 
   ionViewWillEnter() {
-    console.log(this.bloquejat);
+    
   }
   desbloquearUsuario() {
     this.email = this.global.getEmail();
@@ -42,5 +43,28 @@ export class Bloquejat {
             
           });
       });
+  }
+
+  presentConfirmDesbloquear() {
+    let alert = this.alertCtrl.create({
+      title: "¿Estas seguro que quieres desbloquear a este usuario?",
+      buttons: [
+        {
+          text: "Cancelar",
+          role: "cancel",
+          handler: () => {
+            
+          },
+        },
+        {
+          text: "Aceptar",
+          handler: () => {
+            
+            this.desbloquearUsuario();
+          },
+        },
+      ],
+    });
+    alert.present();
   }
 }

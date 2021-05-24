@@ -41,10 +41,7 @@ export class VistaEvento {
     this.evento = navParams.get("evento");
   }
   mapa(){
-      console.log(this.evento);
-      console.log(this.evento.longitud);
-      console.log(this.evento.latitud);
-      console.log(this.map);
+
       if(this.map == undefined){
         this.map = new Leaflet.Map('map').setView([this.evento.latitud,this.evento.longitud], 16);
         Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
@@ -61,7 +58,7 @@ export class VistaEvento {
   }
   assistirEvent() {
     let posicio: any = 76547654;
-console.log(this.isSelectedAssistir);
+
     if (this.isSelectedAssistir == true) {
       this.email = this.global.getEmail();
         this.dades.getUsuariEmail(this.email).subscribe((jUsuario) => {
@@ -101,9 +98,7 @@ console.log(this.isSelectedAssistir);
       
     }
   }
-  gotoEscuela() {
-    console.log("nada");
-  }
+
   gotoEditEvento() {
     // this.navCtrl.push();
   }

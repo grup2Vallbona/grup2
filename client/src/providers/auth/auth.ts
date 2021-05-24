@@ -13,7 +13,7 @@ import * as firebase from 'firebase/app';
 export class AuthProvider {
 
   constructor(private afAuth :  AngularFireAuth) {
-    console.log('Hello AuthProvider Provider');
+   
   }
 
 }

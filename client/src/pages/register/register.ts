@@ -153,7 +153,7 @@ export class Register {
           })
         )
         .catch((e) => {
-          console.log(e);
+        
         
           if (e["code"] == "auth/email-already-in-use") {
             this.emailAlreadyInUse();
@@ -233,7 +233,7 @@ export class Register {
 
         });
     } catch (e) {
-      console.log(e);
+
 
       if (e["code"] == "auth/email-already-in-use") {
         this.emailAlreadyInUse();
@@ -293,7 +293,7 @@ export class Register {
 
     Camera.getPicture(cameraOptions).then(
       (file_uri) => (this.imageSrc = file_uri),
-      (err) => console.log(err)
+     
     );
   }
 
@@ -337,7 +337,7 @@ export class Register {
         this.paises = response.json();
       },
       (error) => {
-        console.log("Error: ", error.message);
+        
       }
     );
   }

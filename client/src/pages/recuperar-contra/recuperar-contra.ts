@@ -17,7 +17,7 @@ export class RecuperarContra {
   text: string;
   email:string;
   constructor( public navCtrl: NavController, public navParams: NavParams,public afAuth: AngularFireAuth,public alertCtrl:AlertController) {
-    console.log('Hello RecuperarContraComponent Component');
+    
     this.text = 'Hello World';
   }
   inicio(){

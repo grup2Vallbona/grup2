@@ -32,7 +32,7 @@ export class Novedades {
 
   ngOnInit() {
     this.email = this.global.getEmail();
-    console.log(this.email);
+  
     this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {
     this.usuari = usuariJ.json();
     this.navCtrl.push(Perfil, {usuari: this.usuari});
