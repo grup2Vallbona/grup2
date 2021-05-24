@@ -26,7 +26,7 @@ export class Asistente {
   usuariBloquejador: Usuari;
   usuariBloquejat: Usuari;
 idBloquejador: any;
-idBloquejat: any;
+idBloquejat: any; 
   constructor(
     public navCtrl: NavController,
     public dades: DadesProductesService,

@@ -45,7 +45,7 @@ export class VistaEvento {
       if(this.map == undefined){
         this.map = new Leaflet.Map('map').setView([this.evento.latitud,this.evento.longitud], 16);
         Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-        this.marker = Leaflet.marker([parseFloat(this.evento.latitud),parseFloat(this.evento.longitud)]).addTo(this.map);
+        this.marker = Leaflet.marker([parseFloat(this.evento.latitud),parseFloat(this.evento.longitud)]).bindPopup(this.evento.titol).addTo(this.map);
       }
   }
   vistaAssistentes() {
