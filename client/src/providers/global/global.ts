@@ -16,7 +16,7 @@ export class GlobalProvider {
   arrayBloquejats= [];
   arrayBloquejadors=[];
   constructor(public http: Http) {
-    console.log('Hello GlobalProvider Provider');
+    
     
   }
 

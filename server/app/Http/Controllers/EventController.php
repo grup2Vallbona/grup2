@@ -33,7 +33,7 @@ class EventController extends BaseController
     function getEvents()
     {
         $data = new DateTime();
-        $event = Event::select('*')->where('data','>=',$data)->orderBy('data', 'asc')->get();
+        $event = Event::all();
         return $event;
     }
            /**

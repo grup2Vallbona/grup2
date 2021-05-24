@@ -20,7 +20,7 @@ export class Creargrupo {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Creargrupo');
+    
   }
 
   onAddGroup(value: {title: string}){

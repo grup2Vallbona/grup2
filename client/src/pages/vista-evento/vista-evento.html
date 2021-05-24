@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Crear Evento</ion-title>
+    <ion-title>Vista Evento</ion-title>
   
   
 </ion-navbar>
@@ -27,15 +27,15 @@
         </ion-item>
   </ion-card>
   
-  <ion-card (click)="gotoEscuela()">
+  <ion-card>
         <ion-item>
-          <ion-card-header>
+          <ion-card-header style="text-align: center;">
             Organizador
           </ion-card-header>
           <ion-avatar item-left>
             <img src="./assets/images/foto1.jpg">
           </ion-avatar>
-          <p>{{nickname}}</p>
+          <p style="text-align: center;">{{nickname.charAt(0).toUpperCase() + nickname.slice(1)}}</p>
         </ion-item>
   </ion-card>
     

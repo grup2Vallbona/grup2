@@ -40,7 +40,7 @@ export class Seguits {
       .getUsuariEmail(this.email)
       .subscribe((jUsuario: any) => { 
         this.usuariSeguit = jUsuario.json();
-        console.log(this.usuariSeguit);
+   
 
         this.dades.getSeguits(this.usuariSeguit.id).subscribe((seguit) => {
           this.usuarisSeguits = seguit.json();

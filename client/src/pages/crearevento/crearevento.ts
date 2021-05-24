@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { AlertController, IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  AlertController,
+  IonicPage,
+  NavController,
+  NavParams,
+} from "ionic-angular";
 import { DadesProductesService } from "../../services/dades-productes.service";
 
 import { Usuari } from "../../app/interfaces/iusuari";
@@ -26,14 +31,10 @@ import * as Leaflet from "leaflet";
 export class Crearevento {
   tipusBalls = [];
   eventsUsuari = [];
-<<<<<<< HEAD
-=======
   minDate: string = new Date().toISOString();
   maxDate: any = new Date().getFullYear() + 5;
->>>>>>> 2c64763a7b1cf691d6132cbee3f6964e0849dc83
   usuari: Usuari;
-  minDate: string = new Date().toISOString();
-maxDate : any = (new Date()).getFullYear() + 6;
+
   persona_id: any;
   titulo: string;
   subtitulo: string;
@@ -64,38 +65,14 @@ maxDate : any = (new Date()).getFullYear() + 6;
 
     private http: Http,
     public global: GlobalProvider,
-<<<<<<< HEAD
-    public geolocation: Geolocation
-  ) {
-    
-  }
-  mapaGeolocalizacion(){
-     navigator.geolocation.getCurrentPosition((geoposition: Geoposition)=>{
-       this.lat= geoposition.coords.latitude;
-       this.lon= geoposition.coords.longitude;
-       console.log(this.lat +' '+ this.lon);
-       this.map = new Leaflet.Map('map').setView([this.lat,this.lon], 16);
-       Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
-       this.map.on("click",(e)=>{
-         if(this.map.hasLayer(this.marker)){
-          this.map.removeLayer(this.marker);
-         }
-        this.lat = e.latlng.lat;
-        this.lon = e.latlng.lng;
-        this.marker = Leaflet.marker([this.lat,this.lon]).addTo(this.map);
-       });
-     });
-   }
-  
-=======
     public geolocation: Geolocation,
     public alertCtrl: AlertController
-  ) {} 
+  ) {}
   mapaGeolocalizacion() {
     navigator.geolocation.getCurrentPosition((geoposition: Geoposition) => {
       this.lat = geoposition.coords.latitude;
       this.lon = geoposition.coords.longitude;
-      console.log(this.lat + " " + this.lon);
+
       this.map = new Leaflet.Map("map").setView([this.lat, this.lon], 16);
       Leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -112,7 +89,6 @@ maxDate : any = (new Date()).getFullYear() + 6;
     });
   }
 
->>>>>>> 2c64763a7b1cf691d6132cbee3f6964e0849dc83
   crearEvento(
     titulo,
     subtitulo,
@@ -125,81 +101,82 @@ maxDate : any = (new Date()).getFullYear() + 6;
     fechaEvento,
     maxGanadores
   ) {
-      if (crearNuevoPremio) {
-        console.log(this.lat + " " + this.lon);
+    if (crearNuevoPremio) {
+      const formData = new FormData();
+      formData.append("creador_id", this.persona_id);
+      formData.append("titol", premioNuevo);
+      formData.append("maxGuanyadors", maxGanadores);
+      formData.append("categoria", tipoParticipacion);
+      formData.append("usuari_id", this.persona_id);
+      formData.append("ball_id", tipoBaile);
+      formData.append("premi_id", this.premio_id);
+      formData.append("participacioTipus", tipoParticipacion);
+      formData.append("titol", titulo);
+      formData.append("subtitol", subtitulo);
+      formData.append("descripcio", descripcion);
+      formData.append("data", fechaEvento);
+      formData.append("latitud", this.lat.toString());
+      formData.append("longitud", this.lon.toString());
+      this.dades.createEventPremi(formData).subscribe(
+        (data) => {
+          this.navCtrl.push(Eventos);
+        },
+        (e) => {
+          let alert = this.alertCtrl.create({
+            title: "Datos incorrectos!",
+
+            buttons: ["Aceptar"],
+          });
+          alert.present();
+        }
+      );
+    } else {
+      this.premio_id = premioExistente;
+      this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
+        var premio = premioJ.json();
         const formData = new FormData();
-        formData.append("creador_id", this.persona_id);
-        formData.append("titol", premioNuevo);
-        formData.append("maxGuanyadors", maxGanadores);
-        formData.append("categoria", tipoParticipacion);
         formData.append("usuari_id", this.persona_id);
         formData.append("ball_id", tipoBaile);
-        formData.append("premi_id", this.premio_id);
-        formData.append("participacioTipus", tipoParticipacion);
+        formData.append("premi_id", premio.id);
+        formData.append("participacioTipus", premio.categoria);
         formData.append("titol", titulo);
         formData.append("subtitol", subtitulo);
         formData.append("descripcio", descripcion);
         formData.append("data", fechaEvento);
         formData.append("latitud", this.lat.toString());
         formData.append("longitud", this.lon.toString());
-        this.dades.createEventPremi(formData).subscribe((data) => {
-          this.navCtrl.push(Eventos);
-        },(e)=>{
-          let alert = this.alertCtrl.create({
-            title: "Datos incorrectos!",
-           
-            buttons: ["Aceptar"],
-          });
-          alert.present();
-        });
-      } else {
-        this.premio_id = premioExistente;
-        this.dades.getPremi(this.premio_id).subscribe((premioJ) => {
-          var premio = premioJ.json();
-          const formData = new FormData();
-          formData.append("usuari_id", this.persona_id);
-          formData.append("ball_id", tipoBaile);
-          formData.append("premi_id", premio.id);
-          formData.append("participacioTipus", premio.categoria);
-          formData.append("titol", titulo);
-          formData.append("subtitol", subtitulo);
-          formData.append("descripcio", descripcion);
-          formData.append("data", fechaEvento);
-          formData.append("latitud", this.lat.toString());
-          formData.append("longitud", this.lon.toString());
-          this.dades.createEvent(formData).subscribe((data) => {
+        this.dades.createEvent(formData).subscribe(
+          (data) => {
             this.navCtrl.push(Eventos);
-          },(e)=>{
+          },
+          (e) => {
             let alert = this.alertCtrl.create({
               title: "Datos incorrectos!",
-             
+
               buttons: ["Aceptar"],
             });
             alert.present();
-          });
-        });
-      }
+          }
+        );
+      });
+    }
   }
 
   carregarPremis() {
     this.email = this.global.getEmail();
-    // console.log(emailUser);
+
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
       this.persona_id = this.usuari.persona_id;
-      this.dades.getPremisUsuari(this.persona_id).subscribe((events: any) => {
+      this.dades.getPremisUsuari(this.usuari.id).subscribe((events: any) => {
         var event = events.json();
-        
+      
         for (let index = 0; index < event.length; index++) {
           this.eventsUsuari[index] = event[index];
-          
+        
         }
       });
-<<<<<<< HEAD
-    
-=======
     });
->>>>>>> 2c64763a7b1cf691d6132cbee3f6964e0849dc83
   }
   carregarBalls() {
     this.dades.getTipusBalls().subscribe((tipusBalls: any) => {
@@ -211,26 +188,16 @@ maxDate : any = (new Date()).getFullYear() + 6;
   }
 
   ionViewWillEnter() {
-    // console.log('ionViewDidLoad Crearevento');
     this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();
     this.email = this.global.getEmail();
-    console.log(this.email);
-<<<<<<< HEAD
-      this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
-        this.usuari = jUsuario.json();
-        this.persona_id = this.usuari.id;
-        
-      });
-=======
 
     this.dades.getUsuariEmail(this.email).subscribe((jUsuario: any) => {
       this.usuari = jUsuario.json();
-      console.log(this.usuari.id);
+
       this.persona_id = this.usuari.id;
     });
->>>>>>> 2c64763a7b1cf691d6132cbee3f6964e0849dc83
     this.http.get("../../assets/json/countries.json").subscribe(
       (response: any) => {
         // alert(response);

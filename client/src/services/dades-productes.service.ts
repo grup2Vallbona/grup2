@@ -16,11 +16,7 @@ export class DadesProductesService {
   urlServer = 'http://projecte.iescarlesvallbona.cat/~weswing_eq2/server/public/index.php'
   
   
-<<<<<<< HEAD
   baseUrl: string = this.urlDavid;
-=======
-  baseUrl: string = this.urlNil;
->>>>>>> 2c64763a7b1cf691d6132cbee3f6964e0849dc83
 
 
 

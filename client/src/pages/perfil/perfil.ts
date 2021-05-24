@@ -19,6 +19,8 @@ import { Bloquejats } from "../bloquejats/bloquejats";
 import { HomePage } from "../home/home";
 import { MyApp } from "../../app/app.component";
 import { GlobalProvider } from "../../providers/global/global";
+import { TouchID } from "ionic-native";
+import { Eventos } from "../eventos/eventos";
 /**
  * Generated class for the Usuario page.
  *
@@ -66,6 +68,9 @@ export class Perfil {
   usuariBloquejat: any;
   usuariBloquejador: any;
   emailGlobalProvider: any;
+  usuariSeguidor: Usuari;
+  usuariSeguit: Usuari;
+  botoASiguiendo: boolean = false;
   constructor(
     private dades: DadesProductesService,
     public navCtrl: NavController,
@@ -76,17 +81,53 @@ export class Perfil {
     public global: GlobalProvider
   ) {
     if (navParams.get("usuari") != undefined) {
-
       this.usuariRebut = navParams.get("usuari");
+      
       this.emailLoguejat = this.usuariRebut.email;
       this.emailGlobalProvider = this.global.getEmail();
     } else {
       this.emailLoguejat = this.global.getEmail();
-
     }
-
   }
-  
+  seguirUsuario() {
+    this.dades.getUsuariEmail(this.global.getEmail()).subscribe((user) => {
+      let idSeguidor: any;
+      this.usuariSeguidor = user.json();
+      idSeguidor = this.usuariSeguidor.id;
+
+      this.dades.getUsuariEmail(this.emailLoguejat).subscribe((user) => {
+        let idSeguit: any;
+        this.usuariSeguit = user.json();
+
+        idSeguit = this.usuariSeguit.id;
+        const formDataSeguir = new FormData();
+        formDataSeguir.append("seguit_id", idSeguit);
+        formDataSeguir.append("seguidor_id", idSeguidor);
+        this.dades
+          .seguir(formDataSeguir)
+          .subscribe((data) => (this.botoASiguiendo = true));
+      });
+    });
+  }
+
+  dejarSeguirUsuario(){
+    this.dades.getUsuariEmail(this.global.getEmail()).subscribe((user) => {
+      let idSeguidor: any;
+      this.usuariSeguidor = user.json();
+      idSeguidor = this.usuariSeguidor.id;
+
+      this.dades.getUsuariEmail(this.emailLoguejat).subscribe((user) => {
+        let idSeguit: any;
+        this.usuariSeguit = user.json();
+
+        idSeguit = this.usuariSeguit.id;
+        
+        this.dades
+          .deleteSeguir(idSeguit, idSeguidor)
+          .subscribe((data) => (this.botoASiguiendo = false));
+      });
+    });
+  }
   goToSeguits() {
     this.navCtrl.push(Seguits, { email: this.emailLoguejat });
   }
@@ -98,19 +139,19 @@ export class Perfil {
   }
   presentConfirmBloquear() {
     let alert = this.alertCtrl.create({
-      title: "Estas seguro que quieres bloquear a este usuario?",
+      title: "¿Estas seguro que quieres bloquear a este usuario?",
       buttons: [
         {
           text: "Cancelar",
           role: "cancel",
           handler: () => {
-            console.log("Cancel clicked");
+      
           },
         },
         {
           text: "Aceptar",
           handler: () => {
-            console.log("Aceptar clicked");
+      
             this.bloquearUsuario();
           },
         },
@@ -120,12 +161,12 @@ export class Perfil {
   }
   presentConfirmDesbloquear() {
     let alert = this.alertCtrl.create({
-      title: "Estas seguro que quieres desbloquear a este usuario?",
+      title: "¿Estas seguro que quieres desbloquear a este usuario?",
       buttons: [
         {
           text: "Cancelar",
           role: "cancel",
-          handler: () => { },
+          handler: () => {},
         },
         {
           text: "Aceptar",
@@ -138,16 +179,15 @@ export class Perfil {
     alert.present();
   }
   bloquearUsuario() {
-    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe(data => {
+    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((data) => {
       this.usuariBloquejador = data.json();
-      this.dades.getUsuariEmail(this.emailLoguejat).subscribe(data => {
+      this.dades.getUsuariEmail(this.emailLoguejat).subscribe((data) => {
         this.usuariBloquejat = data.json();
         let idUsuariBloquejador: any;
         let idUsuariBloquejat: any;
         idUsuariBloquejat = this.usuariBloquejat.id;
         idUsuariBloquejador = this.usuariBloquejador.id;
-        console.log(this.usuariBloquejat.id);
-        console.log(this.usuariBloquejador.id);
+    
         const formDataBloquejar = new FormData();
         formDataBloquejar.append("bloquejat_id", idUsuariBloquejat);
         formDataBloquejar.append("bloquejador_id", idUsuariBloquejador);
@@ -166,6 +206,7 @@ export class Perfil {
                     this.dejarSeguir(idUsuariBloquejador, idUsuariBloquejat);
                   }
                 }
+                
               });
             } else {
               for (const index in this.seguits) {
@@ -175,7 +216,10 @@ export class Perfil {
                   this.dades.getSeguits(idUsuariBloquejat).subscribe((data) => {
                     for (const key in data.json()) {
                       if (idUsuariBloquejador == data.json()[key].seguit_id) {
-                        this.dejarSeguir(idUsuariBloquejador, idUsuariBloquejat);
+                        this.dejarSeguir(
+                          idUsuariBloquejador,
+                          idUsuariBloquejat
+                        );
                       }
                     }
                   });
@@ -189,11 +233,10 @@ export class Perfil {
   }
 
   dejarSeguir(idseguit, idseguidor) {
-    this.dades.deleteSeguir(idseguit, idseguidor).subscribe((data) => { });
+    this.dades.deleteSeguir(idseguit, idseguidor).subscribe((data) => {});
   }
 
   ngOnInit() {
-
     if (this.emailLoguejat == this.global.getEmail()) {
       this.botonsDreta = true;
       this.botoBloquejar = true;
@@ -203,53 +246,58 @@ export class Perfil {
     }
   }
   desbloquearUsuario() {
-
-
-    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe(data => {
+    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((data) => {
       this.usuariBloquejador = data.json();
-      this.dades.getUsuariEmail(this.emailLoguejat).subscribe(data => {
-        this.usuariBloquejat = data.json(); 
+      this.dades.getUsuariEmail(this.emailLoguejat).subscribe((data) => {
+        this.usuariBloquejat = data.json();
         this.botonsIconosBloquejar = false;
         this.dades
           .deleteBloquejar(this.usuariBloquejat.id, this.usuariBloquejador.id)
-          .subscribe((data) => { });
+          .subscribe((data) => {});
       });
     });
   }
 
-
   ionViewWillEnter() {
     if (this.navParams.get("usuari") != undefined) {
-
       this.usuariRebut = this.navParams.get("usuari");
       this.emailLoguejat = this.usuariRebut.email;
       this.emailGlobalProvider = this.global.getEmail();
-    
-    this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe(user => {
-      this.usuariBloquejador = user.json();
-      console.log(this.usuariBloquejador);
-      this.dades.getBloquejats(this.usuariBloquejador.id).subscribe((user) => {
-        this.bloquejats = user.json();
-  
-        for (const key in this.bloquejats) {
-          if (this.usuari.id == this.bloquejats[key].bloquejat_id) {
-            this.botonsIconosBloquejar = true;
+
+      this.dades.getUsuariEmail(this.emailGlobalProvider).subscribe((user) => {
+        this.usuariBloquejador = user.json();
+        this.dades.getSeguits(this.usuariBloquejador.id).subscribe(user => {
+          this.seguits = user.json();
+          for (const key in this.seguits) {
+            if (this.usuari.id == this.seguits[key].seguit_id) {
+              this.botoASiguiendo = true;
+            }
           }
-        }
+        })
+        this.dades
+          .getBloquejats(this.usuariBloquejador.id)
+          .subscribe((user) => {
+            this.bloquejats = user.json();
+
+            for (const key in this.bloquejats) {
+              if (this.usuari.id == this.bloquejats[key].bloquejat_id) {
+                this.botonsIconosBloquejar = true;
+              }
+            }
+          });
       });
-    });
-  } 
-    this.dades.getUsuariEmail(this.emailLoguejat).subscribe(user => {
+    }
+    this.dades.getUsuariEmail(this.emailLoguejat).subscribe((user) => {
       this.usuari = user.json();
 
       this.descripcioUsuari = this.usuari.descripcio;
       this.personaid = this.usuari.persona_id;
       this.entitatid = this.usuari.entitat_id;
       this.nickname = this.usuari.nickname;
-      this.vacunaUsuari = this.usuari.vacunaCovid; 
+      this.vacunaUsuari = this.usuari.vacunaCovid;
       this.email = this.usuari.email;
       this.dataNaixement = this.usuari.dataNaixement;
-      console.log(this.nickname)
+   
 
       if (this.usuari.genere == 0) {
         this.genereUsuari = "Hombre";
@@ -260,7 +308,6 @@ export class Perfil {
       }
       this.dades.countSeguits(this.usuari.id).subscribe((countSeguits) => {
         this.comptadorSeguits = countSeguits.json();
-
       });
 
       let paises = [] as any;
@@ -272,8 +319,6 @@ export class Perfil {
           for (let index in paises) {
             if (paises[index]["codeInteger"] == this.usuari.pais) {
               this.paisUsuari = paises[index]["name"];
-
-
             }
           }
         });
@@ -286,10 +331,10 @@ export class Perfil {
             this.persona.rol == 1
               ? (this.rolUsuari = "Follower")
               : this.persona.rol == 2
-                ? (this.rolUsuari = "Leader")
-                : this.persona.rol == 3
-                  ? (this.rolUsuari = "Follower/Leader")
-                  : (this.rolUsuari = "Leader/Follower");
+              ? (this.rolUsuari = "Leader")
+              : this.persona.rol == 3
+              ? (this.rolUsuari = "Follower/Leader")
+              : (this.rolUsuari = "Leader/Follower");
 
             if (
               this.persona.music == 1 &&
@@ -357,12 +402,7 @@ export class Perfil {
             this.nomEntitat = this.entitat.nom;
           });
       }
-    })
-
-
-
-
-
+    });
 
     // this.dades
     // .countSeguidors(this.usuari.id)
@@ -378,7 +418,6 @@ export class Perfil {
     //     }
     //   }
     // });
-
 
     // this.dades
     //   .countSeguits(this.usuari.id)
@@ -400,10 +439,6 @@ export class Perfil {
     //     }
     //   }
     // });
-
-
-
-
   }
 
   gotoEditUsuario(usuari: Usuari) {

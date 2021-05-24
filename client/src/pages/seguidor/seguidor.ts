@@ -18,7 +18,7 @@ export class Seguidor {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SeguidorPage');
+   
   }
 
 }

@@ -29,7 +29,7 @@ ionViewWillEnter(){
   
 }
   
-    
+     
  
    gotoLogin() {
      this.navCtrl.push(Login);

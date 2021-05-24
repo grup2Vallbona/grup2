@@ -27,7 +27,7 @@ export class Principal {
   ) {
 
     this.email = navParams.get("email");
-    console.log(this.email)
+  
     this.global.setEmail(this.email);
    
   }

@@ -42,12 +42,5 @@ export class Bloquejats {
         .subscribe((bloquejat) => this.usuarisBloquejats = bloquejat.json());
     });
   }
-  doRefresh(event) {
-    console.log("Begin async operation");
-
-    setTimeout(() => {
-      console.log("Async operation has ended");
-      event.complete();
-    }, 2000);
-  }
+  
 }
