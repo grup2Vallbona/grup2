@@ -5,14 +5,102 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>crearevento</ion-title>
+    <ion-title>Crear Evento</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-item>
+    <ion-label floating>Título</ion-label>
+    <ion-input type="text" [(ngModel)]="titulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Subtítulo</ion-label>
+    <ion-input type="text" [(ngModel)]="subtitulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Descripción</ion-label>
+    <ion-input type="text" [(ngModel)]="descripcion"></ion-input>
+  </ion-item>
 
-<ion-content padding>
+  <ion-item>
+    <ion-label>Tipo de baile</ion-label>
+    <ion-select id="tipusBalls" [(ngModel)]="tipoBaile">
+      <ion-option *ngFor="let item of tipusBalls" value="{{item.id}}"
+        >{{item.nom}}</ion-option
+      >
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Crear un nuevo Premio</ion-label>
+    <ion-checkbox [(ngModel)]="crearNuevoPremio"></ion-checkbox>
+  </ion-item>
+  <ion-item *ngIf="crearNuevoPremio">
+    <ion-label floating>Título del premio</ion-label>
+    <ion-input type="text" [(ngModel)]="premioNuevo" value="{}"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="crearNuevoPremio">
+    <ion-label floating>Máximo de ganadores</ion-label>
+    <ion-input type="text" [(ngModel)]="maxGanadores" value="{}"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="crearNuevoPremio">
+    <ion-label>Tipo de participación</ion-label>
+    <ion-select [(ngModel)]="tipoParticipacion">
+      <ion-option value="1">Solos</ion-option>
+      <ion-option value="2">Duos</ion-option>
+      <ion-option value="3">Escuelas</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="!crearNuevoPremio">
+    <ion-label>Selecciona un premio</ion-label>
+    <ion-select [(ngModel)]="premioExistente">
+      <ion-option *ngFor="let item of eventsUsuari"  value="{{item.id}}" >{{item.titol}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fecha del evento</ion-label>
+    <ion-datetime [min]="minDate" [max]="maxDate"
+      displayFormat="DD MM YYYY" 
+      [(ngModel)]="fechaEvento"
+    ></ion-datetime>
+  </ion-item>
+  <!--<ion-item>
+    <ion-label>Pais</ion-label>
+    <ion-select required name="pais" [(ngModel)]="pais">
+      <ion-option value="{{pais.codeInteger}}" *ngFor="let pais of paises"
+        >{{pais.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item *ngIf="!ubicacionGeolocalizada">
+    <ion-label floating>Provincia</ion-label>
+    <ion-input type="text" [(ngModel)]="provincia"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!ubicacionGeolocalizada">
+    <ion-label floating>Municipio</ion-label>
+    <ion-input type="text" [(ngModel)]="municipio"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!ubicacionGeolocalizada">
+    <ion-label floating>Calle</ion-label>
+    <ion-input type="text" [(ngModel)]="calle"></ion-input>
+  </ion-item>-->
 
+  <ion-item>
+    <ion-label>Ubicación</ion-label>
+  </ion-item>
+  <div id="map" style="height: 80%;width: 100%;" >
+  </div>
+
+  <div class="btnContainer">
+    <div class="btn">
+      <button
+        class="btn"
+        ion-button
+        (click)="crearEvento(titulo,subtitulo,descripcion,tipoParticipacion,tipoBaile,crearNuevoPremio,premioNuevo,premioExistente,fechaEvento,maxGanadores)"
+      >
+        Crear Evento
+      </button>
+    </div>
+  </div>
 </ion-content>

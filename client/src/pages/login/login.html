@@ -6,40 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding class="body">
 
-  <ion-list>
-
-  <div class="imgLogo">
-      <img src="./assets/icon/logoband.png">
-  </div>
-
-
-
-  <ion-item>
-    <ion-input placeholder="Username" type="text" name="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-
-  <div class="btnContainer">
-
-    <div class="btnConnect">
-      <button class="btnLogin" ion-button (click)="login()">Login</button>
+    <div class="imgLogo">
+        <img src="./assets/icon/logoband.png">
     </div>
+    <form #form="ngForm" method="post">
+        <ion-item>
+            <ion-input placeholder="Email" type="text" name="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
 
-  </div>
+        <ion-item>
+            <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
 
+        <p class="btnForgot" (click)="recuperarContra()" text-right>¿Has olvidado la contraseña?</p>
 
-</ion-list>
+        <div class="btn">
+            <button class="btn" ion-button (tap)="login()">Login</button>
+        </div>
+    </form>
 
 </ion-content>

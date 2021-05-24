@@ -6,37 +6,36 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>WeSwing</ion-title>
-  </ion-navbar>
+    <ion-navbar hideBackButton>
+        <ion-title>WeSwing</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="body">
 
-  <ion-list>
+    <ion-list>
 
-    <div class="imgLogo">
-      <img src="./assets/icon/logoband.png">
-    </div>
+        <div class="imgLogo">
+            <img src="./assets/icon/logoband.png">
+        </div>
 
-  <div class="btnContainer">
-    <div class="btnConnect">
-      <button class="btnFb" ion-button (click)="loginFacebook()">Facebook Connect</button>
-    </div>
+        <div class="">
+         
 
-    <div class="btnConnect">
-      <button class="btnLogin" ion-button (click)="gotoLogin()">Login</button>
-    </div>
+            <div class="btn">
+                <button class="btn" ion-button (click)="gotoLogin()">Login</button>
+            </div>
 
-    <div class="btnConnect">
-      <button class="btnRegister" ion-button (click)="gotoRegister()">Register</button>
-    </div>
-  </div>
+            <div class="btn">
+                <button class="btn" ion-button (click)="gotoRegister()">Register</button>
+            </div>
+        </div>
 
 
-</ion-list>
-
+    </ion-list>
+    
 </ion-content>
+
 

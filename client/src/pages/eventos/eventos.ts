@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Evento } from '../evento/evento'
 import { Movidas } from '../movidas/movidas';
+import { Crearevento } from '../crearevento/crearevento';
+import { DadesProductesService } from '../../services/dades-productes.service';
 
 
 
@@ -19,17 +21,28 @@ import { Movidas } from '../movidas/movidas';
 })
 export class Eventos {
  generic: string = "todos";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ eventos = [];
+ html = '';
+  constructor(public navCtrl: NavController, public navParams: NavParams,private dades: DadesProductesService) {
+    
   }
+ 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Eventos');
+  ngOnInit(){
+    this.carrgarEventos();
   }
-
-
-  gotoMovidas() {
-     this.navCtrl.push(Movidas);
+ 
+  carrgarEventos(){
+    this.dades.carregarEvents().subscribe((eventsJ: any) => {
+       this.eventos = eventsJ.json();
+     
+   });
 
   }
-
+  crearEvento(){
+    this.navCtrl.push(Crearevento);
+  }
 }
+
+
+

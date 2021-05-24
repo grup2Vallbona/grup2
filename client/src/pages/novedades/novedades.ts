@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
 
-import { Movidas } from '../movidas/movidas';
-import { Usuario } from '../usuario/usuario';
+import { IonicPage, NavController} from "ionic-angular";
+import { Usuari } from "../../app/interfaces/iusuari";
+import { DadesProductesService } from "../../services/dades-productes.service";
 
+import { Perfil } from "../perfil/perfil";
+import { GlobalProvider } from "../../providers/global/global";
+import { Eventos } from "../eventos/eventos";
 
 /**
  * Generated class for the Novedades page.
@@ -13,23 +16,26 @@ import { Usuario } from '../usuario/usuario';
  */
 @IonicPage()
 @Component({
-  selector: 'page-novedades',
-  templateUrl: 'novedades.html',
+  selector: "page-novedades",
+  templateUrl: "novedades.html",
 })
 export class Novedades {
+  usuari: Usuari;
+  email:any;
+  constructor(
+    public navCtrl: NavController,    
+    public dades: DadesProductesService,
+    public global: GlobalProvider
+  ) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  
+
+  ngOnInit() { 
+    
+  
+
+ 
+    
   }
-
-  gotoMovidas() {
-     this.navCtrl.push(Movidas);
-
-  }
-
-
-  gotoPerfil() {
-     this.navCtrl.push(Usuario);
-
-  }
-
-}
+} 

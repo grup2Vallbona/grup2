@@ -1,14 +1,52 @@
-  .btn{
-    background-color: $color-principal;
-    text-align: center ;
+.btn {
+    background-color: $color-principal !important;
+    text-align: center !important;
+    margin: $margin;
     &:hover {
-      color: $color-principal;
-      text-decoration: none;
+        //   color: $color-principal !important;
+        text-decoration: none !important;
     }
-  
-    &.disabled, &:disabled {
-      opacity: $opacitat;
+    &.disabled,
+    &:disabled {
+        opacity: $opacitat !important;
     }
-  
-  }
+}
+.letraLink{
+    color: $colorLink;
+}
+
+.botoSeguir{
+    background-color: $color-principal;
+    color: $color-font;
+}
+.btnForgot{
+    font-size: $font-size;
+    text-align: right !important;
+    margin: $margin; 
+}
+.buttonEditarPerfil{
+    width: $width;
+    background-color: transparent !important;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px !important;
+  height: $height-buttonEditPerfil !important;
+    font-size: $font-size;
+}
+.buttonSeguir{
+    width: $width;
+    background-color: $color-principal !important;
+    color: white !important;
    
+    border-radius: 8px !important;
+  height: $height-buttonEditPerfil !important;
+    font-size: $font-size;
+}
+.buttonDejarSeguir{
+    background-color: transparent !important;
+    color: black;
+
+    border: 1px solid black;
+    border-radius: 8px !important;
+  height: $height-buttonEditPerfil !important;
+}

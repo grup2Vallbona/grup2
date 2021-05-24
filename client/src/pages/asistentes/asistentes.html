@@ -6,22 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Asistentes</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Asistentes</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="bodyTabs">
-<ion-card (click)="gotoUsuario()">
-      <ion-item>
-        <ion-avatar item-left>
-          <img src="./assets/images/fotoadri.jpg">
-        </ion-avatar>
-        <h3>Adri Canas</h3>
-        <p>Dancer</p>
-      </ion-item>
-</ion-card>
+   
+      
+    <!-- <div [ngSwitch]="generic"> -->
+    <ion-list>
 
+        <page-asistente *ngFor="let asistente of asistentes" [asistente]="asistente"></page-asistente>
+
+    </ion-list>
+
+
+    <!-- </div> -->
 </ion-content>

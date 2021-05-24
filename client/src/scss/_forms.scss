@@ -1,31 +1,47 @@
 .form-control {
-  display: block;
-  width: $width;
-  padding: $padding-top $padding-right;
-  font-size: $font-size;
-  line-height: 1.5;
-  color: $color-principal;
-  background-color: $color-background;
-  background-clip: padding-box;
-  border: 1px solid $color-principal;
-  border-radius: $border-radius;
-
-
-  &:focus{
+    display: block;
+    width: $width;
+    // padding: $padding-top $padding-right;
+    font-size: $font-size;
+    line-height: 1.5;
     color: $color-principal;
     background-color: $color-background;
-    outline: 0;
-    box-shadow: $box-shadow;
-  }
-  tr{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: $margin-right;
-    margin-left: $margin-left;
-  }
+    background-clip: padding-box;
+    border: 1px solid $color-principal;
+    border-radius: $border-radius;
+    &:focus {
+        color: $color-principal;
+        background-color: $color-background;
+        outline: 0;
+        box-shadow: $box-shadow;
+    }
+    tr {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: $margin-right;
+        margin-left: $margin-left;
+    }
 }
-
-
+.item-background-color{
+    --ion-item-background:#015f01d5;
+}
+.divComptadors{
+    display: $display;
+    align-items: center;
+    justify-content: space-between;
+    img{
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+.fontSizeNickname{
+    font-size: 20px !important;
+}
+.ionitemSeguit{
+    display: $display !important;
+    align-items: center !important;
+    margin: 0 !important;
+}

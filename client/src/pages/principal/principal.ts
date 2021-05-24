@@ -1,13 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Login } from '../login/login';
-import { Register } from '../register/register';
-
-import { Eventos } from '../eventos/eventos';
-import { Foro } from '../foro/foro';
-import { Valoraciones } from '../valoraciones/valoraciones';
-import { Novedades } from '../novedades/novedades';
-
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Eventos } from "../eventos/eventos";
+import { GlobalProvider } from "../../providers/global/global";
+import { Perfil } from "../perfil/perfil";
+import { Novedades } from "../novedades/novedades";
 /**
  * Generated class for the Principal page.
  *
@@ -16,18 +12,25 @@ import { Novedades } from '../novedades/novedades';
  */
 @IonicPage()
 @Component({
-  selector: 'page-principal',
-  templateUrl: 'principal.html',
+  selector: "page-principal",
+  templateUrl: "principal.html",
 })
 export class Principal {
-
-
-  tab1Root = Novedades;
-  tab2Root = Foro;
-  tab3Root = Valoraciones;
-  tab4Root = Eventos;
-
-  constructor() {
-
+  email: string;  
+  
+  tab2Root = Eventos;
+  tab3Root = Perfil;
+ 
+  constructor(
+    
+    public navParams: NavParams,
+    public global: GlobalProvider,
+    public ba: NavController
+  ) {
+ 
+    this.email = navParams.get("email");
+  
+    this.global.setEmail(this.email);
+   
   }
 }

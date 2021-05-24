@@ -18,7 +18,7 @@ export class Grupo {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Grupo');
+    
   }
 
 }

@@ -3,6 +3,7 @@ $color-principal:#9D4141;
 $color-secondari: #5B7479;
 $color-background:#fff;
 $color-font:white;
+$colorLink: black;
 // MARGIN
 $margin: 10px;
 $margin-top:10px;
@@ -18,17 +19,22 @@ $padding-right:5px;
 // WIDTH/HEIGHT
 $width: 100%;
 $width-img:200px;
+$width-imgVacuna: 50px;
 $height:200px;
 $height-img: 200px;
+$height-imgVacuna: 40px;
+$height-buttonEditPerfil: 30px;
 // FONTS
 $font-family-sans-serif: "oswald",
 "open-sans",
 "PT Sans",
 "Cairo";
-$font-size:2rem;
+$font-size:1.3rem;
 // OPACITAT
-$opacitat : 0.65;
+$opacitat: 0.65;
 // BORDES
-$border-radius : 0.25rem;
+$border-radius: 0.25rem;
 // SOMBRA
 $box-shadow:0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+// DISPLAY
+$display: flex;

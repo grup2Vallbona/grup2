@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Vista Evento</ion-title>
+  
+  
+</ion-navbar>
+</ion-header>
+
+<ion-content padding class="bodyTabs">
+
+  <ion-card>
+    <ion-card-header text-center class="headerMovida">
+      {{evento.titol}}
+    </ion-card-header>
+    <ion-card-content text-center>
+      <p>{{evento.data}}</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+        <ion-item>
+          <ion-card-content item-left class="asistire">
+            <p>Si asistiré</p>
+          </ion-card-content>
+            <ion-toggle [(ngModel)]="isSelectedAssistir" name="selectedAssistir" (click)="assistirEvent()"></ion-toggle>
+        </ion-item>
+  </ion-card>
+  
+  <ion-card>
+        <ion-item>
+          <ion-card-header style="text-align: center;">
+            Organizador
+          </ion-card-header>
+          <ion-avatar item-left>
+            <img src="./assets/images/foto1.jpg">
+          </ion-avatar>
+          <p style="text-align: center;">{{nickname.charAt(0).toUpperCase() + nickname.slice(1)}}</p>
+        </ion-item>
+  </ion-card>
+    
+  <ion-card (click)="vistaAssistentes()">
+        <ion-item>
+          <ion-card-content item-left>
+            <p>Asistentes</p>
+          </ion-card-content>
+          <ion-card-content item-right>
+            <p>{{numeroAssistents}}</p>
+          </ion-card-content>
+        </ion-item>
+  </ion-card>
+  <div id="map" style="height: 80%;width: 100%;" >
+  </div>
+  </ion-content>
+
+  

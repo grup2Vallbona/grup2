@@ -18,7 +18,7 @@ export class Valoraciones {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Valoraciones');
+    
   }
 
 }
