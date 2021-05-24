@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Eventos } from "../eventos/eventos";
 import { GlobalProvider } from "../../providers/global/global";
 import { Perfil } from "../perfil/perfil";
+import { Novedades } from "../novedades/novedades";
 /**
  * Generated class for the Principal page.
  *
@@ -16,8 +17,9 @@ import { Perfil } from "../perfil/perfil";
 })
 export class Principal {
   email: string;  
-  tab1Root = Eventos;
-  tab2Root = Perfil;
+  tab1Root = Novedades;
+  tab2Root = Eventos;
+  tab3Root = Perfil;
  
   constructor(
     

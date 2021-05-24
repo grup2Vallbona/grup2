@@ -113,7 +113,7 @@ export class Crearevento {
         formData.append("latitud", this.lat.toString());
         formData.append("longitud", this.lon.toString());
         this.dades.createEventPremi(formData).subscribe((data) => {
-          this.navCtrl.push(Eventos);
+          this.navCtrl.push(Novedades);
         },(e)=>{
           let alert = this.alertCtrl.create({
             title: "Datos incorrectos!",
@@ -138,7 +138,7 @@ export class Crearevento {
           formData.append("latitud", this.lat.toString());
           formData.append("longitud", this.lon.toString());
           this.dades.createEvent(formData).subscribe((data) => {
-            this.navCtrl.push(Eventos);
+            this.navCtrl.push(Novedades);
           },(e)=>{
             let alert = this.alertCtrl.create({
               title: "Datos incorrectos!",
@@ -177,7 +177,7 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-    // console.log('ionViewDidLoad Crearevento'); 
+    // console.log('ionViewDidLoad Crearevento');
     this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();

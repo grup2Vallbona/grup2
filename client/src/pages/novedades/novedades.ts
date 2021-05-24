@@ -6,6 +6,7 @@ import { DadesProductesService } from "../../services/dades-productes.service";
 
 import { Perfil } from "../perfil/perfil";
 import { GlobalProvider } from "../../providers/global/global";
+import { Eventos } from "../eventos/eventos";
 
 /**
  * Generated class for the Novedades page.
@@ -31,14 +32,10 @@ export class Novedades {
   
 
   ngOnInit() {
-    this.email = this.global.getEmail();
+    
   
-    this.dades.getUsuariEmail(this.email).subscribe(usuariJ => {
-    this.usuari = usuariJ.json();
-    this.navCtrl.push(Perfil, {usuari: this.usuari});
-      
-  })
+
  
     
   }
-}
+} 

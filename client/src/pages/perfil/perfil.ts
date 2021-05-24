@@ -309,6 +309,9 @@ export class Perfil {
       this.dades.countSeguits(this.usuari.id).subscribe((countSeguits) => {
         this.comptadorSeguits = countSeguits.json();
       });
+      this.dades.countSeguidors(this.usuari.id).subscribe((countSeguits) => {
+        this.comptadorSeguidors = countSeguits.json();
+      });
 
       let paises = [] as any;
       this.http
