@@ -19,11 +19,12 @@
 
       <button *ngIf="botonsIconosBloquejar == false" ion-button icon-only color="light"
         (click)="presentConfirmBloquear()">
-        <ion-icon name="logo-xbox"></ion-icon>
+        <i class="fas fa-lock"></i>
+
       </button>
       <button *ngIf="botonsIconosBloquejar == true" ion-button icon-only color="light"
         (click)="presentConfirmDesbloquear()">
-        <ion-icon name="logo-octocat"></ion-icon>
+        <i class="fas fa-unlock"></i>
       </button>
 
     </ion-buttons>

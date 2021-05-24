@@ -177,7 +177,7 @@ export class Crearevento {
   }
 
   ionViewWillEnter() {
-    // console.log('ionViewDidLoad Crearevento');
+    // console.log('ionViewDidLoad Crearevento'); 
     this.mapaGeolocalizacion();
     this.carregarBalls();
     this.carregarPremis();
